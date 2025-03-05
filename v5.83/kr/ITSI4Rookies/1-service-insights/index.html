@@ -1,255 +1,171 @@
-<html lang="en" dir="ltr" itemscope="" itemtype="http://schema.org/Article" data-r-output-format="html"
-    data-r-theme-variant="auto">
+<!doctype html>
+<html lang=en dir=ltr itemscope itemtype=http://schema.org/Article data-r-output-format=html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.134.3">
-    <meta name="generator" content="Relearn 7.2.1">
-    <meta name="description" content="Learn how to build observability solutions with Splunk">
-    <meta name="author" content="">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
-    <meta name="twitter:description" content="Learn how to build observability solutions with Splunk">
-    <meta property="og:url" content="https://sookim-splunk.github.io/o11y-workshop-kr/v5.83/en/index.html">
+    <meta charset=utf-8>
+    <meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
+    <meta name=generator content="Hugo 0.134.3">
+    <meta name=generator content="Relearn 7.2.1">
+    <meta name=description
+        content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
+    <meta name=author content>
+    <meta name=twitter:card content="summary">
+    <meta name=twitter:title content="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
+    <meta name=twitter:description
+        content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
+    <meta property="og:url" content="https://splunk.github.io/observability-workshop/v5.83/en/s4r/index.html">
     <meta property="og:site_name" content="Splunk Observability Cloud Workshops">
-    <meta property="og:title" content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
-    <meta property="og:description" content="Learn how to build observability solutions with Splunk">
+    <meta property="og:title" content="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
+    <meta property="og:description"
+        content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
-    <meta itemprop="description" content="Learn how to build observability solutions with Splunk">
-    <meta itemprop="dateModified" content="2024-09-18T18:53:13+01:00">
-    <meta itemprop="wordCount" content="841">
-    <title>Splunk Observability Workshops for Korea</title>
-    <link href="https://sookim-splunk.github.io/o11y-workshop-kr/v5.83/en/index.html" rel="alternate"
-        hreflang="x-default">
-    <link href="https://sookim-splunk.github.io/o11y-workshop-kr/v5.83/en/index.html" rel="alternate" hreflang="en">
-    <link href="https://sookim-splunk.github.io/o11y-workshop-kr/v5.83/ja/index.html" rel="alternate" hreflang="ja">
-    <link href="/o11y-workshop-kr/v5.83/en/index.print.html" rel="alternate" type="text/html"
-        title="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
-    <link href="../images/favicon.ico?1740139255" rel="icon" type="image/x-icon" sizes="any">
-    <link href="../css/fontawesome-all.min.css?1740139255" rel="stylesheet" media="all"
-        onload="this.media=&quot;all&quot;,this.onload=null"><noscript>
-        <link href=../css/fontawesome-all.min.css?1740139255 rel=stylesheet>
+    <meta itemprop=name content="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
+    <meta itemprop=description
+        content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
+    <meta itemprop=dateModified content="2025-01-21T18:54:44+00:00">
+    <meta itemprop=wordCount content="227">
+    <title>ITSI4Rookies :: Splunk IT Service Intelligence Workshops</title>
+    <link href=https://splunk.github.io/observability-workshop/v5.83/en/s4r/index.html rel=alternate hreflang=x-default>
+    <link href=https://splunk.github.io/observability-workshop/v5.83/en/s4r/index.html rel=alternate hreflang=en>
+    <link href=https://splunk.github.io/observability-workshop/v5.83/ja/s4r/index.html rel=alternate hreflang=ja>
+    <link href=/observability-workshop/v5.83/en/s4r/index.print.html rel=alternate type=text/html
+        title="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
+    <link href=../../../images/favicon.ico?1740139255 rel=icon type=image/x-icon sizes=any>
+    <link href=../../../css/fontawesome-all.min.css?1740139255 rel=stylesheet media=print
+        onload='this.media="all",this.onload=null'><noscript>
+        <link href=../../../css/fontawesome-all.min.css?1740139255 rel=stylesheet>
     </noscript>
-    <link href="../css/auto-complete.css?1740139255" rel="stylesheet" media="all"
-        onload="this.media=&quot;all&quot;,this.onload=null"><noscript>
-        <link href=../css/auto-complete.css?1740139255 rel=stylesheet>
+    <link href=../../../css/auto-complete.css?1740139255 rel=stylesheet media=print
+        onload='this.media="all",this.onload=null'><noscript>
+        <link href=../../../css/auto-complete.css?1740139255 rel=stylesheet>
     </noscript>
-    <link href="../css/perfect-scrollbar.min.css?1740139255" rel="stylesheet">
-    <link href="../css/theme.min.css?1740139255" rel="stylesheet">
-    <link href="../css/format-html.min.css?1740139255" rel="stylesheet" id="R-format-style">
-    <script>window.relearn = window.relearn || {}, window.relearn.relBasePath = "..", window.relearn.relBaseUri = "../../..", window.relearn.absBaseUri = "https://sookim-splunk.github.io/o11y-workshop-kr/v5.83", window.relearn.min = `.min`, window.relearn.disableAnchorCopy = !1, window.relearn.disableAnchorScrolling = !1, window.relearn.themevariants = ["auto", "splunk-light", "splunk-dark"], window.relearn.customvariantname = "my-custom-variant", window.relearn.changeVariant = function (e) { var t = document.documentElement.dataset.rThemeVariant; window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e), document.documentElement.dataset.rThemeVariant = e, t != e && document.dispatchEvent(new CustomEvent("themeVariantLoaded", { detail: { variant: e, oldVariant: t } })) }, window.relearn.markVariant = function () { var t = window.localStorage.getItem(window.relearn.absBaseUri + "/variant"), e = document.querySelector("#R-select-variant"); e && (e.value = t) }, window.relearn.initVariant = function () { var e = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? ""; e == window.relearn.customvariantname || (!e || !window.relearn.themevariants.includes(e)) && (e = window.relearn.themevariants[0], window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e)), document.documentElement.dataset.rThemeVariant = e }, window.relearn.initVariant(), window.relearn.markVariant(), window.T_Copy_to_clipboard = `Copy to clipboard`, window.T_Copied_to_clipboard = `Copied to clipboard!`, window.T_Copy_link_to_clipboard = `Copy link to clipboard`, window.T_Link_copied_to_clipboard = `Copied link to clipboard!`, window.T_Reset_view = `Reset view`, window.T_View_reset = `View reset!`, window.T_No_results_found = `No results found for "{0}"`, window.T_N_results_found = `{1} results found for "{0}"`</script>
-    <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js"
-        crossorigin="anonymous"></script>
-    <script>SplunkRum.init({ realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA", applicationName: "o11y-workshop-kr", deploymentEnvironment: "sookim-splunk.github.io", version: "1.0" }), SplunkSessionRecorder.init({ app: "o11y-workshop-kr", realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA" })</script>
+    <link href=../../../css/perfect-scrollbar.min.css?1740139255 rel=stylesheet>
+    <link href=../../../css/theme.min.css?1740139255 rel=stylesheet>
+    <link href=../../../css/format-html.min.css?1740139255 rel=stylesheet id=R-format-style>
+    <script>window.relearn = window.relearn || {}, window.relearn.relBasePath = "../..", window.relearn.relBaseUri = "../../../..", window.relearn.absBaseUri = "https://splunk.github.io/observability-workshop/v5.83", window.relearn.min = `.min`, window.relearn.disableAnchorCopy = !1, window.relearn.disableAnchorScrolling = !1, window.relearn.themevariants = ["auto", "splunk-light", "splunk-dark"], window.relearn.customvariantname = "my-custom-variant", window.relearn.changeVariant = function (e) { var t = document.documentElement.dataset.rThemeVariant; window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e), document.documentElement.dataset.rThemeVariant = e, t != e && document.dispatchEvent(new CustomEvent("themeVariantLoaded", { detail: { variant: e, oldVariant: t } })) }, window.relearn.markVariant = function () { var t = window.localStorage.getItem(window.relearn.absBaseUri + "/variant"), e = document.querySelector("#R-select-variant"); e && (e.value = t) }, window.relearn.initVariant = function () { var e = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? ""; e == window.relearn.customvariantname || (!e || !window.relearn.themevariants.includes(e)) && (e = window.relearn.themevariants[0], window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e)), document.documentElement.dataset.rThemeVariant = e }, window.relearn.initVariant(), window.relearn.markVariant(), window.T_Copy_to_clipboard = `Copy to clipboard`, window.T_Copied_to_clipboard = `Copied to clipboard!`, window.T_Copy_link_to_clipboard = `Copy link to clipboard`, window.T_Link_copied_to_clipboard = `Copied link to clipboard!`, window.T_Reset_view = `Reset view`, window.T_View_reset = `View reset!`, window.T_No_results_found = `No results found for "{0}"`, window.T_N_results_found = `{1} results found for "{0}"`</script>
+    <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script>
+    <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js
+        crossorigin=anonymous></script>
+    <script>SplunkRum.init({ realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA", applicationName: "observability-workshop", deploymentEnvironment: "splunk.github.io", version: "1.0" }), SplunkSessionRecorder.init({ app: "observability-workshop", realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA" })</script>
+    </script>
     <style>
         :root {
             --MAIN-WIDTH-MAX: 130rem;
             --MENU-WIDTH-L: 23rem
         }
     </style>
-    <script src="/o11y-workshop-kr/v5.83/searchindex.en.js?1740139255" async=""></script>
 </head>
 
-<body class="mobile-support html disableInlineCopyToClipboard menu-width-l"
-    data-url="/o11y-workshop-kr/v5.83/en/index.html">
-    <div id="R-body" class="default-animation">
-        <div id="R-body-overlay"></div>
-        <nav id="R-topbar">
-            <div class="topbar-wrapper">
-                <div class="topbar-sidebar-divider"></div>
-                <div class="topbar-area topbar-area-start" data-area="area-start">
-                    <div class="topbar-placeholder" data-action="hide"></div>
-                    <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show"
-                        data-width-m="show" data-width-l="show" data-origin="area-start" data-action="show"
-                        style="display: none;"><button class="topbar-control" onclick="toggleTopbarFlyout(this)"
-                            type="button" title="Table of Contents (CTRL+ALT+t)" disabled=""><i
+<body class="mobile-support html disableInlineCopyToClipboard" data-url=/observability-workshop/v5.83/en/s4r/index.html>
+    <div id=R-body class=default-animation>
+        <div id=R-body-overlay></div>
+        <nav id=R-topbar>
+            <div class=topbar-wrapper>
+                <div class=topbar-sidebar-divider></div>
+                <div class="topbar-area topbar-area-start" data-area=start>
+                    <div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show
+                        data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button
+                            title="Menu (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div>
+                    <div class="topbar-button topbar-button-toc" data-content-empty=hide data-width-s=show
+                        data-width-m=show data-width-l=show><button class=topbar-control
+                            onclick=toggleTopbarFlyout(this) type=button title="Table of Contents (CTRL+ALT+t)"><i
                                 class="fa-fw fas fa-list-alt"></i></button>
-                        <div class="topbar-content">
-                            <div class="topbar-content-wrapper ps">
-                                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                </div>
-                                <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                                </div>
-                            </div>
+                        <div class=topbar-content>
+                            <div class=topbar-content-wrapper></div>
                         </div>
                     </div>
-                    <div class="topbar-placeholder" data-action="show"></div>
-                    <div></div>
                 </div>
-                <div class="topbar-hidden" data-area="area-start">
-                    <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show"
-                        data-width-m="hide" data-width-l="hide" data-origin="area-start" data-action="hide"><button
-                            class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL+ALT+n)"><i
-                                class="fa-fw fas fa-bars"></i></button></div>
-                    <div></div>
-                </div>
-                <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope=""
-                    itemtype="http://schema.org/BreadcrumbList">
-                    <li itemscope="" itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span
-                            itemprop="name">Splunk Observability Workshops</span>
-                        <meta itemprop="position" content="1">
+                <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope
+                    itemtype=http://schema.org/BreadcrumbList>
+                    <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
+                            href=/observability-workshop/v5.83/en/index.html><span itemprop=name>Splunk Observability
+                                Workshops</span></a>
+                        <meta itemprop=position content="1">&nbsp;>&nbsp;
+                    </li>
+                    <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span
+                            itemprop=name>ITSI4Rookies 🐥</span>
+                        <meta itemprop=position content="2">
                     </li>
                 </ol>
-                <div class="topbar-area topbar-area-end" data-area="area-end">
-                    <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more"
-                        data-width-m="show" data-width-l="show" data-origin="area-end" data-action="show"><a
-                            class="topbar-control" href="/o11y-workshop-kr/v5.83/en/index.print.html"
+                <div class="topbar-area topbar-area-end" data-area=end>
+                    <div class="topbar-button topbar-button-print" data-content-empty=disable data-width-s=area-more
+                        data-width-m=show data-width-l=show><a class=topbar-control
+                            href=/observability-workshop/v5.83/en/s4r/index.print.html
                             title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></div>
-                    <div class="topbar-placeholder" data-action="show"></div>
-                    <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show"
-                        data-width-m="show" data-width-l="show" data-origin="area-end" data-action="show"><span
-                            class="topbar-control"><i class="fa-fw fas fa-chevron-left"></i></span></div>
-                    <div class="topbar-placeholder" data-action="show"></div>
-                    <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show"
-                        data-width-m="show" data-width-l="show" data-origin="area-end" data-action="show"><a
-                            class="topbar-control" href="/o11y-workshop-kr/v5.83/en/s4r/index.html"
-                            title="Splunk4Rookies - Observability Cloud (🡒)"><i
-                                class="fa-fw fas fa-chevron-right"></i></a></div>
-                    <div class="topbar-placeholder" data-action="show"></div>
-                    <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show"
-                        data-width-m="show" data-width-l="show" data-origin="area-end" data-action="show"
-                        style="display: none;"><button class="topbar-control" onclick="toggleTopbarFlyout(this)"
-                            type="button" title="More" disabled=""><i class="fa-fw fas fa-ellipsis-v"></i></button>
-                        <div class="topbar-content">
-                            <div class="topbar-content-wrapper ps">
-                                <div class="topbar-area topbar-area-more" data-area="area-more">
-                                    <div></div>
-                                </div>
-                                <div class="topbar-hidden" data-area="area-more">
-                                    <div></div>
-                                </div>
-                                <div class="ps__rail-x" style="left: 0px; bottom: 0px; width: 32px;">
-                                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                </div>
-                                <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                                </div>
+                    <div class="topbar-button topbar-button-prev" data-content-empty=disable data-width-s=show
+                        data-width-m=show data-width-l=show><a class=topbar-control
+                            href=/observability-workshop/v5.83/en/index.html
+                            title="Splunk Observability Workshops (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+                    </div>
+                    <div class="topbar-button topbar-button-next" data-content-empty=disable data-width-s=show
+                        data-width-m=show data-width-l=show><a class=topbar-control
+                            href=/observability-workshop/v5.83/en/s4r/1-workshop-goals/index.html
+                            title="Workshop Overview (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></div>
+                    <div class="topbar-button topbar-button-more" data-content-empty=hide data-width-s=show
+                        data-width-m=show data-width-l=show><button class=topbar-control
+                            onclick=toggleTopbarFlyout(this) type=button title=More><i
+                                class="fa-fw fas fa-ellipsis-v"></i></button>
+                        <div class=topbar-content>
+                            <div class=topbar-content-wrapper>
+                                <div class="topbar-area topbar-area-more" data-area=more></div>
                             </div>
                         </div>
                     </div>
-                    <div class="topbar-placeholder" data-action="show"></div>
-                    <div></div>
-                </div>
-                <div class="topbar-hidden" data-area="area-end">
-                    <div></div>
                 </div>
             </div>
         </nav>
-        <div id="R-main-overlay"></div>
-        <main id="R-body-inner" class="highlightable page" tabindex="-1" style="padding-right: 52px;">
-            <div class="flex-block-wrapper">
-                <article class="default">
-                    <header class="headline"></header>
-                    <h1 id="splunk-o11y-workshop-krs">Splunk Observability Workshops - KOREAN 🇰🇷</h1>
-                    <details open="" class="box cstyle notices splunk">
-                        <summary class="box-label"><i class="fa-fw fas fa-circle-info"></i>
-                            Welcome</summary>
-                        <div class="box-content">
-                            <p>Splunk Observability Cloud의 모니터링, 분석 및 대응 도구를 통해 실시간으로 애플리케이션과 인프라에 대한 인사이트를 얻으세요</p>
-                            <p>이 워크샵에서는 메트릭, 추적 및 로그 수집, 모니터링, 시각화 및 분석을 위한 동급 최고의 통합 가시성 플랫폼에 대해 안내합니다</p>
-                        </div>
-                    </details>
-                    <p><a href="#R-image-9c6b33246d509793bd5cbfa2dafd2029" class="lightbox-link"><img alt="gif"
-                                class="noborder lazy lightbox noshadow figure-image" loading="lazy"
-                                src="./images/observability-hero-dashboard.gif" style="height:auto;width:auto"></a>
-                        <a href="javascript:history.back();" class="lightbox-back"
-                            id="R-image-9c6b33246d509793bd5cbfa2dafd2029"><img alt="gif"
-                                class="noborder lazy lightbox noshadow lightbox-image" loading="lazy"
-                                src="./images/observability-hero-dashboard.gif"></a>
-                    </p>
-                    <ul class="children children-li children-sort-">
-                        <li><a href="/o11y-workshop-kr/v5.83/kr/ITSI4Rookies/index.html"
-                                class="highlight">ITSI4Rookies🐥</a>
-                            <p>Learn how to build observability solutions with Splunk</p>
+        <div id=R-main-overlay></div>
+        <main id=R-body-inner class="highlightable s4r" tabindex=-1>
+            <div class=flex-block-wrapper>
+                <article class=default>
+                    <header class=headline></header>
+                    <h1 id=splunk4rookies---observability-cloud>ITSI4Rookies 🐥 - IT Service Intelligence Workshop</h1>
+                    <span class="badge cstyle primary badge-with-title"><span class=badge-title><i
+                                class="fa-fw fas fa-clock"></i></span><span class=badge-content>2 minutes</span>
+                    </span>&nbsp;
+                    <span class="badge cstyle blue badge-with-title"><span class=badge-title class=text-muted>Authors
+                        </span><span class=badge-content>SooKyung Kim</span></span>
+                    <p>이 워크샵에서는 어떤 주제를 가지고 진행되는지, 어떤 핸즈온을 통해서 어떠한 기대효과를 달성할 수 있을지 기술합니다.</p>
+                    <ul>
+                        <li><strong>Service Insigiths</strong>
                             <ul>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/index.html"
-                                        class="highlight">Optimize Cloud Monitoring</a>
-                                    <p>This scenario is for ITOps teams managing a hybrid infrastructure that need to
-                                        troubleshoot cloud-native performance issues, by correlating real-time metrics
-                                        with logs to troubleshoot faster, improve MTTD/MTTR, and optimize costs.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/index.html"
-                                        class="highlight">Debug Problems in Microservices</a>
-                                    <p>This scenario helps engineering teams identify and fix issues caused by planned
-                                        and unplanned changes to their microservices-based applications.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/index.html"
-                                        class="highlight">Optimize End User Experiences</a>
-                                    <p>Use Splunk Real User Monitoring (RUM) and Synthetics to get insight into end user
-                                        experience, and proactively test scenarios to improve that experience.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/index.html"
-                                        class="highlight">Self-Service Observability</a>
-                                    <p>This scenario helps platform engineering (or central tools) teams enable
-                                        engineers with self-service observability tooling at scale, so developers and
-                                        SREs can spend less time managing their toolchain and more time building and
-                                        delivering cool software.</p>
-                                </li>
+                                <li>Service / KPIs / Entities / SHC</li>
+                                <li>Deep Dives</li>
+                                <li>Glass Tables</li>
                             </ul>
                         </li>
-                        <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/index.html" class="highlight">Ninja
-                                Workshops</a>
-                            <p>The following workshops require Ninja skills, wax on, wax off.</p>
+                        <li><strong>Event Analytics</strong>
                             <ul>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/index.html"
-                                        class="highlight">Automatic Discovery Workshops</a>
-                                    <p>Automatic Discovery Workshops</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/2-hpa/index.html"
-                                        class="highlight">Horizontal Pod Autoscaling</a>
-                                    <p>This workshop will equip you with the basic understanding of monitoring
-                                        Kubernetes using the Splunk OpenTelemetry Collector</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/index.html"
-                                        class="highlight">OpenTelemetry Collector</a>
-                                    <p>Learn the concepts of the OpenTelemetry Collector and how to use it to send data
-                                        to Splunk Observability Cloud.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/index.html"
-                                        class="highlight">Splunk Synthetic Scripting</a>
-                                    <p>Proactively find and fix performance issues across user flows, business
-                                        transactions and APIs to deliver better digital experiences.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/index.html"
-                                        class="highlight">Lambda Tracing</a>
-                                    <p>This workshop will enable you to build a distributed trace for a small serverless
-                                        application that runs on AWS Lambda, producing and consuming a message via AWS
-                                        Kinesis</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/index.html"
-                                        class="highlight">Hands-On OpenTelemetry, Docker, and K8s</a>
-                                    <p>By the end of this workshop you'll have gotten hands-on experience instrumenting
-                                        a .NET application with OpenTelemetry, then Dockerizing the application and
-                                        deploying it to Kubernetes. You’ll also gain experience deploying the
-                                        OpenTelemetry collector using Helm, customizing the collector configuration, and
-                                        troubleshooting collector configuration issues.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/index.html"
-                                        class="highlight">Solving Problems with O11y Cloud</a>
-                                    <p>By the end of this workshop you'll have gotten hands-on experience deploying the
-                                        OpenTelemetry Collector, instrumenting an application with OpenTelemetry,
-                                        capturing tags from the application, and using Troubleshooting MetricSets and
-                                        Tag Spotlight to determine the root cause of an issue.</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/index.html"
-                                        class="highlight">Advanced OpenTelemetry</a>
-                                    <p>In this workshop you will practice setting up the OpenTelemetry Collector
-                                        configuration from scratch and go though several advanced configuration
-                                        scenarios's</p>
-                                </li>
-                                <li><a href="/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/index.html"
-                                        class="highlight">Ingest Processor for Splunk Observability Cloud</a>
-                                    <p>Scenario Description</p>
-                                </li>
+                                <li>Event Aggregation</li>
+                                <li>Episodes</li>
+                                <li>Correlations</li>
+                            </ul>
+                        </li>
+                        <li><strong>Advanced Analytics & Alerts</strong>
+                            <ul>
+                                <li>Anomaly Detection</li>
+                                <li>Adoptive Threshold</li>
+                                <li>Predictive Analytics</li>
                             </ul>
                         </li>
                     </ul>
+                    <p>이 워크샵에서는 Splunk Cloud에 사전 설치 된 ITSI를 사용하여 문제를 해결해나가는 과정을 배워갑니다</p>
+                    <p>외부 측정 데이터는 Splunk O11y Cloud, AppDynamics, Thousand Eyes 가 사전 구축되어있으며 Contents Pack 설치를 통해 데이터
+                        유입부터 엔티티 정의, 이벤트 발생 시 확인하고 드릴다운하는 모든 단계에 걸친 내용을 확인합니다</p>
+                    <p><strong>What is IT Service Intelligence?</strong><br>ITSI가 뭐냐면 이런저런 좋은 솔루션입니다</p>
+                    <p>ITSI를 이해하려면 AIOps 라는 업계 general term 부터 이해해야합니다</p>
+                    <p><a href=#R-image-bbb78003e36cd7db6c726bd5aca1ae05 class=lightbox-link><img alt="Full Stack"
+                                class="noborder lazy lightbox noshadow figure-image" loading=lazy src=images/AIOps.jpg
+                                style=height:auto;width:auto></a>
+                        <a href=javascript:history.back(); class=lightbox-back
+                            id=R-image-bbb78003e36cd7db6c726bd5aca1ae05><img alt="Full Stack"
+                                class="noborder lazy lightbox noshadow lightbox-image" loading=lazy
+                                src="images/AIOps.jpg"></a>
+                    </p>
+                    <footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title
+                                class=text-muted>Last Modified
+                            </span><span class=badge-content>Mar 5, 2025</span></span></footer>
                 </article>
             </div>
         </main>
@@ -258,9 +174,9 @@
         <div id="R-header-topbar" class="default-animation"></div>
         <div id="R-header-wrapper" class="default-animation">
             <div>
-                <img src="images/Splunk-Corp-Logo-W-rgb.png" width="320">
+                <img src="/v5.83/kr/images/Splunk-Corp-Logo-W-rgb.png" width="320">
             </div>
-            <div><img src="images/pwny-kr.webp" width="320"></div>
+            <div><img src="/v5.83/kr/images/pwny-kr.webp" width="320"></div>
             <script>window.index_js_url = "/o11y-workshop-kr/v5.83/searchindex.en.js?1740139255"</script>
             <search>
                 <form action="/o11y-workshop-kr/v5.83/en/search/index.html" method="get">
@@ -276,21 +192,21 @@
                 <div class="autocomplete-suggestions "></div>
             </search>
             <script>var contentLangs = ["ja", "en"]</script>
-            <script src="../js/auto-complete.js?1740139255" defer=""></script>
-            <script src="../js/lunr/lunr.min.js?1740139255" defer=""></script>
-            <script src="../js/lunr/lunr.stemmer.support.min.js?1740139255" defer=""></script>
-            <script src="../js/lunr/lunr.multi.min.js?1740139255" defer=""></script>
-            <script src="../js/lunr/tinyseg.js?1740139255" defer=""></script>
-            <script src="../js/lunr/lunr.ja.min.js?1740139255" defer=""></script>
-            <script src="../js/lunr/lunr.en.min.js?1740139255" defer=""></script>
-            <script src="../js/search.js?1740139255" defer=""></script>
+            <script src="../../js/auto-complete.js?1740139255" defer=""></script>
+            <script src="../../js/lunr/lunr.min.js?1740139255" defer=""></script>
+            <script src="../../js/lunr/lunr.stemmer.support.min.js?1740139255" defer=""></script>
+            <script src="../../js/lunr/lunr.multi.min.js?1740139255" defer=""></script>
+            <script src="../../js/lunr/tinyseg.js?1740139255" defer=""></script>
+            <script src="../../js/lunr/lunr.ja.min.js?1740139255" defer=""></script>
+            <script src="../../js/lunr/lunr.en.min.js?1740139255" defer=""></script>
+            <script src="../../js/search.js?1740139255" defer=""></script>
         </div>
         <div id="R-homelinks" class="default-animation homelinks">
             <ul>
                 <li>
-                    <a class="padding" href="/o11y-workshop-kr/v5.83/kr/index.html">
+                    <a class="padding">
                         <i class="fa-fw fas fa-home"></i>
-                        Home
+                        Contents
                     </a>
                 </li>
             </ul>
@@ -307,18 +223,18 @@
                             <span class="a11y-only">Submenu
                                 ITSI4Rookies🐥</span>
                         </label>
-                        <a class="padding" href="./ITSI4Rookies/index.html">ITSI4Rookies🐥<i class="fa-f
+                        <a class="padding" href="./index.html">ITSI4Rookies🐥<i class="fa-f
                                 w fas fa-check read-icon"></i>
                         </a>
                         <ul id="R-subsections-14502dc75e54f9828d57d57cc330bbac" class="collapsible-menu">
-                            <li data-nav-id="/o11y-workshop-kr/v5.83/kr/ITSI4Rookies/optimize_monitoring/index.html">
+                            <li data-nav-id="/o11y-workshop-kr/v5.83/kr/ITSI4Rookies/1-service-insights/index.html">
                                 <input type="checkbox" id="R-section-fc29800edf936baccfbe8ba9f1fbf169"
                                     aria-controls="R-subsections-fc29800edf936baccfbe8ba9f1fbf169"><label
                                     for="R-section-fc29800edf936baccfbe8ba9f1fbf169"><i
-                                        class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Optimize
-                                        Cloud Monitoring</span></label><a class="padding"
-                                    href="/o11y-workshop-kr/v5.83/kr/ITSI4Rookies/optimize_monitoring/index.html">Optimize
-                                    Cloud Monitoring<i class="fa-fw fas fa-check read-icon"></i></a>
+                                        class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Service
+                                        Insights</span></label><a class="padding"
+                                    href="/v5.83/kr/ITSI4Rookies/1-service-insights/index.html">Service
+                                    Insights<i class="fa-fw fas fa-check read-icon"></i></a>
                                 <ul id="R-subsections-fc29800edf936baccfbe8ba9f1fbf169" class="collapsible-menu">
                                     <li
                                         data-nav-id="/o11y-workshop-kr/v5.83/kr/ITSI4Rookies/optimize_monitoring/1-getting-started/index.html">
@@ -2335,9 +2251,9 @@
             </div>
         </div>
     </aside>
-    <script src="../js/clipboard.min.js?1740139255" defer=""></script>
-    <script src="../js/perfect-scrollbar.min.js?1740139255" defer=""></script>
-    <script src="../js/theme.js?1740139255" defer=""></script>
+    <script src=../../../js/clipboard.min.js?1740139255 defer></script>
+    <script src=../../../js/perfect-scrollbar.min.js?1740139255 defer></script>
+    <script src=../../../js/theme.js?1740139255 defer></script>
 </body>
 
 </html>
