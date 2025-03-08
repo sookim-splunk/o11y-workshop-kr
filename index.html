@@ -2510,46 +2510,6 @@
       <div id=R-menu-footer>
         <hr
           class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter">
-        <div id=R-prefooter
-          class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch showVariantSwitch showVisitedLinks">
-          <ul>
-            <li id=R-select-language-container class="footerLangSwitch showLangSwitch">
-              <div class="padding menu-control"><i class="fa-fw fas fa-language"></i>
-                <span>&nbsp;</span>
-                <div class=control-style><label class=a11y-only for=R-select-language>Language</label>
-                  <select id=R-select-language onchange="location=this.querySelector(this.value).dataset.url">
-                    <option id=R-select-language-en value=#R-select-language-en
-                      data-url=/o11y-workshop-kr/v5.83/en/index.html lang=en selected>English</option>
-                    <option id=R-select-language-ja value=#R-select-language-ja
-                      data-url=/o11y-workshop-kr/v5.83/ja/index.html lang=ja>日本語</option>
-                  </select>
-                </div>
-                <div class=clear></div>
-              </div>
-            </li>
-            <li id=R-select-variant-container class="footerVariantSwitch showVariantSwitch">
-              <div class="padding menu-control"><i class="fa-fw fas fa-paint-brush"></i>
-                <span>&nbsp;</span>
-                <div class=control-style><label class=a11y-only for=R-select-variant>Theme</label>
-                  <select id=R-select-variant onchange=window.relearn.changeVariant(this.value)>
-                    <option id=R-select-variant-auto value=auto selected>Auto</option>
-                    <option id=R-select-variant-splunk-light value=splunk-light>Splunk Light</option>
-                    <option id=R-select-variant-splunk-dark value=splunk-dark>Splunk Dark</option>
-                  </select>
-                </div>
-                <div class=clear></div>
-              </div>
-              <script>window.relearn.markVariant()</script>
-            </li>
-            <li class="footerVisitedLinks showVisitedLinks">
-              <div class="padding menu-control"><i class="fa-fw fas fa-history"></i>
-                <span>&nbsp;</span>
-                <div class=control-style><button onclick=clearHistory()>Clear History</button></div>
-                <div class=clear></div>
-              </div>
-            </li>
-          </ul>
-        </div>
         <div id="R-footer" class="footerFooter showFooter">
           <style>
             #footer {
