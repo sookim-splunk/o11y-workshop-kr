@@ -335,10 +335,11 @@
     fetch('/workshop/src/html/sidebar.html')
       .then(res => res.text())
       .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const sideBar = document.querySelector('#R-sidebar');
-        sideBar.innerHTML = doc;
+        // const parser = new DOMParser();
+        // const doc = parser.parseFromString(html, "text/html");
+        // const sideBar = document.querySelector('#R-sidebar');
+        // sideBar.innerHTML = doc;
+        document.querySelector('#R-sidebar').innerHTML = html;
       })
       .catch(error => {
         console.error('Failed to fetch page: ', error);
