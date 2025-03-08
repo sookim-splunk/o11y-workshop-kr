@@ -58,14 +58,39 @@
       <div class="topbar-wrapper">
         <div class="topbar-sidebar-divider"></div>
         <div class="topbar-area topbar-area-start" data-area=start>
-          <div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show
-            data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button
-              title="Menu (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div>
-          <div class="topbar-button topbar-button-toc" data-content-empty=hide data-width-s=show data-width-m=show
-            data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button
-              title="Table of Contents (CTRL+ALT+t)"><i class="fa-fw fas fa-list-alt"></i></button>
-            <div class=topbar-content>
-              <div class=topbar-content-wrapper></div>
+          <div 
+            class="topbar-button topbar-button-sidebar" 
+            data-content-empty=disable 
+            data-width-s=show
+            data-width-m=hide 
+            data-width-l=hide
+          >
+            <button 
+              class="topbar-control" 
+              onclick="toggleNav()" 
+              type="button"
+              title="Menu (CTRL+ALT+n)"
+            >
+              <i class="fa-fw fas fa-bars"></i>
+            </button>
+          </div>
+          <div 
+            class="topbar-button topbar-button-toc" 
+            data-content-empty=hide 
+            data-width-s=show 
+            data-width-m=show
+            data-width-l=show
+          >
+            <button 
+              class="topbar-control" 
+              onclick="toggleTopbarFlyout(this)" 
+              type="button"
+              title="Table of Contents (CTRL+ALT+t)"
+            >
+              <i class="fa-fw fas fa-list-alt"></i>
+            </button>
+            <div class="topbar-content">
+              <div class="topbar-content-wrapper"></div>
             </div>
           </div>
         </div>
@@ -96,20 +121,22 @@
         </div>
       </div>
     </nav>
-    <div id=R-main-overlay></div>
-    <main id=R-body-inner class="highlightable page" tabindex=-1>
-      <div class=flex-block-wrapper>
-        <article class=default>
-          <header class=headline></header>
-          <h1 id=splunk-o11y-workshop-krs>Splunk Observability Workshops</h1>
+    <div id="R-main-overlay"></div>
+    <main id="R-body-inner" class="highlightable page" tabindex=-1>
+      <div class="flex-block-wrapper">
+        <article class="default">
+          <header class="headline"></header>
+          <h1 id=splunk-o11y-workshop-krs>Splunk Observability Workshops - KOREAN 🇰🇷</h1>
           <details open class="box cstyle notices splunk">
-            <summary class=box-label><i class="fa-fw fas fa-circle-info"></i>
-              Welcome</summary>
-            <div class=box-content>
-              <p>Get insights into your applications and infrastructure in real-time with the help of the monitoring,
-                analytics and response tools of the Splunk Observability Cloud</p>
-              <p>These workshops are going to take you through the best-in-class observability platform for ingesting,
-                monitoring, visualizing and analyzing metrics, traces and logs.</p>
+            <summary class="box-label">
+              <i class="fa-fw fas fa-circle-info"></i>
+              Welcome
+            </summary>
+            <div class="box-content">
+              <p>
+                Splunk Observability Cloud의 모니터링, 분석 및 대응 도구를 통해 실시간으로 애플리케이션과 인프라에 대한 인사이트를 얻으세요
+              </p>
+              <p>이 워크샵에서는 메트릭, 추적 및 로그 수집, 모니터링, 시각화 및 분석을 위한 동급 최고의 통합 가시성 플랫폼에 대해 안내합니다</p>
             </div>
           </details>
           <p>
@@ -334,13 +361,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     fetch('/workshop/src/html/sidebar.html')
       .then(res => res.text())
-      .then(html => {
-        // const parser = new DOMParser();
-        // const doc = parser.parseFromString(html, "text/html");
-        // const sideBar = document.querySelector('#R-sidebar');
-        // sideBar.innerHTML = doc;
-        document.querySelector('#R-sidebar').innerHTML = html;
-      })
+      .then(html => document.querySelector('#R-sidebar').innerHTML = html)
       .catch(error => {
         console.error('Failed to fetch page: ', error);
       });
