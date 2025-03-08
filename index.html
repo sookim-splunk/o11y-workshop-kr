@@ -292,7 +292,18 @@
   document.addEventListener('DOMContentLoaded', () => {
     fetch('/workshop/src/layout/topbar.html')
       .then(res => res.text())
-      .then(html => document.querySelector('#R-topbar').innerHTML = html)
+      .then(html => {
+        document.querySelector('#R-topbar').innerHTML = html;
+        document.querySelector('#breadcrumbs').innerHTML = `
+          <li 
+            itemscope="" 
+            itemtype="https://schema.org/ListItem" itemprop="itemListElement"
+          >
+            <span itemprop="name">Splunk Observability Workshops</span>
+            <meta itemprop=position content="1">
+          </li>
+        `;
+      })
       .catch(error => console.error('Failed to fetch page: ', error));
 
     fetch('/workshop/src/layout/sidebar.html')
