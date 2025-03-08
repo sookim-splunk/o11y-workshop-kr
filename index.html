@@ -332,7 +332,7 @@
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    fetch('workshop/src/html/sidebar.html')
+    fetch('/workshop/src/html/sidebar.html')
       .then(res => res.text())
       .then(html => {
         const parser = new DOMParser();
