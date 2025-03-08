@@ -1,158 +1,94 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ko" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
 
 <head>
-  <meta charset=utf-8>
-  <meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
-  <meta name=generator content="Hugo 0.134.3">
-  <meta name=generator content="Relearn 7.2.1">
-  <meta name=description content="Learn how to build observability solutions with Splunk">
-  <meta name=author content>
-  <meta name=twitter:card content="summary">
-  <meta name=twitter:title content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
-  <meta name=twitter:description content="Learn how to build observability solutions with Splunk">
-  <meta property="og:url" content="https://splunk.github.io/observability-workshop/v5.83/en/index.html">
+  <meta charset="utf-8">
+  <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
+  <meta name="generator" content="Hugo 0.134.3">
+  <meta name="generator" content="Relearn 7.2.1">
+  <meta name="description" content="Learn how to build observability solutions with Splunk">
+  <meta name="author" content>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
+  <meta name="twitter:description" content="Learn how to build observability solutions with Splunk">
+  <meta property="og:url" content="https://sookim-splunk.github.io/o11y-workshop-kr/v5.83/en/index.html">
   <meta property="og:site_name" content="Splunk Observability Cloud Workshops">
   <meta property="og:title" content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
   <meta property="og:description" content="Learn how to build observability solutions with Splunk">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
-  <meta itemprop=name content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
-  <meta itemprop=description content="Learn how to build observability solutions with Splunk">
-  <meta itemprop=dateModified content="2024-09-18T18:53:13+01:00">
-  <meta itemprop=wordCount content="841">
-
-  <link href="/workshop/src/images/favicon.ico" rel="icon" type="image/x-icon" sizes="any">
-  <link href="/workshop/src/css/fontawesome-all.min.css" rel="stylesheet" media="print"
-    onload='this.media="all",this.onload=null'>
-  <link href="/workshop/src/css/auto-complete.css" rel="stylesheet">
-  <link href="/workshop/src/css/perfect-scrollbar.min.css" ref="stylesheet">
-  <link href="/workshop/src/css/theme.min.css" ref="stylesheet">
-  <link href="/workshop/src/css/format-html.min.css" ref="stylesheet" id="R-format-style">
-
-  <script src="/workshop/src/js/clipboard.min.js" defer></script>
-  <script src="/workshop/src/js/perfect-scrollbar.min.js" defer></script>
-  <script src="/workshop/src/js/theme.js" defer></script>
-
-  <!-- <script>window.relearn = window.relearn || {}, window.relearn.relBasePath = "..", window.relearn.relBaseUri = "../../..", window.relearn.absBaseUri = "https://splunk.github.io/observability-workshop/v5.83", window.relearn.min = `.min`, window.relearn.disableAnchorCopy = !1, window.relearn.disableAnchorScrolling = !1, window.relearn.themevariants = ["auto", "splunk-light", "splunk-dark"], window.relearn.customvariantname = "my-custom-variant", window.relearn.changeVariant = function (e) { var t = document.documentElement.dataset.rThemeVariant; window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e), document.documentElement.dataset.rThemeVariant = e, t != e && document.dispatchEvent(new CustomEvent("themeVariantLoaded", { detail: { variant: e, oldVariant: t } })) }, window.relearn.markVariant = function () { var t = window.localStorage.getItem(window.relearn.absBaseUri + "/variant"), e = document.querySelector("#R-select-variant"); e && (e.value = t) }, window.relearn.initVariant = function () { var e = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? ""; e == window.relearn.customvariantname || (!e || !window.relearn.themevariants.includes(e)) && (e = window.relearn.themevariants[0], window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e)), document.documentElement.dataset.rThemeVariant = e }, window.relearn.initVariant(), window.relearn.markVariant(), window.T_Copy_to_clipboard = `Copy to clipboard`, window.T_Copied_to_clipboard = `Copied to clipboard!`, window.T_Copy_link_to_clipboard = `Copy link to clipboard`, window.T_Link_copied_to_clipboard = `Copied link to clipboard!`, window.T_Reset_view = `Reset view`, window.T_View_reset = `View reset!`, window.T_No_results_found = `No results found for "{0}"`, window.T_N_results_found = `{1} results found for "{0}"`</script> -->
-
-
+  <meta itemprop="name" content="Splunk Observability Workshops :: Splunk Observability Cloud Workshops">
+  <meta itemprop="description" content="Learn how to build observability solutions with Splunk">
+  <meta itemprop="dateModified" content="2024-09-18T18:53:13+01:00">
+  <meta itemprop="wordCount" content="841">
   <title>Splunk Observability Workshops :: Splunk Observability Cloud Workshops</title>
+  
+  <link href="/workshop/src/images/favicon.ico" rel="icon" type="image/x-icon" sizes="any">
+  <link href="/workshop/src/css/fontawesome-all.min.css" rel="stylesheet" media="print" onload='this.media="all",this.onload=null'>
+  <link href="/workshop/src/css/perfect-scrollbar.min.css" rel="stylesheet">
+  <link href="/workshop/src/css/theme.min.css" rel="stylesheet">
+  <link href="/workshop/src/css/format-html.min.css" rel="stylesheet" id="R-format-style">
+  
+  <script>
+    window.relearn = window.relearn || {}, window.relearn.relBasePath = "..", window.relearn.relBaseUri = "../../..", window.relearn.absBaseUri = "https://sookim-splunk.github.io/o11y-workshop-kr/v5.83", window.relearn.min = `.min`, window.relearn.disableAnchorCopy = !1, window.relearn.disableAnchorScrolling = !1, window.relearn.themevariants = ["auto", "splunk-light", "splunk-dark"], window.relearn.customvariantname = "my-custom-variant", window.relearn.changeVariant = function (e) { var t = document.documentElement.dataset.rThemeVariant; window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e), document.documentElement.dataset.rThemeVariant = e, t != e && document.dispatchEvent(new CustomEvent("themeVariantLoaded", { detail: { variant: e, oldVariant: t } })) }, window.relearn.markVariant = function () { var t = window.localStorage.getItem(window.relearn.absBaseUri + "/variant"), e = document.querySelector("#R-select-variant"); e && (e.value = t) }, window.relearn.initVariant = function () { var e = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? ""; e == window.relearn.customvariantname || (!e || !window.relearn.themevariants.includes(e)) && (e = window.relearn.themevariants[0], window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e)), document.documentElement.dataset.rThemeVariant = e }, window.relearn.initVariant(), window.relearn.markVariant(), window.T_Copy_to_clipboard = `Copy to clipboard`, window.T_Copied_to_clipboard = `Copied to clipboard!`, window.T_Copy_link_to_clipboard = `Copy link to clipboard`, window.T_Link_copied_to_clipboard = `Copied link to clipboard!`, window.T_Reset_view = `Reset view`, window.T_View_reset = `View reset!`, window.T_No_results_found = `No results found for "{0}"`, window.T_N_results_found = `{1} results found for "{0}"`
+  </script>
+  <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script>
+  <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js
+    crossorigin=anonymous></script>
+  <script>SplunkRum.init({ realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA", applicationName: "o11y-workshop-kr", deploymentEnvironment: "sookim-splunk.github.io", version: "1.0" }), SplunkSessionRecorder.init({ app: "o11y-workshop-kr", realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA" })</script>
+  </script>
   <style>
     :root {
       --MAIN-WIDTH-MAX: 130rem;
       --MENU-WIDTH-L: 23rem
     }
   </style>
+
+  <script src="/workshop/src/js/perfect-scrollbar.min.js" defer></script>
+  <script src="/workshop/src/js/theme.js" defer></script>
+  <script src="/workshop/src/js/clipboard.min.js" defer></script>
+  <script src="/workshop/src/js/theme.js" defer></script>
+
 </head>
 
-<body class="mobile-support html disableInlineCopyToClipboard" data-url="/workshop/src/index.html">
+<body class="mobile-support html disableInlineCopyToClipboard" data-url=/o11y-workshop-kr/v5.83/en/index.html>
   <div id="R-body" class="default-animation">
     <div id="R-body-overlay"></div>
     <nav id="R-topbar">
-      <div class=topbar-wrapper>
-        <div class=topbar-sidebar-divider></div>
+      <div class="topbar-wrapper">
+        <div class="topbar-sidebar-divider"></div>
         <div class="topbar-area topbar-area-start" data-area=start>
-          <div 
-            class="topbar-button topbar-button-sidebar" 
-            data-content-empty=disable 
-            data-width-s=show
-            data-width-m=hide 
-            data-width-l=hide
-          >
-            <button
-              class="topbar-control"
-              onclick="toggleNav()"
-              type="button"
-              title="Menu (CTRL+ALT+n)"
-            >
-              <i class="fa-fw fas fa-bars"></i>
-            </button>
-          </div>
-          <div
-            class="topbar-button topbar-button-toc"
-            data-content-empty=hide
-            data-width-s=show 
-            data-width-m=show
-            data-width-l=show
-          >
-            <button
-              class="topbar-control" 
-              onclick="toggleTopbarFlyout(this)" 
-              type="button"
-              title="Table of Contents (CTRL+ALT+t)"
-            >
-              <i class="fa-fw fas fa-list-alt"></i>
-            </button>
-            <div class="topbar-content">
-              <div class="topbar-content-wrapper"></div>
+          <div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show
+            data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button
+              title="Menu (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div>
+          <div class="topbar-button topbar-button-toc" data-content-empty=hide data-width-s=show data-width-m=show
+            data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button
+              title="Table of Contents (CTRL+ALT+t)"><i class="fa-fw fas fa-list-alt"></i></button>
+            <div class=topbar-content>
+              <div class=topbar-content-wrapper></div>
             </div>
           </div>
         </div>
         <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype=http://schema.org/BreadcrumbList>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement>
-            <span itemprop=name>Splunk Observability Workshops</span>
+          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>Splunk
+              Observability Workshops</span>
             <meta itemprop=position content="1">
           </li>
         </ol>
         <div class="topbar-area topbar-area-end" data-area=end>
-          <div
-            class="topbar-button topbar-button-print" 
-            data-content-empty=disable 
-            data-width-s=area-more
-            data-width-m=show data-width-l=show
-          >
-            <a 
-              class="topbar-control"
-              href="/o11y-workshop-kr/v5.83/en/index.print.html"
-              title="Print whole chapter (CTRL+ALT+p)"
-            >
-              <i class="fa-fw fas fa-print"></i>
-            </a>
-          </div>
-          <div 
-            class="topbar-button topbar-button-prev" 
-            data-content-empty=disable 
-            data-width-s=show 
-            data-width-m=show
-            data-width-l=show
-          >
-            <span class="topbar-control">
-              <i class="fa-fw fas fa-chevron-left"></i>
-            </span>
-          </div>
-          <div 
-            class="topbar-button topbar-button-next" 
-            data-content-empty=disable 
-            data-width-s=show 
-            data-width-m=show
-            data-width-l=show
-          >
-            <a 
-              class="topbar-control" 
-              href="/o11y-workshop-kr/v5.83/en/s4r/index.html"
-              title="Splunk4Rookies - Observability Cloud (🡒)"
-            >
-              <i class="fa-fw fas fa-chevron-right"></i>
-            </a>
-          </div>
-          <div 
-            class="topbar-button topbar-button-more" 
-            data-content-empty=hide 
-            data-width-s=show 
-            data-width-m=show
-            data-width-l=show
-          >
-            <button 
-              class="topbar-control" 
-              onclick="toggleTopbarFlyout(this)" 
-              type="button"
-              title="More"
-            >
-              <i class="fa-fw fas fa-ellipsis-v"></i>
-            </button>
-            <div class="topbar-content">
-              <div class="topbar-content-wrapper">
+          <div class="topbar-button topbar-button-print" data-content-empty=disable data-width-s=area-more
+            data-width-m=show data-width-l=show><a class=topbar-control href=/o11y-workshop-kr/v5.83/en/index.print.html
+              title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></div>
+          <div class="topbar-button topbar-button-prev" data-content-empty=disable data-width-s=show data-width-m=show
+            data-width-l=show><span class=topbar-control><i class="fa-fw fas fa-chevron-left"></i></span></div>
+          <div class="topbar-button topbar-button-next" data-content-empty=disable data-width-s=show data-width-m=show
+            data-width-l=show><a class=topbar-control href=/o11y-workshop-kr/v5.83/en/s4r/index.html
+              title="Splunk4Rookies - Observability Cloud (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></div>
+          <div class="topbar-button topbar-button-more" data-content-empty=hide data-width-s=show data-width-m=show
+            data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button title=More><i
+                class="fa-fw fas fa-ellipsis-v"></i></button>
+            <div class=topbar-content>
+              <div class=topbar-content-wrapper>
                 <div class="topbar-area topbar-area-more" data-area=more></div>
               </div>
             </div>
@@ -160,8 +96,223 @@
         </div>
       </div>
     </nav>
+    <div id=R-main-overlay></div>
+    <main id=R-body-inner class="highlightable page" tabindex=-1>
+      <div class=flex-block-wrapper>
+        <article class=default>
+          <header class=headline></header>
+          <h1 id=splunk-o11y-workshop-krs>Splunk Observability Workshops</h1>
+          <details open class="box cstyle notices splunk">
+            <summary class=box-label><i class="fa-fw fas fa-circle-info"></i>
+              Welcome</summary>
+            <div class=box-content>
+              <p>Get insights into your applications and infrastructure in real-time with the help of the monitoring,
+                analytics and response tools of the Splunk Observability Cloud</p>
+              <p>These workshops are going to take you through the best-in-class observability platform for ingesting,
+                monitoring, visualizing and analyzing metrics, traces and logs.</p>
+            </div>
+          </details>
+          <p><a href=#R-image-9c6b33246d509793bd5cbfa2dafd2029 class=lightbox-link><img alt=gif
+                class="noborder lazy lightbox noshadow figure-image" loading=lazy
+                src=/o11y-workshop-kr/v5.83/en/images/observability-hero-dashboard.gif style=height:auto;width:auto></a>
+            <a href=javascript:history.back(); class=lightbox-back id=R-image-9c6b33246d509793bd5cbfa2dafd2029><img
+                alt=gif class="noborder lazy lightbox noshadow lightbox-image" loading=lazy
+                src=/o11y-workshop-kr/v5.83/en/images/observability-hero-dashboard.gif></a>
+          </p>
+          <ul class="children children-li children-sort-">
+            <li><a href=/o11y-workshop-kr/v5.83/en/s4r/index.html>Splunk4Rookies - Observability Cloud</a>
+              <p>In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the
+                user experience – from the perspective of the front-end application to its back-end services – Letting
+                you experience some of the most compelling product features and differentiators of Splunk Observability
+                Cloud.</p>
+              <ul>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/1-workshop-goals/index.html>1. Workshop Overview</a>
+                  <p>Workshop Overview</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/2-opentelemetry/index.html>2. OpenTelemetry</a>
+                  <p>Learn about OpenTelemetry and why you should care about it.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/index.html>3. UI - Quick Tour</a>
+                  <p>A quick tour of the Splunk Observability Cloud UI.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/4-online-boutique/index.html>4. Shopping at the Online
+                    Boutique</a>
+                  <p>Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.
+                  </p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/5-rum/index.html>5. Splunk RUM</a>
+                  <p>This section helps you understand how to use Splunk RUM to monitor the performance of your
+                    applications from the end user's perspective.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/6-apm/index.html>6. Splunk APM</a>
+                  <p>In this section, we will use APM to drill down and identify where the problem is.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/7-log-observer/index.html>7. Splunk Log Observer</a>
+                  <p>In this section, we will use Log Observer to drill down and identify what the problem is.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/8-synthetics/index.html>8. Splunk Synthetics</a>
+                  <p>In this section, you will learn how to use Splunk Synthetics to monitor the performance and
+                    availability of your applications.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/9-custom-dashboard/index.html>9. Service Health Dashboard</a>
+                  <p>In this section, you will learn how to build a custom Service Health Dashboard to monitor the
+                    health of your services.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/s4r/10-wrap-up/index.html>10. Workshop Wrap-up</a>
+                  <p>Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you
+                    have become familiar with how to use Splunk Observability Cloud to monitor your applications and
+                    infrastructure.</p>
+                </li>
+              </ul>
+            </li>
+            <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/index.html>Ninja Workshops</a>
+              <p>The following workshops require Ninja skills, wax on, wax off.</p>
+              <ul>
+                <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/index.html>Automatic
+                    Discovery Workshops</a>
+                  <p>Automatic Discovery Workshops</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/2-hpa/index.html>Horizontal Pod Autoscaling</a>
+                  <p>This workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk
+                    OpenTelemetry Collector</p>
+                </li>
+                <li><a
+                    href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/index.html>OpenTelemetry
+                    Collector</a>
+                  <p>Learn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk
+                    Observability Cloud.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/index.html>Splunk
+                    Synthetic Scripting</a>
+                  <p>Proactively find and fix performance issues across user flows, business transactions and APIs to
+                    deliver better digital experiences.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/index.html>Lambda Tracing</a>
+                  <p>This workshop will enable you to build a distributed trace for a small serverless application that
+                    runs on AWS Lambda, producing and consuming a message via AWS Kinesis</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/index.html>Hands-On
+                    OpenTelemetry, Docker, and K8s</a>
+                  <p>By the end of this workshop you'll have gotten hands-on experience instrumenting a .NET application
+                    with OpenTelemetry, then Dockerizing the application and deploying it to Kubernetes. You’ll also
+                    gain experience deploying the OpenTelemetry collector using Helm, customizing the collector
+                    configuration, and troubleshooting collector configuration issues.</p>
+                </li>
+                <li><a
+                    href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/index.html>Solving
+                    Problems with O11y Cloud</a>
+                  <p>By the end of this workshop you'll have gotten hands-on experience deploying the OpenTelemetry
+                    Collector, instrumenting an application with OpenTelemetry, capturing tags from the application, and
+                    using Troubleshooting MetricSets and Tag Spotlight to determine the root cause of an issue.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/index.html>Advanced
+                    OpenTelemetry</a>
+                  <p>In this workshop you will practice setting up the OpenTelemetry Collector configuration from
+                    scratch and go though several advanced configuration scenarios's</p>
+                </li>
+                <li><a
+                    href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/index.html>Ingest
+                    Processor for Splunk Observability Cloud</a>
+                  <p>Scenario Description</p>
+                </li>
+              </ul>
+            </li>
+            <li><a href=/o11y-workshop-kr/v5.83/en/scenarios/index.html>Scenarios</a>
+              <p>Learn how to build observability solutions with Splunk</p>
+              <ul>
+                <li><a href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/index.html>Optimize Cloud
+                    Monitoring</a>
+                  <p>This scenario is for ITOps teams managing a hybrid infrastructure that need to troubleshoot
+                    cloud-native performance issues, by correlating real-time metrics with logs to troubleshoot faster,
+                    improve MTTD/MTTR, and optimize costs.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/index.html>Debug Problems in
+                    Microservices</a>
+                  <p>This scenario helps engineering teams identify and fix issues caused by planned and unplanned
+                    changes to their microservices-based applications.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/index.html>Optimize End
+                    User Experiences</a>
+                  <p>Use Splunk Real User Monitoring (RUM) and Synthetics to get insight into end user experience, and
+                    proactively test scenarios to improve that experience.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/index.html>Self-Service
+                    Observability</a>
+                  <p>This scenario helps platform engineering (or central tools) teams enable engineers with
+                    self-service observability tooling at scale, so developers and SREs can spend less time managing
+                    their toolchain and more time building and delivering cool software.</p>
+                </li>
+              </ul>
+            </li>
+            <li><a href=/o11y-workshop-kr/v5.83/en/resources/index.html>Resources</a>
+              <p>Resources for learning about Splunk Observability Cloud</p>
+              <ul>
+                <li><a href=/o11y-workshop-kr/v5.83/en/resources/dimensions_properties_tags/index.html>Dimension,
+                    Properties and Tags</a>
+                  <p>One conversation that frequently comes up is Dimensions vs Properties and when you should use one
+                    verus the other.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/resources/otel_tagging/index.html>OpenTelemetry Tagging</a>
+                  <p>When deploying OpenTelemetry in a large organization, it’s critical to define a standardized naming
+                    convention for tagging, and a governance process to ensure the convention is adhered to.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/resources/local-hosting/index.html>Local Hosting</a>
+                  <p>Resources for setting up a locally hosted workshop environment.</p>
+                </li>
+              </ul>
+            </li>
+            <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/index.html>Unsupported Field
+                Workshops</a>
+              <p>
+              <ul class="children children-li children-sort-">
+                <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/index.html>Splunk IM</a>
+                  <p>Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure
+                    performance with complete visibility.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/index.html>NodeJS
+                    Zero-Config Workshop</a>
+                  <p>A workshop using Zero Configuration Auto-Instrumentation for NodeJS.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/index.html>GDI (OTel & UF)</a>
+                  <p>Learn how to get data into Splunk Observability Cloud with OpenTelemetry and the Splunk Universal
+                    Forwarder.</p>
+                </li>
+                <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/index.html>Splunk
+                    OnCall</a>
+                  <p>Make expensive service outages a thing of the past. Remediate issues faster, reduce on-call burnout
+                    and keep your services up and running.</p>
+                  </p>
+                  <ul>
+                    <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/index.html>Splunk IM</a>
+                      <p>Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure
+                        performance with complete visibility.</p>
+                    </li>
+                    <li><a
+                        href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/index.html>NodeJS
+                        Zero-Config Workshop</a>
+                      <p>A workshop using Zero Configuration Auto-Instrumentation for NodeJS.</p>
+                    </li>
+                    <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/index.html>GDI (OTel &
+                        UF)</a>
+                      <p>Learn how to get data into Splunk Observability Cloud with OpenTelemetry and the Splunk
+                        Universal Forwarder.</p>
+                    </li>
+                    <li><a href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/index.html>Splunk
+                        OnCall</a>
+                      <p>Make expensive service outages a thing of the past. Remediate issues faster, reduce on-call
+                        burnout and keep your services up and running.</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title
+                    class=text-muted>Last Modified
+                  </span><span class=badge-content>Sep 18, 2024</span></span></footer>
+        </article>
+      </div>
+    </main>
   </div>
-  <aside id="R-sidebar" class="default-animation showVisitedLinks">
+  <aside id=R-sidebar class="default-animation showVisitedLinks">
     <div id=R-header-topbar class=default-animation></div>
     <div id=R-header-wrapper class=default-animation>
       <div id=R-header class=default-animation><a id=logo href=/o11y-workshop-kr/v5.83/en/index.html><svg
@@ -231,17 +382,6 @@
           </svg></a></div>
       <div><img src="/workshop/src/images/pwny-kr.webp"></div>
       <script>window.index_js_url = "/o11y-workshop-kr/v5.83/searchindex.en.js?1740139255"</script>
-      <search>
-        <form action=/o11y-workshop-kr/v5.83/en/search/index.html method=get>
-          <div class="searchbox default-animation"><button class=search-detail type=submit
-              title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
-            <label class=a11y-only for=R-search-by>Search</label>
-            <input data-search-input id=R-search-by name=search-by class=search-by type=search placeholder=Search...>
-            <button class=search-clear type=button data-search-clear title="Clear search"><i class="fas fa-times"
-                title="Clear search"></i></button>
-          </div>
-        </form>
-      </search>
       
     </div>
     <div id=R-homelinks class="default-animation homelinks">
@@ -329,8 +469,7 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/4-log-observer-home/1-log-observer-home/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/4-log-observer-home/1-log-observer-home/index.html>4.1
-                          Log Observer Home Page<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Log Observer Home Page<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/5-synthetics-home/index.html><input
@@ -345,8 +484,7 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/5-synthetics-home/1-synthetics-home/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/5-synthetics-home/1-synthetics-home/index.html>5.1
-                          Synthetics Home Page<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Synthetics Home Page<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/s4r/3-quick-tour/6-infrastructure-home/index.html><a
@@ -514,32 +652,27 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/1-otel-collector/index.html>1.
-                          OpenTelemetry Collector<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          OpenTelemetry Collector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/index.html>2.
-                          Building PetClinic<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Building PetClinic<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/3-auto-discovery/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/3-auto-discovery/index.html>3.
-                          Automatic Discovery<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Automatic Discovery<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/4-rum/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/4-rum/index.html>3.
-                          Real User Monitoring<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Real User Monitoring<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/5-log-observer/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/5-log-observer/index.html>4.
-                          Log Observer<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Log Observer<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -555,8 +688,7 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/1-architecture/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/1-architecture/index.html>1.
-                          Architecture<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Architecture<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/index.html>
                         <input type=checkbox id=R-section-d3e51379a8976ce3facfc717ba857333
@@ -570,22 +702,19 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/1-otel-org/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/1-otel-org/index.html>1.
-                              Deploy OpenTelemetry Collector<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Deploy OpenTelemetry Collector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/2-petclinic/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/2-preparation/2-petclinic/index.html>2.
-                              Deploy PetClinic Application<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Deploy PetClinic Application<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/3-verify-setup/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/3-verify-setup/index.html>3.
-                          Verify Cluster Metrics<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Verify Cluster Metrics<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/index.html>
                         <input type=checkbox id=R-section-7e1964e7bb514f2e153dfed71aa744b1
@@ -600,14 +729,12 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/1-patching-deployment/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/1-patching-deployment/index.html>1.
-                              Patching the Deployment<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Patching the Deployment<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/2-apm-data/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/2-apm-data/index.html>2.
-                              Viewing APM Data<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Viewing APM Data<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
@@ -623,26 +750,22 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/index.html>1.
-                              APM Service Map<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              APM Service Map<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/2-trace/index.html>2.
-                              APM Trace<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              APM Trace<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/3-spans/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/3-spans/index.html>3.
-                              APM Spans<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              APM Spans<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/4-red-metrics/index.html>4.
-                              Service Centric View<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Service Centric View<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
@@ -658,20 +781,17 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/1-profiling/index.html>1.
-                              Always-On Profiling<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Always-On Profiling<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/2-waterfall/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/2-waterfall/index.html>2.
-                              Trace Waterfall<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Trace Waterfall<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/3-dbquery/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/6-profiling-db-query/3-dbquery/index.html>3.
-                              Database Query Performance<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Database Query Performance<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
@@ -687,8 +807,7 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/2-related-content/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/7-log-observer-connect/2-related-content/index.html>2.
-                              Related Content<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Related Content<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
@@ -704,28 +823,24 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/1-rum-tour/index.html>1.
-                              Verify RUM Data<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Verify RUM Data<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/2-rum-tour/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/2-rum-tour/index.html>2.
-                              Follow RUM Traces<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Follow RUM Traces<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/3-rum-tour/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/8-rum/3-rum-tour/index.html>3.
-                              RUM Waterfall<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              RUM Waterfall<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/9-wrap-up/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/9-wrap-up/index.html>9.
-                          Workshop Wrap-up<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Workshop Wrap-up<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -780,8 +895,7 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/1-installation/1-confirmation/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/1-installation/1-confirmation/index.html>1.1
-                          Confirm Installation<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Confirm Installation<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -797,20 +911,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/2-extensions/1-health/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/2-extensions/1-health/index.html>2.1
-                          Health Check<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Health Check<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/2-extensions/2-performance/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/2-extensions/2-performance/index.html>2.2
-                          Performance Profiler<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Performance Profiler<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/2-extensions/3-zpages/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/2-extensions/3-zpages/index.html>2.3
-                          zPages<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          zPages<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -826,20 +937,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/3-receivers/1-hostmetrics/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/3-receivers/1-hostmetrics/index.html>1.
-                          Host Metrics<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Host Metrics<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/3-receivers/2-prometheus/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/3-receivers/2-prometheus/index.html>2.
-                          Prometheus<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Prometheus<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/3-receivers/3-other-receivers/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/3-receivers/3-other-receivers/index.html>3.
-                          Other Receivers<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Other Receivers<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -855,20 +963,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/4-processors/1-batch-processor/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/4-processors/1-batch-processor/index.html>4.1
-                          Batch<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Batch<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/4-processors/2-resource-detection/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/4-processors/2-resource-detection/index.html>4.2
-                          Resource Detection<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Resource Detection<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/4-processors/3-attributes/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/4-processors/3-attributes/index.html>4.3
-                          Attributes<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Attributes<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -884,8 +989,7 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/5-exporters/1-otlphttp/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/5-exporters/1-otlphttp/index.html>5.1
-                          OTLP HTTP<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          OTLP HTTP<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -901,40 +1005,34 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/1-hostmetrics/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/1-hostmetrics/index.html>6.1
-                          Host Metrics<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Host Metrics<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/2-prometheus/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/2-prometheus/index.html>6.2
-                          Prometheus<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Prometheus<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/3-resourcedetection/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/3-resourcedetection/index.html>6.3
-                          Resource Detection<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Resource Detection<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/4-attributes/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/4-attributes/index.html>6.4
-                          Attributes<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Attributes<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/5-otlphttp/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/6-service/5-otlphttp/index.html>6.5
-                          OTLP HTTP<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          OTLP HTTP<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/7-visualisation/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/7-visualisation/index.html>7.
-                      Visualisation<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Visualisation<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/index.html>
                     <input type=checkbox id=R-section-2a412f19af4ff0b837489d48e97af241
@@ -948,32 +1046,27 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/1-project-setup/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/1-project-setup/index.html>8.1
-                          Project Setup<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Project Setup<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/2-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/2-configuration/index.html>8.2
-                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/3-component/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/3-component/index.html>8.3
-                          Component Review<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Component Review<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/4-design/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/4-design/index.html>8.4
-                          Designing the Metrics<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Designing the Metrics<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/5-business-logic/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/3-opentelemetry-collector/8-develop/5-business-logic/index.html>8.5
-                          Building Business Logic<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Building Business Logic<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -999,44 +1092,37 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/1-recording-a-test/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/1-recording-a-test/index.html>1.1
-                          Recording a test<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Recording a test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/2-create-real-browser-test/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/2-create-real-browser-test/index.html>1.2
-                          Create Real Browser Test<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create Real Browser Test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/3-import-json/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/3-import-json/index.html>1.3
-                          Import JSON<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Import JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/4-edit-test-settings/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/4-edit-test-settings/index.html>1.4
-                          Settings<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Settings<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/5-advanced-settings/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/5-advanced-settings/index.html>1.5
-                          Advanced Settings<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Advanced Settings<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/6-edit-steps/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/6-edit-steps/index.html>1.6
-                          Edit test steps<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Edit test steps<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/7-view-test-results/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/1-real-browser-test/7-view-test-results/index.html>1.7
-                          View test results<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          View test results<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1052,32 +1138,27 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/1-global-varilables/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/1-global-varilables/index.html>1.1
-                          Global Variables<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Global Variables<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/2-create-new-check/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/2-create-new-check/index.html>1.2
-                          Create new API test<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create new API test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/3-authentication-request/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/3-authentication-request/index.html>1.3
-                          Authentication Request<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Authentication Request<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/4-search-request/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/4-search-request/index.html>1.4
-                          Search Request<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Search Request<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/5-view-results/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/4-synthetics-scripting/2-api-test/5-view-results/index.html>1.5
-                          View Results<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          View Results<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -1098,32 +1179,27 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/2-auto-instrumentation/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/2-auto-instrumentation/index.html>2.
-                      Auto-Instrumentation<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Auto-Instrumentation<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/3-lambdas-in-splunk/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/3-lambdas-in-splunk/index.html>3.
-                      Lambda Traces in Splunk APM<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Lambda Traces in Splunk APM<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/4-manual-instrumentation/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/4-manual-instrumentation/index.html>4.
-                      Manual Instrumentation<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Manual Instrumentation<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/5-redeploy-lambdas/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/5-redeploy-lambdas/index.html>5.
-                      Redeploying Lambda Functions<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Redeploying Lambda Functions<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/6-updated-lambdas/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/6-updated-lambdas/index.html>6.
-                      Updated Lambdas in Splunk APM<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Updated Lambdas in Splunk APM<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/7-summary/index.html><a
                       class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/6-lambda-kinesis/7-summary/index.html>7.
@@ -1142,20 +1218,17 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/1-connect-to-instance/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/1-connect-to-instance/index.html>1.
-                      Connect to EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Connect to EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/2-deploy-collector/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/2-deploy-collector/index.html>2.
-                      Deploy the OpenTelemetry Collector<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Deploy the OpenTelemetry Collector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/3-deploy-dotnet-app/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/3-deploy-dotnet-app/index.html>3.
-                      Deploy a .NET Application<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Deploy a .NET Application<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/4-instrument-app-with-otel/index.html>
                     <a class=padding
@@ -1166,39 +1239,33 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/5-dockerize-app/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/5-dockerize-app/index.html>5.
-                      Dockerize the Application<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Dockerize the Application<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/6-add-instrumentation-to-dockerfile/index.html>6.
-                      Add Instrumentation to Dockerfile<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Add Instrumentation to Dockerfile<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/7-install-collector-k8s/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/7-install-collector-k8s/index.html>7.
-                      Install the OpenTelemetry Collector in K8s<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Install the OpenTelemetry Collector in K8s<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/8-deploy-app-k8s/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/8-deploy-app-k8s/index.html>8.
-                      Deploy Application to K8s<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Deploy Application to K8s<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/9-customize-collector-config/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/9-customize-collector-config/index.html>9.
                       Customize the OpenTelemetry Collector Configuration<i
-                        class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                        class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/10-troubleshoot-collector/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/10-troubleshoot-collector/index.html>10.
-                      Troubleshoot OpenTelemetry Collector Issues<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Troubleshoot OpenTelemetry Collector Issues<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/11-summary/index.html><a
                       class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/8-docker-k8s-otel/11-summary/index.html>11.
@@ -1217,40 +1284,34 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/1-connect-to-instance/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/1-connect-to-instance/index.html>1.
-                      Connect to EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Connect to EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/2-deploy-collector/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/2-deploy-collector/index.html>2.
                       Deploy the OpenTelemetry Collector and Customize Config<i
-                        class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                        class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/3-deploy-sample-app/index.html>3.
                       Deploy the Sample Application and Instrument with OpenTelemetry<i
-                        class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                        class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/4-create-troubleshooting-metricset/index.html>4.
-                      Create a Troubleshooting MetricSet<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Create a Troubleshooting MetricSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/5-troubleshoot-using-tag-spotlight/index.html>5.
-                      Troubleshoot a Problem Using Tag Spotlight<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Troubleshoot a Problem Using Tag Spotlight<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/6-summary/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/9-solving-problems-with-o11y-cloud/6-summary/index.html>6.
-                      Summary<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Summary<i class="fa-fw fas fa-check read-icon"></i></a></li>
                 </ul>
               </li>
               <li data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/index.html><input
@@ -1273,14 +1334,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-1-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-1-configuration/index.html>1.1
-                          Agent Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Agent Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-2-test-agent/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-2-test-agent/index.html>1.2
-                          Test Agent Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Agent Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-3-fileexporter/index.html>
                         <input type=checkbox id=R-section-6ca1682db914956a188e15a9b0cc39f4
@@ -1294,8 +1353,7 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-3-fileexporter/1-test-fileexporter/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-3-fileexporter/1-test-fileexporter/index.html>1.3.1
-                              Test File Exporter<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Test File Exporter<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
@@ -1311,8 +1369,7 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-4-metadata/1-4-1-test-metadata/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/1-agent/1-4-metadata/1-4-1-test-metadata/index.html>1.4.1
-                              Test Resource Metadata<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Test Resource Metadata<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                     </ul>
@@ -1329,26 +1386,22 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-1-test-gateway/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-1-test-gateway/index.html>2.1
-                          Test Gateway<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Gateway<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-2-configure-agent/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-2-configure-agent/index.html>2.2
-                          Configure Agent<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Configure Agent<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-3-send-data/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-3-send-data/index.html>2.3
-                          Send Data<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Send Data<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-4-addendum/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/2-gateway/2-4-addendum/index.html>2.4
-                          Addendum<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Addendum<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/index.html>
@@ -1363,26 +1416,22 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-1-create-loggen/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-1-create-loggen/index.html>3.1
-                          Create Log-Gen Script<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create Log-Gen Script<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-2-start-loggen/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-2-start-loggen/index.html>3.2
-                          Start Log-Gen<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Start Log-Gen<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-3-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-3-configuration/index.html>3.3
-                          Filelog Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Filelog Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-4-test-filelog/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/3-filelog/3-4-test-filelog/index.html>3.4
-                          Test Filelog Receiver<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Filelog Receiver<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1398,26 +1447,22 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-1-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-1-configuration/index.html>4.1
-                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-2-test-environment/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-2-test-environment/index.html>4.2
-                          Setup environment<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Setup environment<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-3-failure/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-3-failure/index.html>4.3
-                          Simulate Failure<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Simulate Failure<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-4-recovery/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/4-building-resilience/4-4-recovery/index.html>4.4
-                          Simulate Recovery<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Simulate Recovery<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1433,14 +1478,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/5-dropping-spans/5-1-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/5-dropping-spans/5-1-configuration/index.html>5.1
-                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/5-dropping-spans/5-2-test-filter/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/5-dropping-spans/5-2-test-filter/index.html>5.2
-                          Test Filter Processor<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Filter Processor<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1456,20 +1499,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/6-sensitive-data/6-1-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/6-sensitive-data/6-1-configuration/index.html>6.1
-                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/6-sensitive-data/6-2-test-delete-tag/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/6-sensitive-data/6-2-test-delete-tag/index.html>6.2
-                          Test Attribute Processor<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Attribute Processor<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/6-sensitive-data/6-3-test-redaction/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/6-sensitive-data/6-3-test-redaction/index.html>6.3
-                          Test Redaction Processor<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Redaction Processor<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1485,20 +1525,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/7-transform-data/7-1-configuration/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/7-transform-data/7-1-configuration/index.html>7.1
-                          Transform Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Transform Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/7-transform-data/7-2-setup/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/7-transform-data/7-2-setup/index.html>7.2
-                          Setup Environment<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Setup Environment<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/7-transform-data/7-3-test-transform/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/7-transform-data/7-3-test-transform/index.html>7.3
-                          Test Transform Processor<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Transform Processor<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/index.html>
@@ -1513,26 +1550,22 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-1-connector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-1-connector/index.html>8.1
-                          Routing Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Routing Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-2-pipelines/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-2-pipelines/index.html>8.2
-                          Pipeline Configuration<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Pipeline Configuration<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-3-setup/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-3-setup/index.html>8.3
-                          Setup Environment<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Setup Environment<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-4-test-routing/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/8-routing-data/8-4-test-routing/index.html>8.4
-                          Test Routing Connector<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Routing Connector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/10-advanced-otel/9-end/index.html><a
@@ -1571,8 +1604,7 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/2-ingest-processor-pipelines/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/2-ingest-processor-pipelines/index.html>2.
-                      How Ingest Processor Works<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      How Ingest Processor Works<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/index.html>
                     <input type=checkbox id=R-section-4c143e2ccc40bf0ee0f2e033dfc749bf
@@ -1586,20 +1618,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/1-login-to-splunk/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/1-login-to-splunk/index.html>3.1
-                          Login to Splunk Cloud<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Login to Splunk Cloud<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/2-review-k8s-events/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/2-review-k8s-events/index.html>3.2
-                          Review Kubernetes Audit Logs<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Review Kubernetes Audit Logs<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/3-create-ingest-pipeline/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/3-create-ingest-pipeline/index.html>3.3
-                          Create an Ingest Pipeline<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create an Ingest Pipeline<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/3-create-an-ingest-pipeline/4-confirm-metrics/index.html>
                         <a class=padding
@@ -1621,22 +1650,19 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/4-update-pipeline-and-visualize/1-update-ingest-pipeline/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/4-update-pipeline-and-visualize/1-update-ingest-pipeline/index.html>4.1
-                          Update Ingest Pipeline<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Update Ingest Pipeline<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/4-update-pipeline-and-visualize/2-create-dashboard/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/4-update-pipeline-and-visualize/2-create-dashboard/index.html>4.2
-                          Visualize Kubernetes Audit Event Metrics<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Visualize Kubernetes Audit Event Metrics<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/5-workshop-conclusion/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/ninja-workshops/11-ingest_processor_for_observability_cloud/5-workshop-conclusion/index.html>5.
-                      Conclusion<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Conclusion<i class="fa-fw fas fa-check read-icon"></i></a></li>
                 </ul>
               </li>
             </ul>
@@ -1669,14 +1695,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/1-getting-started/1-access-ec2/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/1-getting-started/1-access-ec2/index.html>1.1
-                          Access AWS/EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Access AWS/EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/1-getting-started/2-deploy-application/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/1-getting-started/2-deploy-application/index.html>1.2
-                          Deploy OpenTelemetry Demo Application<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Deploy OpenTelemetry Demo Application<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1692,14 +1716,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/2-standardize-data-collection/1-what-are-tags/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/2-standardize-data-collection/1-what-are-tags/index.html>2.1
-                          What Are Tags?<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          What Are Tags?<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/2-standardize-data-collection/2-adding-context-with-tags/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/2-standardize-data-collection/2-adding-context-with-tags/index.html>2.2
-                          Adding Context With Tags<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Adding Context With Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1715,20 +1737,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/3-reuse-content-across-teams/1-infrastructure-dashboards/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/3-reuse-content-across-teams/1-infrastructure-dashboards/index.html>3.1
-                          Infrastructure Navigators<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Infrastructure Navigators<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/3-reuse-content-across-teams/2-clone-dashboards/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/3-reuse-content-across-teams/2-clone-dashboards/index.html>3.2
-                          Dashboard Cloning<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Dashboard Cloning<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/3-reuse-content-across-teams/3-mirror-dashboards/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/3-reuse-content-across-teams/3-mirror-dashboards/index.html>3.3
-                          Dashboard Mirroring<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Dashboard Mirroring<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1744,14 +1763,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/4-correlate-metrics-logs/1-correlate-metrics-and-logs/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/4-correlate-metrics-logs/1-correlate-metrics-and-logs/index.html>4.1
-                          Correlate Metrics and Logs<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Correlate Metrics and Logs<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/4-correlate-metrics-logs/2-create-log-based-chart/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/4-correlate-metrics-logs/2-create-log-based-chart/index.html>4.2
-                          Create Log-based Chart<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create Log-based Chart<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -1767,16 +1784,14 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/5-improve-alert-timeliness/1-create-custom-detector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/5-improve-alert-timeliness/1-create-custom-detector/index.html>5.1
-                          Create Custom Detector<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create Custom Detector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/6-workshop-conclusion/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_monitoring/6-workshop-conclusion/index.html>6.
-                      Conclusion<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Conclusion<i class="fa-fw fas fa-check read-icon"></i></a></li>
                 </ul>
               </li>
               <li data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/index.html><input type=checkbox
@@ -1799,14 +1814,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/1-build-application/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/1-build-application/index.html>1.
-                          Build the Sample Application<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Build the Sample Application<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/2-what-are-tags/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/2-what-are-tags/index.html>2.
-                          What are Tags?<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          What are Tags?<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/3-capture-tags/index.html>
                         <input type=checkbox id=R-section-967e80303027ddf60a6f35ab0a356cbf
@@ -1820,33 +1833,28 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/3-capture-tags/1-capture-tags-java/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/3-capture-tags/1-capture-tags-java/index.html>1.
-                              Capture Tags - Java<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Capture Tags - Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/3-capture-tags/2-capture-tags-python/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/3-capture-tags/2-capture-tags-python/index.html>2.
-                              Capture Tags - Python<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Capture Tags - Python<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/4-explore-trace-data/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/4-explore-trace-data/index.html>4.
-                          Explore Trace Data<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Explore Trace Data<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/5-index-tags/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/5-index-tags/index.html>5.
-                          Index Tags<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Index Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/6-use-tags/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/6-use-tags/index.html>6. Use
-                          Tags for Troubleshooting<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Tags for Troubleshooting<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/index.html>
                         <input type=checkbox id=R-section-5986d92e639a2c4fc7b75e491b741664
@@ -1860,27 +1868,23 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/1-dashboards/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/1-dashboards/index.html>1.
-                              ...with Dashboards<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              ...with Dashboards<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/2-alerting/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/2-alerting/index.html>2.
-                              ...with Alerting<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              ...with Alerting<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/3-slos/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/7-alerting-dashboards-slos/3-slos/index.html>3.
-                              ...with SLOs<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              ...with SLOs<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/8-summary/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/tagging/8-summary/index.html>8.
-                          Summary<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Summary<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/index.html><input
@@ -1895,38 +1899,32 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/1-build-application/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/1-build-application/index.html>1
-                          Build the Sample Application<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Build the Sample Application<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/2-troubleshoot-game-startup/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/2-troubleshoot-game-startup/index.html>2
-                          Troubleshoot Game Startup<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Troubleshoot Game Startup<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/3-enable-profiling/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/3-enable-profiling/index.html>3
-                          Enable AlwaysOn Profiling<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Enable AlwaysOn Profiling<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/4-fix-app-startup-slowness/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/4-fix-app-startup-slowness/index.html>4
-                          Fix Application Startup Slowness<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Fix Application Startup Slowness<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/5-fix-ingame-slowness/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/5-fix-ingame-slowness/index.html>5
-                          Fix In Game Slowness<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Fix In Game Slowness<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/6-summary/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/debug_problems/profiling/6-summary/index.html>6
-                          Summary<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Summary<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -1961,14 +1959,12 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/1-uptime/1-create-uptime/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/1-uptime/1-create-uptime/index.html>1.1
-                              Creating a test<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Creating a test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/1-uptime/2-understand-uptime-results/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/1-uptime/2-understand-uptime-results/index.html>1.2
-                              Understanding results<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Understanding results<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
@@ -1984,40 +1980,34 @@
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/1-global-variables/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/1-global-variables/index.html>2.1
-                              Global Variables<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Global Variables<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/2-create-new-test/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/2-create-new-test/index.html>2.2
-                              Create new API test<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Create new API test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/3-authentication-request/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/3-authentication-request/index.html>2.3
-                              Authentication Request<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Authentication Request<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/4-search-request/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/4-search-request/index.html>2.4
-                              Search Request<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              Search Request<i class="fa-fw fas fa-check read-icon"></i></a></li>
                           <li
                             data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/5-view-results/index.html>
                             <a class=padding
                               href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/2-api-test/5-view-results/index.html>2.5
-                              View Results<i class="fa-fw fas fa-check read-icon"></i></a>
-                          </li>
+                              View Results<i class="fa-fw fas fa-check read-icon"></i></a></li>
                         </ul>
                       </li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/3-browser/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/1-synthetics/3-browser/index.html>3.
-                          Browser Test<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Browser Test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/index.html>
@@ -2032,44 +2022,37 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/1-overview/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/1-overview/index.html>1.
-                          Overview<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Overview<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/2-setup/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/2-setup/index.html>2.
-                          RUM instrumentation<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          RUM instrumentation<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/3-rum-landing/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/3-rum-landing/index.html>3.
-                          RUM Landing Page<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          RUM Landing Page<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/4-browser-summary/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/4-browser-summary/index.html>4.
-                          Browser Application Summary<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Browser Application Summary<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/5-analyzing-metrics/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/5-analyzing-metrics/index.html>5.
-                          Analyzing RUM Metrics<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Analyzing RUM Metrics<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/6-tag-spotlight/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/6-tag-spotlight/index.html>6.
-                          Using Tag Spotlight<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Using Tag Spotlight<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/7-rum-sessions/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/2-rum/7-rum-sessions/index.html>7.
-                          Analyzing RUM Sessions<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Analyzing RUM Sessions<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -2085,44 +2068,37 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/1-recording-a-test/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/1-recording-a-test/index.html>1.
-                          Record a test<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Record a test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/2-create-real-browser-test/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/2-create-real-browser-test/index.html>2.
-                          Create a Browser Test<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create a Browser Test<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/3-import-json/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/3-import-json/index.html>3.
-                          Import JSON<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Import JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/4-edit-test-settings/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/4-edit-test-settings/index.html>4.
-                          Settings<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Settings<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/5-advanced-settings/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/5-advanced-settings/index.html>5.
-                          Advanced Settings<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Advanced Settings<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/6-edit-steps/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/6-edit-steps/index.html>6.
-                          Edit test steps<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Edit test steps<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/7-view-test-results/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/3-advanced-synthetics/7-view-test-results/index.html>7.
-                          View test results<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          View test results<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -2138,14 +2114,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/4-dashboards/1-copying-charts/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/4-dashboards/1-copying-charts/index.html>1.
-                          Copying and editing charts<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Copying and editing charts<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/4-dashboards/2-event-overlay/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/4-dashboards/2-event-overlay/index.html>2.
-                          Event overlay<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Event overlay<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -2161,28 +2135,24 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/5-detectors/1-test-detector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/5-detectors/1-test-detector/index.html>1.
-                          Test Detectors<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Test Detectors<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/5-detectors/2-rum-detector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/5-detectors/2-rum-detector/index.html>2.
-                          RUM Detectors<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          RUM Detectors<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/5-detectors/3-chart-detector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/5-detectors/3-chart-detector/index.html>3.
-                          Chart Detectors<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Chart Detectors<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/6-summary/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/scenarios/optimize_end_user_experiences/6-summary/index.html>Summary<i
-                        class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                        class="fa-fw fas fa-check read-icon"></i></a></li>
                 </ul>
               </li>
               <li data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/index.html><input
@@ -2197,8 +2167,7 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/1-background/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/1-background/index.html>1
-                      Background<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Background<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/index.html>
                     <input type=checkbox id=R-section-811fcc790c49a740445871fd05da4abf
@@ -2212,20 +2181,17 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/1-deploy_gateway/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/1-deploy_gateway/index.html>2.1
-                          Deploy Gateway<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Deploy Gateway<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/2-deploy_collector_agent/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/2-deploy_collector_agent/index.html>2.2
-                          Deploy Collector (Agent)<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Deploy Collector (Agent)<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/3-reconfigure_collector/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/scenarios/self_service_observability/2-collect_with_standards/3-reconfigure_collector/index.html>2.3
-                          Reconfigure Collector<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Reconfigure Collector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -2287,8 +2253,7 @@
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/initial-setup/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/initial-setup/index.html>1.
-                      Access AWS/EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Access AWS/EC2 Instance<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/gdi/index.html><input
                       type=checkbox id=R-section-dc4762e261d5460f7254fb3be602d829
                       aria-controls=R-subsections-dc4762e261d5460f7254fb3be602d829><label
@@ -2316,38 +2281,32 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/editing/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/editing/index.html>3.1
-                          Editing charts<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Editing charts<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/savingcharts/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/savingcharts/index.html>3.2
-                          Saving charts<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Saving charts<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/filtering/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/filtering/index.html>3.3
-                          Using Filters & Formulas<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Using Filters & Formulas<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/signalflow/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/signalflow/index.html>3.4
-                          SignalFlow<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          SignalFlow<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/adding-charts/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/adding-charts/index.html>3.5
-                          Adding more charts<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Adding more charts<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/dashboards/notes-and-layout/index.html>3.6
-                          Notes and layout<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Notes and layout<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/detectors/index.html>
@@ -2362,16 +2321,14 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/detectors/muting/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/detectors/muting/index.html>4.1
-                          Creating a Muting Rule<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Creating a Muting Rule<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/monitoring-as-code/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/monitoring-as-code/index.html>5.
-                      Monitoring as Code<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Monitoring as Code<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/servicebureau/index.html>
                     <input type=checkbox id=R-section-f22868c6845d1ac5c2d95c1d863e59de
                       aria-controls=R-subsections-f22868c6845d1ac5c2d95c1d863e59de><label
@@ -2384,14 +2341,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/servicebureau/teams/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/servicebureau/teams/index.html>6.1
-                          Teams<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Teams<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/servicebureau/tokens/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/1-imt/servicebureau/tokens/index.html>6.2
-                          Control Usage<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Control Usage<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -2408,38 +2363,32 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/1-otel-demo/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/1-otel-demo/index.html>1.
-                      Deploy OpenTelemetry Demo<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Deploy OpenTelemetry Demo<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/2-otel-collector/index.html>2.
-                      Installing the Collector<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Installing the Collector<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/3-frontend-service/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/3-frontend-service/index.html>3.
-                      Frontend Service<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Frontend Service<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/4-payment-service/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/4-payment-service/index.html>4.
-                      Payment Service<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Payment Service<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/5-profiling/index.html>5.
-                      Code Profiling<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Code Profiling<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/6-logs/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/3-nodejs-kubernetes/6-logs/index.html>6.
-                      Logs<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Logs<i class="fa-fw fas fa-check read-icon"></i></a></li>
                 </ul>
               </li>
               <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/index.html><input
@@ -2454,8 +2403,7 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/1-getting-started/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/1-getting-started/index.html>1.
-                      Getting Started<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Getting Started<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/2-deploy/index.html><a
                       class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/2-deploy/index.html>2.
@@ -2464,13 +2412,11 @@
                     data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/3-code-to-kubernetes/index.html>3.
-                      Code to Kubernetes<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Code to Kubernetes<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/4-instrument/index.html>
                     <a class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/4-instrument/index.html>4.
-                      Instrumentation<i class="fa-fw fas fa-check read-icon"></i></a>
-                  </li>
+                      Instrumentation<i class="fa-fw fas fa-check read-icon"></i></a></li>
                   <li data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/5-forwarder/index.html><a
                       class=padding
                       href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/8-gdi/5-forwarder/index.html>5. UF
@@ -2498,26 +2444,22 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/team/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/team/index.html>1.1
-                          Teams<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Teams<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/rotations/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/rotations/index.html>1.2
-                          Rotations<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Rotations<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/escalation/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/escalation/index.html>1.3
-                          Escalation Policies<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Escalation Policies<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/routing/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/getting_started/routing/index.html>1.4
-                          Routing Keys<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Routing Keys<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                   <li
@@ -2533,14 +2475,12 @@
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/incident_lifecycle/create_incidents/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/incident_lifecycle/create_incidents/index.html>2.1
-                          Create Incidents<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Create Incidents<i class="fa-fw fas fa-check read-icon"></i></a></li>
                       <li
                         data-nav-id=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/incident_lifecycle/manage_incidents/index.html>
                         <a class=padding
                           href=/o11y-workshop-kr/v5.83/en/unsupported-field-workshops/10-oncall/incident_lifecycle/manage_incidents/index.html>2.2
-                          Manage Incidents<i class="fa-fw fas fa-check read-icon"></i></a>
-                      </li>
+                          Manage Incidents<i class="fa-fw fas fa-check read-icon"></i></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -2596,6 +2536,7 @@
                 </div>
                 <div class=clear></div>
               </div>
+              <script>window.relearn.markVariant()</script>
             </li>
             <li class="footerVisitedLinks showVisitedLinks">
               <div class="padding menu-control"><i class="fa-fw fas fa-history"></i>
