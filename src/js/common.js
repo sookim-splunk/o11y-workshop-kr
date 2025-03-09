@@ -124,6 +124,11 @@ var _com = (function() {
         // let sideHTML = '';
         // sideHTML = createMenuHTML('', sideHTML, CONTENTS);
         // document.querySelector('#menu-list').innerHTML = sideHTML;
+
+        const target = document.querySelector(`li[data-nav-id="${ pageId }"`);
+        if ( target ) {
+          target.classList.add('active');
+        }
       })
       .catch(error => console.error('Failed to fetch page: ', error));
   };
