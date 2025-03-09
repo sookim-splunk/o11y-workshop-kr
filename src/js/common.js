@@ -24,10 +24,10 @@ var _com = (function() {
 
   const setPage = pageId => {
     loadTopBar(pageId);
-    loadSideBar();
+    loadSideBar(pageId);
   };
 
-  const loadTopBar = (pageId = '') => {
+  const loadTopBar = pageId => {
     fetch('/workshop/src/layout/topbar.html')
       .then(res => res.text())
       .then(html => {
