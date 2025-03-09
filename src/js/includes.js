@@ -11,5 +11,6 @@ document.write(`
   <script src="/workshop/src/js/libs/theme.js" defer></script>
   <script src="/workshop/src/js/libs/clipboard.min.js" defer></script>
 
+  <script src="/workshop/src/js/contentList.js"></script>
   <script src="/workshop/src/js/common.js"></script>
 `);
