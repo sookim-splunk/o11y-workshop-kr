@@ -7,9 +7,9 @@ document.write(`
   <link href="/workshop/src/css/theme.min.css" rel="stylesheet">
   <link href="/workshop/src/css/format-html.min.css" rel="stylesheet" id="R-format-style">
 
-  <script src="/workshop/src/js/libs/perfect-scrollbar.min.js"></script>
-  <script src="/workshop/src/js/libs/theme.js"></script>
-  <script src="/workshop/src/js/libs/clipboard.min.js"></script>
+  <script src="/workshop/src/js/libs/perfect-scrollbar.min.js" defer></script>
+  <script src="/workshop/src/js/libs/theme.js" defer></script>
+  <script src="/workshop/src/js/libs/clipboard.min.js" defer></script>
 
   <script src="/workshop/src/js/common.js"></script>
 `);
