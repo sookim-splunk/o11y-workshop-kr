@@ -86,10 +86,11 @@ var _com = (function() {
       href,
       prev = '',
       next,
+      parentId,
       children = [] 
     }) => {
       
-      acc.push({ id, title, href, prev, next });
+      acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
       if ( children.length > 0 ) {
         acc = acc.concat(flattern(children));
       }
