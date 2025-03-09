@@ -15,7 +15,7 @@ var _com = (function() {
           
         // `;
         
-        const tobBar = createTobBarElements(pageId, CONTENTS);
+        const tobBar = createTobBarElements(pageId);
         document.querySelector('#topbar-control-prev').href = tobBar.prev;
         document.querySelector('#topbar-control-next').href = tobBar.next;
         
@@ -23,21 +23,21 @@ var _com = (function() {
       .catch(error => console.error('Failed to fetch page: ', error));
   };
 
-  const createTobBarElements = (pageId, list) => {
+  const createTobBarElements = pageId => {
     const result = {
       next: '',
       prev: '',
     };
 
-    const menu = flattern(list);
+    const menu = flattern(CONTENTS);
     const curPage = getTargetMenu(pageId, menu);
     if ( curPage.prev ) {
-      const prev = getTargetMenu(curPage.prev, list);
+      const prev = getTargetMenu(curPage.prev, menu);
       result.prev = prev.href || '';
     } 
 
     if ( curPage.next ) {
-      const next = getTargetMenu(curPage.next, list);
+      const next = getTargetMenu(curPage.next, menu);
       result.next = next.href || '';
     }
 
