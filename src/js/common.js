@@ -84,7 +84,6 @@ var _com = (function() {
     list.forEach(({
       id,
       depth,
-      parentId = '',
       menuName,
       href,
       sub = [],
@@ -107,7 +106,7 @@ var _com = (function() {
       `;
 
       if ( sub.length > 0 ) {
-        htmlStr += createMenuHTML(parentId, htmlStr, sub);
+        htmlStr += createMenuHTML(id, htmlStr, sub);
       }
 
       htmlStr += '</li>';
