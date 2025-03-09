@@ -54,14 +54,19 @@ var _com = (function() {
           itemtype="https://schema.org/ListItem"
           itemprop="itemListElement"
         >
-          <a 
-            itemprop="item"
-            href="${ el.href }"
-          >
-            <span itemprop="name">${ el.title }</span>
-          </a>
-          <meta itemprop="position" content="${ idx + 1 }">
       `;
+
+      if ( el.id === pageId ) {
+        pathStr += `<a itemprop="item" href="${ el.href }">`;
+      }
+
+      pathStr += `<span itemprop="name">${ el.title }</span>`;
+
+      if ( el.id === pageId ) {
+        pathStr += `</a>`;
+      }
+
+      pathStr += `<meta itemprop="position" content="${ idx + 1 }">`;
 
       if ( idx + 1 < pathArr.length ) {
         pathStr += `&nbsp;&gt;&nbsp`;
