@@ -4,73 +4,14 @@
 <head>
   <meta charset=utf-8>
   <meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
-  <meta name=generator content="Hugo 0.134.3">
-  <meta name=generator content="Relearn 7.2.1">
-  <meta name=description content="The first thing we need to set up APM is… well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).
-  First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
-  git clone https://github.com/spring-projects/spring-petclinic Change into the spring-petclinic directory:
-  cd spring-petclinic Using Docker, start a MySQL database for PetClinic to use:">
-  <meta name=author content>
-  <meta name=twitter:card content="summary">
-  <meta name=twitter:title content="Building the Spring PetClinic Application :: Splunk Observability Cloud Workshops">
-  <meta name=twitter:description content="The first thing we need to set up APM is… well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).
-  First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
-  git clone https://github.com/spring-projects/spring-petclinic Change into the spring-petclinic directory:
-  cd spring-petclinic Using Docker, start a MySQL database for PetClinic to use:">
-  <meta property="og:url"
-    content="https://splunk.github.io/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/2-building-petclinic/index.html">
-  <meta property="og:site_name" content="Splunk Observability Cloud Workshops">
-  <meta property="og:title" content="Building the Spring PetClinic Application :: Splunk Observability Cloud Workshops">
-  <meta property="og:description" content="The first thing we need to set up APM is… well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).
-  First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
-  git clone https://github.com/spring-projects/spring-petclinic Change into the spring-petclinic directory:
-  cd spring-petclinic Using Docker, start a MySQL database for PetClinic to use:">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-  <meta property="article:section" content="Ninja Workshops">
-  <meta property="article:modified_time" content="2024-09-19T16:47:03+01:00">
-  <meta itemprop=name content="Building the Spring PetClinic Application :: Splunk Observability Cloud Workshops">
-  <meta itemprop=description content="The first thing we need to set up APM is… well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).
-  First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
-  git clone https://github.com/spring-projects/spring-petclinic Change into the spring-petclinic directory:
-  cd spring-petclinic Using Docker, start a MySQL database for PetClinic to use:">
-  <meta itemprop=dateModified content="2024-09-19T16:47:03+01:00">
-  <meta itemprop=wordCount content="237">
   <title>Building the Spring PetClinic Application :: Splunk Observability Cloud Workshops</title>
-  <!-- <link href=/observability-workshop/v5.83/images/favicon.ico?1740139255 rel=icon type=image/x-icon sizes=any>
-  <link href=/observability-workshop/v5.83/css/fontawesome-all.min.css?1740139255 rel=stylesheet media=print
-    onload='this.media="all",this.onload=null'><noscript>
-    <link href=/observability-workshop/v5.83/css/fontawesome-all.min.css?1740139255 rel=stylesheet>
-  </noscript>
-  <link href=/observability-workshop/v5.83/css/auto-complete.css?1740139255 rel=stylesheet media=print
-    onload='this.media="all",this.onload=null'><noscript>
-    <link href=/observability-workshop/v5.83/css/auto-complete.css?1740139255 rel=stylesheet>
-  </noscript>
-  <link href=/observability-workshop/v5.83/css/perfect-scrollbar.min.css?1740139255 rel=stylesheet>
-  <link href=/observability-workshop/v5.83/css/theme.min.css?1740139255 rel=stylesheet>
-  <link href=/observability-workshop/v5.83/css/format-html.min.css?1740139255 rel=stylesheet id=R-format-style>
-  <script>window.relearn = window.relearn || {}, window.relearn.relBasePath = "../../../../..", window.relearn.relBaseUri = "../../../../../../..", window.relearn.absBaseUri = "https://splunk.github.io/observability-workshop/v5.83", window.relearn.min = `.min`, window.relearn.disableAnchorCopy = !1, window.relearn.disableAnchorScrolling = !1, window.relearn.themevariants = ["auto", "splunk-light", "splunk-dark"], window.relearn.customvariantname = "my-custom-variant", window.relearn.changeVariant = function (e) { var t = document.documentElement.dataset.rThemeVariant; window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e), document.documentElement.dataset.rThemeVariant = e, t != e && document.dispatchEvent(new CustomEvent("themeVariantLoaded", { detail: { variant: e, oldVariant: t } })) }, window.relearn.markVariant = function () { var t = window.localStorage.getItem(window.relearn.absBaseUri + "/variant"), e = document.querySelector("#R-select-variant"); e && (e.value = t) }, window.relearn.initVariant = function () { var e = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? ""; e == window.relearn.customvariantname || (!e || !window.relearn.themevariants.includes(e)) && (e = window.relearn.themevariants[0], window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e)), document.documentElement.dataset.rThemeVariant = e }, window.relearn.initVariant(), window.relearn.markVariant(), window.T_Copy_to_clipboard = `Copy to clipboard`, window.T_Copied_to_clipboard = `Copied to clipboard!`, window.T_Copy_link_to_clipboard = `Copy link to clipboard`, window.T_Link_copied_to_clipboard = `Copied link to clipboard!`, window.T_Reset_view = `Reset view`, window.T_View_reset = `View reset!`, window.T_No_results_found = `No results found for "{0}"`, window.T_N_results_found = `{1} results found for "{0}"`</script>
-  <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script>
-  <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js
-    crossorigin=anonymous></script>
-  <script>SplunkRum.init({ realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA", applicationName: "observability-workshop", deploymentEnvironment: "splunk.github.io", version: "1.0" }), SplunkSessionRecorder.init({ app: "observability-workshop", realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA" })</script>
-  </script> -->
-  <link href="/workshop/src/images/favicon.ico" rel="icon" type="image/x-icon" sizes="any">
-  <link href="/workshop/src/css/fontawesome-all.min.css" rel="stylesheet" media="print" onload='this.media="all",this.onload=null'>
-  <link href="/workshop/src/css/perfect-scrollbar.min.css" rel="stylesheet">
-  <link href="/workshop/src/css/theme.min.css" rel="stylesheet">
-  <link href="/workshop/src/css/format-html.min.css" rel="stylesheet" id="R-format-style">
-  
   <style>
     :root {
       --MAIN-WIDTH-MAX: 130rem;
       --MENU-WIDTH-L: 23rem
     }
   </style>
-
-  <script src="/workshop/src/js/perfect-scrollbar.min.js" defer></script>
-  <script src="/workshop/src/js/theme.js" defer></script>
-  <script src="/workshop/src/js/clipboard.min.js" defer></script>
+  <script src="/workshop/src/js/includes.js"></script>
 </head>
 
 <body class="mobile-support html disableInlineCopyToClipboard"
@@ -143,64 +84,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      fetch('/workshop/src/layout/topbar.html')
-        .then(res => res.text())
-        .then(html => {
-          document.querySelector('#R-topbar').innerHTML = html;
-          document.querySelector('#breadcrumbs').innerHTML = `
-            <li itemscope="" itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-              <a itemprop="item" href=c>
-                <span itemprop="name">Splunk Observability Workshops</span>
-              </a>
-              <meta itemprop="position" content="1">&nbsp;&gt;&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement>
-              <a itemprop="item" href=/observability-workshop/v5.83/en/ninja-workshops/index.html>
-                <span itemprop="name">Ninja Workshops</span>
-              </a>
-              <meta itemprop=position content="2">&nbsp;>&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement>
-              <a itemprop="item" href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/index.html>
-                <span itemprop="name">Automatic Discovery Workshops</span>
-              </a>
-              <meta itemprop=position content="3">&nbsp;>&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-                href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/index.html><span
-                  itemprop=name>PetClinic Monolith Workshop</span></a>
-              <meta itemprop=position content="4">&nbsp;>&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>2. Building
-                PetClinic</span>
-              <meta itemprop=position content="5">
-            </li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-                href=/observability-workshop/v5.83/en/ninja-workshops/index.html><span itemprop=name>Ninja
-                  Workshops</span></a>
-              <meta itemprop=position content="2">&nbsp;>&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-                href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/index.html><span
-                  itemprop=name>Automatic Discovery Workshops</span></a>
-              <meta itemprop=position content="3">&nbsp;>&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-                href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/index.html><span
-                  itemprop=name>PetClinic Monolith Workshop</span></a>
-              <meta itemprop=position content="4">&nbsp;>&nbsp;
-            </li>
-            <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>2. Building
-                PetClinic</span>
-              <meta itemprop=position content="5">
-            </li>
-          `;
-        })
-        .catch(error => console.error('Failed to fetch page: ', error));
-  
-      fetch('/workshop/src/layout/sidebar.html')
-        .then(res => res.text())
-        .then(html => document.querySelector('#R-sidebar').innerHTML = html)
-        .catch(error => console.error('Failed to fetch page: ', error));
+      _com.loadSideBar();
     });
   </script>
   
