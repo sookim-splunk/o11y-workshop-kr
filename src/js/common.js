@@ -26,9 +26,9 @@ var _com = (function() {
 
   const setPage = pageId => {
     const url = getCurrentURL();
-    const visited = sessionStorage.getItem('workshop-visited') || [];
+    const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || [];
     visited.push(url);
-    sessionStorage.setItem('workshop-visited', new Set(visited));
+    sessionStorage.setItem('workshop-visited', JSON.stringify(new Set(visited)));
 
     loadTopBar(pageId);
     loadSideBar(pageId);
@@ -141,6 +141,14 @@ var _com = (function() {
             target.classList.add('active');
           }
         }
+
+        const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || [];
+        visited.forEach(url => {
+          const target = document.querySelector(`li[data-nav-id="${ url }"`);
+          if ( target ) {
+            target.classList.add('visited');
+          }
+        });
       })
       .catch(error => console.error('Failed to fetch page: ', error));
   };
