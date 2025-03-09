@@ -142,7 +142,7 @@ var _com = (function() {
           }
         }
 
-        const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || [];
+        const visited = [...JSON.parse(sessionStorage.getItem('workshop-visited'))] || [];
         visited.forEach(url => {
           const target = document.querySelector(`li[data-nav-id="${ url }"`);
           if ( target ) {
