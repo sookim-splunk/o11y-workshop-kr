@@ -29,26 +29,29 @@ var _com = (function() {
       prev: '',
     };
 
-    let path = '';
+    const menu = flattern(list);
+    console.log('2');
 
-    const matched = getTargetMenu(pageId);
-    if ( matched ) {
-      if ( matched.prev ) {
-        const prev = getTargetMenu(matched.prev);
+    // let path = '';
 
-        if ( prev ) {
-          result.prev = prev.href;
-        }
-      } 
+    // const matched = getTargetMenu(pageId);
+    // if ( matched ) {
+    //   if ( matched.prev ) {
+    //     const prev = getTargetMenu(matched.prev);
 
-      if ( matched.next ) {
-        const next = getTargetMenu(matched.next);
+    //     if ( prev ) {
+    //       result.prev = prev.href;
+    //     }
+    //   } 
 
-        if ( next ) {
-          result.next = next.href;
-        }
-      }
-    }
+    //   if ( matched.next ) {
+    //     const next = getTargetMenu(matched.next);
+
+    //     if ( next ) {
+    //       result.next = next.href;
+    //     }
+    //   }
+    // }
    
     return result;
   };
@@ -57,6 +60,24 @@ var _com = (function() {
     const matched = CONTENTS.flat().find(el => el.id === id);
     return matched;
   };
+
+  const flattern = list => {
+    return list.reduce((acc, {
+      id, 
+      title,
+      href,
+      prev = '',
+      next,
+      children = [] 
+    }) => {
+      
+      acc.push({ id, title, href, prev, next });
+      if ( children.length > 0 ) {
+        acc = acc.concat(flattern(children));
+      }
+      return acc;
+    }, []);
+  }
 
   // const getBreadCrumbs = (str, id) => {
   //   const matched = getTargetMenu(id);
