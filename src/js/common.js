@@ -11,11 +11,9 @@ var _com = (function() {
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-topbar').innerHTML = html;
-        // document.querySelector('#breadcrumbs').innerHTML = `
-          
-        // `;
         
         const tobBar = createTobBarElements(pageId);
+        document.querySelector('#breadcrumbs').innerHTML = tobBar.path;
         document.querySelector('#topbar-control-prev').href = tobBar.prev;
         document.querySelector('#topbar-control-next').href = tobBar.next;
         
@@ -47,8 +45,32 @@ var _com = (function() {
 
       setPathArr(curPage, pathArr, menu);
     }
+    
+    let pathStr = '';
+    pathArr.forEach((el, idx) => {
+      pathStr += `
+        <li 
+          itemscope="" 
+          itemtype="https://schema.org/ListItem"
+          itemprop="itemListElement"
+        >
+          <a 
+            itemprop="item"
+            href="${ el.href }"
+          >
+            <span itemprop="name">${ el.title }</span>
+          </a>
+          <meta itemprop="position" content="${ idx + 1 }">
+      `;
 
-    console.log('234');
+      if ( idx < pathArr.length() - 1 ) {
+        pathStr += `&nbsp;&gt;&nbsp`;
+      }
+
+      pathStr += '</li>';
+    });
+
+    result.path = pathStr;
     return result;
   };
 
