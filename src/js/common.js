@@ -6,61 +6,70 @@ var _com = (function() {
     loadSideBar();
   };
 
-  const loadTopBar = pageId => {
+  const loadTopBar = (pageId = '') => {
     fetch('/workshop/src/layout/topbar.html')
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-topbar').innerHTML = html;
-        document.querySelector('#breadcrumbs').innerHTML = `
-          <li itemscope="" itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-            <a itemprop="item" href=c>
-              <span itemprop="name">Splunk Observability Workshops</span>
-            </a>
-            <meta itemprop="position" content="1">&nbsp;&gt;&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement>
-            <a itemprop="item" href=/observability-workshop/v5.83/en/ninja-workshops/index.html>
-              <span itemprop="name">Ninja Workshops</span>
-            </a>
-            <meta itemprop=position content="2">&nbsp;>&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement>
-            <a itemprop="item" href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/index.html>
-              <span itemprop="name">Automatic Discovery Workshops</span>
-            </a>
-            <meta itemprop=position content="3">&nbsp;>&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-              href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/index.html><span
-                itemprop=name>PetClinic Monolith Workshop</span></a>
-            <meta itemprop=position content="4">&nbsp;>&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>2. Building
-              PetClinic</span>
-            <meta itemprop=position content="5">
-          </li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-              href=/observability-workshop/v5.83/en/ninja-workshops/index.html><span itemprop=name>Ninja
-                Workshops</span></a>
-            <meta itemprop=position content="2">&nbsp;>&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-              href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/index.html><span
-                itemprop=name>Automatic Discovery Workshops</span></a>
-            <meta itemprop=position content="3">&nbsp;>&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item
-              href=/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/1-petclinic-monolith/index.html><span
-                itemprop=name>PetClinic Monolith Workshop</span></a>
-            <meta itemprop=position content="4">&nbsp;>&nbsp;
-          </li>
-          <li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>2. Building
-              PetClinic</span>
-            <meta itemprop=position content="5">
-          </li>
-        `;
+        // document.querySelector('#breadcrumbs').innerHTML = `
+          
+        // `;
+        
+        const tobBar = createTobBarElements(pageId, CONTENTS);
+        document.querySelector('#topbar-control-prev').href = tobBar.prev;
+        document.querySelector('#topbar-control-next').href = tobBar.next;
+        
       })
       .catch(error => console.error('Failed to fetch page: ', error));
   };
+
+  const createTobBarElements = (pageId, list) => {
+    const result = {
+      next: '',
+      prev: '',
+    };
+
+    let path = '';
+
+    const matched = getTargetMenu(pageId);
+    if ( matched ) {
+      if ( matched.prev ) {
+        const prev = getTargetMenu(matched.prev);
+
+        if ( prev ) {
+          result.prev = prev.href;
+        }
+      } 
+
+      if ( matched.next ) {
+        const next = getTargetMenu(matched.next);
+
+        if ( next ) {
+          result.next = next.href;
+        }
+      }
+    }
+   
+    return result;
+  };
+
+  const getTargetMenu = id => {
+    const matched = CONTENTS.flat().find(el => el.id === id);
+    return matched;
+  };
+
+  // const getBreadCrumbs = (str, id) => {
+  //   const matched = getTargetMenu(id);
+  //   if ( matched ) {
+  //     if ( matched.next ) {
+
+  //     }
+  //     if ( !matched.next ) {
+        
+  //     }
+  //   } 
+    
+  // };
 
   const loadSideBar =  pageId => {
     fetch('/workshop/src/layout/sidebar.html')
