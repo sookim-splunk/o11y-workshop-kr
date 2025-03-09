@@ -69,8 +69,9 @@ var _com = (function() {
         document.querySelector('#R-sidebar').innerHTML = html;
         // document.querySelector('#menu-list')
         let sideHTML = '';
-        sideHTML = ('', sideHTML, CONTENTS);
+        sideHTML = createMenuHTML('', sideHTML, CONTENTS);
         console.log('2342');
+        document.querySelector('#menu-list').innerHTML = sideHTML;
       })
       .catch(error => console.error('Failed to fetch page: ', error));
   };
