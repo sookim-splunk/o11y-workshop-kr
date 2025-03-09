@@ -102,7 +102,7 @@ var _com = (function() {
       pathArr.unshift(curPage);
     }
 
-    if ( !curPage || !curPage?.parentId ) {
+    if ( !curPage || !curPage.parentId ) {
       return pathArr;
     }
 
