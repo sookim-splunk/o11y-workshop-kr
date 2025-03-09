@@ -26,9 +26,9 @@ var _com = (function() {
 
   const setPage = pageId => {
     const url = getCurrentURL();
-    const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || [];
-    visited.push(url);
-    sessionStorage.setItem('workshop-visited', JSON.stringify(new Set(visited)));
+    const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
+    visited[`${url}`] = 1;
+    sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
     loadTopBar(pageId);
     loadSideBar(pageId);
@@ -142,8 +142,8 @@ var _com = (function() {
           }
         }
 
-        const visited = [...JSON.parse(sessionStorage.getItem('workshop-visited'))] || [];
-        visited.forEach(url => {
+        const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
+        Object.keys(visited).forEach(url => {
           const target = document.querySelector(`li[data-nav-id="${ url }"`);
           if ( target ) {
             target.classList.add('visited');
