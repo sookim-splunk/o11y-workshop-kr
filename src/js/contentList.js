@@ -1,6 +1,6 @@
 var CONTENTS = [
   {
-    id: '',
+    id: '0',
     title: 'Splunk Observability Workshops',
     href: '/workshop/src/index.html',
     prev: '',
@@ -9,7 +9,7 @@ var CONTENTS = [
       {
         id: '1',
         depth: 0,
-        parentId: '',
+        parentId: '0',
         menuName: 'ITSI4Rookies🐥',
         title: 'ITSI4Rookies🐥',
         href: '/workshop/src/ITSI4Rookies/index.html',
@@ -38,7 +38,8 @@ var CONTENTS = [
       },
       {
         id: '2',
-        depth: 0, 
+        depth: 0,
+        parentId: '0',
         menuName: `
           Ninja Workshops
           <i class="fa fa-user-ninja"></i>
