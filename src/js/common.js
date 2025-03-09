@@ -25,22 +25,30 @@ var _com = (function() {
 
   const createTobBarElements = pageId => {
     const result = {
+      path: '',
       next: '',
       prev: '',
     };
 
+    const pathArr = [];
+
     const menu = flattern(CONTENTS);
     const curPage = getTargetMenu(pageId, menu);
-    if ( curPage.prev ) {
-      const prev = getTargetMenu(curPage.prev, menu);
-      result.prev = prev.href || '';
-    } 
+    if ( curPage ) {
+      if ( curPage.prev ) {
+        const prev = getTargetMenu(curPage.prev, menu);
+        result.prev = prev.href || '';
+      } 
 
-    if ( curPage.next ) {
-      const next = getTargetMenu(curPage.next, menu);
-      result.next = next.href || '';
+      if ( curPage.next ) {
+        const next = getTargetMenu(curPage.next, menu);
+        result.next = next.href || '';
+      }
+
+      setPathArr(curPage, pathArr, menu);
     }
 
+    console.log('234');
     return result;
   };
 
@@ -66,19 +74,19 @@ var _com = (function() {
       return acc;
     }, []);
   }
+  
+  const setPathArr = (curPage, pathArr, list) => {
+    if ( curPage ) {
+      pathArr.unshift(curPage);
+    }
 
-  // const getBreadCrumbs = (str, id) => {
-  //   const matched = getTargetMenu(id);
-  //   if ( matched ) {
-  //     if ( matched.next ) {
+    if ( !curPage || !curPage?.parentId ) {
+      return pathArr;
+    }
 
-  //     }
-  //     if ( !matched.next ) {
-        
-  //     }
-  //   } 
-    
-  // };
+    const parent = getTargetMenu(curPage.parentId, list);
+    return pathArr(parent, pathArr);
+  }
 
   const loadSideBar =  pageId => {
     fetch('/workshop/src/layout/sidebar.html')

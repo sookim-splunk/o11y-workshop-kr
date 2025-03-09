@@ -9,6 +9,7 @@ var CONTENTS = [
       {
         id: '1',
         depth: 0,
+        parentId: '',
         menuName: 'ITSI4Rookies🐥',
         title: 'ITSI4Rookies🐥',
         href: '/workshop/src/ITSI4Rookies/index.html',
