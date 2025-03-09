@@ -3,7 +3,7 @@ var _com = (function() {
 
   const setPage = pageId => {
     loadTopBar(pageId);
-    loadSideBar(pageId);
+    loadSideBar();
   };
 
   const loadTopBar = pageId => {
@@ -67,18 +67,16 @@ var _com = (function() {
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
-        // document.querySelector('#menu-list')
-        let sideHTML = '';
-        sideHTML = createMenuHTML('', sideHTML, CONTENTS);
-        console.log('2342');
-        document.querySelector('#menu-list').innerHTML = sideHTML;
+        // let sideHTML = '';
+        // sideHTML = createMenuHTML('', sideHTML, CONTENTS);
+        // document.querySelector('#menu-list').innerHTML = sideHTML;
       })
       .catch(error => console.error('Failed to fetch page: ', error));
   };
 
   const createMenuHTML = (parentId = '', htmlStr, list) => {
     if ( parentId ) {
-      htmlStr += `<ul id="side-section-${ parentId }" class="collapsible-menu">`;
+      htmlStr += `<ul id="R-subsections-${ parentId }" class="collapsible-menu">`;
     }
     
     list.forEach(({

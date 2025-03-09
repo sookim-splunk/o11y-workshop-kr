@@ -10,7 +10,7 @@ var CONTENTS = [
         id: '1-1',
         depth: 1,
         parentId: '1',
-        menuName: 'ITSI4Rookies🐥',
+        menuName: 'Optimize Cloud Monitoring',
         title: 'Optimize Cloud Monitoring',
         href: '/ITSI4Rookies/optimize-cloud-monitoring/test.html',
         sub: [
@@ -18,7 +18,8 @@ var CONTENTS = [
             id: '1-1-1',
             depth: 2,
             parentId: '1-1',
-            title: '1. Getting Started',
+            menuName: '1. Getting Started',
+            title: 'Getting Started',
             href: '/ITSI4Rookies/optimize-cloud-monitoring/1-getting-started/test2.html',
           }
         ],

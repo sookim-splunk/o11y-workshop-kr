@@ -39,48 +39,83 @@
   </div>
   <ol id="breadcrumbs" class="topbar-breadcrumbs breadcrumbs highlightable" itemscope="" itemtype="http://schema.org/BreadcrumbList">
   </ol>
-  <div class="topbar-area topbar-area-end" data-area=end>
+  <div class="topbar-area topbar-area-end" data-area="area-end">
     <div 
-      class="topbar-button topbar-button-prev" 
-      data-content-empty=disable 
-      data-width-s=show 
-      data-width-m=show
-      data-width-l=show
-    >
-      <span class=topbar-control>
-        <i class="fa-fw fas fa-chevron-left"></i>
-      </span>
-    </div>
-    <div 
-      class="topbar-button topbar-button-next" 
-      data-content-empty=disable 
-      data-width-s=show 
-      data-width-m=show
-      data-width-l=show
+      class="topbar-button topbar-button-print" 
+      data-content-empty="disable" 
+      data-width-s="area-more"
+      data-width-m="show" 
+      data-width-l="show" 
+      data-origin="area-end" 
+      data-action="show"
     >
       <a 
-        class="topbar-control" 
-        href=/o11y-workshop-kr/v5.83/en/s4r/index.html
-        title="Splunk4Rookies - Observability Cloud (🡒)"
+        class="topbar-control"
+        href="/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/index.print.html"
+        title="Print whole chapter (CTRL+ALT+p)"
+      >
+        <i class="fa-fw fas fa-print"></i>
+      </a>
+    </div>
+    <div class="topbar-placeholder" data-action="show"></div>
+    <div 
+      class="topbar-button topbar-button-prev" 
+      data-content-empty="disable" 
+      data-width-s="show" 
+      data-width-m="show"
+      data-width-l="show" 
+      data-origin="area-end" 
+      data-action="show"
+    >
+      <a 
+        class="topbar-control"
+        href="/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/4-apm/2-apm-data/index.html"
+        title="Viewing the data in Splunk APM (🡐)"
+      >
+        <i class="fa-fw fas fa-chevron-left"></i>
+      </a>
+    </div>
+    <div class="topbar-placeholder" data-action="show"></div>
+    <div 
+      class="topbar-button topbar-button-next" 
+      data-content-empty="disable"
+      data-width-s="show" 
+      data-width-m="show"
+      data-width-l="show"
+      data-origin="area-end" 
+      data-action="show"
+    >
+      <a 
+        class="topbar-control"
+        href="/observability-workshop/v5.83/en/ninja-workshops/1-automatic-discovery/2-petclinic-kubernetes/5-traces/1-service-map/index.html"
+        title="APM Service Map (🡒)"
       >
         <i class="fa-fw fas fa-chevron-right"></i>
       </a>
     </div>
-    <div 
-      class="topbar-button topbar-button-more" 
-      data-content-empty=hide 
-      data-width-s=show 
-      data-width-m=show
-      data-width-l=show
-    >
-      <button class="topbar-control" onclick=t"oggleTopbarFlyout(this)" type="button" title="More">
-        <i class="fa-fw fas fa-ellipsis-v"></i>
-      </button>
+    <div class="topbar-placeholder" data-action="show"></div>
+    <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show"
+      data-width-l="show" data-origin="area-end" data-action="show" style="display: none;"><button class="topbar-control"
+        onclick="toggleTopbarFlyout(this)" type="button" title="More" disabled=""><i
+          class="fa-fw fas fa-ellipsis-v"></i></button>
       <div class="topbar-content">
-        <div class="topbar-content-wrapper">
-          <div class="topbar-area topbar-area-more" data-area=more></div>
+        <div class="topbar-content-wrapper ps">
+          <div class="topbar-area topbar-area-more" data-area="area-more">
+            <div></div>
+          </div>
+          <div class="topbar-hidden" data-area="area-more">
+            <div></div>
+          </div>
+          <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+          </div>
+          <div class="ps__rail-y" style="top: 0px; right: 0px;">
+            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="topbar-placeholder" data-action="show"></div>
+    <div></div>
   </div>
 </div>
