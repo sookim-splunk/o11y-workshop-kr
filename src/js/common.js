@@ -30,34 +30,22 @@ var _com = (function() {
     };
 
     const menu = flattern(list);
-    console.log('2');
+    const curPage = getTargetMenu(pageId, menu);
+    if ( curPage.prev ) {
+      const prev = getTargetMenu(curPage.prev, list);
+      result.prev = prev.href || '';
+    } 
 
-    // let path = '';
+    if ( curPage.next ) {
+      const next = getTargetMenu(curPage.next, list);
+      result.next = next.href || '';
+    }
 
-    // const matched = getTargetMenu(pageId);
-    // if ( matched ) {
-    //   if ( matched.prev ) {
-    //     const prev = getTargetMenu(matched.prev);
-
-    //     if ( prev ) {
-    //       result.prev = prev.href;
-    //     }
-    //   } 
-
-    //   if ( matched.next ) {
-    //     const next = getTargetMenu(matched.next);
-
-    //     if ( next ) {
-    //       result.next = next.href;
-    //     }
-    //   }
-    // }
-   
     return result;
   };
 
-  const getTargetMenu = id => {
-    const matched = CONTENTS.flat().find(el => el.id === id);
+  const getTargetMenu = (id, list) => {
+    const matched = list.find(el => el.id === id);
     return matched;
   };
 

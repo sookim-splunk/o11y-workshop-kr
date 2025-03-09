@@ -14,7 +14,7 @@ var CONTENTS = [
         href: '/workshop/src/ITSI4Rookies/index.html',
         prev: '1',
         next: '1-1',
-        sub: [
+        children: [
           {
             id: '1-1',
             depth: 1,
@@ -22,7 +22,7 @@ var CONTENTS = [
             menuName: 'Optimize Cloud Monitoring',
             title: 'Optimize Cloud Monitoring',
             href: '/workshop/src/ITSI4Rookies/optimize-cloud-monitoring/test.html',
-            sub: [
+            children: [
               {
                 id: '1-1-1',
                 depth: 2,
