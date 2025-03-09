@@ -1,75 +1,20 @@
 <!doctype html>
-<html lang=en dir=ltr itemscope itemtype=http://schema.org/Article data-r-output-format=html>
+<html lang="ko" dir="ltr" itemscope="" itemtype="http://schema.org/Article" data-r-output-format="html">
 
 <head>
-  <meta charset=utf-8>
-  <meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
-  <meta name=generator content="Hugo 0.134.3">
-  <meta name=generator content="Relearn 7.2.1">
-  <meta name=description
-    content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
-  <meta name=author content>
-  <meta name=twitter:card content="summary">
-  <meta name=twitter:title content="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
-  <meta name=twitter:description
-    content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
-  <meta property="og:url" content="https://splunk.github.io/observability-workshop/v5.83/en/s4r/index.html">
-  <meta property="og:site_name" content="Splunk Observability Cloud Workshops">
-  <meta property="og:title" content="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
-  <meta property="og:description"
-    content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
-  <meta itemprop=name content="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
-  <meta itemprop=description
-    content="In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of Splunk Observability Cloud.">
-  <meta itemprop=dateModified content="2025-01-21T18:54:44+00:00">
-  <meta itemprop=wordCount content="227">
+  <meta charset="utf-8">
+  <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1">
   <title>ITSI4Rookies :: Splunk IT Service Intelligence Workshops</title>
-  
-  <!-- <link href=https://splunk.github.io/observability-workshop/v5.83/en/s4r/index.html rel=alternate hreflang=x-default>
-  <link href=https://splunk.github.io/observability-workshop/v5.83/en/s4r/index.html rel=alternate hreflang=en>
-  <link href=https://splunk.github.io/observability-workshop/v5.83/ja/s4r/index.html rel=alternate hreflang=ja>
-  <link href=/observability-workshop/v5.83/en/s4r/index.print.html rel=alternate type=text/html
-    title="ITSI4Rookies 🐥 - IT Service Intelligence Workshop">
-  <link href=../../images/favicon.ico?1740139255 rel=icon type=image/x-icon sizes=any>
-  <link href=../../css/fontawesome-all.min.css?1740139255 rel=stylesheet media=print
-    onload='this.media="all",this.onload=null'><noscript>
-    <link href=../../css/fontawesome-all.min.css?1740139255 rel=stylesheet>
-  </noscript>
-  <link href=../../css/auto-complete.css?1740139255 rel=stylesheet media=print
-    onload='this.media="all",this.onload=null'><noscript>
-    <link href=../../css/auto-complete.css?1740139255 rel=stylesheet>
-  </noscript>
-  <link href=../../css/perfect-scrollbar.min.css?1740139255 rel=stylesheet>
-  <link href=../../css/theme.min.css?1740139255 rel=stylesheet>
-  <link href=../../css/format-html.min.css?1740139255 rel=stylesheet id=R-format-style>
-  <script>window.relearn = window.relearn || {}, window.relearn.relBasePath = "../..", window.relearn.relBaseUri = "../../../..", window.relearn.absBaseUri = "https://splunk.github.io/observability-workshop/v5.83", window.relearn.min = `.min`, window.relearn.disableAnchorCopy = !1, window.relearn.disableAnchorScrolling = !1, window.relearn.themevariants = ["auto", "splunk-light", "splunk-dark"], window.relearn.customvariantname = "my-custom-variant", window.relearn.changeVariant = function (e) { var t = document.documentElement.dataset.rThemeVariant; window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e), document.documentElement.dataset.rThemeVariant = e, t != e && document.dispatchEvent(new CustomEvent("themeVariantLoaded", { detail: { variant: e, oldVariant: t } })) }, window.relearn.markVariant = function () { var t = window.localStorage.getItem(window.relearn.absBaseUri + "/variant"), e = document.querySelector("#R-select-variant"); e && (e.value = t) }, window.relearn.initVariant = function () { var e = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? ""; e == window.relearn.customvariantname || (!e || !window.relearn.themevariants.includes(e)) && (e = window.relearn.themevariants[0], window.localStorage.setItem(window.relearn.absBaseUri + "/variant", e)), document.documentElement.dataset.rThemeVariant = e }, window.relearn.initVariant(), window.relearn.markVariant(), window.T_Copy_to_clipboard = `Copy to clipboard`, window.T_Copied_to_clipboard = `Copied to clipboard!`, window.T_Copy_link_to_clipboard = `Copy link to clipboard`, window.T_Link_copied_to_clipboard = `Copied link to clipboard!`, window.T_Reset_view = `Reset view`, window.T_View_reset = `View reset!`, window.T_No_results_found = `No results found for "{0}"`, window.T_N_results_found = `{1} results found for "{0}"`</script>
-  <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script>
-  <script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js
-    crossorigin=anonymous></script>
-  <script>SplunkRum.init({ realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA", applicationName: "observability-workshop", deploymentEnvironment: "splunk.github.io", version: "1.0" }), SplunkSessionRecorder.init({ app: "observability-workshop", realm: "us1", rumAccessToken: "dp3FKraOS_wVhe-l7eCOsA" })</script>
-  </script> -->
-
-  <link href="/workshop/src/images/favicon.ico" rel="icon" type="image/x-icon" sizes="any">
-  <link href="/workshop/src/css/fontawesome-all.min.css" rel="stylesheet" media="print" onload='this.media="all",this.onload=null'>
-  <link href="/workshop/src/css/perfect-scrollbar.min.css" rel="stylesheet">
-  <link href="/workshop/src/css/theme.min.css" rel="stylesheet">
-  <link href="/workshop/src/css/format-html.min.css" rel="stylesheet" id="R-format-style">
-  
   <style>
     :root {
       --MAIN-WIDTH-MAX: 130rem;
       --MENU-WIDTH-L: 23rem
     }
   </style>
-
-  <script src="/workshop/src/js/perfect-scrollbar.min.js" defer></script>
-  <script src="/workshop/src/js/theme.js" defer></script>
-  <script src="/workshop/src/js/clipboard.min.js" defer></script>
+  <script src="/workshop/src/js/includes.js"></script>
 </head>
 
-<body class="mobile-support html disableInlineCopyToClipboard" data-url=/observability-workshop/v5.83/en/s4r/index.html>
+<body class="mobile-support html disableInlineCopyToClipboard">
   <div id="R-body" class="default-animation">
     <div id="R-body-overlay"></div>
     <nav id="R-topbar"></nav>
@@ -141,9 +86,12 @@
               >
             </a>
           </p>
-          <footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title
-                class=text-muted>Last Modified
-              </span><span class=badge-content>Mar 5, 2025</span></span></footer>
+          <footer class=footline>
+            <span class="badge cstyle note badge-with-title">
+              <span class="badge-title text-muted">Last Modified</span>
+              <span class=badge-content>Mar 5, 2025</span>
+            </span>
+          </footer>
         </article>
       </div>
     </main>
@@ -151,31 +99,4 @@
   <aside id="R-sidebar" class="default-animation showVisitedLinks">
   </aside>
 </body>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('/workshop/src/layout/topbar.html')
-      .then(res => res.text())
-      .then(html => {
-        document.querySelector('#R-topbar').innerHTML = html;
-        document.querySelector('#breadcrumbs').innerHTML = `
-          <li itemscope="" itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-            <a itemprop="item" href="/workshop/src/index.html">
-              <span itemprop="name">Splunk Observability Workshops</span>
-            </a>
-            <meta itemprop="position" content="1">&nbsp;&gt;&nbsp;
-          </li>
-          <li itemscope="" itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-            <span itemprop="name">ITSI4Rookies 🐥</span>
-            <meta itemprop="position" content="2">
-          </li>
-        `;
-      })
-      .catch(error => console.error('Failed to fetch page: ', error));
-
-    fetch('/workshop/src/layout/sidebar.html')
-      .then(res => res.text())
-      .then(html => document.querySelector('#R-sidebar').innerHTML = html)
-      .catch(error => console.error('Failed to fetch page: ', error));
-  });
-</script>
 </html>
