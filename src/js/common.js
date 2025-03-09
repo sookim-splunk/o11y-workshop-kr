@@ -108,7 +108,7 @@ var _com = (function() {
     }
 
     const parent = getTargetMenu(curPage.parentId, list);
-    return pathArr(parent, pathArr);
+    return setPathArr(parent, pathArr, list);
   }
 
   const loadSideBar =  pageId => {
