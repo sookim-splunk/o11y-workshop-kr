@@ -56,13 +56,13 @@ var _com = (function() {
         >
       `;
 
-      if ( el.id === pageId ) {
+      if ( el.id !== pageId ) {
         pathStr += `<a itemprop="item" href="${ el.href }">`;
       }
 
       pathStr += `<span itemprop="name">${ el.title }</span>`;
 
-      if ( el.id === pageId ) {
+      if ( el.id !== pageId ) {
         pathStr += `</a>`;
       }
 
