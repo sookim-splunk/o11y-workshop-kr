@@ -1,6 +1,8 @@
 var _com = (function() {
   console.debug('load common.js');
 
+  const menu = flattern(CONTENTS);
+
   const setPage = pageId => {
     loadTopBar(pageId);
     loadSideBar();
@@ -30,7 +32,6 @@ var _com = (function() {
 
     const pathArr = [];
 
-    const menu = flattern(CONTENTS);
     const curPage = getTargetMenu(pageId, menu);
     if ( curPage ) {
       if ( curPage.prev ) {
@@ -125,9 +126,12 @@ var _com = (function() {
         // sideHTML = createMenuHTML('', sideHTML, CONTENTS);
         // document.querySelector('#menu-list').innerHTML = sideHTML;
 
-        const target = document.querySelector(`li[data-nav-id="${ pageId }"`);
-        if ( target ) {
-          target.classList.add('active');
+        const curPageObj = menu.find(el => el.id === pageId);
+        if ( curPageObj ) {
+          const target = document.querySelector(`li[data-nav-id="${ curPageObj.href }"`);
+          if ( target ) {
+            target.classList.add('active');
+          }
         }
       })
       .catch(error => console.error('Failed to fetch page: ', error));
