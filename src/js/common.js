@@ -22,7 +22,14 @@ var _com = (function() {
 
   const menu = flattern(CONTENTS);
 
+  const getCurrentURL = () => document.querySelector('body').dataset.url;
+
   const setPage = pageId => {
+    const url = getCurrentURL();
+    const visited = sessionStorage.getItem('workshop-visited') || [];
+    visited.push(url);
+    sessionStorage.setItem('workshop-visited', new Set(visited));
+
     loadTopBar(pageId);
     loadSideBar(pageId);
   };
@@ -117,7 +124,7 @@ var _com = (function() {
     return setPathArr(parent, pathArr, list);
   }
 
-  const loadSideBar =  pageId => {
+  const loadSideBar = pageId => {
     fetch('/workshop/src/layout/sidebar.html')
       .then(res => res.text())
       .then(html => {
@@ -126,9 +133,10 @@ var _com = (function() {
         // sideHTML = createMenuHTML('', sideHTML, CONTENTS);
         // document.querySelector('#menu-list').innerHTML = sideHTML;
 
-        const curPageObj = menu.find(el => el.id === pageId);
+        const url = getCurrentURL();
+        const curPageObj = menu.find(el => el.href === url);
         if ( curPageObj ) {
-          const target = document.querySelector(`li[data-nav-id="${ curPageObj.href }"`);
+          const target = document.querySelector(`li[data-nav-id="${ url }"`);
           if ( target ) {
             target.classList.add('active');
           }
