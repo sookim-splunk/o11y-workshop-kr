@@ -1,6 +1,25 @@
 var _com = (function() {
   console.debug('load common.js');
 
+  const flattern = list => {
+    return list.reduce((acc, {
+      id, 
+      title,
+      href,
+      prev = '',
+      next,
+      parentId,
+      children = [] 
+    }) => {
+      
+      acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
+      if ( children.length > 0 ) {
+        acc = acc.concat(flattern(children));
+      }
+      return acc;
+    }, []);
+  }
+
   const menu = flattern(CONTENTS);
 
   const setPage = pageId => {
@@ -84,25 +103,6 @@ var _com = (function() {
     const matched = list.find(el => el.id === id);
     return matched;
   };
-
-  const flattern = list => {
-    return list.reduce((acc, {
-      id, 
-      title,
-      href,
-      prev = '',
-      next,
-      parentId,
-      children = [] 
-    }) => {
-      
-      acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
-      if ( children.length > 0 ) {
-        acc = acc.concat(flattern(children));
-      }
-      return acc;
-    }, []);
-  }
   
   const setPathArr = (curPage, pathArr, list) => {
     if ( curPage ) {
