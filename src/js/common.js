@@ -63,7 +63,7 @@ var _com = (function() {
           <meta itemprop="position" content="${ idx + 1 }">
       `;
 
-      if ( idx < pathArr.length() - 1 ) {
+      if ( idx + 1 < pathArr.length ) {
         pathStr += `&nbsp;&gt;&nbsp`;
       }
 
