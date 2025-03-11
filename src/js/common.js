@@ -35,7 +35,7 @@ var _com = (function() {
   };
 
   const loadTopBar = pageId => {
-    fetch('/workshop/src/layout/topbar.html')
+    fetch('/src/layout/topbar.html')
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-topbar').innerHTML = html;
@@ -125,7 +125,7 @@ var _com = (function() {
   }
 
   const loadSideBar = pageId => {
-    fetch('/workshop/src/layout/sidebar.html')
+    fetch('/src/layout/sidebar.html')
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
@@ -166,7 +166,7 @@ var _com = (function() {
       sub = [],
     }) => {
       htmlStr += `
-        <li data-nav-id="/workshop/src${ href }">
+        <li data-nav-id="/src${ href }">
           <input
             type="checkbox"
             id="side-section-${ id }"
@@ -176,7 +176,7 @@ var _com = (function() {
             <i class="fa-fw fas fa-chevron-right"></i>
             <span class="a11y-only">Submenu ${ menuName }</span>
           </label>
-          <a class="padding" href="/workshop/src${ href }">
+          <a class="padding" href="/src${ href }">
             ${ menuName }
             <i class="fa-fw fas fa-check read-icon"></i>
           </a>
