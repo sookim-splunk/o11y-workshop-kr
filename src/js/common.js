@@ -125,7 +125,7 @@ var _com = (function() {
   }
 
   const loadSideBar = pageId => {
-    fetch('"./src/layout/sidebar.html")
+    fetch("./src/layout/sidebar.html")
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
