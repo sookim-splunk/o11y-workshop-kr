@@ -35,7 +35,7 @@ var _com = (function() {
   };
 
   const loadTopBar = pageId => {
-    fetch("./src/layout/topbar.html")
+    fetch("/o11y-workshop-kr/src/layout/topbar.html")
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-topbar').innerHTML = html;
@@ -125,7 +125,7 @@ var _com = (function() {
   }
 
   const loadSideBar = pageId => {
-    fetch("./src/layout/sidebar.html")
+    fetch("/o11y-workshop-kr/src/layout/sidebar.html")
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
