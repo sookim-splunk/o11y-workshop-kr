@@ -20,6 +20,8 @@ var CONTENTS = [
             parentId: '1',
             title: 'Service Insights',
             href: '/o11y-workshop-kr/src/ITSI4Rookies/1-service-insights/index.html',
+            prev: '1-1',
+            next: '1-1-1',
             children: [
               {
                 id: '1-1-1',
