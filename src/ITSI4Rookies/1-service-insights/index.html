@@ -29,15 +29,15 @@
     <nav id="R-topbar"></nav>
     <div id="R-main-overlay"></div>
     <main id="R-body-inner" class="highlightable ninja-workshops" tabindex=-1>
-      <div class="markdown-body">
-        <md-block src="./README.md">
-          <!-- README.md 로드 실패시 보이는 문구 -->
-          `README.md` was *not* found
-        </md-block>
-      </div>
       <div class="flex-block-wrapper">
         <article class="default">
           <header class="headline"></header>
+          <div class="markdown-body">
+            <md-block src="./README.md">
+              <!-- README.md 로드 실패시 보이는 문구 -->
+              `README.md` was *not* found
+            </md-block>
+          </div>
           <h1 id="building-the-spring-petclinic-application">Building the Spring PetClinic Application</h1>
           <p>The first thing we need to set up APM is&mldr; well, an application. For this exercise, we will use the
             Spring PetClinic application. This is a very popular sample Java application built with the Spring framework
