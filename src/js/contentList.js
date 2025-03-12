@@ -1,9 +1,9 @@
 // TODO: add MENU HERE
 var CONTENTS = [
   {
-    id: '0',                                  // required. page ID
-    title: 'Splunk Observability Workshops',  // required. Bread crumbs text
-    href: '/o11y-workshop-kr/src/index.html',         // required. HTML file path
+    id: '0', // required. page ID
+    title: 'Splunk Observability Workshops', // required. Bread crumbs text
+    href: '/o11y-workshop-kr/src/index.html', // required. HTML file path
     prev: '',
     next: '1',
     children: [
@@ -18,16 +18,16 @@ var CONTENTS = [
           {
             id: '1-1',
             parentId: '1',
-            title: 'Optimize Cloud Monitoring',
-            href: '/o11y-workshop-kr/src/ITSI4Rookies/optimize-cloud-monitoring/test.html',
+            title: 'Service Insights',
+            href: '/o11y-workshop-kr/src/ITSI4Rookies/1-service-insights/index.html',
             children: [
               {
                 id: '1-1-1',
                 parentId: '1-1',
-                menuName: '1. Getting Started',
+                menuName: 'Services/KPIs/Entities/SHS',
                 title: 'Getting Started',
-                href: '/o11y-workshop-kr/src/ITSI4Rookies/optimize-cloud-monitoring/1-getting-started/test2.html',
-              }
+                href: '/o11y-workshop-kr/src/ITSI4Rookies/1-service-insights/1-1-skes/index.html',
+              },
             ],
           },
         ],
@@ -37,7 +37,7 @@ var CONTENTS = [
         parentId: '0',
         title: `Ninja Workshops`,
         href: '/o11y-workshop-kr/src/ninja-workshop/index.html',
-      }
+      },
     ],
   },
 ];
