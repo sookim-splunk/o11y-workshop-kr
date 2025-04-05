@@ -159,6 +159,8 @@ var _com = (function() {
           openMenuOnPath(curPageObj);
         }
 
+        psm = new PerfectScrollbar('#R-content-wrapper', { scrollingThreshold: 2000, swipeEasing: false, wheelPropagation: false });
+
         const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
         Object.keys(visited).forEach(url => {
           const target = document.querySelector(`li[data-nav-id="${ url }"`);
