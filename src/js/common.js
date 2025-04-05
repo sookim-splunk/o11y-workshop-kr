@@ -129,12 +129,8 @@ var _com = (function() {
 
   const openMenuOnPath = curPageObj => {
     document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked = true;
-    const target = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
-    if ( target ) {
-      target.classList.add('active');
-      target.classList.add('parent');
-    }
-
+    document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
+    
     if ( curPageObj?.parentId ) {
       const parentPageObj = menu.find(el => el.id === curPageObj.parentId);
       if ( parentPageObj ) {
@@ -156,6 +152,10 @@ var _com = (function() {
         const url = getCurrentURL();
         const curPageObj = menu.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
         if ( curPageObj ) {
+          const target = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
+          if ( target ) {
+            target.classList.add('active');
+          }
           openMenuOnPath(curPageObj);
         }
 
