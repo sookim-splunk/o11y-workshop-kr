@@ -40,7 +40,7 @@ var _com = (function() {
       .then(html => {
         document.querySelector('#R-topbar').innerHTML = html;
         
-        const topBar = createTobBarElements(pageId);
+        const topBar = createTopBarElements(pageId);
         document.querySelector('#breadcrumbs').innerHTML = topBar.path;
         document.querySelector('#topbar-control-prev').href = topBar.prev;
         document.querySelector('#topbar-control-next').href = topBar.next;
@@ -49,7 +49,7 @@ var _com = (function() {
       .catch(error => console.error('Failed to fetch page: ', error));
   };
 
-  const createTobBarElements = pageId => {
+  const createTopBarElements = pageId => {
     const result = {
       path: '',
       next: '',
@@ -62,12 +62,12 @@ var _com = (function() {
     if ( curPage ) {
       if ( curPage.prev ) {
         const prev = getTargetMenu(curPage.prev, menu);
-        result.prev = prev.href || '';
+        result.prev = prev?.href || '';
       } 
 
       if ( curPage.next ) {
         const next = getTargetMenu(curPage.next, menu);
-        result.next = next.href || '';
+        result.next = next?.href || '';
       }
 
       setPathArr(curPage, pathArr, menu);
@@ -130,8 +130,9 @@ var _com = (function() {
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
         let sideHTML = '';
+        CONTENTS.shift(); // home 화면 제거
         sideHTML = createMenuHTML('', CONTENTS);
-        // document.querySelector('#menu-list').innerHTML = sideHTML;
+        document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
         const curPageObj = menu.find(el => el.href === url);
