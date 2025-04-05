@@ -66,7 +66,9 @@ var _com = (function() {
       if ( curPage.prev ) {
         const prev = getTargetMenu(curPage.prev, menu);
         result.prev = prev?.href || '';
-      } 
+      } else {
+
+      }
 
       if ( curPage.next ) {
         const next = getTargetMenu(curPage.next, menu);
@@ -76,6 +78,11 @@ var _com = (function() {
       setPathArr(curPage, pathArr, menu);
     }
     
+    if ( pageId !== '0' )  {
+      const home = menu.find(el => el.id === '0');
+      pathArr.unshift(home);
+    }
+
     let pathStr = '';
     pathArr.forEach((el, idx) => {
       pathStr += `
