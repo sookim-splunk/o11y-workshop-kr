@@ -170,11 +170,13 @@ var _com = (function() {
     }) => {
       htmlStr += `
         <li data-nav-id="${ href }">
-          <input type="checkbox" id="R-section-${ id }" aria-controls="R-subsections-${ id }">
-          <label for="R-section-${ id }">
-            <i class="fa-fw fas fa-chevron-right"></i>
-            <span class="a11y-only">Submenu ${ menuName }</span>
-          </label>
+          ${ sub.length > 0 ? `
+            <input type="checkbox" id="R-section-${ id }" aria-controls="R-subsections-${ id }">
+            <label for="R-section-${ id }">
+              <i class="fa-fw fas fa-chevron-right"></i>
+              <span class="a11y-only">Submenu ${ menuName }</span>
+            </label>
+            ` : ''}
           <a class="padding" href="${ href }">
             ${ menuName }
             <i class="fa-fw fas fa-check read-icon"></i>
@@ -184,7 +186,7 @@ var _com = (function() {
       `;
     });
 
-    htmlStr += '<ul>';
+    htmlStr += '</ul>';
 
     return htmlStr;
   };
