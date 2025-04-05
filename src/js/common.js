@@ -146,7 +146,7 @@ var _com = (function() {
           }
 
           if ( curPageObj?.parentId ) {
-            document.querySelector(`#R-shortcutmenu-home #${ curPageObj.parentId }`).checked;
+            document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.parentId }`).checked;
           }
         }
 
