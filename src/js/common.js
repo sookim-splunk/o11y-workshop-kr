@@ -6,14 +6,17 @@ var _com = (function() {
       id, 
       title,
       href,
-      prev = '',
+      prev,
       next,
-      parentId,
-      children = [] 
+      sub = [] 
     }) => {
+      let parentId = '';
+      if ( id.indexOf('-') > -1 ) {
+        parentId = id.substring(0, id.lastIndexOf('-'));
+      }
       
       acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
-      if ( children.length > 0 ) {
+      if ( sub.length > 0 ) {
         acc = acc.concat(flattern(children));
       }
       return acc;
