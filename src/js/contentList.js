@@ -4,7 +4,7 @@ var CONTENTS = [
     id: '0', // required. page ID
     title: 'Splunk Observability Workshops',    // required. Bread crumbs text
     menuName: 'Splunk Observability Workshops', // required. Side bar text
-    href: '/o11y-workshop-kr/src/index.html',   // required. HTML file path
+    href: '/o11y-workshop-kr/index.html',   // required. HTML file path
     prev: '',
     next: '1',
     sub: [],
