@@ -138,7 +138,7 @@ var _com = (function() {
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
-        const curPageObj = menu.find(el => el.href === url);
+        const curPageObj = menu.find(el => el.href === href);
         if ( curPageObj ) {
           const target = document.querySelector(`li[data-nav-id="${ url }"`);
           if ( target ) {
