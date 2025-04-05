@@ -14,10 +14,10 @@ var _com = (function() {
       if ( id.indexOf('-') > -1 ) {
         parentId = id.substring(0, id.lastIndexOf('-'));
       }
-      
+
       acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
       if ( sub.length > 0 ) {
-        acc = acc.concat(flattern(children));
+        acc = acc.concat(flattern(sub));
       }
       return acc;
     }, []);
