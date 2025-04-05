@@ -34,7 +34,7 @@ var _com = (function() {
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
     loadTopBar(pageId);
-    loadSideBar(pageId);
+    loadSideBar();
   };
 
   const loadTopBar = pageId => {
@@ -127,7 +127,17 @@ var _com = (function() {
     return setPathArr(parent, pathArr, list);
   }
 
-  const loadSideBar = pageId => {
+  const openMenuOnPath = curPageObj => {
+    document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked = true;
+    if ( curPageObj?.parentId ) {
+      const parentPageObj = menu.find(el => el.id === curPageObj.parentId);
+      if ( parentPageObj ) {
+        openMenuOnPath(parentPageObj);
+      }
+    }
+  };
+
+  const loadSideBar = () => {
     fetch("/o11y-workshop-kr/src/layout/sidebar.html")
       .then(res => res.text())
       .then(html => {
@@ -144,12 +154,8 @@ var _com = (function() {
           if ( target ) {
             target.classList.add('active');
           }
-
-          document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked = true;
-
-          if ( curPageObj?.parentId ) {
-            document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.parentId }`).checked = true;
-          }
+          
+          openMenuOnPath(curPageObj);
         }
 
         const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
