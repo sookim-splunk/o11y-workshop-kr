@@ -145,10 +145,10 @@ var _com = (function() {
             target.classList.add('active');
           }
 
-          document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked;
+          document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked = true;
 
           if ( curPageObj?.parentId ) {
-            document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.parentId }`).checked;
+            document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.parentId }`).checked = true;
           }
         }
 
