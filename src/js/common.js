@@ -145,6 +145,8 @@ var _com = (function() {
             target.classList.add('active');
           }
 
+          document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked;
+
           if ( curPageObj?.parentId ) {
             document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.parentId }`).checked;
           }
