@@ -138,11 +138,15 @@ var _com = (function() {
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
-        const curPageObj = menu.find(el => el.href === href);
+        const curPageObj = menu.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
         if ( curPageObj ) {
-          const target = document.querySelector(`li[data-nav-id="${ url }"`);
+          const target = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
           if ( target ) {
             target.classList.add('active');
+          }
+
+          if ( curPageObj?.parentId ) {
+            document.querySelector(`#R-shortcutmenu-home #${ curPageObj.parentId }`).checked;
           }
         }
 
