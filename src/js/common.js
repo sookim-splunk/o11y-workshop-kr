@@ -40,10 +40,10 @@ var _com = (function() {
       .then(html => {
         document.querySelector('#R-topbar').innerHTML = html;
         
-        const tobBar = createTobBarElements(pageId);
-        document.querySelector('#breadcrumbs').innerHTML = tobBar.path;
-        document.querySelector('#topbar-control-prev').href = tobBar.prev;
-        document.querySelector('#topbar-control-next').href = tobBar.next;
+        const topBar = createTobBarElements(pageId);
+        document.querySelector('#breadcrumbs').innerHTML = topBar.path;
+        document.querySelector('#topbar-control-prev').href = topBar.prev;
+        document.querySelector('#topbar-control-next').href = topBar.next;
         
       })
       .catch(error => console.error('Failed to fetch page: ', error));
@@ -130,7 +130,7 @@ var _com = (function() {
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
         let sideHTML = '';
-        sideHTML = createMenuHTML('', sideHTML, CONTENTS);
+        sideHTML = createMenuHTML('', CONTENTS);
         // document.querySelector('#menu-list').innerHTML = sideHTML;
 
         const url = getCurrentURL();
@@ -153,45 +153,37 @@ var _com = (function() {
       .catch(error => console.error('Failed to fetch page: ', error));
   };
 
-  const createMenuHTML = (parentId = '', htmlStr, list) => {
-    if ( parentId ) {
+  const createMenuHTML = (parentId, list) => {
+    let htmlStr = '';
+    if ( !parentId ) {
+      htmlStr += `<ul class="enlarge morespace collapsible-menu">`;
+    } else {
       htmlStr += `<ul id="R-subsections-${ parentId }" class="collapsible-menu">`;
     }
     
     list.forEach(({
       id,
-      depth,
       menuName,
       href,
       sub = [],
     }) => {
       htmlStr += `
-        <li data-nav-id="/src${ href }">
-          <input
-            type="checkbox"
-            id="side-section-${ id }"
-            aria-controls="side${ sub.length > 0 ? `-subsections-${ sub[0].id }0` : `-` }"
-          >
-          <label for=side-section-${ id }">
+        <li data-nav-id="${ href }">
+          <input type="checkbox" id="R-section-${ id }" aria-controls="R-subsections-${ id }">
+          <label for="R-section-${ id }">
             <i class="fa-fw fas fa-chevron-right"></i>
             <span class="a11y-only">Submenu ${ menuName }</span>
           </label>
-          <a class="padding" href="/src${ href }">
+          <a class="padding" href="${ href }">
             ${ menuName }
             <i class="fa-fw fas fa-check read-icon"></i>
           </a>
+          ${ sub.length > 0 ? createMenuHTML(id, sub) : '' }
+        </li>
       `;
-
-      if ( sub.length > 0 ) {
-        htmlStr += createMenuHTML(id, htmlStr, sub);
-      }
-
-      htmlStr += '</li>';
     });
-    
-    if ( parentId ) {
-      htmlStr += `</ul>`;
-    }
+
+    htmlStr += '<ul>';
 
     return htmlStr;
   };
