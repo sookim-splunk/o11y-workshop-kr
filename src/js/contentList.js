@@ -362,4 +362,13 @@ var CONTENTS = [
     ],
     // end of Splunk O11y Cloud A to Z 
   },
+  {
+    id: '2', // required. page ID
+    title: 'TEST',    // required. Bread crumbs text
+    menuName: 'TEST', // required. Side bar text
+    href: '/o11y-workshop-kr/src/index2.html',   // required. HTML file path
+    prev: '1-3',
+    next: '3',
+    sub: [],
+  },
 ];
