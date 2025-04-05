@@ -1247,37 +1247,37 @@ function initExpand() {
 }
 
 function clearHistory() {
-  var visitedItem = window.relearn.absBaseUri + '/visited-url/';
-  for (var item in sessionStorage) {
-    if (item.substring(0, visitedItem.length) === visitedItem) {
-      sessionStorage.removeItem(item);
-      var url = item.substring(visitedItem.length);
-      // in case we have `relativeURLs=true` we have to strip the
-      // relative path to root
-      url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
-        e.classList.remove('visited');
-      });
-    }
-  }
+  // var visitedItem = window.relearn.absBaseUri + '/visited-url/';
+  // for (var item in sessionStorage) {
+  //   if (item.substring(0, visitedItem.length) === visitedItem) {
+  //     sessionStorage.removeItem(item);
+  //     var url = item.substring(visitedItem.length);
+  //     // in case we have `relativeURLs=true` we have to strip the
+  //     // relative path to root
+  //     url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
+  //     document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
+  //       e.classList.remove('visited');
+  //     });
+  //   }
+  // }
 }
 
 function initHistory() {
-  var visitedItem = window.relearn.absBaseUri + '/visited-url/';
-  sessionStorage.setItem(visitedItem + document.querySelector('body').dataset.url, 1);
+  // var visitedItem = window.relearn.absBaseUri + '/visited-url/';
+  // sessionStorage.setItem(visitedItem + document.querySelector('body').dataset.url, 1);
 
-  // loop through the sessionStorage and see if something should be marked as visited
-  for (var item in sessionStorage) {
-    if (item.substring(0, visitedItem.length) === visitedItem && sessionStorage.getItem(item) == 1) {
-      var url = item.substring(visitedItem.length);
-      // in case we have `relativeURLs=true` we have to strip the
-      // relative path to root
-      url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
-        e.classList.add('visited');
-      });
-    }
-  }
+  // // loop through the sessionStorage and see if something should be marked as visited
+  // for (var item in sessionStorage) {
+  //   if (item.substring(0, visitedItem.length) === visitedItem && sessionStorage.getItem(item) == 1) {
+  //     var url = item.substring(visitedItem.length);
+  //     // in case we have `relativeURLs=true` we have to strip the
+  //     // relative path to root
+  //     url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
+  //     document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
+  //       e.classList.add('visited');
+  //     });
+  //   }
+  // }
 }
 
 function initScrollPositionSaver() {

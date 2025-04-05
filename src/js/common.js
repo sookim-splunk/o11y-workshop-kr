@@ -129,8 +129,8 @@ var _com = (function() {
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
-        // let sideHTML = '';
-        // sideHTML = createMenuHTML('', sideHTML, CONTENTS);
+        let sideHTML = '';
+        sideHTML = createMenuHTML('', sideHTML, CONTENTS);
         // document.querySelector('#menu-list').innerHTML = sideHTML;
 
         const url = getCurrentURL();
