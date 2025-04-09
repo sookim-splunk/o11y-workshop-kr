@@ -63,9 +63,18 @@ var CONTENTS = {
           id: '3-5', // required. page ID
           title: '5. Dropping Spans', // required. Bread crumbs text
           menuName: '5. Dropping Spans', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-5-dropSpan/3-5-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/advancedConfig/3-5-droppingSpan/3-5-index.html', // required. HTML file path
           prev: '3-4',
           next: '3-6',
+          sub: [],
+        },
+        {
+          id: '3-6', // required. page ID
+          title: '6. Redacting Sensitive Data', // required. Bread crumbs text
+          menuName: '6. Redacting Sensitive Data', // required. Side bar text
+          href: '/o11y-workshop-kr/src/advancedConfig/3-6-sensitive/3-6-index.html', // required. HTML file path
+          prev: '3-5',
+          next: '3-7',
           sub: [],
         },
       ],
