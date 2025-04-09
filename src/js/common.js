@@ -36,8 +36,11 @@ var _com = (function() {
     visited[`${url}`] = 1;
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
-    VALID_MENU = CONTENTS[`ch${ pageId.substring(0, 1)}`];
+    const homeId = pageId.substring(0, 1);
+    VALID_MENU = CONTENTS[`ch${ homeId }`];
     FLATTERNED_MENU = flattern(VALID_MENU);
+
+    document.querySelector('#logo').href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
 
     loadTopBar(pageId);
     loadSideBar(pageId);
