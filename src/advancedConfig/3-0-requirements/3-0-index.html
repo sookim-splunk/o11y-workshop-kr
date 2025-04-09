@@ -10,6 +10,27 @@
             --MAIN-WIDTH-MAX: 130rem;
             --MENU-WIDTH-L: 23rem
         }
+
+        blockquote {
+            background-color: #f0fff4;
+            /* 밝은 초록 배경 */
+            border-left: 6px solid #38a169;
+            /* 진한 초록 테두리 */
+            padding: 1em;
+            border-radius: 6px;
+            margin: 1.5em 0;
+
+        }
+
+        blockquote p {
+            margin: 0;
+            /* 문단 간 여백 제거 (더 타이트하게) */
+        }
+
+        blockquote strong {
+            color: #2f855a;
+            /* 강조 텍스트 색상 */
+        }
     </style>
     <script src="/o11y-workshop-kr/src/js/includes.js"></script>
     <!-- md-block -->
@@ -30,11 +51,14 @@ https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-python.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-go.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.min.css">
 
 </head>
 
-<body class="mobile-support html disableInlineCopyToClipboard" data-url="advancedConfig/3-0-requirements/3-0-index.html">
+<body class="mobile-support html disableInlineCopyToClipboard"
+    data-url="advancedConfig/3-0-requirements/3-0-index.html">
     <div id="R-body" class="default-animation">
         <div id="R-body-overlay"></div>
         <nav id="R-topbar"></nav>

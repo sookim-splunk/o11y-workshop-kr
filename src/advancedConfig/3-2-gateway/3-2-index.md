@@ -298,3 +298,8 @@ OpenTelemetry Gateway는 텔레메트리 데이터를 수신, 처리 및 내보�
     "Span 4 found with spanId c7f544a4b5fef5fc, hostname workshop-instance, os linux"
     "Span 5 found with spanId 30bb49261315969d, hostname workshop-instance, os linux"
     ```
+
+<br>
+
+> ⚡ **Important** <br>
+> 확인이 끝났으면 Agent/Gateway 터미널에서 `Ctrl+C` 를 눌러 에이전트를 중지합니다

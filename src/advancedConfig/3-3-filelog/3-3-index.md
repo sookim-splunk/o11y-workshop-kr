@@ -176,3 +176,8 @@ starWarsQuotes := []string{
    ├── gateway.yaml
    └── quotes.log           # File containing Random log lines
    ```
+
+<br>
+
+> ⚡ **Important** <br>
+> 확인이 끝났으면 Agent/Gateway 터미널에서 `Ctrl+C` 를 눌러 에이전트를 중지합니다
