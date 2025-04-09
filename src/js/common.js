@@ -30,9 +30,7 @@ var _com = (function() {
 
   const getCurrentURL = () => document.querySelector('body').dataset.url;
 
-  const goHome = homeId => {
-    location.href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
-  };
+  const getHomeId = pageId => pageId.substring(0, 1);
 
   const setPage = pageId => {
     const url = getCurrentURL();
@@ -40,16 +38,11 @@ var _com = (function() {
     visited[`${url}`] = 1;
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
-    const homeId = pageId.substring(0, 1);
-    VALID_MENU = CONTENTS[`ch${ homeId }`];
+    VALID_MENU = CONTENTS[`ch${ getHomeId(pageId) }`];
     FLATTERNED_MENU = flattern(VALID_MENU);
 
     loadTopBar(pageId);
     loadSideBar(pageId);
-
-    document.querySelector('#logo').addEventListener('click', goHome);
-    document.querySelector('#homeIcon').addEventListener('click', goHome);
-    
   };
 
   const loadTopBar = pageId => {
@@ -170,6 +163,10 @@ var _com = (function() {
     }
   };
 
+  const goHome = homeId => {
+    location.href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
+  };
+
   const loadSideBar = pageId => {
     fetch("/o11y-workshop-kr/src/layout/sidebar.html")
       .then(res => res.text())
@@ -194,11 +191,15 @@ var _com = (function() {
 
         const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
         Object.keys(visited).forEach(url => {
-          const target = document.querySelector(`li[data-nav-id="${ url }"`);
+          const target = document.querySelector(`li[data-nav-id="/o11y-workshop-kr/src/${ url }"`);
           if ( target ) {
             target.classList.add('visited');
           }
         });
+
+        const homeId = getHomeId(pageId);
+        document.querySelector('#logo').addEventListener('click', () => goHome(homeId));
+        document.querySelector('#homeIcon').addEventListener('click', () => goHome(homeId));
       })
       .catch(error => console.error('Failed to fetch page: ', error));
   };
