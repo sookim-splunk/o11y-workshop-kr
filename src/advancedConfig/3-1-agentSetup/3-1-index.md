@@ -105,7 +105,7 @@ service:
 3. 해당 YAML 내용이 유효하다고 확인되면 아래 이미지 표현을 참조하여 파이프라인이 올바르게 설정되었는지 확인합니다.
 
 대부분의 경우 주요 파이프라인만 표시됩니다. 그러나 세개의 파이프라인 (Metrics, Trace, Logs)이 모두 동일한 구조를 사용하는 경우에는 각 파이프라인을 개별적으로 표현됩니다.
-![](../../images/3-1-otelbin.jpg)
+![](../../images/3-advancedConfig/3-1-otelbin.jpg)
 
 ## 로드 발생기 도구
 
@@ -246,7 +246,7 @@ OpenTelemetry 디버그 익스포터와 파일 익스포터의 차이점은 목�
    ```
 
    https://otelbin.io 을 활용하여 현재까지 업데이트 된 설정이 유효한지 확인 해 봅니다
-   ![](../../images/3-1-fileExporter.jpg)
+   ![](../../images/3-advancedConfig/3-1-fileExporter.jpg)
 
 ## 파일 익스포터 실행하기
 

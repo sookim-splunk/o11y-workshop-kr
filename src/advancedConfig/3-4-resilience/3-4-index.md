@@ -87,7 +87,7 @@ OpenTelemetry Collector의 파일 스토리지 확장은 안정적인 체크포�
 <br>
 설정이 정확히 되었다면 아래와 같은 모양으로 표시됩니다
 
-![](../../images/3-4-filestorage.jpg)
+![](../../images/3-advancedConfig/3-4-filestorage.jpg)
 
 <br>
 

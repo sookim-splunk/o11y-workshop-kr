@@ -90,7 +90,7 @@ starWarsQuotes := []string{
    ```
 
    - **설정내용 확인하기** : otelbin.io 에 yaml 내용을 붙여넣기 하여 아래와 같이 표시되는지 확인합니다
-     ![](../../images/3-3-filelog.jpg)
+     ![](../../images/3-advancedConfig/3-3-filelog.jpg)
 
 <br>
 <br>

@@ -5,7 +5,7 @@
   - Splunk Workshop Instance (권장)
   - Apple Mac (Apple Silicon) - `jq` 설치 필요 - [설치 링크](https://jqlang.org/download/)
   - 본 워크샵에서는 agent.yaml 파일의 수정이 많기 때문에 시각화 도구를 통해 설정 내용을 검증하고 확인 할 수 있도록 합니다 - [OTelBin](https://www.otelbin.io/)
-    ![](../../images/3-0-otelBin.jpg)
+    ![](../../images/3-advancedConfig/3-0-otelBin.jpg)
 
 > ## 📘 **Exercise**
 >

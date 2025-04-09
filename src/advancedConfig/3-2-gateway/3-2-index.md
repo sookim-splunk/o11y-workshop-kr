@@ -116,7 +116,7 @@ OpenTelemetry Gateway는 텔레메트리 데이터를 수신, 처리 및 내보�
 └── gateway.yaml
 ```
 
-![alt](../../images/3-2-gateway.jpg)
+![alt](../../images/3-advancedConfig/3-2-gateway.jpg)
 
 4. 게이트웨이 터미널에서 아래 명령어로 Gateway 를 실행시킵니다
 
@@ -200,7 +200,7 @@ OpenTelemetry Gateway는 텔레메트리 데이터를 수신, 처리 및 내보�
    ```
 
    전체 파이프라인 설정이 아래처럼 나오나요?
-   ![alt](../../images/3-2-agent.jpg)
+   ![alt](../../images/3-advancedConfig/3-2-agent.jpg)
    <br>
    <br>
 
