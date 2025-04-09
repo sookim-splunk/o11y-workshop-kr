@@ -1,9 +1,6 @@
 <h1 align="center">🚀 Advanced Collector Configuration</h1>
 
-![⏱ 90 minutes](https://img.shields.io/badge/Duration-90%20minutes-purple)
-![👨‍💻 Authors](https://img.shields.io/badge/Authors-SooKyungKim-blue)
-
-<p align="left">
+<p style="text-align: left;">
   <img src="https://img.shields.io/badge/Duration-90%20minutes-purple">
   <img src="https://img.shields.io/badge/Authors-SooKyungKim-blue">
 </p>
@@ -35,8 +32,6 @@
 
 이 워크샵이 끝나면 다양한 실제 사용 사례에 맞게 Open Telemetry 수집기를 구성하는데 익숙 해 질 수 있습니다
 
-![🗓 Last Modified](https://img.shields.io/badge/Last_Modified-2025--04--09-FFA500)
-
-<p align="left">
+<p style="text-align: left;">
   <img src="https://img.shields.io/badge/Last_Modified-2025--04--09-FFA500">
 </p>
