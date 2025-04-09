@@ -487,7 +487,6 @@ var CONTENTS = {
           next: '3-4',
           sub: [],
         },
-        
       ],
     },
   ],
