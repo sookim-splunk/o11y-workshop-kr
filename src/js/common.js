@@ -1,6 +1,8 @@
 var _com = (function() {
   console.debug('load common.js');
 
+  let VALID_MENU;
+
   const flattern = list => {
     return list.reduce((acc, {
       id, 
@@ -23,7 +25,7 @@ var _com = (function() {
     }, []);
   }
 
-  const menu = flattern(CONTENTS);
+  // const menu = flattern(CONTENTS);
 
   const getCurrentURL = () => document.querySelector('body').dataset.url;
 
@@ -33,6 +35,8 @@ var _com = (function() {
     visited[`${url}`] = 1;
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
+    VALID_MENU = CONTENTS[`ch${ pageId.substring(0, 1)}`];
+    
     loadTopBar(pageId);
     loadSideBar(pageId);
   };
@@ -61,27 +65,27 @@ var _com = (function() {
 
     const pathArr = [];
 
-    const curPage = getTargetMenu(pageId, menu);
+    const curPage = getTargetMenu(pageId, VALID_MENU);
     if ( curPage ) {
       if ( curPage.prev ) {
-        const prev = getTargetMenu(curPage.prev, menu);
+        const prev = getTargetMenu(curPage.prev, VALID_MENU);
         result.prev = prev?.href || '';
       } else {
 
       }
 
       if ( curPage.next ) {
-        const next = getTargetMenu(curPage.next, menu);
+        const next = getTargetMenu(curPage.next, VALID_MENU);
         result.next = next?.href || '';
       }
 
-      setPathArr(curPage, pathArr, menu);
+      setPathArr(curPage, pathArr, VALID_MENU);
     }
     
-    if ( pageId !== '0' )  {
-      const home = menu.find(el => el.id === '0');
-      pathArr.unshift(home);
-    }
+    // if ( pageId !== '0' )  {
+    //   const home = menu.find(el => el.id === '0');
+    //   pathArr.unshift(home);
+    // }
 
     let pathStr = '';
     pathArr.forEach((el, idx) => {
@@ -139,7 +143,7 @@ var _com = (function() {
     document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
     
     if ( curPageObj?.parentId ) {
-      const parentPageObj = menu.find(el => el.id === curPageObj.parentId);
+      const parentPageObj = VALID_MENU.find(el => el.id === curPageObj.parentId);
       if ( parentPageObj ) {
         openMenuOnPath(parentPageObj);
       }
@@ -152,10 +156,8 @@ var _com = (function() {
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
         
-        const menus = CONTENTS[`ch${ pageId.substring(0, 1)}`];
-
         let sideHTML = '';
-        sideHTML = createMenuHTML('', menus);
+        sideHTML = createMenuHTML('', VALID_MENU);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
