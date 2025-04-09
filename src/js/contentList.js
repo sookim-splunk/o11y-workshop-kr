@@ -364,8 +364,8 @@ var CONTENTS = [
   },
   {
     id: '2', // required. page ID
-    title: 'TEST', // required. Bread crumbs text
-    menuName: 'TEST', // required. Side bar text
+    title: 'ITSI4Rookies', // required. Bread crumbs text
+    menuName: 'ITSI4Rookies', // required. Side bar text
     href: '/o11y-workshop-kr/src/index2.html', // required. HTML file path
     prev: '1-3',
     next: '3',
@@ -376,7 +376,7 @@ var CONTENTS = [
     title: 'Advanced Collector Configuraiton', // required. Bread crumbs text
     menuName: 'Advanced Collector Configuraiton', // required. Side bar text
     href: '/o11y-workshop-kr/src/advancedConfig/3-index.html', // required. HTML file path
-    prev: '0',
+    prev: '2',
     next: '3-1',
     sub: [],
   },
