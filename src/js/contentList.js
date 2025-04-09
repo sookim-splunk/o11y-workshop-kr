@@ -383,7 +383,7 @@ var CONTENTS = [
         id: '3-0', // required. page ID
         title: 'Pre-requisites', // required. Bread crumbs text
         menuName: 'Pre-requisites', // required. Side bar text
-        href: '/o11y-workshop-kr/src/advancedConfig/3-0-index.html', // required. HTML file path
+        href: '/o11y-workshop-kr/src/advancedConfig/3-0-requirements/3-0-index.html', // required. HTML file path
         prev: '3',
         next: '3-1',
         sub: [],
