@@ -34,7 +34,7 @@ var _com = (function() {
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
     loadTopBar(pageId);
-    loadSideBar();
+    loadSideBar(pageId);
   };
 
   const loadTopBar = pageId => {
@@ -146,14 +146,16 @@ var _com = (function() {
     }
   };
 
-  const loadSideBar = () => {
+  const loadSideBar = pageId => {
     fetch("/o11y-workshop-kr/src/layout/sidebar.html")
       .then(res => res.text())
       .then(html => {
         document.querySelector('#R-sidebar').innerHTML = html;
+        
+        const menus = CONTENTS[`ch${ pageId.substring(0, 1)}`];
+
         let sideHTML = '';
-        CONTENTS.shift(); // home 화면 제거
-        sideHTML = createMenuHTML('', CONTENTS);
+        sideHTML = createMenuHTML('', menus);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
