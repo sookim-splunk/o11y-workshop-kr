@@ -141,8 +141,17 @@ var _com = (function() {
   }
 
   const openMenuOnPath = curPageObj => {
-    document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`)?.checked = true;
-    document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
+    const target = document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`);
+    if ( target ) {
+      target.checked = true;
+    }
+    // document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`)?.checked = true;
+    
+    const li = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
+    if ( li ) {
+      li.classList.addd('parent');
+    }
+    // document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
     
     if ( curPageObj?.parentId ) {
       const parentPageObj = FLATTERNED_MENU.find(el => el.id === curPageObj.parentId);
