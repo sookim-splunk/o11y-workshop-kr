@@ -375,7 +375,7 @@ var CONTENTS = [
     id: '3', // required. page ID
     title: 'Advanced Collector Configuraiton', // required. Bread crumbs text
     menuName: 'Advanced Collector Configuraiton', // required. Side bar text
-    href: '/o11y-workshop-kr/src/advancedConfig/3-1-index.html', // required. HTML file path
+    href: '/o11y-workshop-kr/src/advancedConfig/3-index.html', // required. HTML file path
     prev: '0',
     next: '3-1',
     sub: [],
