@@ -40,10 +40,10 @@ var _com = (function() {
     VALID_MENU = CONTENTS[`ch${ homeId }`];
     FLATTERNED_MENU = flattern(VALID_MENU);
 
-    document.querySelector('#logo').href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
-
     loadTopBar(pageId);
     loadSideBar(pageId);
+
+    document.querySelector('#logo').href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
   };
 
   const loadTopBar = pageId => {
