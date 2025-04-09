@@ -406,6 +406,14 @@ var CONTENTS = [
         next: '3-3',
         sub: [],
       },
-    ],
+      {
+        id: '3-3', // required. page ID
+        title: '3. Filelog Setup', // required. Bread crumbs text
+        menuName: '3. Filelog  Setup', // required. Side bar text
+        href: '/o11y-workshop-kr/src/advancedConfig/3-3-filelog/3-3-index.html', // required. HTML file path
+        prev: '3-2',
+        next: '3-4',
+        sub: [],
+      },
   },
 ];
