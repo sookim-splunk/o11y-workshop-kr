@@ -388,6 +388,15 @@ var CONTENTS = [
         next: '3-1',
         sub: [],
       },
+      {
+        id: '3-1', // required. page ID
+        title: '1. Agent Setup', // required. Bread crumbs text
+        menuName: '1. Agent Setup', // required. Side bar text
+        href: '/o11y-workshop-kr/src/advancedConfig/3-1-agentSetup/3-1-index.html', // required. HTML file path
+        prev: '3',
+        next: '3-1',
+        sub: [],
+      },
     ],
   },
 ];
