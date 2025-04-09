@@ -240,6 +240,8 @@ OpenTelemetry Gateway는 텔레메트리 데이터를 수신, 처리 및 내보�
     jq '.resourceMetrics[].scopeMetrics[].metrics[] | select(.name == "system.cpu.time") | .sum.dataPoints[] | select(.attributes[0].value.stringValue == "cpu0") | {cpu: .attributes[0].value.stringValue, state: .attributes[1].value.stringValue, value: .asDouble}' gateway-metrics.out
    ```
 
+   제대로 수행되었으면 아래와 같은 출력이 표현됩니다
+
    ```json
    // example output
 
@@ -265,17 +267,17 @@ OpenTelemetry Gateway는 텔레메트리 데이터를 수신, 처리 및 내보�
    }
    ```
 
-   <br>
-   <br>
+    <br>
+    <br>
 
 ## 에이전트에서 게이트웨이로 트레이스 보내기
 
 1.  `agent` 와 `gateway` 모두 구동중인 상태인지 확인합니다
 2.  **스팬 터미널**을 열어 아래 명령어를 실행시킵니다.
 
-    ```bash
-
-    ```
+```bash
+../loadgen -count 5
+```
 
 3.  **게이트웨이에서 스팬을 처리 했는지 확인** : 게이트웨이가 들어오는 스팬을 처리하면 추적 데이터를 `gateway-traces.out` 이라는 파일에 기록합니다. 스팬이 성공적으로 처리되었는지 확인하려면 이 파일을 검사하면 됩니다.
 
