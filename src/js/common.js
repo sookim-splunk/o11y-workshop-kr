@@ -30,6 +30,10 @@ var _com = (function() {
 
   const getCurrentURL = () => document.querySelector('body').dataset.url;
 
+  const goHome = homeId => {
+    location.href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
+  };
+
   const setPage = pageId => {
     const url = getCurrentURL();
     const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
@@ -43,12 +47,9 @@ var _com = (function() {
     loadTopBar(pageId);
     loadSideBar(pageId);
 
-    // document.querySelector('#logo').href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
-
-    document.querySelector('#logo').onclick = () => {
-      location.href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
-    };
-
+    document.querySelector('#logo').addEventListener('click', goHome);
+    document.querySelector('#homeIcon').addEventListener('click', goHome);
+    
   };
 
   const loadTopBar = pageId => {
