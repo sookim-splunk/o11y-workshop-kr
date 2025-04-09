@@ -1,7 +1,9 @@
 # 1. Agent Configuration
 
-> 💡 **Tip**  
+> 💡 **Tip**
+>
 > 이 워크샵에서는 최대 4개의 터미널을 사용하게 됩니다. 각 터미널 또는 Shell 을 고유한 이름과 색상으로 사용자지정하면 필요에 따라 빠르게 터미널을 식별하고 전환 할 수 있습니다.
+>
 > 이 네개의 창이 필요합니다 : 에이전트, 게이트웨이, 스팬, 로그
 
 ## 에이전트 설정파일 구성하기
@@ -88,8 +90,11 @@ service:
 ```
 
 4. 현재 당신의 디렉토리 위치에서는 아래와 같아야합니다
-   > .
-   > └── agent.yaml # OpenTelemetry Collector configuration file
+
+```bash
+.
+└── agent.yaml # OpenTelemetry Collector configuration file
+```
 
 ## 설정파일 검증 및 로드 발생시키기
 
@@ -177,6 +182,7 @@ Span 터미널에서 1-agent 디렉토리로 이동하고 다음 명령어를 �
    ```
 
 > ⚡ **Important**
+>
 > 확인이 끝났으면 Agent 터미널에서 `Ctrl+C` 를 눌러 에이전트를 중지합니다
 
 ## 파일 익스포터
@@ -258,57 +264,60 @@ OpenTelemetry 디버그 익스포터와 파일 익스포터의 차이점은 목�
 
 3. **`agent.out` 파일에 기록된 내용 확인** : `agent.out` 파일이 생성되었는지, 그리고 동일한 내용이 기록되었는지 확인합니다
 
-   > .
-   > ├── agent.out # OTLP/Json output created by the File Exporter
-   > └── agent.yaml # OpenTelemetry Collector
+```bash
+.
+├── agent.out # OTLP/Json output created by the File Exporter
+└── agent.yaml # OpenTelemetry Collector
+```
 
-   ```json
-   // agent.out 파일 예시
+```json
+// agent.out 파일 예시
 
-   {
-     "resourceSpans": [
-       {
-         "resource": {
-           "attributes": [
-             { "key": "service.name", "value": { "stringValue": "cinema-service" } },
-             { "key": "deployment.environment", "value": { "stringValue": "production" } },
-             { "key": "host.name", "value": { "stringValue": "workshop-instance" } },
-             { "key": "os.type", "value": { "stringValue": "linux" } },
-             { "key": "otelcol.service.mode", "value": { "stringValue": "agent" } }
-           ]
-         },
-         "scopeSpans": [
-           {
-             "scope": { "name": "cinema.library", "version": "1.0.0", "attributes": [{ "key": "fintest.scope.attribute", "value": { "stringValue": "Starwars, LOTR" } }] },
-             "spans": [
-               {
-                 "traceId": "d824a28db5aa5f5a3011f19c452e5af0",
-                 "spanId": "ab4cde146f77eacf",
-                 "parentSpanId": "",
-                 "name": "/movie-validator",
-                 "kind": 2,
-                 "startTimeUnixNano": "1741256991405300000",
-                 "endTimeUnixNano": "1741256992405300000",
-                 "attributes": [
-                   { "key": "user.name", "value": { "stringValue": "George Lucas" } },
-                   { "key": "user.phone_number", "value": { "stringValue": "+1555-867-5309" } },
-                   { "key": "user.email", "value": { "stringValue": "george@deathstar.email" } },
-                   { "key": "user.password", "value": { "stringValue": "LOTR\u003eStarWars1-2-3" } },
-                   { "key": "user.visa", "value": { "stringValue": "4111 1111 1111 1111" } },
-                   { "key": "user.amex", "value": { "stringValue": "3782 822463 10005" } },
-                   { "key": "user.mastercard", "value": { "stringValue": "5555 5555 5555 4444" } },
-                   { "key": "payment.amount", "value": { "doubleValue": 56.24 } }
-                 ],
-                 "status": { "message": "Success", "code": 1 }
-               }
-             ]
-           }
-         ],
-         "schemaUrl": "https://opentelemetry.io/schemas/1.6.1"
-       }
-     ]
-   }
-   ```
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "service.name", "value": { "stringValue": "cinema-service" } },
+          { "key": "deployment.environment", "value": { "stringValue": "production" } },
+          { "key": "host.name", "value": { "stringValue": "workshop-instance" } },
+          { "key": "os.type", "value": { "stringValue": "linux" } },
+          { "key": "otelcol.service.mode", "value": { "stringValue": "agent" } }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": { "name": "cinema.library", "version": "1.0.0", "attributes": [{ "key": "fintest.scope.attribute", "value": { "stringValue": "Starwars, LOTR" } }] },
+          "spans": [
+            {
+              "traceId": "d824a28db5aa5f5a3011f19c452e5af0",
+              "spanId": "ab4cde146f77eacf",
+              "parentSpanId": "",
+              "name": "/movie-validator",
+              "kind": 2,
+              "startTimeUnixNano": "1741256991405300000",
+              "endTimeUnixNano": "1741256992405300000",
+              "attributes": [
+                { "key": "user.name", "value": { "stringValue": "George Lucas" } },
+                { "key": "user.phone_number", "value": { "stringValue": "+1555-867-5309" } },
+                { "key": "user.email", "value": { "stringValue": "george@deathstar.email" } },
+                { "key": "user.password", "value": { "stringValue": "LOTR\u003eStarWars1-2-3" } },
+                { "key": "user.visa", "value": { "stringValue": "4111 1111 1111 1111" } },
+                { "key": "user.amex", "value": { "stringValue": "3782 822463 10005" } },
+                { "key": "user.mastercard", "value": { "stringValue": "5555 5555 5555 4444" } },
+                { "key": "payment.amount", "value": { "doubleValue": 56.24 } }
+              ],
+              "status": { "message": "Success", "code": 1 }
+            }
+          ]
+        }
+      ],
+      "schemaUrl": "https://opentelemetry.io/schemas/1.6.1"
+    }
+  ]
+}
+```
 
 > ⚡ **Important**
+>
 > 확인이 끝났으면 Agent 터미널에서 `Ctrl+C` 를 눌러 에이전트를 중지합니다
