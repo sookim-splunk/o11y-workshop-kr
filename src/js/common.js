@@ -163,7 +163,7 @@ var _com = (function() {
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
-        const curPageObj = VALID_MENU.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
+        const curPageObj = FLATTERNED_MENU.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
         if ( curPageObj ) {
           const target = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
           if ( target ) {
