@@ -377,7 +377,17 @@ var CONTENTS = [
     menuName: 'Advanced Collector Configuraiton', // required. Side bar text
     href: '/o11y-workshop-kr/src/advancedConfig/3-index.html', // required. HTML file path
     prev: '2',
-    next: '3-1',
-    sub: [],
+    next: '3-0',
+    sub: [
+      {
+        id: '3-0', // required. page ID
+        title: 'Pre-requisites', // required. Bread crumbs text
+        menuName: 'Pre-requisites', // required. Side bar text
+        href: '/o11y-workshop-kr/src/advancedConfig/3-0-index.html', // required. HTML file path
+        prev: '3',
+        next: '3-1',
+        sub: [],
+      },
+    ],
   },
 ];
