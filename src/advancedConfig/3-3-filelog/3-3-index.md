@@ -105,13 +105,22 @@ starWarsQuotes := []string{
 
    ```bash
     ./otelcol --config=gateway.yaml
-    ../otelcol --config=agent.yaml
+    ./otelcol --config=agent.yaml
    ```
 
    제대로 구동되었다면 아래와 같은 아웃풋이 콘솔에 떨어집니다
 
    ```bash
-
+    Timestamp: 1970-01-01 00:00:00 +0000 UTC
+   SeverityText:
+   SeverityNumber: Unspecified(0)
+   Body: Str(2025-03-06 15:18:32 [ERROR] - There is some good in this world, and it's worth fighting for. LOTR)
+   Attributes:
+     -> log.file.path: Str(quotes.log)
+   Trace ID:
+   Span ID:
+   Flags: 0
+   LogRecord #1
    ```
 
 3. **`loadgen` 중단하기** : 로그 터미널에서 `Ctrl+C` 로 로그 발생을 중단시킵니다
