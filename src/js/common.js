@@ -36,7 +36,7 @@ var _com = (function() {
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
     VALID_MENU = CONTENTS[`ch${ pageId.substring(0, 1)}`];
-    
+
     loadTopBar(pageId);
     loadSideBar(pageId);
   };
@@ -161,7 +161,7 @@ var _com = (function() {
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         const url = getCurrentURL();
-        const curPageObj = menu.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
+        const curPageObj = VALID_MENU.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
         if ( curPageObj ) {
           const target = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
           if ( target ) {
