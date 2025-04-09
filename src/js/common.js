@@ -43,7 +43,12 @@ var _com = (function() {
     loadTopBar(pageId);
     loadSideBar(pageId);
 
-    document.querySelector('#logo').href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
+    // document.querySelector('#logo').href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
+
+    document.querySelector('#logo').onclick = () => {
+      location.href = FLATTERNED_MENU.find(el => el.id === homeId)?.href || '';
+    };
+
   };
 
   const loadTopBar = pageId => {
