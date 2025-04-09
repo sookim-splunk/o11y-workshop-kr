@@ -146,10 +146,10 @@ var _com = (function() {
       target.checked = true;
     }
     // document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`)?.checked = true;
-    
+
     const li = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
     if ( li ) {
-      li.classList.addd('parent');
+      li.classList.add('parent');
     }
     // document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
     
