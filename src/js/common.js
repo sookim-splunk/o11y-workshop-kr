@@ -2,6 +2,7 @@ var _com = (function() {
   console.debug('load common.js');
 
   let VALID_MENU;
+  let FLATTERNED_MENU;
 
   const flattern = list => {
     return list.reduce((acc, {
@@ -36,6 +37,7 @@ var _com = (function() {
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
 
     VALID_MENU = CONTENTS[`ch${ pageId.substring(0, 1)}`];
+    FLATTERNED_MENU = flattern(VALID_MENU);
 
     loadTopBar(pageId);
     loadSideBar(pageId);
@@ -65,21 +67,21 @@ var _com = (function() {
 
     const pathArr = [];
 
-    const curPage = getTargetMenu(pageId, VALID_MENU);
+    const curPage = getTargetMenu(pageId, FLATTERNED_MENU);
     if ( curPage ) {
       if ( curPage.prev ) {
-        const prev = getTargetMenu(curPage.prev, VALID_MENU);
+        const prev = getTargetMenu(curPage.prev, FLATTERNED_MENU);
         result.prev = prev?.href || '';
       } else {
 
       }
 
       if ( curPage.next ) {
-        const next = getTargetMenu(curPage.next, VALID_MENU);
+        const next = getTargetMenu(curPage.next, FLATTERNED_MENU);
         result.next = next?.href || '';
       }
 
-      setPathArr(curPage, pathArr, VALID_MENU);
+      setPathArr(curPage, pathArr, FLATTERNED_MENU);
     }
     
     // if ( pageId !== '0' )  {
@@ -143,7 +145,7 @@ var _com = (function() {
     document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
     
     if ( curPageObj?.parentId ) {
-      const parentPageObj = VALID_MENU.find(el => el.id === curPageObj.parentId);
+      const parentPageObj = FLATTERNED_MENU.find(el => el.id === curPageObj.parentId);
       if ( parentPageObj ) {
         openMenuOnPath(parentPageObj);
       }
