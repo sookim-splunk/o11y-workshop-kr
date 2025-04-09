@@ -50,6 +50,24 @@ var CONTENTS = {
           next: '3-4',
           sub: [],
         },
+        {
+          id: '3-4', // required. page ID
+          title: '4. Building Resilience', // required. Bread crumbs text
+          menuName: '4. Building Resilience', // required. Side bar text
+          href: '/o11y-workshop-kr/src/advancedConfig/3-4-resilience/3-4-index.html', // required. HTML file path
+          prev: '3-3',
+          next: '3-5',
+          sub: [],
+        },
+        {
+          id: '3-5', // required. page ID
+          title: '5. Dropping Spans', // required. Bread crumbs text
+          menuName: '5. Dropping Spans', // required. Side bar text
+          href: '/o11y-workshop-kr/src/advancedConfig/3-5-dropSpan/3-5-index.html', // required. HTML file path
+          prev: '3-4',
+          next: '3-6',
+          sub: [],
+        },
       ],
     },
   ],
@@ -469,24 +487,7 @@ var CONTENTS = {
           next: '3-4',
           sub: [],
         },
-        {
-          id: '3-4', // required. page ID
-          title: '4. Building Resilience', // required. Bread crumbs text
-          menuName: '4. Building Resilience', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-4-resilience/3-4-index.html', // required. HTML file path
-          prev: '3-3',
-          next: '3-5',
-          sub: [],
-        },
-        {
-          id: '3-5', // required. page ID
-          title: '5. Dropping Spans', // required. Bread crumbs text
-          menuName: '5. Dropping Spans', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-5-dropSpan/3-5-index.html', // required. HTML file path
-          prev: '3-4',
-          next: '3-6',
-          sub: [],
-        },
+        
       ],
     },
   ],
