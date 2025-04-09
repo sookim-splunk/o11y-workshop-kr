@@ -397,6 +397,15 @@ var CONTENTS = [
         next: '3-1',
         sub: [],
       },
+      {
+        id: '3-2', // required. page ID
+        title: '2. Gateway Setup', // required. Bread crumbs text
+        menuName: '2. Gateway  Setup', // required. Side bar text
+        href: '/o11y-workshop-kr/src/advancedConfig/3-2-gateway/3-2-index.html', // required. HTML file path
+        prev: '3-1',
+        next: '3-3',
+        sub: [],
+      },
     ],
   },
 ];
