@@ -96,12 +96,11 @@ OpenTelemetry Gateway는 텔레메트리 데이터를 수신, 처리 및 내보�
         - file/logs
    ```
 
-> 📝 Note
->
+> 📝 Note  
 > Gateway 가 실행되면 아래와 같은 세 개의 파일이 생성됩니다
 >
-> gateway-traces.out
-> gateway-metrics.out
+> gateway-traces.out  
+> gateway-metrics.out  
 > gateway-logs.out
 >
 > 왜 세 개의 output 파일이 생성될까요? 위 gateway.yaml 파일을 보고 이유를 한번 분석 해 봅시다
