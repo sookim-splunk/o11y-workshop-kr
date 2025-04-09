@@ -77,6 +77,15 @@ var CONTENTS = {
           next: '3-7',
           sub: [],
         },
+        {
+          id: '3-7', // required. page ID
+          title: '8. Transform Data', // required. Bread crumbs text
+          menuName: '8. Transform Data', // required. Side bar text
+          href: '/o11y-workshop-kr/src/advancedConfig/3-7-transform/3-7-index.html', // required. HTML file path
+          prev: '3-6',
+          next: '3-8',
+          sub: [],
+        },
       ],
     },
   ],
