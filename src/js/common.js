@@ -141,7 +141,7 @@ var _com = (function() {
   }
 
   const openMenuOnPath = curPageObj => {
-    document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`).checked = true;
+    document.querySelector(`#R-shortcutmenu-home #R-section-${ curPageObj.id }`)?.checked = true;
     document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`)?.classList.add('parent');
     
     if ( curPageObj?.parentId ) {
