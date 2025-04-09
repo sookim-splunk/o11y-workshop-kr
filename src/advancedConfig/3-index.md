@@ -1,10 +1,5 @@
 <h1 align="center">🚀 Advanced Collector Configuration</h1>
 
-<p style="text-align: left;">
-  <img src="https://img.shields.io/badge/Duration-90%20minutes-purple">
-  <img src="https://img.shields.io/badge/Authors-SooKyungKim-blue">
-</p>
-
 이 워크샵의 목표는 Open Telemetry 수집기 구성파일을 만들고 수정하는데 익숙해지도록 돕는 것입니다. 최소한의 agent.yaml 파일로 시작하여 점진적으로 몇가지의 향상된 시나리오를 처리 할 수 있도록 파일을 만들어 나가게 됩니다.
 
 이 워크샵의 핵심은 텔레메트리 데이터를 O11y Cloud로 전송 뿐만 아니라 로컬에 저장하도록 Open Telemetry 수집기를 구성하는 방법을 배우는 것입니다. 이 접근 방식은 디버깅과 문제 해결을 간소화 할 뿐만 아니라 데이터를 프로덕션 시스템으로 전송하지 않는 방식으로 테스트 용도로 활용하기 좋습니다.
@@ -31,7 +26,3 @@
   - 로그 및 Span 데이터를 메트릭으로 변환하기
 
 이 워크샵이 끝나면 다양한 실제 사용 사례에 맞게 Open Telemetry 수집기를 구성하는데 익숙 해 질 수 있습니다
-
-<p style="text-align: left;">
-  <img src="https://img.shields.io/badge/Last_Modified-2025--04--09-FFA500">
-</p>
