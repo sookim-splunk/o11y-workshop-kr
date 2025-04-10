@@ -28,18 +28,18 @@ var _com = (function() {
 
   // const menu = flattern(CONTENTS);
 
-  const getCurrentURL = () => document.querySelector('body').dataset.url;
+  // const getCurrentURL = () => document.querySelector('body').dataset.url;
 
   const getHomeId = pageId => pageId.substring(0, 1);
 
   const setPage = pageId => {
-    const url = getCurrentURL();
+    VALID_MENU = CONTENTS[`ch${ getHomeId(pageId) }`];
+    FLATTERNED_MENU = flattern(VALID_MENU);
+
+    const url = FLATTERNED_MENU.find(el => el.id === pageId)?.href;
     const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
     visited[`${url}`] = 1;
     sessionStorage.setItem('workshop-visited', JSON.stringify(visited));
-
-    VALID_MENU = CONTENTS[`ch${ getHomeId(pageId) }`];
-    FLATTERNED_MENU = flattern(VALID_MENU);
 
     loadTopBar(pageId);
     loadSideBar(pageId);
@@ -177,8 +177,8 @@ var _com = (function() {
         sideHTML = createMenuHTML('', VALID_MENU);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
-        const url = getCurrentURL();
-        const curPageObj = FLATTERNED_MENU.find(el => el.href === `/o11y-workshop-kr/src/${ url }`);
+        // const url = getCurrentURL();
+        const curPageObj = FLATTERNED_MENU.find(el => el.id === pageId);
         if ( curPageObj ) {
           const target = document.querySelector(`#R-shortcutmenu-home li[data-nav-id="${ curPageObj.href }"`);
           if ( target ) {
@@ -219,7 +219,7 @@ var _com = (function() {
       sub = [],
     }) => {
       htmlStr += `
-        <li data-nav-id="${ href }">
+        <li data-nav-id="${ href }" data-page-id="${ id }">
           ${ sub.length > 0 ? `
             <input type="checkbox" id="R-section-${ id }" aria-controls="R-subsections-${ id }">
             <label for="R-section-${ id }">
