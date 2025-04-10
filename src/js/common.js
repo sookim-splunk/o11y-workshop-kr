@@ -191,7 +191,7 @@ var _com = (function() {
 
         const visited = JSON.parse(sessionStorage.getItem('workshop-visited')) || {};
         Object.keys(visited).forEach(url => {
-          const target = document.querySelector(`li[data-nav-id="/o11y-workshop-kr/src/${ url }"`);
+          const target = document.querySelector(`li[data-nav-id="${ url }"`);
           if ( target ) {
             target.classList.add('visited');
           }
