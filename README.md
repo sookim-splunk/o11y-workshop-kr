@@ -213,3 +213,25 @@ var CONTENTS = {
 ```
 
 저장 후 github 에 푸시합니다
+
+<br>
+
+## 워크샵 홈 URL 찾기
+
+각 워크샵마다 콘텐츠 내용이 다르고, 워크샵을 주최 할 때 다른 워크샵의 가이드가 참석자에게 노출되지 않게 하기 위해서 우리는 github pages의 home url을 사용하지 않으려고 합니다.
+이 URL은 내부에만 공유됩니다.
+
+[Splunk Workshop for Korea](https://sookim-splunk.github.io/o11y-workshop-kr)
+
+그럼 내가 진행하는 워크샵의 콘텐츠만 표시되도록 하려면 어떤 경로로 들어가야 될까요?
+https://sookim-splunk.github.io/o11y-workshop-kr 의 주소가 github 홈 디렉토리 이므로 내 워크샵 폴더의 최상위 html 파일 경로가 워크샵 홈이 됩니다
+
+예: https://sookim-splunk.github.io/o11y-workshop-kr **/src/1-ninja-kr/1-index.html**
+
+위 예시와 같이 github 홈 url 뒷부분에 내가 만든 워크샵 폴더의 html을 지정 해 주세요
+
+<br>
+
+## Optional
+
+위 단계에서 만든 워크샵 홈 URL을 bitly나 Google url shortener 를 통해 짧은 URL과 QR 코드로 만들어 워크샵에 활용 해 보세요
