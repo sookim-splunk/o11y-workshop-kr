@@ -1,7 +1,17 @@
 // TODO: add MENU HERE
 var CONTENTS = {
-  // Splunk O11y Cloud A to Z
-  ch1: [],
+  // Splunk Ninja Workshop for Korea
+  ch1: [
+    {
+      id: '1', // required. page ID
+      title: 'Splunk Ninja Workshop for Korea', // required. Bread crumbs text
+      menuName: 'Splunk Ninja Workshop for Korea', // required. Side bar text
+      href: '/o11y-workshop-kr/src/1-ninja-kr/1-index.html', // required. HTML file path
+      prev: '',
+      next: '1-0',
+      sub: [],
+    },
+  ],
   // ITSI4Rookies
   ch2: [],
   // Advanced Collector Configuraiton
@@ -10,7 +20,7 @@ var CONTENTS = {
       id: '3', // required. page ID
       title: 'Advanced Collector Configuraiton', // required. Bread crumbs text
       menuName: 'Advanced Collector Configuraiton', // required. Side bar text
-      href: '/o11y-workshop-kr/src/advancedConfig/3-index.html', // required. HTML file path
+      href: '/o11y-workshop-kr/src/3-advancedConfig/3-index.html', // required. HTML file path
       prev: '',
       next: '3-0',
       sub: [
@@ -18,7 +28,7 @@ var CONTENTS = {
           id: '3-0', // required. page ID
           title: 'Pre-requisites', // required. Bread crumbs text
           menuName: 'Pre-requisites', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-0-requirements/3-0-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-0-requirements/3-0-index.html', // required. HTML file path
           prev: '3',
           next: '3-1',
           sub: [],
@@ -27,7 +37,7 @@ var CONTENTS = {
           id: '3-1', // required. page ID
           title: '1. Agent Setup', // required. Bread crumbs text
           menuName: '1. Agent Setup', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-1-agentSetup/3-1-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-1-agentSetup/3-1-index.html', // required. HTML file path
           prev: '3',
           next: '3-1',
           sub: [],
@@ -36,7 +46,7 @@ var CONTENTS = {
           id: '3-2', // required. page ID
           title: '2. Gateway Setup', // required. Bread crumbs text
           menuName: '2. Gateway  Setup', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-2-gateway/3-2-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-2-gateway/3-2-index.html', // required. HTML file path
           prev: '3-1',
           next: '3-3',
           sub: [],
@@ -45,7 +55,7 @@ var CONTENTS = {
           id: '3-3', // required. page ID
           title: '3. Filelog Setup', // required. Bread crumbs text
           menuName: '3. Filelog  Setup', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-3-filelog/3-3-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-3-filelog/3-3-index.html', // required. HTML file path
           prev: '3-2',
           next: '3-4',
           sub: [],
@@ -54,7 +64,7 @@ var CONTENTS = {
           id: '3-4', // required. page ID
           title: '4. Building Resilience', // required. Bread crumbs text
           menuName: '4. Building Resilience', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-4-resilience/3-4-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-4-resilience/3-4-index.html', // required. HTML file path
           prev: '3-3',
           next: '3-5',
           sub: [],
@@ -63,7 +73,7 @@ var CONTENTS = {
           id: '3-5', // required. page ID
           title: '5. Dropping Spans', // required. Bread crumbs text
           menuName: '5. Dropping Spans', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-5-droppingSpan/3-5-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-5-droppingSpan/3-5-index.html', // required. HTML file path
           prev: '3-4',
           next: '3-6',
           sub: [],
@@ -72,7 +82,7 @@ var CONTENTS = {
           id: '3-6', // required. page ID
           title: '6. Redacting Sensitive Data', // required. Bread crumbs text
           menuName: '6. Redacting Sensitive Data', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-6-sensitive/3-6-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-6-sensitive/3-6-index.html', // required. HTML file path
           prev: '3-5',
           next: '3-7',
           sub: [],
@@ -81,7 +91,7 @@ var CONTENTS = {
           id: '3-7', // required. page ID
           title: '7. Transform Data', // required. Bread crumbs text
           menuName: '7. Transform Data', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-7-transform/3-7-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-7-transform/3-7-index.html', // required. HTML file path
           prev: '3-6',
           next: '3-8',
           sub: [],
@@ -90,7 +100,7 @@ var CONTENTS = {
           id: '3-8', // required. page ID
           title: '8. Routing Data', // required. Bread crumbs text
           menuName: '8. Routing Data', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-8-routing/3-8-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-8-routing/3-8-index.html', // required. HTML file path
           prev: '3-7',
           next: '3-9',
           sub: [],
@@ -474,7 +484,7 @@ var CONTENTS = {
       id: '3', // required. page ID
       title: 'Advanced Collector Configuraiton', // required. Bread crumbs text
       menuName: 'Advanced Collector Configuraiton', // required. Side bar text
-      href: '/o11y-workshop-kr/src/advancedConfig/3-index.html', // required. HTML file path
+      href: '/o11y-workshop-kr/src/3-advancedConfig/3-index.html', // required. HTML file path
       prev: '2',
       next: '3-0',
       sub: [
@@ -482,7 +492,7 @@ var CONTENTS = {
           id: '3-0', // required. page ID
           title: 'Pre-requisites', // required. Bread crumbs text
           menuName: 'Pre-requisites', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-0-requirements/3-0-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-0-requirements/3-0-index.html', // required. HTML file path
           prev: '3',
           next: '3-1',
           sub: [],
@@ -491,7 +501,7 @@ var CONTENTS = {
           id: '3-1', // required. page ID
           title: '1. Agent Setup', // required. Bread crumbs text
           menuName: '1. Agent Setup', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-1-agentSetup/3-1-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-1-agentSetup/3-1-index.html', // required. HTML file path
           prev: '3',
           next: '3-1',
           sub: [],
@@ -500,7 +510,7 @@ var CONTENTS = {
           id: '3-2', // required. page ID
           title: '2. Gateway Setup', // required. Bread crumbs text
           menuName: '2. Gateway  Setup', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-2-gateway/3-2-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-2-gateway/3-2-index.html', // required. HTML file path
           prev: '3-1',
           next: '3-3',
           sub: [],
@@ -509,7 +519,7 @@ var CONTENTS = {
           id: '3-3', // required. page ID
           title: '3. Filelog Setup', // required. Bread crumbs text
           menuName: '3. Filelog  Setup', // required. Side bar text
-          href: '/o11y-workshop-kr/src/advancedConfig/3-3-filelog/3-3-index.html', // required. HTML file path
+          href: '/o11y-workshop-kr/src/3-advancedConfig/3-3-filelog/3-3-index.html', // required. HTML file path
           prev: '3-2',
           next: '3-4',
           sub: [],
