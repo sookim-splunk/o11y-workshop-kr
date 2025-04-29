@@ -9,7 +9,17 @@ var CONTENTS = {
       href: '/o11y-workshop-kr/src/1-ninja-kr/1-index.html', // required. HTML file path
       prev: '',
       next: '1-0',
-      sub: [],
+      sub: [
+        {
+          id: '1-1', // required. page ID
+          title: '1. Deploy the OpenTelemetry Collector', // required. Bread crumbs text
+          menuName: '1. Deploy the OpenTelemetry Collector', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-1-Deploy the OpenTelemetry Collector/1-1-index.html', // required. HTML file path
+          prev: '3',
+          next: '3-1',
+          sub: [],
+        },
+      ],
     },
   ],
   // ITSI4Rookies
