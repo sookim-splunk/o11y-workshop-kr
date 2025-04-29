@@ -21,6 +21,7 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 2. Install new Splunk Opentelemetry Collector
     - Data Management > Splunk OpenTelemetry Collector 
     - 다음과 같이 설정
+    
       ![](../../images/1-ninja-kr/1-1-configuration.png)
 3. Install Script
 
