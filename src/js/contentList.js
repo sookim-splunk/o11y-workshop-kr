@@ -11,11 +11,20 @@ var CONTENTS = {
       next: '1-0',
       sub: [
         {
+          id: '1-0', // required. page ID
+          title: 'Pre-requisites', // required. Bread crumbs text
+          menuName: 'Pre-requisites', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-0-requirements/1-0-index.html', // required. HTML file path
+          prev: '1',
+          next: '1-1',
+          sub: [],
+        },
+        {
           id: '1-1', // required. page ID
           title: '1. Deploy the OpenTelemetry Collector', // required. Bread crumbs text
           menuName: '1. Deploy the OpenTelemetry Collector', // required. Side bar text
           href: '/o11y-workshop-kr/src/1-ninja-kr/1-1-DeployOpenTelemetryCollector/1-1-index.html', // required. HTML file path
-          prev: '1',
+          prev: '1-0',
           next: '1-2',
           sub: [],
         },
