@@ -46,6 +46,15 @@ var CONTENTS = {
           next: '1-4',
           sub: [],
         },
+        {
+          id: '1-4', // required. page ID
+          title: '4. Dockerize the Application', // required. Bread crumbs text
+          menuName: '4. Dockerize the Application', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-4-DockerizeApp/1-4-index.html', // required. HTML file path
+          prev: '1-3',
+          next: '1-5',
+          sub: [],
+        },
       ],
     },
   ],
