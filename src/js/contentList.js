@@ -28,6 +28,15 @@ var CONTENTS = {
           next: '1-2',
           sub: [],
         },
+        {
+          id: '1-2', // required. page ID
+          title: '2. Deploy the Java Application', // required. Bread crumbs text
+          menuName: '2. Deploy the Java Application', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-2-DeployJavaAPP/1-2-index.html', // required. HTML file path
+          prev: '1-1',
+          next: '1-3',
+          sub: [],
+        },
       ],
     },
   ],
