@@ -226,7 +226,7 @@ var CONTENTS = {
 그럼 내가 진행하는 워크샵의 콘텐츠만 표시되도록 하려면 어떤 경로로 들어가야 될까요?
 https://sookim-splunk.github.io/o11y-workshop-kr 의 주소가 github 홈 디렉토리 이므로 내 워크샵 폴더의 최상위 html 파일 경로가 워크샵 홈이 됩니다
 
-예: https://sookim-splunk.github.io/o11y-workshop-kr**/src/1-ninja-kr/1-index.html**
+예: https://sookim-splunk.github.io/o11y-workshop-kr/src/1-ninja-kr/1-index.html
 
 위 예시와 같이 github 홈 url 뒷부분에 내가 만든 워크샵 폴더의 html을 지정 해 주세요
 
