@@ -57,9 +57,9 @@ var CONTENTS = {
         },
         {
           id: '1-5', // required. page ID
-          title: '4. Dockerize the Application', // required. Bread crumbs text
-          menuName: '4. Dockerize the Application', // required. Side bar text
-          href: '/o11y-workshop-kr/src/1-ninja-kr/1-4-DockerizeApp/1-4-index.html', // required. HTML file path
+          title: '5. Add Instrument Docker', // required. Bread crumbs text
+          menuName: '5. Add Instrument Docker', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-5-AddInstrumentDocker/1-5-index.html', // required. HTML file path
           prev: '1-4',
           next: '1-6',
           sub: [],
