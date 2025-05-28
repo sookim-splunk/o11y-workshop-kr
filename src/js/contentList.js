@@ -64,6 +64,15 @@ var CONTENTS = {
           next: '1-6',
           sub: [],
         },
+        {
+          id: '1-6', // required. page ID
+          title: '6. Install Opentelemetry in K8s', // required. Bread crumbs text
+          menuName: '6. Install Opentelemetry in K8s', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-6-InstallOtelinK8s/1-6-index.html', // required. HTML file path
+          prev: '1-5',
+          next: '1-7',
+          sub: [],
+        },
       ],
     },
   ],
