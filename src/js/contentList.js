@@ -73,6 +73,15 @@ var CONTENTS = {
           next: '1-7',
           sub: [],
         },
+        {
+          id: '1-7', // required. page ID
+          title: '7. Deploy app to K8s', // required. Bread crumbs text
+          menuName: '7. Deploy app to K8s', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-7-DeployAPPtoK8s/1-7-index.html', // required. HTML file path
+          prev: '1-6',
+          next: '1-8',
+          sub: [],
+        },
       ],
     },
   ],
