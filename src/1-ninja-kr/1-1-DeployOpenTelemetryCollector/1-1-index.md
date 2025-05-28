@@ -1,9 +1,4 @@
----
-title: Deploy the OpenTelemetry Collector
-linkTitle: 1. Deploy the OpenTelemetry Collector
-weight: 1
-time: 10 minutes
----
+# Deploy the OpenTelemetry Collector
 
 ## Uninstall the OpenTelemetry Collector
 

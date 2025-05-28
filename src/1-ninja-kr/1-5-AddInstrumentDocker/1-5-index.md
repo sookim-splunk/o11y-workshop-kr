@@ -1,14 +1,8 @@
----
-title: Add Instrumentation to Dockerfile
-linkTitle: 5. Add Instrumentation to Dockerfile
-weight: 5
-time: 10 minutes
----
+# Add Instrumentation to Dockerfile
 
 성공적으로 applicaion을 docker 이미지로 build 후 run을 했으니 이제는 OpenTelemetry instrumentation을 추가할 때입니다. 
 
 이전과 유사한 방식이나 OpenTelemetry instrumentation에 대한 섦정을 추가해주어야합니다. 
- 
 
 ## Update the Dockerfile 
 

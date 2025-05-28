@@ -1,15 +1,11 @@
----
-title: Deploy a Java Application
-linkTitle: 2. Deploy a Java Application
-weight: 2
-time: 10 minutes
----
+# Deploy a Java Application
+
 
 ## Prerequisites 
 
 해당 어플리케이션을 구동하기 위해서는 Java 어플리케이션을 구동하기 위한 프로그램(Java, maven 등)이 필요합니다. 
 
-설치
+- 설치
 
 ``` bash
 sudo apt update
@@ -17,13 +13,13 @@ sudo apt install openjdk-17-jdk
 sudo apt install maven
 ```
 
-설치 확인
+- 설치 확인
 ```bash
 java -version
 mvn -version
 ```
 
-프로젝트 구조 생성
+- 프로젝트 구조 생성
 ```bash
 hello-world/
 ├── pom.xml
@@ -39,7 +35,7 @@ hello-world/
             └── application.properties
 
 ```
-HelloWorldApplication.java 코드 
+- HelloWorldApplication.java 코드 
 ```java
 package com.example.helloworld;
 
@@ -78,7 +74,7 @@ public class HelloWorldApplication {
 
 ```
 
-pom.xml 코드
+- pom.xml 코드
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -115,17 +111,17 @@ pom.xml 코드
 </project>
 ```
 
-앱 빌드
+- 앱 빌드
 ```bash
 mvn clean package
 ```
 
-앱 실행
+- 앱 실행
 ```bash
 java -jar target/hello-world-0.0.1-SNAPSHOT.jar
 
 ```
-앱이 실행되면 curl을 통해 어플리케이션에 요청을 보낼 수 있습니다. 
+- 앱이 실행되면 curl을 통해 어플리케이션에 요청을 보낼 수 있습니다. 
 
 ```bash
 curl http://localhost:8080/hello

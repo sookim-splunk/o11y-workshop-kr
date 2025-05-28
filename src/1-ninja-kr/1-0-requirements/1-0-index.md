@@ -1,8 +1,5 @@
 # Pre-Requisites
 
-- [TBD] 1-0 pre-requirement
-
-
 ## Docker 설치
 ```bash
 # 패키지 업데이트

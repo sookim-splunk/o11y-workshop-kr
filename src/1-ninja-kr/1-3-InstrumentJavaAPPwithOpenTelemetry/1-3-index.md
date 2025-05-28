@@ -1,13 +1,8 @@
----
-title: Instrument a Java pplication with OpenTelemetry
-linkTitle: 3. Instrument a Java pplication with OpenTelemetry
-weight: 3
-time: 20 minutes
----
+# Instrument a Java application with OpenTelemetry
 
 ## Instrument a Java pplication with OpenTelemetry
 
-- 현재 작동중인 Java Application의 Trace 정보를 Splunk Observability 에 수신하기
+### 현재 작동중인 Java Application의 Trace 정보를 Splunk Observability 에 수신하기
 1. Install new Java(Opentelemetry) Instance
     - Data Management > APM > Java(Opentelemetry)
 2. Configure Integration

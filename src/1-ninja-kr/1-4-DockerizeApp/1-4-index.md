@@ -1,9 +1,4 @@
----
-title: Dockerize the Application
-linkTitle: 4. Dockerize the Application
-weight: 4
-time: 15 minutes
----
+# Dockerize the Application
 
 이제 Java application을 Kubernetes cluster에 배포해보려고 합니다. 
 
@@ -82,7 +77,7 @@ docker images
 
 ## Test the Docker Image
 
-> 해당 과정이 진행되기 전 서버에서 작동되는 어플리케이션은 중지해 줍니다. 포트 충돌 시 
+> 해당 과정이 진행되기 전 서버에서 작동되는 어플리케이션은 중지해 줍니다. 포트 충돌 시  다음의 명령어를 참고해 사용중인 포트를 중지해 주세요. 
 ```bash
 lsof -i:8080
 sudo kill -9 [PID]
