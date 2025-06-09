@@ -82,6 +82,15 @@ var CONTENTS = {
           next: '1-8',
           sub: [],
         },
+        {
+          id: '1-8', // required. page ID
+          title: '8. Zero-Code Instrumentation for K8S Application', // required. Bread crumbs text
+          menuName: '8. Zero-Code Instrumentation for K8S Application', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-8-ZeroCodeInstrumentation/1-8-index.html', // required. HTML file path
+          prev: '1-7',
+          next: '1-9',
+          sub: [],
+        },
       ],
     },
   ],
