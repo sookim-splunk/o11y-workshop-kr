@@ -1,34 +1,27 @@
 # Splunk Ninja Workshop for Korea
 
-이 경로에 Splunk Observability Cloud Ninja Workshop🥷 내용이 작성됩니다
+오늘 진행될 Splunk Observability Cloud Ninja Workshop🥷 의 아젠다와 진행 시간은 아래와 같습니다. 원활한 워크샵이 되도록 시간과 아젠다를 참고 부탁드립니다
 
 ## Contents
 
-- Hands on Open Telemetry, Docker & Kubernetes
-
-  - .Net application, Docker file 수정, image build
-  - kubernetes deployment 파일 작성
-  - K8S App 배포
-
-    --------------------------- 점심시간 ----------------------------
-
-  - Otel agent 설치 - 명령어X, values.yaml 수정해서 배포하는 방식
-    - 추가 Receiver 설정 해보기 (HTTP) - CHALLANGE
-  - APM intrumentation (Manual)
-  - SPAN 을 하나 더 추가 하는 것 - CHALLANGE - **Inho Jung**
-
-    --------------------------- 쉬는시간 ----------------------------
-
-  - log observer connector - User/Role
-  - Trace ID / Span ID - **SooKyung Kim**
-    16:30 끝
-
-Optional Hands-on
-
-- 추가 Receiver
-  - IP Address
-  - Windows Service Monitoring
-- APM custom tag 추가하기
-- Online Boutique 배포하고 Auto-intrumentation 해보기 (.net, go, nodejs, python)
-- Splunk Cloud 로 메트릭 보내기
-- Related Contents - IM, APM
+| 시간                  | 내용                                  | 예상 시간 | 진행자 |
+| --------------------- | ------------------------------------- | --------- | ------ |
+| 10:00~10:20           | 개요 설명                             | 20분      | 김수경 |
+| 10:20~10:40           | OTel Collector 설치 (Linux)           | 20분      | 강채희 |
+| 10:40~11:00           | Maven Project 구동                    | 20분      | 강채희 |
+| **10 Min Break Time** |
+| 11:10~11:20           | Java Instrumentation (APM)            | 10분      | 강채희 |
+| 11:20~11:40           | Dockerize the Application             | 20분      | 강채희 |
+| 11:40~12:00           | Instrumentation for Docker App        | 20분      | 강채희 |
+| 12:00~12:10           | Helm & Otel Collector for K8S 설치    | 10분      | 강채희 |
+| 12:10~12:30           | Instrumentation for K8S App (Manual)  | 20분      | 강채희 |
+| **1 Hour Lunch Time** |
+| 13:30~13:50           | Zero-Code Instrumentation for K8S App | 20분      | 김수경 |
+| 13:50~14:10           | Log collection to Splunk Cloud        | 20분      | 김수경 |
+| 14:10~14:30           | Set Log Observer connector            | 20분      | 김수경 |
+| **20 Min Break Time** |
+| 14:50~15:20           | Challenge 1 : Host Receiver 추가하기  | 30분      | 김수경 |
+| 15:20~15:35           | Chellenge 2 : HTTP Receiver 추가하기  | 15분      | 김수경 |
+| 15:35~16:00           | Collecto Metrics to Splunk            | 30분      | 정인호 |
+| 16:00~16:15           | Set up Related Content                | 10분      | 정인호 |
+| 16:15~16:30           | Configure SIM Commend                 | 10분      | 정인호 |
