@@ -1,8 +1,9 @@
 # Deploy Applications to K8s
 
 ## Dockerfile 재작성
-``` bash 
-vi hello-world/Dockerfile 
+
+```bash
+vi hello-world/Dockerfile
 ```
 
 ```Dockerfile
@@ -26,21 +27,24 @@ EXPOSE 8080
 ```
 
 ### Dockerfile build
+
 ```bash
 docker build -t hello-world-java-splunk-k8s .
 ```
 
-### Dockerfile push 
+### Dockerfile push
+
 - docker login 해서 이미지 레지스트리에 배포 (없으면 chaehee/hello-world-java-splunk-k8s:1.0 사용)
-  ``` bash
+  ```bash
   docker login -u chaehee
   docker tag hello-world-java-splunk-k8s chaehee/hello-world-java-splunk-k8s:1.0
   docker push chaehee/hello-world-java-splunk-k8s:1.0
   ```
 
-
 ## K8s deployment 작성
-### k8s-deployment.yaml 파일 
+
+### k8s-deployment.yaml 파일
+
 ```yaml
 apiVersion: v1
 kind: Namespace
@@ -63,10 +67,10 @@ spec:
         app: hello-java
     spec:
       containers:
-      - name: hello-java
-        image: chaehee/hello-world-java-splunk-k8s:1.0
-        ports:
-        - containerPort: 8080
+        - name: hello-java
+          image: chaehee/hello-world-java-splunk-k8s:1.0
+          ports:
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -77,15 +81,16 @@ spec:
   selector:
     app: hello-java
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
   type: LoadBalancer
-
 ```
+
 ### Application 실행
-```bash 
-$ kubectl apply -f ./k8s-deployment.yaml 
+
+```bash
+$ kubectl apply -f ./k8s-deployment.yaml
 namespace/hellojava created
 deployment.apps/hello-java created
 service/hello-java-service created
@@ -106,25 +111,35 @@ replicaset.apps/hello-java-85c54f595d   1         1         1       107s
 ```
 
 ### Troubleshooting
+
 - 어플리케이션은 잘 실행되고 있어도 curl 하면 connection error 발생
+
 ```bash
 $ curl localhost:8080/hello/Tom
 curl: (7) Failed to connect to localhost port 8080 after 0 ms: Connection refused
 ```
-- 왜? port-forwarding이 안되고 있기 때문 
-  - 다음과 같이 port-forward를 해줘야함  
-  ``` bash
+
+- 왜? port-forwarding이 안되고 있기 때문
+  - 다음과 같이 port-forward를 해줘야함
+  ```bash
   $ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
   $ curl localhost:8080/hello/Tom
-  Hello, Tom!%  
+  Hello, Tom!%
   ```
 
 ## Trace 정보를 위해 ENV 설정
+
 - 기존의 K8s 리소스 삭제
-``` bash
+
+```bash
 kubectl delete -f ./k8s-deployment.yaml
 ```
+
+> [!CAUTION]
+> @iamchaehee 채희님 여기서 기존에 있던 deployment 파일을 업데이트 하지 않고, k8s-deployment-manual.yaml 이라는 이름으로 copy 한 다음에 수정해서 배포하는것으로 변경해주세요!
+
 - Configure Integration 에서 확인했던 내용을 바탕으로 yaml 파일 업데이트
+
 ```yaml
 apiVersion: v1
 kind: Namespace
@@ -147,27 +162,27 @@ spec:
         app: hello-java
     spec:
       containers:
-      - name: hello-java
-        image: chaehee/hello-world-java-splunk-k8s:1.0
-        ports:
-        - containerPort: 8080
-        env: 
-          - name: SPLUNK_OTEL_AGENT
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name: OTEL_EXPORTER_OTLP_ENDPOINT
-            value: "http://$(SPLUNK_OTEL_AGENT):4318"
-          - name: OTEL_SERVICE_NAME
-            value: "hello-java"
-          - name: OTEL_RESOURCE_ATTRIBUTES
-            value: "deployment.environment=prod,service.version=1.0"
-        command:
-          - java
-          - -javaagent:/splunk-otel-javaagent.jar
-          - -jar 
-          - ./app.jar
-        
+        - name: hello-java
+          image: chaehee/hello-world-java-splunk-k8s:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: 'http://$(SPLUNK_OTEL_AGENT):4318'
+            - name: OTEL_SERVICE_NAME
+              value: 'hello-java'
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: 'deployment.environment=prod,service.version=1.0'
+          command:
+            - java
+            - -javaagent:/splunk-otel-javaagent.jar
+            - -jar
+            - ./app.jar
+
 ---
 apiVersion: v1
 kind: Service
@@ -178,13 +193,14 @@ spec:
   selector:
     app: hello-java
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
   type: LoadBalancer
-
 ```
+
 ### K8s 어플리케이션 재배포
-```bash 
-$ kubectl apply -f ./k8s-deployment.yaml 
-``` 
+
+```bash
+$ kubectl apply -f ./k8s-deployment.yaml
+```
