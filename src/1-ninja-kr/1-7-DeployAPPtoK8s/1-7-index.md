@@ -236,7 +236,7 @@ $ kubectl apply -f ./k8s-deployment-manual.yaml
 - K8s application에 APM에 필요한 정보들(env,command)을 넣어줬기에 APM에서도 K8s application 모니터링이 가능합니다.
 
 ```bash
-$ kubectl apply -f ./k8s-deployment.yaml
+$ kubectl apply -f ./k8s-deployment-manual.yaml
 $ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
 $ curl localhost:8080/hello/Tom
 Hello, Tom!%

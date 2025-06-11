@@ -36,7 +36,11 @@ kubectl delete -f ./k8s-deployment-manual.yaml
 아래 명령어로 application 이 종료 되었는지 확인합ㅎ니다
 
 ```bash
-kubectl get pods
+kubectl get pods -A
+
+NAMESPACE     NAME                                                          READY   STATUS      RESTARTS     AGE
+default       splunk-otel-collector-agent-lqtpd                             1/1     Running     0            117m
+default       splunk-otel-collector-k8s-cluster-receiver-7ffc6ddc8c-ztlwp   1/1     Running     0            117m
 ```
 
 ## 8-2. K8S App 구동하기
@@ -45,18 +49,69 @@ kubectl get pods
 
 ```bash
 kubectl apply -f ./k8s-deployment.yaml
+
+namespace/hellojava created
+deployment.apps/hello-java created
+service/hello-java-service created
 ```
 
 아래 명령어를 통해 Application 이 제대로 실행되고 있는지 확인합니다
 
 ```bash
 kubectl get all -n hellojava
+
+NAME                             READY   STATUS    RESTARTS   AGE
+pod/hello-java-dd4846456-nwdt4   1/1     Running   0          17s
+
+NAME                         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/hello-java-service   LoadBalancer   10.43.110.19   <pending>     80:31099/TCP   17s
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/hello-java   1/1     1            1           17s
+
+NAME                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/hello-java-dd4846456   1         1         1       17s
 ```
 
 현재의 app pod 의 Deployment 정보를 조회해서 확인 해 봅니다
 
 ```bash
-kubectl get deployment hello-java
+kubectl describe  deployment hello-java -n hellojava
+
+
+Name:                   hello-java
+Namespace:              hellojava
+CreationTimestamp:      Wed, 11 Jun 2025 06:53:08 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=hello-java
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=hello-java
+  Containers:
+   hello-java:
+    Image:         mikion279/hello-world-java-splunk-k8s:1.0
+    Port:          8080/TCP
+    Host Port:     0/TCP
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   hello-java-dd4846456 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  78s   deployment-controller  Scaled up replica set hello-java-dd4846456 from 0 to 1
 ```
 
 ```bash
@@ -64,3 +119,99 @@ deployment 정보 첨부
 ```
 
 ## 8-3. Zero-Code Instrumentation
+
+백엔드 Kubernetes 애플리케이션에 제로코드 계측을 사용하려면 다음 구성 요소가 필요합니다.
+
+- Helm 버전 3 이상
+- Java 8 이상 및 지원되는 라이브러리
+- Helm 배포 시 Operator.enabeld : true
+- OpenTelemetry CRD (operatorcrds.install: true 는 default 로 설정되어있습니다)
+
+아래 명령어를 통해 App deployment 에 annotation을 추가합니다
+
+```bash
+kubectl patch deployment hello-java -n hellojava -p '{"spec":{"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"default/splunk-otel-collector"}}}}}'
+
+deployment.apps/hello-java patched
+```
+
+### 참고사항
+
+기본적으로 제로코드 계측은 쿠버네티스 포드 사양의 첫 번째 컨테이너를 계측합니다. 주석을 추가하여 계측할 여러 컨테이너를 지정할 수 있습니다.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-with-multiple-containers
+spec:
+  selector:
+    matchLabels:
+      app: my-pod-with-multiple-containers
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-pod-with-multiple-containers
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: 'true'
+        instrumentation.opentelemetry.io/container-names: 'myapp,myapp2'
+```
+
+아래 명령어로 deployment 를 조회하여 제대로 적용이 되었는지 확인합니다
+
+```bash
+kubectl describe  deployment hello-java -n hellojava
+
+Name:                   hello-java
+Namespace:              hellojava
+CreationTimestamp:      Wed, 11 Jun 2025 06:53:08 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               app=hello-java
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:       app=hello-java
+  Annotations:  instrumentation.opentelemetry.io/inject-java: default/splunk-otel-collector
+  Containers:
+   hello-java:
+    Image:         mikion279/hello-world-java-splunk-k8s:1.0
+    Port:          8080/TCP
+    Host Port:     0/TCP
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  hello-java-dd4846456 (0/0 replicas created)
+NewReplicaSet:   hello-java-8c4785bd6 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  14m   deployment-controller  Scaled up replica set hello-java-dd4846456 from 0 to 1
+  Normal  ScalingReplicaSet  108s  deployment-controller  Scaled up replica set hello-java-8c4785bd6 from 0 to 1
+```
+
+이제 APM이 제대로 수집되는지 확인하기 위해서 포트포워딩 및 localhost를 호출하여 트래픽을 발생시켜봅니다
+
+```bash
+$ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
+$ curl localhost:8080/hello/Tom
+Hello, Tom!%
+```
+
+![](../../images/1-ninja-kr/1-8-configuration1.jpg)
+
+> [!Note]
+>
+> 참고 도큐먼트
+>
+> https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/automatic-discovery-of-apps-and-services/kubernetes/language-runtimes#d2f25b24e9258433288e6bf38fd378e9e__k8s-backend-auto-discovery
