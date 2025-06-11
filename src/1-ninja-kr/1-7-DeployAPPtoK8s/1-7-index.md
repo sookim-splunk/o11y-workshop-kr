@@ -6,6 +6,8 @@
 vi hello-world/Dockerfile
 ```
 
+도커파일을 열어 기존에 Docker Instrumentation 에 작성했던 내용 중 일부를 Comment out 하고 기존 내용으로 rollback 합니다
+
 ```Dockerfile
 FROM openjdk:17-jdk-slim
 
@@ -15,11 +17,18 @@ WORKDIR /app
 # 빌드된 JAR 파일 복사
 COPY ./target/hello-world-0.0.1-SNAPSHOT.jar app.jar
 
-# Splunk Java Agent
+# Install the Splunk Java Agent
 ADD https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent.jar /splunk-otel-javaagent.jar
+# Set appropriate permissions
 RUN chmod -R go+r /splunk-otel-javaagent.jar
 
-# Modifies the entry point
+# Insert ENV
+#ENV OTEL_SERVICE_NAME=helloworld
+#ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=prod,service.version=1.1'
+#ENV OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4318'
+
+# 앱 실행
+#ENTRYPOINT ["java", "-javaagent:/splunk-otel-javaagent.jar", "-jar", "./app.jar"]
 ENTRYPOINT ["java","-jar","./app.jar"]
 
 # 8080 포트 오픈
@@ -34,7 +43,7 @@ docker build -t hello-world-java-splunk-k8s .
 
 ### Dockerfile push
 
-- docker login 해서 이미지 레지스트리에 배포 (없으면 chaehee/hello-world-java-splunk-k8s:1.0 사용)
+- docker login 해서 docker hub 이미지 레지스트리에 배포 (없으면 chaehee/hello-world-java-splunk-k8s:1.0 사용)
   ```bash
   docker login -u chaehee
   docker tag hello-world-java-splunk-k8s chaehee/hello-world-java-splunk-k8s:1.0
@@ -42,6 +51,8 @@ docker build -t hello-world-java-splunk-k8s .
   ```
 
 ## K8s deployment 작성
+
+k8s 환경에 java hello world 앱을 배포하기 위해서 아래와 같이 deployment 파일을 작성합니다.
 
 ### k8s-deployment.yaml 파일
 
@@ -68,6 +79,7 @@ spec:
     spec:
       containers:
         - name: hello-java
+          # 아래 이미지 레지스트리 주소를 유의해서 작성 해 주세요
           image: chaehee/hello-world-java-splunk-k8s:1.0
           ports:
             - containerPort: 8080
@@ -129,14 +141,28 @@ curl: (7) Failed to connect to localhost port 8080 after 0 ms: Connection refuse
 
 ## Trace 정보를 위해 ENV 설정
 
+```bash
+kubectl get pods --all-namespaces
+NAMESPACE     NAME                                                          READY   STATUS      RESTARTS      AGE
+default       splunk-otel-collector-agent-lqtpd                             1/1     Running     0             35m
+default       splunk-otel-collector-k8s-cluster-receiver-7ffc6ddc8c-ztlwp   1/1     Running     0             35m
+hellojava     hello-java-dd4846456-b6qm7                                    1/1     Running     0             12m
+```
+
+현재 상황은 JAVA hello-world application이 실행중이며, 같은 클러스터에 otel-collector 가 실행중이므로 Splunk 에이전트가 해당 K8S 클러스터에 대한 인프라 모니터링 데이터만 전송하고 있습니다.
+
+Splunk o11y Cloud 화면으로 가서 클러스터를 조회하면 아래와같이 표현됩니다
+![](../../images/1-ninja-kr/1-7-configuration.jpg)
+
+APM 데이터를 추가적으로 수집하기 위해서는 Application에서 Splunk 에이전트를 함께 구동할 수 있도록 코드 변경이 필요합니다
+
 - 기존의 K8s 리소스 삭제
 
 ```bash
 kubectl delete -f ./k8s-deployment.yaml
 ```
 
-> [!CAUTION]
-> @iamchaehee 채희님 여기서 기존에 있던 deployment 파일을 업데이트 하지 않고, k8s-deployment-manual.yaml 이라는 이름으로 copy 한 다음에 수정해서 배포하는것으로 변경해주세요!
+기존에 사용했던 k8s-deployment.yaml 을 복제해서 k8s-deployment-manual.yaml 을 생성 후 내용을 아래와 같이 수정합니다
 
 - Configure Integration 에서 확인했던 내용을 바탕으로 yaml 파일 업데이트
 
@@ -200,17 +226,20 @@ spec:
 ```
 
 ### K8s 어플리케이션 재배포
-<<<<<<< HEAD
+
+```bash
+$ kubectl apply -f ./k8s-deployment-manual.yaml
+```
+
+=======
+
+- K8s application에 APM에 필요한 정보들(env,command)을 넣어줬기에 APM에서도 K8s application 모니터링이 가능합니다.
 
 ```bash
 $ kubectl apply -f ./k8s-deployment.yaml
-```
-=======
-- K8s application에 APM에 필요한 정보들(env,command)을 넣어줬기에 APM에서도 K8s application 모니터링이 가능합니다. 
-```bash 
-$ kubectl apply -f ./k8s-deployment.yaml 
 $ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
 $ curl localhost:8080/hello/Tom
-Hello, Tom!%  
-``` 
->>>>>>> 8f8685aa2185162c0a4d49d0d6fc8804319048f1
+Hello, Tom!%
+```
+
+![](../../images/1-ninja-kr/1-7-configuration2.jpg)
