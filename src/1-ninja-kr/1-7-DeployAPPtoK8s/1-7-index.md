@@ -200,7 +200,17 @@ spec:
 ```
 
 ### K8s 어플리케이션 재배포
+<<<<<<< HEAD
 
 ```bash
 $ kubectl apply -f ./k8s-deployment.yaml
 ```
+=======
+- K8s application에 APM에 필요한 정보들(env,command)을 넣어줬기에 APM에서도 K8s application 모니터링이 가능합니다. 
+```bash 
+$ kubectl apply -f ./k8s-deployment.yaml 
+$ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
+$ curl localhost:8080/hello/Tom
+Hello, Tom!%  
+``` 
+>>>>>>> 8f8685aa2185162c0a4d49d0d6fc8804319048f1
