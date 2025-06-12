@@ -49,5 +49,5 @@
    curl http://localhost:8080/hello
    Hello, World!%
    ```
-
-   ![](../../images/1-ninja-kr/1-3-configuration3.jpg)
+   ![](../../images/1-ninja-kr/1-3-APMUI1.png)
+   ![](../../images/1-ninja-kr/1-3-APMUI2.png)
