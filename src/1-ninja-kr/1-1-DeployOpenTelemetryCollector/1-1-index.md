@@ -52,3 +52,6 @@ sudo journalctl -u splunk-otel-collector -f -n 100
 설정한 collector의 내용을 어디서 찾을 수 있을까요? 
 
 `/etc/otel/collector` 경로에 관련 설정들이 저장되어 있습니다. `agent` 모드로 설치했다면 관련된 내용은 `agent_config.yaml` file에 저장되어 있습니다. 
+
+## Splunk Observability IM
+![](../../images/1-ninja-kr/1-1-IMUI.png)
