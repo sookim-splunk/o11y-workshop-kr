@@ -100,11 +100,12 @@ Dockerfile에 있는 application은 Java이니 [공식 Docs](https://docs.splunk
    docker run -d -p 8080:8080 hello-world-app:2.0
    ```
 
-7. 에러가 발생하나요?
+7. APM Trace에서 정보를 확인할 수 있나요? 
 
-- 왜냐? ENV OTEL_EXPORTER_OTLP_ENDPOINT='[http://localhost:4318](http://localhost:4318/)' 는 docker의 localhost를 가리키는 것이 될 수 있기 때문
-- 실행을 할때 `docker run -e OTEL_EXPORTER_OTLP_ENDPOINT=http://10.0.9.178:4318 -p 8080:8080 hello-world-java-splunk:2.0` 으로 enpoint에 서버의 private ip 넘겨주기!
-- 또한 **collector 설정파일** (`/etc/otel/collector/splunk-otel-collector-config.yaml`) 수정해서 **4318 포트 수신**
+- 아마 정보가 들어오지 않을 겁니다! \
+- 왜냐? ENV OTEL_EXPORTER_OTLP_ENDPOINT='[http://localhost:4318](http://localhost:4318/)' 는 docker의 localhost를 가리키는 것이 될 수 있기 때문인데요, 
+- 실행을 할때 `docker run --rm --network=host hello-world-app:2.0` 으로 host 서버의 네트워크를 사용할 것임을 명시해 주어야합니다. 
+- 또한 **collector 설정파일** (`sudo vi /etc/otel/collector/agent_config.yaml`)을 수정해서 **4318 포트 수신**
 
 ```yaml
 receivers:
@@ -118,17 +119,13 @@ receivers:
 	        endpoint: "0.0.0.0:4318
 ```
 
-## Troubleshooting
+8. 여전히 Trace 정보가 안보이나요? 
 
-If you don't see traces appear in Splunk Observability Cloud, here's how you can troubleshoot.
-
-First, open the collector config file for editing:
+- 그렇다면 debug exporter를 사용해 trace가 collector에 정보를 남길 수 있게 해주세요 
 
 ```bash
-vi /etc/otel/collector/agent_config.yaml
+sudo vi /etc/otel/collector/agent_config.yaml
 ```
-
-Next, add the debug exporter to the traces pipeline, which ensures the traces are written to the collector logs:
 
 ```yaml
 service:
@@ -145,8 +142,7 @@ service:
       exporters: [otlphttp, signalfx, debug]
 ```
 
-Then, restart the collector to apply the configuration changes:
-
+그리고 splunk-otel-collector를 재시작 해주세요 
 ```bash
 sudo systemctl restart splunk-otel-collector
 ```
@@ -158,3 +154,38 @@ We can then view the collector logs using `journalctl`:
 ```bash
 sudo journalctl -u splunk-otel-collector -f -n 100
 ```
+
+9. 위에 언급한 것처럼 docker를 재시작해주세요.
+(docker가 구동되면 다른 터미널에서 `curl http://localhost:8080/hello/Tom`을 해 Tom에게 인사를 계속 해주세요😉)
+```bash
+$ docker run --rm --network=host hello-world-app:2.0
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[otel.javaagent 2025-06-12 12:33:35:830 +0000] [main] INFO io.opentelemetry.javaagent.tooling.VersionLogger - opentelemetry-javaagent - version: splunk-2.16.0-otel-2.16.0
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2025-06-12T12:33:39.161Z  INFO 1 --- [           main] c.e.helloworld.HelloWorldApplication     : Starting HelloWorldApplication v0.0.1-SNAPSHOT using Java 17.0.2 with PID 1 (/app/app.jar started by root in /app)
+2025-06-12T12:33:39.193Z  INFO 1 --- [           main] c.e.helloworld.HelloWorldApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-06-12T12:33:40.381Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-12T12:33:40.413Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-12T12:33:40.414Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2025-06-12T12:33:40.465Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-12T12:33:40.466Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1192 ms
+2025-06-12T12:33:40.925Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-06-12T12:33:40.937Z  INFO 1 --- [           main] c.e.helloworld.HelloWorldApplication     : Started HelloWorldApplication in 2.389 seconds (process running for 5.331)
+2025-06-12T12:33:59.663Z  INFO 1 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-12T12:33:59.663Z  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-12T12:33:59.664Z  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-06-12T12:33:59.736Z  INFO 1 --- [nio-8080-exec-1] c.e.helloworld.HelloWorldApplication     : /hello endpoint invoked by Tom
+2025-06-12T12:34:04.203Z  INFO 1 --- [nio-8080-exec-2] c.e.helloworld.HelloWorldApplication     : /hello endpoint invoked by Tom
+2025-06-12T12:34:05.114Z  INFO 1 --- [nio-8080-exec-3] c.e.helloworld.HelloWorldApplication     : /hello endpoint invoked by Tom
+```
+10. 축하합니다! 이제 Docker 환경에 넣은 변수를 통해서 docker image만 실행시켰을 뿐인데 Splunk O11y APM에 어플리케이션에 대한 trace 정보가 들어올 것입니다. 
+![](../../images/1-ninja-kr/1-5-APMUI1.png)
+![](../../images/1-ninja-kr/1-5-APMUI2.png)
