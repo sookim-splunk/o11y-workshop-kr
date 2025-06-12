@@ -15,20 +15,17 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
     - Settings > Access Tokens > Create Token >  API token
 2. Install new Splunk Opentelemetry Collector
     - Data Management > Splunk OpenTelemetry Collector 
-    - 다음과 같이 설정
+    - 다음과 같이 설정(zero-code 부분은 체크 해제)
     
       ![](../../images/1-ninja-kr/1-1-configuration.png)
-3. Install Script
-
-
+3. Install Script(10분소요)
     ``` bash
-
     curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
     sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent --without-instrumentation --discovery
     ```
 
 
-참고 [Install the Collector for Linux with the installer script](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-linux/install-linux.html#otel-install-linux)
+참고 [Install the Collector for Linux with the installer script](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-linux/install-linux.html#otel-install-linux
 
 ## Confirm the Collector is Running
 
