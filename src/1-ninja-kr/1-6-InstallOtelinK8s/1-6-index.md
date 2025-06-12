@@ -49,7 +49,7 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 2. Configure Integration
    - 다음과 같이 설정
      ![](../../images/1-ninja-kr/1-6-configuration1.png)
-3. 안내되는 커맨드에 따라 helm을 통해 환경에 Otel 설치
+3. 안내되는 커맨드에 따라 helm을 통해 환경에 Otel 설치 (Step B and C)
 ![](../../images/1-ninja-kr/1-6-configuration3.png)
 ```bash
 $ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -69,15 +69,35 @@ Update Complete. ⎈Happy Helming!⎈
 ```
 * 여기서 잠깐! STEP D는 다른 방식으로 해보려고 합니다. 안내되는 방식처럼 command를 사용하는 방법도 있지만, env 관리의 용이성을 위해 values.yaml파일을 하나 만들어 env를 한번에 관리하겠습니다. 
 
-4. values.yaml 파일 다운로드
-[o11y-cloud-k8s/values.yaml](https://github.com/sookim-splunk/o11y-cloud-k8s/blob/main/values.yaml) 에서 values.yaml 코드를 복사 혹은 다운로드 합니다. 
+4. values.yaml 파일 작성
+- [o11y-cloud-k8s/values.yaml](https://github.com/sookim-splunk/o11y-cloud-k8s/blob/main/values.yaml) 에서 values.yaml 코드를 복사 혹은 다운로드 합니다. 
 
-```v
+```bash
+~ $ mkdir k8s-yaml
+~ $ cd k8s-yaml
+ ~/k8s-otel $ vi values.yaml 
+```
 
-4. collector가 잘 작동되는지 확인
+- values.yaml 코드에서 3가지 변수(ClusterName, accessToken, enviroment) 만 수정합니다.
+```yaml
+clusterName: "<Cluster_Name>"
+
+splunkObservability:
+  realm: "us1"
+  accessToken: "<Access_Key>"
+
+environment: prod
+```
+
+5. splunk-otel-collector를 설치합니다. 
+```bash
+ helm install splunk-otel-collector -f ./values.yaml splunk-otel-collector-chart/splunk-otel-collector
+```
+
+6. collector가 잘 작동되는지 확인
    ```bash
    kubectl get pods
    ```
-5. Olly Cloud의 IM에서 클러스터 확인
+7. Olly Cloud의 IM에서 클러스터 확인
    - Infrastructure -> Kubernetes -> Kubernetes Clusters 에서 클러스터 이름(_$INSTANCE-cluster_) 검색
      ![](../../images/1-ninja-kr/1-6-configuration2.png)

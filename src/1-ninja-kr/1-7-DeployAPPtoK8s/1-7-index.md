@@ -38,10 +38,42 @@ EXPOSE 8080
 ### Dockerfile build
 
 ```bash
-docker build -t hello-world-java-splunk-k8s .
+~/hello-world $ docker build -t hello-world-java-splunk-k8s .
+
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  46.71MB
+Step 1/7 : FROM openjdk:17-jdk-slim
+ ---> 37cb44321d04
+Step 2/7 : WORKDIR /app
+ ---> Using cache
+ ---> cc2cda6bc1e5
+Step 3/7 : COPY ./target/hello-world-0.0.1-SNAPSHOT.jar app.jar
+ ---> Using cache
+ ---> 1edadd419841
+Step 4/7 : ADD https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent.jar /splunk-otel-javaagent.jar
+Downloading [==================================================>]  26.92MB/26.92MB
+
+ ---> Using cache
+ ---> 2477bd985e25
+Step 5/7 : RUN chmod -R go+r /splunk-otel-javaagent.jar
+ ---> Using cache
+ ---> ea27298f392e
+Step 6/7 : ENTRYPOINT ["java","-jar","./app.jar"]
+ ---> Running in 3a88920b9d36
+ ---> Removed intermediate container 3a88920b9d36
+ ---> 3192bcd51e2e
+Step 7/7 : EXPOSE 8080
+ ---> Running in 5031d636af4f
+ ---> Removed intermediate container 5031d636af4f
+ ---> 03d620b16dbd
+Successfully built 03d620b16dbd
+Successfully tagged hello-world-java-splunk-k8s:latest
 ```
 
-### Dockerfile push
+### Dockerfile push(optional)
 
 - docker login 해서 docker hub 이미지 레지스트리에 배포 (없으면 chaehee/hello-world-java-splunk-k8s:1.0 사용)
   ```bash
@@ -53,8 +85,13 @@ docker build -t hello-world-java-splunk-k8s .
 ## K8s deployment 작성
 
 k8s 환경에 java hello world 앱을 배포하기 위해서 아래와 같이 deployment 파일을 작성합니다.
+```bash
+~ $ mkdir k8s-yaml
+~ $ cd ~/k8s-yaml 
+ ~/k8s-yaml $ vi k8s-deployment-basic.yaml
+```
 
-### k8s-deployment.yaml 파일
+### k8s-deployment-basic.yaml 파일
 
 ```yaml
 apiVersion: v1
@@ -159,12 +196,20 @@ APM 데이터를 추가적으로 수집하기 위해서는 Application에서 Spl
 - 기존의 K8s 리소스 삭제
 
 ```bash
-kubectl delete -f ./k8s-deployment.yaml
+$ kubectl delete -f ./k8s-deployment-basic.yaml              
+namespace "hellojava" deleted
+deployment.apps "hello-java" deleted
+service "hello-java-service" deleted
 ```
 
-기존에 사용했던 k8s-deployment.yaml 을 복제해서 k8s-deployment-manual.yaml 을 생성 후 내용을 아래와 같이 수정합니다
+기존에 사용했던 k8s-deployment-basic.yaml 을 복제해서 k8s-deployment-manual.yaml 을 생성 후 내용을 아래와 같이 수정합니다
 
-- Configure Integration 에서 확인했던 내용을 바탕으로 yaml 파일 업데이트
+- Configure Integration 에서 확인했던 내용을 바탕으로 yaml 파일 업데이트.
+
+```bash
+$ cp k8s-deployment-basic.yaml k8s-deployment-manual.yaml
+$ vi k8s-deployment-manual.yaml
+```
 
 ```yaml
 apiVersion: v1
@@ -241,5 +286,5 @@ $ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
 $ curl localhost:8080/hello/Tom
 Hello, Tom!%
 ```
-
+![](../../images/1-ninja-kr/1-7-configuration1.png)
 ![](../../images/1-ninja-kr/1-7-configuration2.jpg)
