@@ -70,7 +70,8 @@ Update Complete. ⎈Happy Helming!⎈
 * 여기서 잠깐! STEP D는 다른 방식으로 해보려고 합니다. 안내되는 방식처럼 command를 사용하는 방법도 있지만, env 관리의 용이성을 위해 values.yaml파일을 하나 만들어 env를 한번에 관리하겠습니다. 
 
 4. values.yaml 파일 작성
-- [o11y-cloud-k8s/values.yaml](https://github.com/sookim-splunk/o11y-cloud-k8s/blob/main/values.yaml) 에서 values.yaml 코드를 복사 혹은 다운로드 합니다. 
+- [splunk-otel-collector-chart/helm-charts/splunk-otel-collector
+/values.yaml](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/helm-charts/splunk-otel-collector/values.yaml) 에서 values.yaml 코드를 복사 혹은 다운로드 합니다. 
 
 ```bash
 ~ $ mkdir k8s-yaml
@@ -78,7 +79,8 @@ Update Complete. ⎈Happy Helming!⎈
  ~/k8s-otel $ vi values.yaml 
 ```
 
-- values.yaml 코드에서 3가지 변수(ClusterName, accessToken, enviroment) 만 수정합니다.
+- values.yaml 코드에서 3가지 변수(ClusterName, accessToken, enviroment) 를 수정합니다.
+- 또한 operatorcrds, operator, certmanager 의 옵션을 수정합니다. 
 ```yaml
 clusterName: "<Cluster_Name>"
 
@@ -87,6 +89,14 @@ splunkObservability:
   accessToken: "<Access_Key>"
 
 environment: prod
+
+operatorcrds:
+  install: true
+operator:
+  enabled: true
+
+certmanager:
+  enabled: true
 ```
 
 5. splunk-otel-collector를 설치합니다. 
@@ -95,9 +105,9 @@ environment: prod
 ```
 
 6. collector가 잘 작동되는지 확인
-   ```bash
-   kubectl get pods
-   ```
+```bash
+kubectl get pods
+```
 7. Olly Cloud의 IM에서 클러스터 확인
    - Infrastructure -> Kubernetes -> Kubernetes Clusters 에서 클러스터 이름(_$INSTANCE-cluster_) 검색
      ![](../../images/1-ninja-kr/1-6-configuration2.png)
