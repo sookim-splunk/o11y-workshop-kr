@@ -118,6 +118,24 @@ var CONTENTS = {
           next: '1-13',
           sub: [],
         },
+        {
+          id: '1-13', // required. page ID
+          title: '13. Related Contents', // required. Bread crumbs text
+          menuName: '13. Related Contents', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-13-RelatedContents/1-13-index.html', // required. HTML file path
+          prev: '1-12',
+          next: '1-14',
+          sub: [],
+        },
+        {
+          id: '1-14', // required. page ID
+          title: '14. SIM Command', // required. Bread crumbs text
+          menuName: '14. SIM Command', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-14-SIMCommand/1-14-index.html', // required. HTML file path
+          prev: '1-12',
+          next: '1-1',
+          sub: [],
+        },
       ],
     },
   ],
