@@ -85,9 +85,10 @@ Successfully tagged hello-world-java-splunk-k8s:latest
 ## K8s deployment 작성
 
 k8s 환경에 java hello world 앱을 배포하기 위해서 아래와 같이 deployment 파일을 작성합니다.
+
 ```bash
 ~ $ mkdir k8s-yaml
-~ $ cd ~/k8s-yaml 
+~ $ cd ~/k8s-yaml
  ~/k8s-yaml $ vi k8s-deployment-basic.yaml
 ```
 
@@ -139,7 +140,7 @@ spec:
 ### Application 실행
 
 ```bash
-$ kubectl apply -f ./k8s-deployment.yaml
+$ kubectl apply -f ./k8s-deployment-basic.yaml
 namespace/hellojava created
 deployment.apps/hello-java created
 service/hello-java-service created
@@ -196,7 +197,7 @@ APM 데이터를 추가적으로 수집하기 위해서는 Application에서 Spl
 - 기존의 K8s 리소스 삭제
 
 ```bash
-$ kubectl delete -f ./k8s-deployment-basic.yaml              
+$ kubectl delete -f ./k8s-deployment-basic.yaml
 namespace "hellojava" deleted
 deployment.apps "hello-java" deleted
 service "hello-java-service" deleted
@@ -286,5 +287,6 @@ $ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
 $ curl localhost:8080/hello/Tom
 Hello, Tom!%
 ```
+
 ![](../../images/1-ninja-kr/1-7-configuration1.png)
 ![](../../images/1-ninja-kr/1-7-configuration2.jpg)

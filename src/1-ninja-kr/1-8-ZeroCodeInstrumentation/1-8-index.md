@@ -39,8 +39,12 @@ kubectl delete -f ./k8s-deployment-manual.yaml
 kubectl get pods -A
 
 NAMESPACE     NAME                                                          READY   STATUS      RESTARTS     AGE
-default       splunk-otel-collector-agent-lqtpd                             1/1     Running     0            117m
-default       splunk-otel-collector-k8s-cluster-receiver-7ffc6ddc8c-ztlwp   1/1     Running     0            117m
+default       splunk-otel-collector-agent-7mrq4                               1/1     Running     0              47m
+default       splunk-otel-collector-certmanager-7796b6f447-tl7t9              1/1     Running     0              47m
+default       splunk-otel-collector-certmanager-cainjector-6ffc6f5fb4-nvx86   1/1     Running     0              47m
+default       splunk-otel-collector-certmanager-webhook-6df684d78-b9brg       1/1     Running     0              47m
+default       splunk-otel-collector-k8s-cluster-receiver-6d68f748f5-t4t69     1/1     Running     0              47m
+default       splunk-otel-collector-operator-86c996fcb5-q64r5                 2/2     Running     0              47m
 ```
 
 ## 8-2. K8S App 구동하기
