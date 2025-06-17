@@ -32,7 +32,7 @@ Splunk UI에서, 설정 > 인덱스 > 새로 만들기인덱스
 
 
 ```bash
-cd splunk-otel-collector
+cd ~/k8s-yaml
 vi values.yaml
 ```
 
@@ -44,7 +44,51 @@ vi values.yaml
 - metricIndex
 - metricsEnabled: true
 
+**Splunk Cloud 설정**
 ```bash
+...
+## Splunk Cloud 설정
+clusterName: "my-cluster"
+splunkPlatform:
+  # Required for Splunk Enterprise/Cloud. URL to a Splunk instance to send data
+  # to. e.g. "http://X.X.X.X:8088/services/collector/event". Setting this parameter
+  # enables Splunk Platform as a destination. Use the /services/collector/event
+  # endpoint for proper extraction of fields.
+  endpoint: "https://http-inputs-scv-shw-acb4f45a837af9.stg.splunkcloud.com/services/collector"
+  # Required for Splunk Enterprise/Cloud (if `endpoint` is specified). Splunk
+  # Alternatively the token can be provided as a secret.
+  # Refer to https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/advanced-configuration.md#provide-tokens-as-a-secret
+  # HTTP Event Collector token.
+  token: "bc77efcf-fc60-494f-b80c-xxxx"
+
+  # Name of the Splunk event type index targeted. Required when ingesting logs to Splunk Platform.
+  index: "main"
+  # Name of the Splunk metric type index targeted. Required when ingesting metrics to Splunk Platform.
+  metricsIndex: "mymetrics"
+  # Name of the Splunk event type index targeted. Required when ingesting traces to Splunk Platform.
+  tracesIndex: ""
+  # Optional. Default value for `source` field.
+  source: "kubernetes"
+  # Optional. Default value for `sourcetype` field. For container logs, it will
+  # be container name. For metrics and traces it will default to "httpevent".
+  sourcetype: ""
+  # Maximum HTTP connections to use simultaneously when sending data.
+  maxConnections: 200
+  # Whether to disable gzip compression over HTTP. Defaults to true.
+  disableCompression: true
+  # HTTP timeout when sending data. Defaults to 10s.
+  timeout: 10s
+  # Idle connection timeout. defaults to 10s
+  idleConnTimeout: 10s
+  # Whether to skip checking the certificate of the HEC endpoint when sending
+  # data over HTTPS.
+  insecureSkipVerify: false
+  logsEnabled: true
+  metricsEnabled: true
+...
+```
+**Splunk On-Prem 설정**
+```
 ...
 ## Splunk On-Prem 설정
 clusterName: "my-cluster"
@@ -52,7 +96,7 @@ splunkPlatform:
   endpoint: "http://ip-172-31-18-100.ec2.internal:8088/services/collector/event"
   token: "a17c2f75-583e-4bcb-8ccf-xxxx"
   index: "heclog"
-  metricsIndex: "mymetric"
+  metricsIndex: "mymetrics"
   logsEnabled: true
   metricsEnabled: true
 
@@ -67,7 +111,10 @@ agent:
 
 ## 12-4 values.yaml 배포
 ```bash
-helm install splunk-otel-agent splunk-otel-collector --values splunk-otel-collector/values.yaml
+## helm 삭제
+helm uninstall splunk-otel-collector
+
+helm install splunk-otel-collector -f ~/k8s-yaml/values.yaml splunk-otel-collector-chart/splunk-otel-collector
 ```
 
 ## 12-5 Splunk Platform에서 Metric 데이터 활용
@@ -77,10 +124,7 @@ helm install splunk-otel-agent splunk-otel-collector --values splunk-otel-collec
 | mcatalog values(_dims) WHERE index="*" AND sourcetype="*" BY index metric_name
 ```
 
-**k8s.pod.cpu.utilization 메트릭의 차트**
-
-
-현재의 app pod 의 Deployment 정보를 조회해서 확인 해 봅니다
+**k8s.pod.cpu.utilization 메트릭의 차트 조회 쿼리**
 
 ```bash
 | mstats chart=t avg(k8s.pod.cpu.utilization) WHERE index=metricindex by k8s.pod.name span=1m every=5m chart.limit=top10
