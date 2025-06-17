@@ -100,6 +100,15 @@ var CONTENTS = {
           next: '1-10',
           sub: [],
         },
+        {
+          id: '1-10', // required. page ID
+          title: '10. Set Log Observer connector', // required. Bread crumbs text
+          menuName: '10. Set Log Observer connector', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-10-LogObserverConnector/1-10-index.html', // required. HTML file path
+          prev: '1-9',
+          next: '1-11',
+          sub: [],
+        },
       ],
     },
   ],
