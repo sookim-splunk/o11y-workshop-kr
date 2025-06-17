@@ -91,6 +91,15 @@ var CONTENTS = {
           next: '1-9',
           sub: [],
         },
+        {
+          id: '1-9', // required. page ID
+          title: '9. Log collection to Splunk Cloud', // required. Bread crumbs text
+          menuName: '9. Log collection to Splunk Cloud', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-9-CollectLogs/1-9-index.html', // required. HTML file path
+          prev: '1-8',
+          next: '1-10',
+          sub: [],
+        },
       ],
     },
   ],

@@ -52,7 +52,7 @@ default       splunk-otel-collector-operator-86c996fcb5-q64r5                 2/
 아무 설정도 되어있지 않은 Hello World 앱을 다시 구동시킵니다
 
 ```bash
-kubectl apply -f ./k8s-deployment.yaml
+kubectl apply -f ./k8s-deployment-basic.yaml
 
 namespace/hellojava created
 deployment.apps/hello-java created
