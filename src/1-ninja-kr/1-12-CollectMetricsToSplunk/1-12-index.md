@@ -25,7 +25,7 @@ Splunk UI에서, 설정 > 인덱스 > 새로 만들기인덱스
 
 선택됨 인덱스에서 로그를 저장할 event 인덱스와 metric을 저장할 metric index를 선택합니다.
 
-![](../../images/1-ninja-kr/1-12-hec.jpeg)
+![](../../images/1-ninja-kr/1-12-hec.png)
 
 
 ## 12-3 values.yaml 파일을 편집
