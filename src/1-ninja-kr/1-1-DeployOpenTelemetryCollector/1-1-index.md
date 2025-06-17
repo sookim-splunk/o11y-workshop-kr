@@ -13,8 +13,8 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 
 1. Splunk Access token을 미리 발급해 주세요. 
     - Settings > Access Tokens > Create Token >  API token
-2. Install new Splunk Opentelemetry Collector
-    - Data Management > Splunk OpenTelemetry Collector 
+2. Install new Splunk Opentelemetry Collector(Linux 용)
+    - Data Management > Splunk OpenTelemetry Collector (Linux 용)
     - 다음과 같이 설정(zero-code 부분은 체크 해제)
     
       ![](../../images/1-ninja-kr/1-1-configuration.png)

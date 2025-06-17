@@ -92,6 +92,24 @@ var CONTENTS = {
           sub: [],
         },
         {
+          id: '1-9', // required. page ID
+          title: '9. Log collection to Splunk Cloud', // required. Bread crumbs text
+          menuName: '9. Log collection to Splunk Cloud', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-9-CollectLogs/1-9-index.html', // required. HTML file path
+          prev: '1-8',
+          next: '1-10',
+          sub: [],
+        },
+        {
+          id: '1-10', // required. page ID
+          title: '10. Set Log Observer connector', // required. Bread crumbs text
+          menuName: '10. Set Log Observer connector', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-10-LogObserverConnector/1-10-index.html', // required. HTML file path
+          prev: '1-9',
+          next: '1-11',
+          sub: [],
+        },
+        {
           id: '1-12', // required. page ID
           title: '12. Collect Metrics, Traces, Logs to Splunk Platform', // required. Bread crumbs text
           menuName: '12. Collect Metrics, Traces, Logs to Splunk Platform', // required. Side bar text
@@ -99,7 +117,7 @@ var CONTENTS = {
           prev: '1-11',
           next: '1-13',
           sub: [],
-        },        
+        },
       ],
     },
   ],
