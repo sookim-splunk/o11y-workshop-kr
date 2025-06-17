@@ -91,6 +91,15 @@ var CONTENTS = {
           next: '1-9',
           sub: [],
         },
+        {
+          id: '1-12', // required. page ID
+          title: '12. Collect Metrics, Traces, Logs to Splunk Platform', // required. Bread crumbs text
+          menuName: '12. Collect Metrics, Traces, Logs to Splunk Platform', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-12-CollectMetricsToSplunk/1-12-index.html', // required. HTML file path
+          prev: '1-11',
+          next: '1-13',
+          sub: [],
+        },        
       ],
     },
   ],

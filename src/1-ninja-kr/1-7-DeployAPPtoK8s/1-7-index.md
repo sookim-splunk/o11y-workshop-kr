@@ -3,7 +3,7 @@
 ## Dockerfile 재작성
 
 ```bash
-vi hello-world/Dockerfile
+vi ~/hello-world/Dockerfile
 ```
 
 도커파일을 열어 기존에 Docker Instrumentation 에 작성했던 내용 중 일부를 Comment out 하고 기존 내용으로 rollback 합니다
@@ -87,7 +87,7 @@ Successfully tagged hello-world-java-splunk-k8s:latest
 k8s 환경에 java hello world 앱을 배포하기 위해서 아래와 같이 deployment 파일을 작성합니다.
 
 ```bash
-~ $ mkdir k8s-yaml
+#~ $ mkdir ~/k8s-yaml
 ~ $ cd ~/k8s-yaml
  ~/k8s-yaml $ vi k8s-deployment-basic.yaml
 ```
@@ -177,6 +177,77 @@ curl: (7) Failed to connect to localhost port 8080 after 0 ms: Connection refuse
   Hello, Tom!%
   ```
 
+## hello world를 node port 로 변경하여 위 문제를 해결
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hellojava
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-java
+  namespace: hellojava
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-java
+  template:
+    metadata:
+      labels:
+        app: hello-java
+    spec:
+      containers:
+        - name: hello-java
+          # 아래 이미지 레지스트리 주소를 유의해서 작성 해 주세요
+          image: ijung075/hello-world-java-splunk-k8s:1.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-java-service
+  namespace: hellojava
+## LoadBalancer가 아닌 Node port로 변경
+spec:
+  type: NodePort
+  selector:
+    app: hello-java
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30080
+```
+
+다시 배포
+```bash
+kubectl apply -f k8s-deployment-basic.yaml
+```
+
+노드 IP 확인
+```
+kubectl get nodes -o wide
+```
+
+다시 테스트
+```
+curl http://<NODE-IP>:30080/hello/Tom
+```
+
+아래는 저의 예시
+```
+splunk@show-no-config-i-0a80dca3eafc0ac96 ~/k8s-yaml $ kubectl get node -o wide
+NAME                                 STATUS   ROLES                  AGE   VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION   CONTAINER-RUNTIME
+show-no-config-i-0a80dca3eafc0ac96   Ready    control-plane,master   10h   v1.32.5+k3s1   172.31.29.195   3.93.187.97   Ubuntu 22.04.5 LTS   6.8.0-1023-aws   containerd://2.0.5-k3s1.32
+
+splunk@show-no-config-i-0a80dca3eafc0ac96 ~/k8s-yaml $ curl 172.31.29.195:30080/hello/inho
+Hello, inho!%           
+```
+
 ## Trace 정보를 위해 ENV 설정
 
 ```bash
@@ -235,6 +306,7 @@ spec:
     spec:
       containers:
         - name: hello-java
+          ## 아래 image repoistory 이름 주의 해야 합니다.
           image: chaehee/hello-world-java-splunk-k8s:1.0
           ports:
             - containerPort: 8080
@@ -245,6 +317,7 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: 'http://$(SPLUNK_OTEL_AGENT):4318'
+            # OTEL_SERVICE_NAME value를 본인 이름의 이니셜을 추가하세요. inho-hellow-java
             - name: OTEL_SERVICE_NAME
               value: 'hello-java'
             - name: OTEL_RESOURCE_ATTRIBUTES
@@ -262,19 +335,23 @@ metadata:
   name: hello-java-service
   namespace: hellojava
 spec:
+  type: NodePort
   selector:
     app: hello-java
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: LoadBalancer
+      nodePort: 30080
 ```
 
 ### K8s 어플리케이션 재배포
 
 ```bash
 $ kubectl apply -f ./k8s-deployment-manual.yaml
+namespace "hellojava" deleted
+deployment.apps "hello-java" deleted
+service "hello-java-service" deleted
 ```
 
 =======
@@ -282,10 +359,11 @@ $ kubectl apply -f ./k8s-deployment-manual.yaml
 - K8s application에 APM에 필요한 정보들(env,command)을 넣어줬기에 APM에서도 K8s application 모니터링이 가능합니다.
 
 ```bash
-$ kubectl apply -f ./k8s-deployment-manual.yaml
-$ kubectl port-forward -n hellojava svc/hello-java-service 8080:80
-$ curl localhost:8080/hello/Tom
-Hello, Tom!%
+splunk@show-no-config-i-0a80dca3eafc0ac96 ~/k8s-yaml $ kubectl get node -o wide
+NAME                                 STATUS   ROLES                  AGE   VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION   CONTAINER-RUNTIME
+show-no-config-i-0a80dca3eafc0ac96   Ready    control-plane,master   10h   v1.32.5+k3s1   172.31.29.195   3.93.187.97   Ubuntu 22.04.5 LTS   6.8.0-1023-aws   containerd://2.0.5-k3s1.32
+splunk@show-no-config-i-0a80dca3eafc0ac96 ~/k8s-yaml $ curl 172.31.29.195:30080/hello/inho
+Hello, inho!%  
 ```
 
 ![](../../images/1-ninja-kr/1-7-configuration1.png)

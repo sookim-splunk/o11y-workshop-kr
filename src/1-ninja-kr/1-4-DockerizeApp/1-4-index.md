@@ -67,6 +67,16 @@ EXPOSE 8080
 리눅스 서버에서 java를 실행했던것과 유사하게 openjdk 이미지에서도 java를 동일하게 실행하면 됩니다.
 이때 `ENTRYPOINT` 라는 command를 사용합니다.
 
+docker daemon 이 기동되어 있는지 확인합니다.
+
+```bash
+sudo systemctl status docker
+
+## docker daemon이 running 상태가 아니면 start 합니다.
+sudo systemctl start docker
+```
+
+
 ```bash
 docker build -t hello-world-app:1.0 .
 

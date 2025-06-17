@@ -54,6 +54,9 @@ Dockerfile에 있는 application은 Java이니 [공식 Docs](https://docs.splunk
 4. Dockerfile을 Step B,C에 맞게 수정해 줍니다.
 
    - Dockerfile Update
+    ```
+    vi ~/hello-world/Dockerfile
+    ```
 
      ```dockerfile
      FROM openjdk:17-jdk-slim
