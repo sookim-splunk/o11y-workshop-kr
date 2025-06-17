@@ -84,13 +84,13 @@ Update Complete. ⎈Happy Helming!⎈
 - values.yaml 코드에서 4가지 변수(ClusterName, realm, accessToken, enviroment) 를 수정합니다.
 - 또한 operatorcrds, operator, certmanager 의 옵션을 수정합니다. 
 ```yaml
-clusterName: "<Cluster_Name>"
+clusterName: "<본인이니셜>Cluster"
 
 splunkObservability:
   realm: "us1"
   accessToken: "<Access_Key>"
 
-environment: prod
+environment: o11y-workshop-<본인이니셜>
 
 operatorcrds:
   install: true
