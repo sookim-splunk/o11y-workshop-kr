@@ -50,6 +50,7 @@ hello-world/
 - 여기서 불필요한 디렉토리를 삭제합니다
 
 ```bash
+cd hello-world/src/
 rm -rf test
 ```
 
@@ -197,19 +198,3 @@ Hello, Tom!%
 ```
 
 Java 앱이 정상적으로 구동되는 것이 확인 된다면 Ctrl+C를 눌러 앱을 종료합니다
-
-```bash
-hello-world/
-├── pom.xml
-├── Dockerfile
-└── src/
-    └── main/
-        ├── java/
-        │   └── com/
-        │       └── example/
-        │           └── helloworld/
-        │               └── HelloWorldApplication.java
-        └── resources/
-            └── application.properties
-
-```
