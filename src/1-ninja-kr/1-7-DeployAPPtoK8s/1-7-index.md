@@ -350,8 +350,6 @@ spec:
 ```bash
 $ kubectl apply -f ./k8s-deployment-manual.yaml
 namespace "hellojava" deleted
-deployment.apps "hello-java" deleted
-service "hello-java-service" deleted
 ```
 
 =======
