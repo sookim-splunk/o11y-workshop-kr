@@ -22,8 +22,7 @@
 | 13:50~14:10 | 9      | Log collection to Splunk Cloud        | 20분      | 김수경 |
 | 14:10~14:30 | 10     | Set Log Observer connector            | 20분      | 김수경 |
 |             |        | **20 Min Break Time**                 |
-| 14:50~15:20 | 11     | Challenge 1 : Host Receiver 추가하기  | 30분      | 김수경 |
-| 15:20~15:35 | 11     | Chellenge 2 : HTTP Receiver 추가하기  | 15분      | 김수경 |
+| 14:50~15:20 | 11     | Challenge : MySQL Receiver 추가하기   | 45분      | 김수경 |
 | 15:35~16:00 | 12     | Collecto Metrics to Splunk            | 30분      | 정인호 |
 | 16:00~16:15 | 13     | Set up Related Content                | 10분      | 정인호 |
 | 16:15~16:30 | 14     | Configure SIM Commend                 | 10분      | 정인호 |

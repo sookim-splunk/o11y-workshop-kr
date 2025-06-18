@@ -16,7 +16,7 @@ vi values.yaml
 ```yaml
 splunkPlatform:
   # splunk http event collector(hec) endpoint 추가
-  endpoint: 'https://http-inputs-scv-shw-acb4f45a837af9.stg.splunkcloud.com/services/collector'
+  endpoint: 'https://http-inputs-scv-shw-526ab544779b1f.stg.splunkcloud.com/services/collector'
   # Splunk Cloud에서 발급한 hec token 기입
   token: 'bc77efcf-fc60-494f-b80c-52701d7901d4'
 

@@ -110,6 +110,15 @@ var CONTENTS = {
           sub: [],
         },
         {
+          id: '1-11', // required. page ID
+          title: '11. Challenge : Add Receier for advanced metrics', // required. Bread crumbs text
+          menuName: '11. Challenge : Add Receier for advanced metrics', // required. Side bar text
+          href: '/o11y-workshop-kr/src/1-ninja-kr/1-11-ChallengeReceiver/1-11-index.html', // required. HTML file path
+          prev: '1-10',
+          next: '1-12',
+          sub: [],
+        },
+        {
           id: '1-12', // required. page ID
           title: '12. Collect Metrics, Traces, Logs to Splunk Platform', // required. Bread crumbs text
           menuName: '12. Collect Metrics, Traces, Logs to Splunk Platform', // required. Side bar text
