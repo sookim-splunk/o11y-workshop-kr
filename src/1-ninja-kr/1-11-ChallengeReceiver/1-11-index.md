@@ -182,4 +182,4 @@ o11y cloud 화면으로 접속하여 MySQL 대시보드에서 관련 매트릭�
 
 본인 서버와 같은 host.name 이 확인된다면 성공입니다
 
-![](../../images/1-ninja-kr/1-11-configuration1.jpg)
+![](../../images/1-ninja-kr/1-11-configuration2.jpg)
