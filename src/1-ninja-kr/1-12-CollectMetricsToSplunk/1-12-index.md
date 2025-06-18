@@ -127,7 +127,7 @@ helm install splunk-otel-collector -f ~/k8s-yaml/values.yaml splunk-otel-collect
 **k8s.pod.cpu.utilization 메트릭의 차트 조회 쿼리**
 
 ```bash
-| mstats chart=t avg(k8s.pod.cpu.utilization) WHERE index=metricindex by k8s.pod.name span=1m every=5m chart.limit=top10
+| mstats chart=t avg(k8s.pod.memory.usage) WHERE index=mymetrics by k8s.pod.name span=1m every=5m chart.limit=top10
 ```
 
 ## 참고 Document
