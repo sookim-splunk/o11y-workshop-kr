@@ -20,6 +20,8 @@ Splunk Cloud UI에서, 앱 > Discover Splunk Observability Cloud
 - 자동 UI 업데이트:  enable
 - Field aliasing: enable
 
+**Related Contents가 적용되는데는 약 10분 정도 소요됩니다**
+
 ## 13-2. Splunk Platform 에서 로그 검색
 Search & Report 앱에서 쿼리 수행
 
