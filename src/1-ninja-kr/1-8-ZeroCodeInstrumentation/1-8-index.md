@@ -11,8 +11,6 @@
 제로코드 계측을 사용하면 애플리케이션 소스 파일을 수정하지 않고도 애플리케이션을 계측하고 원격 측정 데이터를 내보낼 수 있습니다.
 언어별 계측 에이전트는 소스 애플리케이션이 지원되는 형식으로 OTLP 수신기나 Splunk Observability Cloud 백엔드에서 OTLP 엔드포인트로 데이터를 내보내도록 구성합니다.
 
-![Zero-Code Instrumentation](https://splunk.deploy.heretto.com/v4/deployments/lbx3FHoDR4kUISPo5g64/object/74aca22c-b595-4d71-a647-cd81959e3098?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJodHRwczovL2pvcnNlay5jb20vZXpkX29yZ2FuaXphdGlvbiI6InNwbHVuayIsImh0dHBzOi8vam9yc2VrLmNvbS9lemQvb2JqZWN0X3V1aWQiOiI3NGFjYTIyYy1iNTk1LTRkNzEtYTY0Ny1jZDgxOTU5ZTMwOTgiLCJleHAiOjE3NDk1MzYyNDAsImp0aSI6ImI1MmEwOWZkYWU4ZDQyNWJiOWEzNDU2MzdjMDA5MjhjIiwiaHR0cHM6Ly9qb3JzZWsuY29tL2V6ZF9maWxlc2V0IjoibDRZUlFCVjR5anQzbEFqV0lSTmoifQ.F8eN8VSqPMbrB90wUtHq8uzEqPKQ55j1mxz3ORXDFBE)
-
 Java, Node.js, .NET, Go, Python, Ruby, PHP로 작성된 애플리케이션에 대해 제로코드 계측을 사용할 수 있으며, 각 언어에서 지원되는 라이브러리를 사용하여 작성된 코드에 대한 원격 측정 데이터를 자동으로 수집합니다.
 
 자동 검색과 제로코드 계측은 유사한 기능을 제공하지만 서로 별개의 기능입니다. 자동 검색과 제로코드 계측은 모두 원격 측정 데이터를 수집하여 Splunk Observability Cloud로 전송하지만, 몇 가지 주요 세부 사항에서 차이가 있습니다.
@@ -213,6 +211,8 @@ Hello, Tom!%
 ```
 
 ![](../../images/1-ninja-kr/1-8-configuration1.jpg)
+
+</br>
 
 > [!Note]
 >
