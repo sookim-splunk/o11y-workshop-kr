@@ -45,6 +45,20 @@ B = data('container.cpu.time').mean(over='1m').count(by=['k8s.cluster.name']).pu
 
 이후 다양한 SPL command 사용이 가능하여 별도 대시보드 제작 가능
 
+## 14-3. 고급 과정
+설정 > 데이터 입력 > Splunk Infrastructure Monitoring Data Streams
+
+자주 사용하는 메트릭에 대해서 활성화를 시키거나, 추가로 signalFlow 형태로 만들면 됩니다.
+
+sim_metrics 인덱스에 metric과 dimension 값을 추출 할 수 있습니다.
+
+```
+| mcatalog values(_dims) WHERE index="sim_metrics" AND sourcetype="*" BY index metric_name
+```
+
+
 
 ## 관련 Documents
+https://help.splunk.com/en/splunk-it-service-intelligence/extend-itsi-and-ite-work/splunk-infrastructure-monitoring-add-on/1.2/install-and-configure/configure-inputs-in-splunk-infrastructure-monitoring-add-on
+
 https://docs.splunk.com/Documentation/SIMAddon/latest/Install/Commands
