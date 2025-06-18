@@ -12,12 +12,19 @@ Splunk Cloud UI에서, 앱 > Splunk Infrastructure Monitoring Add-on
 
 ![](../../images/1-ninja-kr/1-14-Infrastructure-Monitoring-Add-on.png)
 
+설치 후, 앱으로 이동합니다.
+
 Splunk Infrastructure Monitoring Add-on > 설정 > Connect an Account
 
 
 ![](../../images/1-ninja-kr/1-14-Infrastructure-Monitoring-Add-on-connect.png)
 
+아래와 같이 realm, Access Token을 입력합니다.
+그리고 Check Connection 을 선택해서 정상적으로 연결되는지 확인합니다.
+
 ![](../../images/1-ninja-kr/1-14-Infrastructure-Monitoring-Add-on-connect2.png)
+
+제출버튼 클릭
 
 ## 14-2. Splunk Platform 에서 메트릭 검색
 Search & Report 앱에서 쿼리 수행
@@ -36,7 +43,7 @@ B = data('container.cpu.time').mean(over='1m').count(by=['k8s.cluster.name']).pu
 ```
 ![](../../images/1-ninja-kr/1-14-simcommand.png)
 
-
+이후 다양한 SPL command 사용이 가능하여 별도 대시보드 제작 가능
 
 
 ## 관련 Documents
