@@ -79,6 +79,107 @@ agent:
 
 ## 1. MySQL 파드 구동시키기
 
+아래 경로에 mysql-deployment.yaml 파일을 생성하고 아래와 같이 내용을 입력합니다
+
+```bash
+cd ~/hello-world/k8s-yaml
+vi mysql-deployment.yaml
+```
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: hellojava
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: Splunk123
+            - name: MYSQL_DATABASE
+              value: otel
+            - name: MYSQL_USER
+              value: otel
+            - name: MYSQL_PASSWORD
+              value: Splunk123
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-storage
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: hellojava
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+```
+
+그리고 아래 명령어로 해당 deployment 를 배포합니다
+
+```bash
+kubectl apply -f ./mysql-deployment.yaml
+
+kubectl get pods -A
+
+default       splunk-otel-collector-agent-28p45                               1/1     Running     0              22h
+default       splunk-otel-collector-certmanager-7796b6f447-tl7t9              1/1     Running     0              25h
+default       splunk-otel-collector-certmanager-cainjector-6ffc6f5fb4-nvx86   1/1     Running     0              25h
+default       splunk-otel-collector-certmanager-webhook-6df684d78-b9brg       1/1     Running     0              25h
+default       splunk-otel-collector-k8s-cluster-receiver-7ff7ccd55f-5tthq     1/1     Running     0              24h
+default       splunk-otel-collector-operator-86c996fcb5-q64r5                 2/2     Running     0              25h
+hellojava     apache-5b485598fd-w8dwd                                         1/1     Running     0              23h
+hellojava     hello-java-7998c8f9f5-r4qc9                                     1/1     Running     0              24h
+hellojava     mysql-664d675f9c-pgmmp                                          1/1     Running     0              23h
+```
+
+</br>
+
+_**MySQL 파드가 제대로 구동되고 있나요? 그럼 이제부터 게임 시작입니다.**_
+
+</br>
+
 ## 2. MySQL Receiver 구성하기
 
+아래 도큐먼트를 참고해서 MySQL 리시버를 구성하고 Helm 재배포를 하세요.
+
+참고자료는 아래에 첨부된 내용을 확인하시기 바랍니다
+
+> [! Notes]
+>
+> - 참고 도큐먼트 : https://help.splunk.com/en/splunk-observability-cloud/manage-data/splunk-distribution-of-the-opentelemetry-collector/get-started-with-the-splunk-distribution-of-the-opentelemetry-collector/collector-components/receivers/mysql-receiver
+>
+> - Helm 을 통한 에이전트 재배포 명령어
+>
+>   helm upgrade splunk-otel-collector -f values.yaml splunk-otel-collector-chart/splunk-otel-collector
+
+</br>
+
 ## 3. MySQL 메트릭 수집 확인하기
+
+o11y cloud 화면으로 접속하여 MySQL 대시보드에서 관련 매트릭이 수집중인지 확인 해주세요
+
+본인 서버와 같은 host.name 이 확인된다면 성공입니다
+
+![](../../images/1-ninja-kr/1-11-configuration1.jpg)
