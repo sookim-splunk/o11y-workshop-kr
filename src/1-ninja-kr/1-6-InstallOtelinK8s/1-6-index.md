@@ -96,9 +96,18 @@ operatorcrds:
   install: true
 operator:
   enabled: true
-  ...
-  certManager:
-    enabled: true
+  crds:
+    create: false
+  admissionWebhooks:
+    autoGenerateCert:
+      enabled: true
+      certPeriodDays: 3650
+    certManager:
+      enabled: false
+
+certmanager:
+  enabled: true
+  installCRDs: true
 ```
 4-1. 만일 다음과 같은 에러가 뜬다면 cert-manager의 Custom Resource Definitions (CRDs)이 설치되어 있지 않아서 발생한 것이므로 cert-manager CRD 설치해 줍니다. 
 ```bash
@@ -180,4 +189,5 @@ certmanager:
 ```
 
 4. helm agent 설치
+
 $ helm install splunk-otel-collector -f ./values.yaml splunk-otel-collector-chart/splunk-otel-collector
