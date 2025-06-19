@@ -136,6 +136,15 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 6. collector가 잘 작동되는지 확인
 ```bash
 kubectl get pods
+
+NAME                                                            READY   STATUS    RESTARTS   AGE
+splunk-otel-collector-agent-vqhdj                               1/1     Running   0          59m
+splunk-otel-collector-certmanager-7796b6f447-thmk9              1/1     Running   0          59m
+splunk-otel-collector-certmanager-cainjector-6ffc6f5fb4-zqs5w   1/1     Running   0          59m
+splunk-otel-collector-certmanager-webhook-6df684d78-lhnjg       1/1     Running   0          59m
+splunk-otel-collector-k8s-cluster-receiver-785b44b9d8-drl2b     1/1     Running   0          59m
+splunk-otel-collector-operator-86c996fcb5-dzfmg                 2/2     Running   0          59m
+
 ```
 7. Olly Cloud의 IM에서 클러스터 확인
    - Infrastructure -> Kubernetes -> Kubernetes Clusters 에서 클러스터 이름 검색
