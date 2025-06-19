@@ -141,3 +141,34 @@ kubectl get pods
    - Infrastructure -> Kubernetes -> Kubernetes Clusters 에서 클러스터 이름 검색
      ![](../../images/1-ninja-kr/1-6-configuration2.png)
      ![](../../images/1-ninja-kr/1-6-configuration4.png)
+
+
+
+
+## Trouble shooting
+
+1. helm uninstall splunk-otel-collector
+2. kubectl delete -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.crds.yaml
+
+3. values.yaml 수정
+- certManager:
+      enabled: false << 수정!! >>
+```yaml
+operator:
+  enabled: true
+  crds:
+    create: false
+  admissionWebhooks:
+    autoGenerateCert:
+      enabled: true
+      certPeriodDays: 3650
+    certManager:
+      enabled: false
+
+certmanager:
+  enabled: true
+  installCRDs: true
+```
+
+4. helm agent 설치
+$ helm install splunk-otel-collector -f ./values.yaml splunk-otel-collector-chart/splunk-otel-collector
