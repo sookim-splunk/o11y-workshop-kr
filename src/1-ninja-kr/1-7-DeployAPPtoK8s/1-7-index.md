@@ -202,7 +202,7 @@ spec:
       containers:
         - name: hello-java
           # 아래 이미지 레지스트리 주소를 유의해서 작성 해 주세요
-          image: ijung075/hello-world-java-splunk-k8s:1.0
+          image: chaehee/hello-world-java-splunk-k8s:1.0
           ports:
             - containerPort: 8080
 ---
