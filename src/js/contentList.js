@@ -160,19 +160,27 @@ var CONTENTS = {
       sub: [
         {
           id: '2-1', // required. page ID
-          title: 'Service Insights', // required. Bread crumbs text
-          menuName: 'Service Insights', // required. Side bar text
+          title: '2-1. Service Insights', // required. Bread crumbs text
+          menuName: '2-1.Service Insights', // required. Side bar text
           href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-index.html', // required. HTML file path
           prev: '2',
           next: '2-2',
           sub: [
             {
               id: '2-1-1', // required. page ID
-              title: 'Services, KPIs, Entities, SHS', // required. Bread crumbs text
-              menuName: 'Services, KPIs, Entities, SHS', // required. Side bar text
-              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-1-skes/2-1-1-index.html', // required. HTML file path
+              title: '2-1-1. Services', // required. Bread crumbs text
+              menuName: '2-1-1. Services', // required. Side bar text
+              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-1-services/2-1-1-index.html', // required. HTML file path
               prev: '2-1',
               next: '2-1-2',
+            },
+            {
+              id: '2-1-2', // required. page ID
+              title: '2-1-2. KPIs', // required. Bread crumbs text
+              menuName: '2-1-2. KPIs', // required. Side bar text
+              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-2. KPIs/2-1-2-index.html', // required. HTML file path
+              prev: '2-1-1',
+              next: '2-1-3',
             },
           ],
         },
