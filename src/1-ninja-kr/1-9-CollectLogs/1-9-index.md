@@ -9,7 +9,7 @@
 앞선 워크샵에서 사용했던 values.yaml 을 수정하여 로그를 받을 수 있도록 설정합니다
 
 ```bash
-cd ~/k8s-yaml
+cd ~/hello-world/k8s-yaml
 vi values.yaml
 ```
 
