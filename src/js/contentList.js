@@ -156,7 +156,17 @@ var CONTENTS = {
       menuName: 'Splunk Ninjas Workshop for ITSI', // required. Side bar text
       href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/1-index.html', // required. HTML file path
       prev: '',
-      next: '1-0',
+      next: '2-1',
+      sub: [
+        {
+          id: '2-1', // required. page ID
+          title: 'Service Insights', // required. Bread crumbs text
+          menuName: 'Service Insights', // required. Side bar text
+          href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-index.html', // required. HTML file path
+          prev: '2',
+          next: '2-2',
+        },
+      ],
     },
   ],
   // Advanced Collector Configuraiton

@@ -1,4 +1,4 @@
-# Splunk Ninjas Workshop for IT Service Intelligence 🥷
+# Splunk Ninjas Workshop for ITSI 🥷
 
 오늘 진행될 Splunk Ninjas Workshop for IT Service Intelligence 🥷 의 콘텐츠는 아래와 같습니다
 
