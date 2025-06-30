@@ -178,7 +178,7 @@ var CONTENTS = {
               id: '2-1-2', // required. page ID
               title: '2-1-2. KPIs', // required. Bread crumbs text
               menuName: '2-1-2. KPIs', // required. Side bar text
-              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-2. KPIs/2-1-2-index.html', // required. HTML file path
+              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-2-KPIs/2-1-2-index.html', // required. HTML file path
               prev: '2-1-1',
               next: '2-1-3',
             },
