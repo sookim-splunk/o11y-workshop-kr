@@ -4,8 +4,8 @@ var CONTENTS = {
   ch1: [
     {
       id: '1', // required. page ID
-      title: 'Splunk Ninja Workshop for Korea', // required. Bread crumbs text
-      menuName: 'Splunk Ninja Workshop for Korea', // required. Side bar text
+      title: 'Splunk Ninja Workshop for Observability', // required. Bread crumbs text
+      menuName: 'Splunk Ninja Workshop for Observability', // required. Side bar text
       href: '/o11y-workshop-kr/src/1-ninja-kr/1-index.html', // required. HTML file path
       prev: '',
       next: '1-0',
@@ -149,7 +149,16 @@ var CONTENTS = {
     },
   ],
   // ITSI4Rookies
-  ch2: [],
+  ch2: [
+    {
+      id: '2', // required. page ID
+      title: 'Splunk Ninjas Workshop for ITSI', // required. Bread crumbs text
+      menuName: 'Splunk Ninjas Workshop for ITSI', // required. Side bar text
+      href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/1-index.html', // required. HTML file path
+      prev: '',
+      next: '1-0',
+    },
+  ],
   // Advanced Collector Configuraiton
   ch3: [
     {
