@@ -165,6 +165,16 @@ var CONTENTS = {
           href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-index.html', // required. HTML file path
           prev: '2',
           next: '2-2',
+          sub: [
+            {
+              id: '2-1-1', // required. page ID
+              title: 'Services, KPIs, Entities, SHS', // required. Bread crumbs text
+              menuName: 'Services, KPIs, Entities, SHS', // required. Side bar text
+              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-1-skes/2-1-1-index.html', // required. HTML file path
+              prev: '2-1',
+              next: '2-1-2',
+            },
+          ],
         },
       ],
     },
