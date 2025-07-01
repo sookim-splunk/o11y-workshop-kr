@@ -9,7 +9,8 @@
 | 시간        | 인덱스 | 내용                                                               | 예상 시간 | 진행자 |
 | ----------- | ------ | ------------------------------------------------------------------ | --------- | ------ |
 | 10:00~10:20 | -      | 개요 설명                                                          | 20분      | 김수경 |
-| 10:20~10:40 | 1      | [Services](./2-1-service-insights/2-1-1-Services/2-1-1-index.html) | 20분      | 강채희 |
+| 10:00~10:20 | 00     | [Service Insights](./2-1-service-insights/2-1-index.html)          | 20분      | 김수경 |
+| 10:20~10:40 | 01     | [Services](./2-1-service-insights/2-1-1-Services/2-1-1-index.html) | 20분      | 강채희 |
 | 10:40~11:00 | 2      | [KPIs](./2-1-service-insights/2-1-2-KPIs/2-1-2-index.html)         | 20분      | 강채희 |
 |             |        | **10 Min Break Time**                                              |
 | 11:10~11:20 | 3      | Java Instrumentation (APM)                                         | 10분      | 강채희 |
