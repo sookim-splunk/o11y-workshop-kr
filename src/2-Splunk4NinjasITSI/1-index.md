@@ -4,6 +4,13 @@
 
 원활한 워크샵이 되도록 시간과 아젠다를 참고 부탁드립니다
 
+## Pre-Requisite
+
+본 워크샵은 Splunk Show 의 아래 두 워크샵을 미리 실행시켜야 진행이 가능합니다
+
+- Splunk4Rookies - Observability
+- Splunk4Ninjas - Machine Learning and AIOps
+
 ## Contents
 
 | 시간        | 인덱스 | 내용                                                               | 예상 시간 | 진행자 |

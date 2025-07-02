@@ -47,15 +47,85 @@
 
 ## LAB 02. 서비스와 KPI 를 정의합시다
 
-Lab 01 에서 기술되었던 시나리오와 요구사항을 기억하시나요?
+Lab 01 에서 기술되었던 시나리오와 **_커스터머 세일즈팀_**으로부터 받은 요구사항을 기억하시나요?
 
 기억해야합니다 😅
 
+다시 한 번 알려드리겠습니다
+
+> **커스터머 세일즈팀 요구사항** </br>
+> “우리는 매 분마다 업데이트되는 상태 보드(status board)를 원합니다. </br>
+> 이 보드에는 지난 15분 동안의 온라인 판매 전반의 효율성이 표시되어야 합니다.</br>
+> 효율성은 제품이 조회되거나 구매된 횟수, 그리고 고객이 본 웹 콘텐츠의 전체량으로 나누어 보여야 합니다.</br>
+> 우리는 특히 구매된 상품의 개수에 집중하고 싶습니다 — 이것이 핵심 요소입니다. 온라인 판매에서는 구매가 가장 중요합니다.</br>
+> 구매 KPI는 다른 항목보다 중요도가 두 배로 높아야 합니다.</br>
+> 웹 콘텐츠 조회량도 중요하긴 하지만, 다른 항목보다는 덜 중요합니다.”
+
+### 1. 비즈니스 서비스 및 KPI 정의
+
 아래와 같은 표가 있다고 가정했을 때 빈 칸을 한번 채워넣어봅시다
 
-| KPI Name             | Requirement        | Freq. | Time Span | Imp. | Thresshold |
-| -------------------- | ------------------ | ----- | --------- | ---- | ---------- |
-| Service Health Score | Overall efficiency | 1 min | 15 min    | --   | --         |
-| Views                | 제품이 조회된 횟수 | 1 min | 15 min    | 5    | high       |
-|                      |                    |       |           |      |            |
-|                      |                    |       |           |      |            |
+- Service 이름 : _Online*Boutique_Sales*<이름>_
+
+| KPI Name             | Requirement        | Freq.    | Time Span | Imp.       | Thresshold |
+| -------------------- | ------------------ | -------- | --------- | ---------- | ---------- |
+| Service Health Score | Overall efficiency | 1 min    | 15 min    | --         | --         |
+| Views                | 제품이 조회된 횟수 | 1 min    | 15 min    | 5          | high       |
+| _<KPI_Name_1>_       | _<요구사항 기술>_  | _<빈도>_ | _<Span>_  | _<가중치>_ | _<중요도>_ |
+| _<KPI_Name_2>_       | _<요구사항 기술>_  | _<빈도>_ | _<Span>_  | _<가중치>_ | _<중요도>_ |
+
+<details>
+<summary><b>📌 [정답 보기] 여기를 클릭해서 KPI 표를 확인하세요! </b></summary>
+
+| KPI Name             | Requirement         | Freq. | Time Span | Imp. | Threshold |
+| -------------------- | ------------------- | ----- | --------- | ---- | --------- |
+| Service Health Score | Overall efficiency  | 1 min | 15 min    | --   | --        |
+| Views                | 제품이 조회된 횟수  | 1 min | 15 min    | 5    | high      |
+| Purchases            | 제품이 판매 된 횟수 | 1 min | 15 min    | 10   | High      |
+| Volume               | 웹 콘텐츠 이용량    | 1 min | 15 min    | 2    | Mid       |
+
+</details>
+
+### 2. 테크니컬 서비스 및 KPI 정의
+
+위 단원에서는 커스터머 세일즈팀의 요구사항을 기준으로 정의내린 비즈니스 서비스와 KPI를 만들어보았습니다. 이제는 **_IT 팀_**에게서 받은 요구사항을 한번 살펴보도록 합니다
+
+> **IT팀 요구사항** </br>
+> “우리에게 가장 중요한 것은 웹사이트의 상태(Health)입니다.</br>
+> 에러가 얼마나 발생하고 있는지 알고 싶습니다.</br>
+> 스토어 프런트엔드 웹 애플리케이션에서 에러가 발생하면 큰 문제가 되기 때문입니다.</br>
+> 또한 웹 팜(Web Farm) 내 각 서버별 CPU, 메모리, 디스크 사용량 평균도 알고 싶습니다.</br>
+> 이 정보는 1분마다 업데이트되어 최근 15분 데이터를 보여주면 좋겠습니다.</br>
+> 그리고 웹 팜의 서버 수가 서비스 수준(Service Level) 이하로 떨어지면 알림을 받고 싶습니다
+
+아래와 같은 표가 있다고 가정했을 때 빈 칸을 한번 채워넣어봅시다
+
+- Service 이름 : _Online_Boutique_WebFarm_ \_<이름>
+
+| KPI Name             | Requirement                   | Freq.    | Time Span | Imp.       | Thresshold |
+| -------------------- | ----------------------------- | -------- | --------- | ---------- | ---------- |
+| Service Health Score | Overall efficiency            | 1 min    | 15 min    | --         | --         |
+| Errors               | 얼마나 많은 에러가 발생했는지 | 1 min    | 15 min    | 11         | low        |
+| _<KPI_Name_1>_       | _<요구사항 기술>_             | _<빈도>_ | _<Span>_  | _<가중치>_ | _<중요도>_ |
+| _<KPI_Name_2>_       | _<요구사항 기술>_             | _<빈도>_ | _<Span>_  | _<가중치>_ | _<중요도>_ |
+| _<KPI_Name_3>_       | _<요구사항 기술>_             | _<빈도>_ | _<Span>_  | _<가중치>_ | _<중요도>_ |
+
+<details>
+<summary><b>📌 [정답 보기] 여기를 클릭해서 KPI 표를 확인하세요! </b></summary>
+
+| KPI Name               | Requirement                   | Freq. | Time Span | Imp. | Thresshold |
+| ---------------------- | ----------------------------- | ----- | --------- | ---- | ---------- |
+| Service Health Score   | Overall efficiency            | 1 min | 15 min    | --   | --         |
+| Errors                 | 얼마나 많은 에러가 발생했는지 | 1 min | 15 min    | 11   | low        |
+| CPU Utilization(%)     | CPU 평균 사용률               | 1 min | 15 min    | 5    | mid        |
+| Memory Utilization(%)  | Memory 평균 사용률            | 1 min | 15 min    | 5    | mid        |
+| Storage Utilization(%) | Storage 평균 사용률           | 1 min | 15 min    | 5    | mid        |
+
+</details>
+
+</br>
+
+> **Question!** </br> </br>
+> IT 팀의 요구사항에 기반해서 KPI에 잡히는 Entity 는 어떤 단위가 되어야 할까요?
+
+**LAB 02 Done!**
