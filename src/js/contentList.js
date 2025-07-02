@@ -182,6 +182,14 @@ var CONTENTS = {
               prev: '2-1-1',
               next: '2-1-3',
             },
+            {
+              id: '2-1-3', // required. page ID
+              title: '2-1-3. Base Searches', // required. Bread crumbs text
+              menuName: '2-1-3. Base Searches', // required. Side bar text
+              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-3-BaseSearches/2-1-3-index.html', // required. HTML file path
+              prev: '2-1-2',
+              next: '2-1-4',
+            },
           ],
         },
       ],
