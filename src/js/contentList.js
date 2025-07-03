@@ -190,6 +190,14 @@ var CONTENTS = {
               prev: '2-1-2',
               next: '2-1-4',
             },
+            {
+              id: '2-1-5', // required. page ID
+              title: '2-1-4. Implementing Services', // required. Bread crumbs text
+              menuName: '2-1-4. Implementing Services', // required. Side bar text
+              href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-1-service-insights/2-1-4-ImplementService/2-1-4-index.html', // required. HTML file path
+              prev: '2-1-3',
+              next: '2-1-5',
+            },
           ],
         },
       ],
