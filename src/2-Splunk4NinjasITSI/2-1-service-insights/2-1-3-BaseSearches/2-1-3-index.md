@@ -84,7 +84,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Split by Entity : Yes 선택 후 sf_service 입력
   > 필요시 Base Search 에 특정 엔터티를 구분해서 볼 수 있도록 되어있는 서비스입니다. </br>예: 웹 트랜잭션을 서버별로 나눠서 보기 위해 host 기준으로 분리(Split)
   > → 여러 웹 서버가 있을 경우, 각 서버별 트랜잭션 수가 따로 계산됩니다.
-- Filter Entities in Service : Yes 선택 후 sf_service 입력
+- Filter Entities in Service : No 선택 그대로 둡니다
   > 필요시 서비스 별로 엔터티를 필터링 할 수 있는 기능입니다 </br> 예: 서비스 엔터티 필터링 옵션을 켜고, 이 Base Search를 Online Sales 서비스의 KPI에 연결하면
   > 해당 서비스에 할당된 엔터티만 KPI 값 계산에 사용됩니다.
 
@@ -115,7 +115,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes
 - Split by Entity : Yes 선택 후 sf_service 입력
-- Filter Entities in Service : Yes 선택 후 sf_service 입력
+- Filter Entities in Service : No 선택 그대로 둡니다
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
   - Title : view_count
   - Threshold Field : \_time
@@ -140,7 +140,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes
 - Split by Entity : Yes 선택 후 sf_service 입력
-- Filter Entities in Service : Yes 선택 후 sf_service 입력
+- Filter Entities in Service : No 선택 그대로 둡니다
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
   - Title : purchase_count
   - Threshold Field : \_time
