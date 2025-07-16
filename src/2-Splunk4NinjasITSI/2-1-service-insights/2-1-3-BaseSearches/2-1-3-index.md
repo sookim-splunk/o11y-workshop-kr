@@ -34,20 +34,18 @@
 4. 그 기간 동안 값을 어떻게 요약할지: count(건수), last(마지막 값), sum(합계), average(평균) 등
 5. KPI 결과 값을 **엔터티(예: 호스트 단위)** 로 나눠서 볼 것인지 여부
 
-> Service 생성 시 선택하는 Modules 에 대해서 좀 더 알아보고 내용 적기
-> https://docs.splunk.com/Documentation/ITSI/4.20.1/SI/ImportSearch
+https://docs.splunk.com/Documentation/ITSI/4.20.1/SI/ImportSearch
 
 </br>
 
 ### KPI에 적용 할 Data를 정제하는 방법은?
 
-총 3가지로 이루어져 있습니다. KPI 를 생성 할 때 어떤 데이터를 가지고 KPI를 만들것인지 묻는 단계가 있는데, 이 때 사용자는 세 가지 옵션중에 선택 할 수 있습니다.
+KPI 를 생성 할 때 어떤 데이터를 가지고 KPI를 만들것인지 묻는 단계가 있는데, 이 때 사용자는 두 가지 옵션중에 선택 할 수 있습니다.
 
-- Module Search : 이미 ITSI에 의해 제공되는 데이터 소스 별 서치 템플릿
 - KPI Based Search : Saved Search 또는 Ad-hoc Search 형태로 SPL을 통해 검색
-- 각 KPI에 선택 조건, 계산 방법, 기간(Window), 엔터티 정의를 직접 포함하여 생성
+- Ad-hoc search : 각 KPI에 선택 조건, 계산 방법, 기간(Window), 엔터티 정의를 직접 포함하여 생성
 
-모듈 서치를 사용하면 KPI 생성에 빠르게 접근 할 수 있겠지만, 유즈케이스에 따라 상이한 모든 IT환경에 맞게 만들어져있지 않습니다. 따라서 동일한 조건을 여러 KPI가 함께 사용할 수 있다면, **Base Search**로 정의하는 것을 권장합니다
+Ad-hoc 서치를 사용하면 KPI 생성에 빠르게 접근 할 수 있겠지만, 매번 서비스마다 KPI를 지정 할 때 매뉴얼하게 SPL문을 작성해야합니다. 따라서 동일한 조건을 여러 KPI가 함께 사용할 수 있다면, **Base Search**로 정의하는 것을 권장합니다
 
 </br>
 
@@ -65,70 +63,94 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 ## LAB 03. KPI Base Search 만들기
 
-### 1. Web Traffic Base Search 만들기
+우리가 KPI로 등록할 메트릭 리스트는 아래와 같습니다
+
+| Metric Type | Metric Name                        | KPI Metric                |
+| ----------- | ---------------------------------- | ------------------------- |
+| Infra       | container.filesystem.usage         | container_cpu_utilization |
+| Infra       | container.memory.usage             |                           |
+| Infra       | container_cpu_utilization          |                           |
+| APM         | service.request.count              |                           |
+| APM         | service.request.duration.ns.median |                           |
+| APM         | service.request.duration.ns.p99    |                           |
+| RUM         | rum.client_error.count             |                           |
+| RUM         | rum.page_view.count                |                           |
+| RUM         | rum.page_view.time.ns.p75          |                           |
+| RUM         | rum.resource_request.count         |                           |
+| RUM         | rum.resource_request.time.ns.p75   |                           |
+| RUM         | rum.webvitals_cls.score.p75        |                           |
+| RUM         | rum.webvitals_fid.time.ns.p75      |                           |
+| RUM         | rum.webvitals_lcp.time.ns.p75      |                           |
+| Synthetics  |                                    |                           |
+
+### 1. Infrastructure Base Search 만들기
 
 - Splunk Cloud 에서 **[ITSI] > [Configurations] > [KPI Base Search]** 메뉴로 이동합니다
 - **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
-- Title : **_OBQ : Web Traffic_** 로 지정 후 **[Create]** 버튼을 누릅니다
-- 방금 만든 KPI Base Search 의 이름을 눌러 설정으로 들어갑니다
+- Title : **_OBQ : Infrastructure_** 로 지정 후 **[Create]** 버튼을 누릅니다
   ![](../../../images/2-ninja-itsi/2-1-3-config1.jpg)
 - Search Type : Ad hoc Search 선택
 - Search : 아래와 같이 입력
   ```bash
-  | mstats avg(_value)
-  WHERE index=sim_metrics metric_name="service.request.count" sf_service="frontend"
-  span=1m BY sf_service
+  | mstats
+    avg("container.filesystem.usage") as fs_usage,
+    avg("container.memory.usage") as memory_usage,
+    avg("container_cpu_utilization") as cpu_utilization
+  WHERE index=sim_metrics
+  BY k8s.pod.name, host
+  span=1m
+  | table _time, k8s.pod.name, host, fs_usage, memory_usage, cpu_utilization
   ```
-- KPI Search Scheduel : Every minute
-- Calculation Window : Last 15 minutes
-- Split by Entity : Yes 선택 후 sf_service 입력
-  > 필요시 Base Search 에 특정 엔터티를 구분해서 볼 수 있도록 되어있는 서비스입니다. </br>예: 웹 트랜잭션을 서버별로 나눠서 보기 위해 host 기준으로 분리(Split)
-  > → 여러 웹 서버가 있을 경우, 각 서버별 트랜잭션 수가 따로 계산됩니다.
-- Filter Entities in Service : No 선택 그대로 둡니다
-  > 필요시 서비스 별로 엔터티를 필터링 할 수 있는 기능입니다 </br> 예: 서비스 엔터티 필터링 옵션을 켜고, 이 Base Search를 Online Sales 서비스의 KPI에 연결하면
-  > 해당 서비스에 할당된 엔터티만 KPI 값 계산에 사용됩니다.
-
-내용 입력을 완료하였다면 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
-
-![](../../../images/2-ninja-itsi/2-1-3-config2.jpg)
-
-- Title : avg_rate
-- Threshold Field : avg
-- Service/Aggregate Calculation : Average
-- Fill Data Gaps with : Last availalbe value
-- **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+- 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
+  ![](../../../images/2-ninja-itsi/2-1-3-config2.jpg)
+  - Title : container_cpu_utilization
+  - Threshold Field : container_cpu_utilization
+  - Unit : %
+  - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+- 나머지 메트릭도 만들어줍니다
+- container.filesystem.usage, container.memory.usage
 
 </br>
 
-### 2. Web Views Base Search 만들기
+### 2. APM Error Base Search 만들기
 
 - **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
-- Title : **_OBQ : Web Catalog Views_** 로 지정 후 **[Create]** 버튼을 누릅니다
+- Title : **_OBQ : Application Errors_** 로 지정 후 **[Create]** 버튼을 누릅니다
 - 방금 만든 KPI Base Search 의 이름을 눌러 설정으로 들어갑니다
 - Search Type : Ad hoc Search 선택
 - Search : 아래와 같이 입력
   ```bash
-  | mstats avg(_value)
-  WHERE index=sim_metrics metric_name="service.request.count" sf_service="productcatalogservice"
-  span=1m BY sf_service
+  | mstats
+      sum("service.request.count") as request_count,
+      avg("service.request.duration.ns.median") as duration_median,
+      avg("service.request.duration.ns.p99") as duration_p99
+    WHERE index=sim_metrics
+      AND sf_service=*
+      AND sf_environment=*
+      AND sf_error="true"
+    BY sf_service, sf_environment
+    span=1m
+  | rename sf_service as service, sf_environment as environment
+  | table _time, service, environment, request_count, duration_median, duration_p99
   ```
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes
 - Split by Entity : Yes 선택 후 sf_service 입력
 - Filter Entities in Service : No 선택 그대로 둡니다
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
-  - Title : view_count
-  - Threshold Field : \_time
-  - Service/Aggregate Calculation : distict count
-  - Fill Data Gaps with : Last availalbe value
-- **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+  - Title : request_error_count
+  - Threshold Field : request_count
+  - Unit : 개
+  - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+- 나머지 메트릭도 만들어줍니다
+- service.request.duration.ns.median, service.request.duration.ns.p99
 
 </br>
 
-### 3. Web Purchase Base Search 만들기
+### 3. APM Requrest Base Search 만들기
 
 - **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
-- Title : **_OBQ : Web Purchase_** 로 지정 후 **[Create]** 버튼을 누릅니다
+- Title : **\_OBQ : Application Request** 로 지정 후 **[Create]** 버튼을 누릅니다
 - 방금 만든 KPI Base Search 의 이름을 눌러 설정으로 들어갑니다
 - Search Type : Ad hoc Search 선택
 - Search : 아래와 같이 입력
