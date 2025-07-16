@@ -12,19 +12,8 @@ data('container.filesystem.usage', filter=filter('k8s.cluster.name', '*') and fi
 
 ```bash
 # APM Traffic & Errors
-thruput_avg_rate = data('service.request.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and (not filter('sf_dimensionalized', '*')), rollup='rate').sum(by=['sf_service', 'sf_environment']).publish(label='thruput_avg_rate');
-error_durations_p99 = data('service.request' + '.duration.ns.' + 'p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'true'), rollup='max').mean(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish(label='error_durations_p99');
-non_error_durations_p99 = data('service.request' + '.duration.ns.' + 'p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'false'), rollup='max').mean(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish(label='non_error_durations_p99');
-error_durations = data('service.request' + '.duration.ns.' + 'median', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'true'), rollup='max').mean(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish(label='error_durations');
-non_error_durations = data('service.request' + '.duration.ns.' + 'median', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'false'), rollup='max').mean(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish(label='non_error_durations');
-error_counts = data('service.request' + '.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'true'), rollup='sum').sum(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish(label='error_counts');
-non_error_counts = data('service.request' + '.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'false'), rollup='sum').sum(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish(label='non_error_counts');
-
-service.request.duration.ns.p99
-
-data('service.request.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and (not filter('sf_dimensionalized', '*')), rollup='rate').sum(by=['sf_service', 'sf_environment']).publish();
-data('service.request' + '.duration.ns.' + 'p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'false'), rollup='max').mean(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish();
-
+data("service.request.duration.ns.p99", filter=filter("sf_service", "*")).publish(); data("service.request.duration.ns.median", filter=filter("sf_service", "*")).publish();
+data("service.request.count", filter=filter("sf_service", "*")).publish();
 ```
 
 </br>
@@ -36,13 +25,6 @@ data('rum.page_view.count').publish(label='rum_page_view'); data('rum.client_err
 </br>
 
 ```bash
-data('*', filter=filter('sf_product', 'synthetics') and filter('test_type', '*')).publish();
-data('synthetics.run.uptime.percent', filter=filter('test_type', 'browser')and filter('test', '*')).mean(over=Args.get('ui.dashboard_window', '15m')).mean(by=['test']).publish();
-data('synthetics.duration.time.ms', filter=filter('test', '*') and filter('test_type', 'browser')).mean(by=['location', 'location_id', 'test_id', 'test_type']).publish();
-data('service.request' + '.duration.ns.' + 'median', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_error','*') and not filter('sf_dimensionalized', '*') and filter('sf_error', 'false'), rollup='max').mean(by=['sf_service', 'sf_environment', 'sf_error'], allow_missing=['sf_httpMethod']).publish();
-
-data("service.request.duration.ns.p99", filter=filter("sf_service", "*")).publish();
-data("service.request.duration.ns.median", filter=filter("sf_service", "*")).publish();
-data("service.request.count", filter=filter("sf_service", "*")).publish();
+data('*', filter=filter('sf_product', 'synthetics') and filter('test_type', '*')).publish(); data('synthetics.run.uptime.percent', filter=filter('test_type', 'browser')and filter('test', '*')).mean(over=Args.get('ui.dashboard_window', '15m')).mean(by=['test']).publish(); data('synthetics.duration.time.ms', filter=filter('test', '*') and filter('test_type', 'browser')).mean(by=['location', 'location_id', 'test_id', 'test_type']).publish();
 
 ```
