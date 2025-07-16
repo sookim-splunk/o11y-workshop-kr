@@ -65,27 +65,27 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 우리가 KPI로 등록할 메트릭 리스트는 아래와 같습니다
 
-| Metric Type | Metric Name                             | KPI Metric                |
-| ----------- | --------------------------------------- | ------------------------- |
-| Infra       | container.filesystem.usage              | container_cpu_utilization |
-| Infra       | container.memory.usage                  |                           |
-| Infra       | container_cpu_utilization               |                           |
-| APM         | service.request.count                   |                           |
-| APM         | service.request.duration.ns.median      |                           |
-| APM         | service.request.duration.ns.p99         |                           |
-| RUM         | rum.client_error.count                  |                           |
-| RUM         | rum.page_view.count                     |                           |
-| RUM         | rum.resource_request.count              |                           |
-| RUM         | rum.webvitals_cls.score.p75             |                           |
-| RUM         | rum.webvitals_fid.time.ns.p75           |                           |
-| RUM         | rum.webvitals_lcp.time.ns.p75           |                           |
-| Synthetics  | synthetics.resource_request.count       |                           |
-| Synthetics  | synthetics.resource_request.error.count |                           |
-| Synthetics  | synthetics.run.count                    |                           |
-| Synthetics  | synthetics.run.duration.time.ms         |                           |
-| Synthetics  | synthetics.connect.time.ms              |                           |
-| Synthetics  | synthetics.dns.time.ms                  |                           |
-| Synthetics  | synthetics.dom_complete.time.ms         |                           |
+| Metric Type | Metric Name                             | KPI Metric                             |
+| ----------- | --------------------------------------- | -------------------------------------- |
+| Infra       | container.filesystem.usage              | container_filesystem_usage             |
+| Infra       | container.memory.usage                  | container_memory_usage                 |
+| Infra       | container_cpu_utilization               | container_cpu_utilization              |
+| APM         | service.request.count                   | request_count, error_counts            |
+| APM         | service.request.duration.ns.median      | duration_median, duration_median_error |
+| APM         | service.request.duration.ns.p99         | duration_p99, duration_p99_error       |
+| RUM         | rum.client_error.count                  | client_errors                          |
+| RUM         | rum.page_view.count                     | page_views                             |
+| RUM         | rum.resource_request.count              | resource_requests                      |
+| RUM         | rum.webvitals_cls.score.p75             | cls_score_p75                          |
+| RUM         | rum.webvitals_fid.time.ns.p75           | fid_p75                                |
+| RUM         | rum.webvitals_lcp.time.ns.p75           | lcp_p75                                |
+| Synthetics  | synthetics.resource_request.count       | resource_requests                      |
+| Synthetics  | synthetics.resource_request.error.count | resource_errors                        |
+| Synthetics  | synthetics.run.count                    | run_count                              |
+| Synthetics  | synthetics.run.duration.time.ms         | run_duration                           |
+| Synthetics  | synthetics.connect.time.ms              | connect_time                           |
+| Synthetics  | synthetics.dns.time.ms                  | dns_time                               |
+| Synthetics  | synthetics.dom_complete.time.ms         | dom_complete_time                      |
 
 ### 1. Infrastructure Base Search 만들기
 
@@ -125,9 +125,9 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Search : 아래와 같이 입력
   ```bash
   | mstats
-      sum("service.request.count") as request_count,
-      avg("service.request.duration.ns.median") as duration_median,
-      avg("service.request.duration.ns.p99") as duration_p99
+      sum("service.request.count") as request_count_error,
+      avg("service.request.duration.ns.median") as duration_median_error,
+      avg("service.request.duration.ns.p99") as duration_p99_error
     WHERE index=sim_metrics
       AND sf_service=*
       AND sf_environment=*
@@ -135,7 +135,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
     BY sf_service, sf_environment
     span=1m
   | rename sf_service as service, sf_environment as environment
-  | table _time, service, environment, request_count, duration_median, duration_p99
+  | table _time, service, environment, request_count_error, duration_median_error, duration_p99_error
   ```
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes
@@ -143,11 +143,11 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Filter Entities in Service : No 선택 그대로 둡니다
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
   - Title : request_error_count
-  - Threshold Field : request_count
+  - Threshold Field : request_count_error
   - Unit : 개
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
 - 나머지 메트릭도 만들어줍니다
-- service.request.duration.ns.median, service.request.duration.ns.p99
+- duration_median_error, duration_p99_error
 
 </br>
 
