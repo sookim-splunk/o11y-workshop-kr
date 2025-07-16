@@ -65,23 +65,27 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 우리가 KPI로 등록할 메트릭 리스트는 아래와 같습니다
 
-| Metric Type | Metric Name                        | KPI Metric                |
-| ----------- | ---------------------------------- | ------------------------- |
-| Infra       | container.filesystem.usage         | container_cpu_utilization |
-| Infra       | container.memory.usage             |                           |
-| Infra       | container_cpu_utilization          |                           |
-| APM         | service.request.count              |                           |
-| APM         | service.request.duration.ns.median |                           |
-| APM         | service.request.duration.ns.p99    |                           |
-| RUM         | rum.client_error.count             |                           |
-| RUM         | rum.page_view.count                |                           |
-| RUM         | rum.page_view.time.ns.p75          |                           |
-| RUM         | rum.resource_request.count         |                           |
-| RUM         | rum.resource_request.time.ns.p75   |                           |
-| RUM         | rum.webvitals_cls.score.p75        |                           |
-| RUM         | rum.webvitals_fid.time.ns.p75      |                           |
-| RUM         | rum.webvitals_lcp.time.ns.p75      |                           |
-| Synthetics  |                                    |                           |
+| Metric Type | Metric Name                             | KPI Metric                |
+| ----------- | --------------------------------------- | ------------------------- |
+| Infra       | container.filesystem.usage              | container_cpu_utilization |
+| Infra       | container.memory.usage                  |                           |
+| Infra       | container_cpu_utilization               |                           |
+| APM         | service.request.count                   |                           |
+| APM         | service.request.duration.ns.median      |                           |
+| APM         | service.request.duration.ns.p99         |                           |
+| RUM         | rum.client_error.count                  |                           |
+| RUM         | rum.page_view.count                     |                           |
+| RUM         | rum.resource_request.count              |                           |
+| RUM         | rum.webvitals_cls.score.p75             |                           |
+| RUM         | rum.webvitals_fid.time.ns.p75           |                           |
+| RUM         | rum.webvitals_lcp.time.ns.p75           |                           |
+| Synthetics  | synthetics.resource_request.count       |                           |
+| Synthetics  | synthetics.resource_request.error.count |                           |
+| Synthetics  | synthetics.run.count                    |                           |
+| Synthetics  | synthetics.run.duration.time.ms         |                           |
+| Synthetics  | synthetics.connect.time.ms              |                           |
+| Synthetics  | synthetics.dns.time.ms                  |                           |
+| Synthetics  | synthetics.dom_complete.time.ms         |                           |
 
 ### 1. Infrastructure Base Search 만들기
 
@@ -150,26 +154,95 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 ### 3. APM Requrest Base Search 만들기
 
 - **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
-- Title : **\_OBQ : Application Request** 로 지정 후 **[Create]** 버튼을 누릅니다
-- 방금 만든 KPI Base Search 의 이름을 눌러 설정으로 들어갑니다
+- Title : **\_OBQ : Application Requests** 로 지정 후 **[Create]** 버튼을 누릅니다
 - Search Type : Ad hoc Search 선택
 - Search : 아래와 같이 입력
+
   ```bash
-  | mstats avg(_value)
-  WHERE index=sim_metrics metric_name="service.request.count" sf_service="checkoutservice"
-  span=1m BY sf_service
+  | mstats
+    sum("service.request.count") as request_count,
+    avg("service.request.duration.ns.median") as duration_median,
+    avg("service.request.duration.ns.p99") as duration_p99
+  WHERE index=sim_metrics
+    AND sf_service=*
+    AND sf_environment=*
+    AND sf_error="false"
+  BY sf_service, sf_environment
+  span=1m
+  | rename sf_service as service, sf_environment as environment
+  | table _time, service, environment, request_count, duration_median, duration_p99
+
   ```
-- KPI Search Scheduel : Every minute
-- Calculation Window : Last 15 minutes
-- Split by Entity : Yes 선택 후 sf_service 입력
-- Filter Entities in Service : No 선택 그대로 둡니다
+
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
-  - Title : purchase_count
-  - Threshold Field : \_time
-  - Service/Aggregate Calculation : distict count
-  - Fill Data Gaps with : Last availalbe value
-- **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+  - Title : request_count
+  - Threshold Field : request_count
+  - Unit : 개
+  - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+- 나머지 메트릭도 만들어줍니다
+- duration_median, duration_p99
 
 </br>
+
+### 4. RUM Base Search 만들기
+
+- **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
+- Title : **\_OBQ : Frontend UX Performance** 로 지정 후 **[Create]** 버튼을 누릅니다
+- Search Type : Ad hoc Search 선택
+- Search : 아래와 같이 입력
+
+  ```bash
+  | mstats
+    sum("rum.client_error.count") as client_errors,
+    sum("rum.page_view.count") as page_views,
+    sum("rum.resource_request.count") as resource_requests,
+    avg("rum.webvitals_cls.score.p75") as cls_score_p75,
+    avg("rum.webvitals_fid.time.ns.p75") as fid_p75,
+    avg("rum.webvitals_lcp.time.ns.p75") as lcp_p75
+  WHERE index=sim_metrics
+  BY app
+  span=1m
+  | table _time, app, client_errors, page_views, resource_requests, cls_score_p75, fid_p75, lcp_p75
+
+  ```
+
+- 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
+  - Title : client_errors
+  - Threshold Field : client_errors
+  - Unit : 개
+  - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+- 나머지 메트릭도 만들어줍니다
+- page_views, resource_requests, cls_score_p75, fid_p75, lcp_p75
+
+### 5. Synthetics Base Search 만들기
+
+- **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
+- Title : **\_OBQ : Synthetics Performance** 로 지정 후 **[Create]** 버튼을 누릅니다
+- Search Type : Ad hoc Search 선택
+- Search : 아래와 같이 입력
+
+  ```bash
+  | mstats
+    sum("synthetics.resource_request.count") as resource_requests,
+    sum("synthetics.resource_request.error.count") as resource_errors,
+    sum("synthetics.run.count") as run_count,
+    avg("synthetics.run.duration.time.ms") as run_duration,
+    avg("synthetics.connect.time.ms") as connect_time,
+    avg("synthetics.dns.time.ms") as dns_time,
+    avg("synthetics.dom_complete.time.ms") as dom_complete_time
+  WHERE index=sim_metrics
+  BY test
+  span=1m
+  | table _time, test, resource_requests, resource_errors, run_count, run_duration, connect_time, dns_time, dom_complete_time
+
+  ```
+
+- 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
+  - Title : resource_requests
+  - Threshold Field : resource_requests
+  - Unit : 개
+  - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+- 나머지 메트릭도 만들어줍니다
+- resource_errors, run_count, run_duration, connect_time, dns_time, dom_complete_time
 
 **LAB 03 Done!**
