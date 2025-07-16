@@ -67,9 +67,9 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 | Metric Type | Metric Name                             | KPI Metric                             |
 | ----------- | --------------------------------------- | -------------------------------------- |
-| Infra       | container.filesystem.usage              | container_filesystem_usage             |
-| Infra       | container.memory.usage                  | container_memory_usage                 |
-| Infra       | container_cpu_utilization               | container_cpu_utilization              |
+| Infra       | container.filesystem.usage              | fs_usage                               |
+| Infra       | container.memory.usage                  | memory_usage                           |
+| Infra       | container_cpu_utilization               | cpu_utilization                        |
 | APM         | service.request.count                   | request_count, error_counts            |
 | APM         | service.request.duration.ns.median      | duration_median, duration_median_error |
 | APM         | service.request.duration.ns.p99         | duration_p99, duration_p99_error       |
@@ -108,11 +108,11 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
   ![](../../../images/2-ninja-itsi/2-1-3-config2.jpg)
   - Title : container_cpu_utilization
-  - Threshold Field : container_cpu_utilization
+  - Threshold Field : cpu_utilization
   - Unit : %
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
 - 나머지 메트릭도 만들어줍니다
-- container.filesystem.usage, container.memory.usage
+- memory_usage, fs_usage
 
 </br>
 
