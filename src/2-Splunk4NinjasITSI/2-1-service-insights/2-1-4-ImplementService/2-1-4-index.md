@@ -37,15 +37,15 @@
 
 **서비스 목록**
 
-[ ] cartservice </br>
-[ ] checkoutservice </br>
-[ ] paymentservice </br>
-[ ] shippingservice </br>
-[ ] emailservice </br>
-[ ] productcatalogservice </br>
-[ ] recommendationservice </br>
-[ ] adservice </br>
-[ ] currencyservice </br>
+- [ ] cartservice </br>
+- [ ] checkoutservice </br>
+- [ ] paymentservice </br>
+- [ ] shippingservice </br>
+- [ ] emailservice </br>
+- [ ] productcatalogservice </br>
+- [ ] recommendationservice </br>
+- [ ] adservice </br>
+- [ ] currencyservice </br>
 
 | KPI Name               | KPI Base Search            | Metric                |
 | ---------------------- | -------------------------- | --------------------- |
@@ -61,7 +61,7 @@
 
 #### Frontend Service
 
-[ ] frontend
+- [ ] frontend
 
 | KPI Name              | KPI Base Search               | Metric            |
 | --------------------- | ----------------------------- | ----------------- |
@@ -77,7 +77,7 @@
 
 #### Synthetics Service
 
-[ ] Synthetics Test
+- [ ] Synthetics Test
 
 | KPI Name             | KPI Base Search              | Metric            |
 | -------------------- | ---------------------------- | ----------------- |
@@ -92,6 +92,20 @@
 </br>
 
 ## 3. Service Analyzer 정의하기
+
+KPI 가 필요한 마이크로 서비스에 대해 모두 정의하였다면, 이제는 상위에 올 비즈니스 서비스를 정의해야합니다. 아래 절차에 따라 비즈니스 서비스를 생성하고 Dependency를 지정하세요
+
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
+- 아래와 같이 내용을 입력하고 생성합니다
+- Title : UI Layer
+- Manually add service content 선택
+- Service Dependency 탭을 선택한 후 **[Add dependencies]** 버튼을 누릅니다
+- 목록에 표시되는 서비스 중 **frontend** 를 선택합니다
+- 오른쪽에 표시되는 KPI 목록에서 ServiceHealthScore 를 선택 후 [Done] 버튼을 클릭합니다
+- **[Save] > [Save and Enable]** 버튼을 누릅니다
+- Service Analyzer 메뉴로 이동했을 때 두 서비스가 연결 된 것이 확인되나요?
+
+위 작업대로 나머지 비즈니스 서비스를 만들고 Dependencies 를 만들어줍니다
 
 </br>
 
