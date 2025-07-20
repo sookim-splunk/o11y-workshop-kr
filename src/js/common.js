@@ -58,27 +58,8 @@ var _com = (function() {
    *    document.addEventListener('DOMContentLoaded', () => _com.setPage('1')); 
    */
   const setPage = pageId => {
-    if ( pageId === '0' ) {
-      // root 화면으로 진입 시 전체 하위 메뉴 출력
-      VALID_MENU = Object.values(CONTENTS).reduce((acc, cur) => [ ...acc, ...cur ], []);
-      
-      const tempMenu = [...VALID_MENU];
-      tempMenu.push({
-        id: '0',
-        title: 'Splunk Observability Workshops',
-        menuName: 'Splunk Observability Workshops',
-        href: '/o11y-workshop-kr/index.html',
-        prev: '',
-        next: '1',
-        sub: [],
-      });
-
-      FLATTERNED_MENU = flattern(tempMenu);
-    } else {
-      // 챕터별 화면 진입 시 다른 챕터의 하위 메뉴가 보이지 않도록 제거
-      VALID_MENU = CONTENTS[`ch${ getHomeId(pageId) }`];
-      FLATTERNED_MENU = flattern(VALID_MENU);
-    }
+    VALID_MENU = [ ...CONTENTS ];
+    FLATTERNED_MENU = flattern(VALID_MENU);
     
     // 현재 진입하려는 화면의 HTML 경로 탐색
     const url = FLATTERNED_MENU.find(el => el.id === pageId)?.href;
@@ -300,7 +281,8 @@ var _com = (function() {
           }
         });
 
-        const homeId = getHomeId(pageId);
+        // const homeId = getHomeId(pageId);
+        const homeId = '0';
         document.querySelector('#logo').addEventListener('click', () => goHome(homeId));
         document.querySelector('#homeIcon').addEventListener('click', () => goHome(homeId));
       })
