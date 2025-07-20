@@ -24,6 +24,9 @@ var _com = (function() {
       let parentId = '';
       if ( id.indexOf('-') > -1 ) {
         parentId = id.substring(0, id.lastIndexOf('-'));
+      } else if ( id !== '0' ) {
+        // 각 챕터의 최상위 페이지일 경우
+        parentId = '0';
       }
 
       acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
@@ -256,6 +259,7 @@ var _com = (function() {
         document.querySelector('#R-sidebar').innerHTML = html;
         
         let sideHTML = '';
+        // sideHTML = createMenuHTML('', VALID_MENU); // 챕터별로 진입 시 다른 메뉴 제거하려면 pageId 미지정
         sideHTML = createMenuHTML(pageId, VALID_MENU);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
