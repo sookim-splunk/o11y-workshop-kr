@@ -119,8 +119,6 @@ var _com = (function() {
       if ( curPage.prev ) {
         const prev = getTargetMenu(curPage.prev, FLATTERNED_MENU);
         result.prev = prev?.href || '';
-      } else {
-
       }
 
       if ( curPage.next ) {
@@ -258,7 +256,7 @@ var _com = (function() {
         document.querySelector('#R-sidebar').innerHTML = html;
         
         let sideHTML = '';
-        sideHTML = createMenuHTML('', VALID_MENU);
+        sideHTML = createMenuHTML(pageId, VALID_MENU);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         // const url = getCurrentURL();
