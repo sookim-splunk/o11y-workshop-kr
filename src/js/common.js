@@ -63,6 +63,9 @@ var _com = (function() {
   const setPage = pageId => {
     VALID_MENU = [ ...CONTENTS ];
     FLATTERNED_MENU = flattern(VALID_MENU);
+
+    // 사이드바에 최상단 루트 메뉴를 제거한 나머지 메뉴를 렌더하기 위해 추가 가공
+    VALID_MENU = [ ...VALID_MENU[0].sub ];
     
     // 현재 진입하려는 화면의 HTML 경로 탐색
     const url = FLATTERNED_MENU.find(el => el.id === pageId)?.href;
@@ -260,6 +263,7 @@ var _com = (function() {
         
         let sideHTML = '';
         // sideHTML = createMenuHTML('', VALID_MENU); // 챕터별로 진입 시 다른 메뉴 제거하려면 pageId 미지정
+        // 
         sideHTML = createMenuHTML(pageId, VALID_MENU);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
