@@ -35,7 +35,9 @@
 
 - **[ITSI] > [Configuration] > [Entity Management]** 메뉴로 이동합니다
 - 오른쪽 상단에 **[Create Entity] > [Import from Search]** 버튼을 눌러 생성을 시작합니다
+
   <img src="../../../images/2-ninja-itsi/2-1-5-config4.jpg" width="600" style="border: 1px solid #000; block; margin-left: 0;">
+
   - Ad Hoc Search 선택
   - 아래 다음과 같은 SPL문을 입력합니다
     ```bash
@@ -55,6 +57,7 @@
     ```
   - 돋보기 버튼을 눌러 SPL문이 제대로 작동하고, 아래에 엔티티가 표시되는지 확인합니다
   - **[Next]** 버튼을 누릅니다
+
 - 다음 불러오기 된 키 컬럼들을 각각 알맞는 필드에 매칭시킵니다
   <img src="../../../images/2-ninja-itsi/2-1-5-config6.jpg" width="600" style="border: 1px solid #000; block; margin-left: 0;">
 - 스크린샷 처럼 필드를 매칭 시킨 후 **[Import]** 버튼을 클릭합니다
