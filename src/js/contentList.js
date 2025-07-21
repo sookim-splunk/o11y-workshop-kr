@@ -14,7 +14,7 @@ var CONTENTS = [
         title: 'Splunk Ninja Workshop for Observability', // required. Bread crumbs text
         menuName: 'Splunk Ninja Workshop for Observability', // required. Side bar text
         href: '/o11y-workshop-kr/src/1-ninja-kr/1-index.html', // required. HTML file path
-        prev: '',
+        prev: '0',
         next: '1-0',
         sub: [
           {
@@ -160,7 +160,7 @@ var CONTENTS = [
         title: 'Splunk Ninjas Workshop for ITSI', // required. Bread crumbs text
         menuName: 'Splunk Ninjas Workshop for ITSI', // required. Side bar text
         href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/1-index.html', // required. HTML file path
-        prev: '',
+        prev: '1-14',
         next: '2-1',
         sub: [
           {
@@ -221,7 +221,7 @@ var CONTENTS = [
         title: 'Advanced Collector Configuraiton', // required. Bread crumbs text
         menuName: 'Advanced Collector Configuraiton', // required. Side bar text
         href: '/o11y-workshop-kr/src/3-advancedConfig/3-index.html', // required. HTML file path
-        prev: '',
+        prev: '2-1-5',
         next: '3-0',
         sub: [
           {
