@@ -24,6 +24,9 @@ var _com = (function() {
       let parentId = '';
       if ( id.indexOf('-') > -1 ) {
         parentId = id.substring(0, id.lastIndexOf('-'));
+      } else if ( id !== '0' ) {
+        // 각 챕터의 최상위 페이지일 경우
+        parentId = '0';
       }
 
       acc.push({ id, title, href, prev, next, parentId: parentId && parentId });
@@ -58,27 +61,8 @@ var _com = (function() {
    *    document.addEventListener('DOMContentLoaded', () => _com.setPage('1')); 
    */
   const setPage = pageId => {
-    if ( pageId === '0' ) {
-      // root 화면으로 진입 시 전체 하위 메뉴 출력
-      VALID_MENU = Object.values(CONTENTS).reduce((acc, cur) => [ ...acc, ...cur ], []);
-      
-      const tempMenu = [...VALID_MENU];
-      tempMenu.push({
-        id: '0',
-        title: 'Splunk Observability Workshops',
-        menuName: 'Splunk Observability Workshops',
-        href: '/o11y-workshop-kr/index.html',
-        prev: '',
-        next: '1',
-        sub: [],
-      });
-
-      FLATTERNED_MENU = flattern(tempMenu);
-    } else {
-      // 챕터별 화면 진입 시 다른 챕터의 하위 메뉴가 보이지 않도록 제거
-      VALID_MENU = CONTENTS[`ch${ getHomeId(pageId) }`];
-      FLATTERNED_MENU = flattern(VALID_MENU);
-    }
+    VALID_MENU = [ ...CONTENTS ];
+    FLATTERNED_MENU = flattern(VALID_MENU);
     
     // 현재 진입하려는 화면의 HTML 경로 탐색
     const url = FLATTERNED_MENU.find(el => el.id === pageId)?.href;
@@ -138,8 +122,6 @@ var _com = (function() {
       if ( curPage.prev ) {
         const prev = getTargetMenu(curPage.prev, FLATTERNED_MENU);
         result.prev = prev?.href || '';
-      } else {
-
       }
 
       if ( curPage.next ) {
@@ -277,7 +259,8 @@ var _com = (function() {
         document.querySelector('#R-sidebar').innerHTML = html;
         
         let sideHTML = '';
-        sideHTML = createMenuHTML('', VALID_MENU);
+        // sideHTML = createMenuHTML('', VALID_MENU); // 챕터별로 진입 시 다른 메뉴 제거하려면 pageId 미지정
+        sideHTML = createMenuHTML(pageId, VALID_MENU);
         document.querySelector('#R-shortcutmenu-home').innerHTML = sideHTML;
 
         // const url = getCurrentURL();
@@ -300,7 +283,8 @@ var _com = (function() {
           }
         });
 
-        const homeId = getHomeId(pageId);
+        // const homeId = getHomeId(pageId);
+        const homeId = '0';
         document.querySelector('#logo').addEventListener('click', () => goHome(homeId));
         document.querySelector('#homeIcon').addEventListener('click', () => goHome(homeId));
       })
