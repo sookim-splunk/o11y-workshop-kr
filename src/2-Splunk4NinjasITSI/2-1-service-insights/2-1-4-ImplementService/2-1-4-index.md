@@ -105,7 +105,35 @@ KPI 가 필요한 마이크로 서비스에 대해 모두 정의하였다면, �
 - **[Save] > [Save and Enable]** 버튼을 누릅니다
 - Service Analyzer 메뉴로 이동했을 때 두 서비스가 연결 된 것이 확인되나요?
 
-위 작업대로 나머지 비즈니스 서비스를 만들고 Dependencies 를 만들어줍니다
+아래 Service Tree 내용을 참고하여 각각 비즈니스 서비스를 만들고 Dependency를 연결 해 줍니다
+
+```bash
+Online Boutique (최상위 서비스)
+├── UI Layer
+│    └── frontend
+├── Shopping Services
+│    ├── cartservice
+│    ├── checkoutservice
+│    ├── paymentservice
+│    ├── shippingservice
+│    └── emailservice
+├── Product Services
+│    ├── productcatalogservice
+│    ├── recommendationservice
+│    └── adservice
+└── Support Services
+     └── currencyservice
+```
+
+</br>
+
+- **[ITSI] > [Service Analyzer] > [Default Analyzer]** 선택
+- 상위 메뉴에 보이는 Filter 에 다음과 같은 서비스를 검색하여 선택합니다 : _Online Boutique_
+- 오른쪽 상위에 Tree View 버튼을 눌러, 타일이 아닌 트리형태의 뷰 타입으로 변경합니다
+- **[Save as...]** 버튼을 눌러 해당 service analyzer 를 저장합니다
+- 아래와 같이 내용 입력 후 생성을 완료합니다
+  ![](../../../images/2-ninja-itsi/2-1-4-config5.jpg)
+- 생성이 완료되었다면, **[ITSI] > [Service Analyzer] > [Analyzers]** 화면에서 목록에 표시됩니다
 
 </br>
 
