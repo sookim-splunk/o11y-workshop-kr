@@ -2,7 +2,7 @@
 
 </br>
 
-## 1. 서비스 생성하기
+## LAB 04. 서비스 및 KPI 생성하기
 
 - **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
 - 아래와 같이 내용을 입력하고 생성합니다
@@ -138,3 +138,19 @@ Online Boutique (최상위 서비스)
 </br>
 
 ## 4. ITSI Summary 인덱스 살펴보기
+
+Online Boutique 서비스가 itsi_summary 인덱스에 KPI 및 Service Health Score를 기록하고 있는지 확인합니다
+
+- 지난 7일 동안 itsi_summary 인덱스에 있는 모든 이벤트를 검색
+
+```bash
+index=itsi_summary
+```
+
+- 이벤트 하나를 열어 안에 기록된 각 필드의 내용을 확인합니다
+  ![](../../../images/2-ninja-itsi/2-1-4-config6.jpg)
+- kpi 필드의 값을 검토하세요. KPI 이름과 서비스 상태 점수입니다.
+- alert_value 필드의 값을 검토하세요. KPI 검색에서 계산된 실제 값입니다.
+- serviceid 필드의 값을 검토하세요. 서비스 이름은 표시되지 않고, 대신 ID 값으로 서비스가 식별됩니다.
+
+**LAB 04 Done!**
