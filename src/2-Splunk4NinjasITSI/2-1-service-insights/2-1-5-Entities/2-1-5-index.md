@@ -79,7 +79,7 @@
 - Entity Type Name : K8S_Pods 입력
 - Vital Metrics 부분을 확장 후 [Add Metics] 버튼을 클릭
 
-      <img src="../../../images/2-ninja-itsi/2-1-5-config8.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+    <img src="../../../images/2-ninja-itsi/2-1-5-config8.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
   - Metric Title에 cpu_utilization 이라고 입력하고 저장합니다
   - SPL을 아래와 같이 붙여넣기 합니다
