@@ -1,55 +1,64 @@
-# 2-1-4. 서비스를 생성하고 KPI 연결하기
+# 2-1-5. 엔티티 디스커버리 서치와 엔티티 타입
 
 </br>
 
-## 1. 서비스 생성하기
+이 모듈에서는 온라인 부티크 서비스에 대한 엔터티를 식별하고, 엔터티를 추가하고, 모듈 KPI를 사용하여 새로운 기술 서비스를 만들고, 엔터티에 엔터티 유형을 적용하고, 엔터티 상태 페이지를 사용하고, 엔터티 삭제 정책을 만듭니다.
 
-- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
-- 아래와 같이 내용을 입력하고 생성합니다
-  ![](../../../images/2-ninja-itsi/2-1-4-config1.jpg)
-- Title : Online Boutique 입력
-- Description : Monitor Online Boutique 입력
-- Manually add service content 선택
+## LAB 05.
 
-</br>
+### 1. KPI 수정하기
 
-## 2. KPI 생성하기
-
-- KPI 탭을 눌러 KPI 생성을 시작합니다. **[New] > [Generic KPI]** 선택
-  ![](../../../images/2-ninja-itsi/2-1-4-config2.jpg)
-  - Title : Online Catalog Views
-  - KPI Source : Base Search 선택
-  - Base Search : OBQ : Web Catalog Views 선택
-  - Metric : view_count
-- 다른 설정은 진행하지 않고 **[Finish]** 버튼을 눌러 생성을 완료합니다
-- **[Save] > [Save and Enable]** 버튼을 누릅니다
-
-여기까지 Online Boutique 라는 하나의 서비스에 카탈로그 조회수를 측정하는 "Online Catalog Views" 라는 KPI를 하나 만들었습니다. 우리는 앞선 워크샵에서 여러 개의 Base Search 를 만들었으므로, 이에 해당되는 KPI를 모두 만들어보도록 합니다
-
-- **[Clone]** 버튼을 누른 뒤 방금 만든 KPI를 선택하여 복제합니다
-- 복제된 KPI 내용을 아래와 같이 변경합니다
-
-  - Title : Online Boutique Purchases
-  - 아래 Source 부분에서 **[Edit]** 버튼을 클릭하고 내용을 수정합니다
-  - Base Search : OBQ : Web Purchase
-  - Metrics : Purchase_count
-  - **[Finish]** 를 눌러 저장합니다
-
-- **[Clone]** 버튼을 누른 뒤 방금 만든 KPI를 선택하여 한 번 더 복제합니다
-- 복제된 KPI 내용을 아래와 같이 변경합니다
-  - Title : Online Boutique Purchases
-  - 아래 Source 부분에서 **[Edit]** 버튼을 클릭하고 내용을 수정합니다
-  - Base Search : OBQ : Web Traffic
-  - Metrics : avg_rate
-  - **[Finish]** 를 눌러 저장합니다
-  - 아래쪽에 Backfill 에서 **[Edit]** 버튼을 클릭합니다
-  - Backfill 활성화 및 14 days 로 설정 후 **[Finish]** 버튼을 클릭합니다
-- **[Save]** 버튼을 눌러 서비스 설정을 완료합니다
+- **[ITSI] > [Configuration] > [Service Monitoring] > [KPI Base Search]** 페이지로 이동합니다
+- 기존에 생성했던 **_OBQ : Infrastructure_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
+- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _k8s.pod.name_ 을 입력합니다
+  ![](../../../images/2-ninja-itsi/2-1-5-config2.jpg)
+- 저장하고 빠져나옵니다
+- **[ITSI] > [Configuration] > [Service Monitoring] > [Service & KPI Management]** 페이지로 이동합니다
+- 서비스 목록에서 _cartservice_ 클릭 후 KPIs 탭을 클릭합니다
+- CPU Utilization KPI 항목을 클릭후 Threshold 부분을 확장합니다
+- **Per-Entity Thresholds** 탭을 선택 후 아랫쪽에 표시되는 차트를 확인합니다
+- Threshold 정의 부분에서 톱니바퀴를 클릭 후 뜨는 팝업창에서 **Boundary Mode**를 둘 다 Disabled 해줍니다
+  ![](../../../images/2-ninja-itsi/2-1-5-config1.jpg)
+- 적용 후에는 아래 스크린샷과 같이 그래프 내에 표시되는 선이 여러개로 표현되어야합니다
+  ![](../../../images/2-ninja-itsi/2-1-5-config3.jpg)
+- 변경 사항을 저장합니다
 
 </br>
 
-## 3. Service Analyzer 정의하기
+### 2. Entity Discovery Search 생성하기
+
+- [ITSI] > [Configuration] > [Entity Management] 메뉴로 이동합니다
+- 오른쪽 상단에 [Create Entity] > [Import from Search] 버튼을 눌러 생성을 시작합니다
+  ![](../../../images/2-ninja-itsi/2-1-5-config4.jpg)
+  - Ad Hoc Search 선택
+  - 아래 다음과 같은 SPL문을 입력합니다
+    ```bash
+    | mstats
+      avg(container_cpu_utilization) as cpu_utilization,
+      avg(container.memory.usage) as memory_usage,
+      avg(container.filesystem.usage) as filesystem_usage
+    WHERE index=sim_metrics
+    BY k8s.pod.name, host, kubernetes_cluster
+    span=5m
+    | dedup k8s.pod.name
+    | eval _key = 'k8s.pod.name'
+    | rename k8s.pod.name as dim.pod_name, host as dim.host, kubernetes_cluster as dim.kubernetes_cluster
+    | fields dim.*, _key
+    | rename dim.* as *
+    | eval entity_type="K8S_Pods", Vendor="Kubernetes", ITSIUniqueId=_key
+    ```
+  - 돋보기 버튼을 눌러 SPL문이 제대로 작동하고, 아래에 엔티티가 표시되는지 확인합니다
+  - [Next] 버튼을 누릅니다
+- 다음 불러오기 된 키 컬럼들을 각각 알맞는 필드에 매칭시킵니다
+  ![](../../../images/2-ninja-itsi/2-1-5-config6.jpg)
+- 스크린샷 처럼 필드를 매칭 시킨 후 [Import] 버튼을 클릭합니다
+- [Set up Recurring Import] 버튼을 클릭하여 지속적으로 엔티티를 업데이트 하도록 saved search 를 등록합니다
+  ![](../../../images/2-ninja-itsi/2-1-5-config7.jpg)
+  - Title : OBQ-kube-Infra1 입력
+  - Schedule : Run on Cron schedule 선택
+  - Cron Schedule : _/5 _ \* \* \* (5분에 한번 실행)
+- 생성을 완료합니다
 
 </br>
 
-## 4. ITSI Summary 인덱스 살펴보기
+### Entity Type 생성하기
