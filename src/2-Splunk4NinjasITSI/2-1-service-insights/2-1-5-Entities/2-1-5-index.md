@@ -60,7 +60,7 @@
 - 스크린샷 처럼 필드를 매칭 시킨 후 [Import] 버튼을 클릭합니다
 - [Set up Recurring Import] 버튼을 클릭하여 지속적으로 엔티티를 업데이트 하도록 saved search 를 등록합니다
 
-  <img src="../../../images/2-ninja-itsi/2-1-5-config7.jpg" width="400" style="border: 1px solid #000;">
+  <img src="../../../images/2-ninja-itsi/2-1-5-config7.jpg" width="400" style="border: 1px solid #000; display: block; margin-left: 0;">
 
   - Title : OBQ-kube-Infra1 입력
   - Schedule : Run on Cron schedule 선택
