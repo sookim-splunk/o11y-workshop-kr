@@ -7,7 +7,7 @@
 - **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
 - 아래와 같이 내용을 입력하고 생성합니다
   ![](../../../images/2-ninja-itsi/2-1-4-config3.jpg)
-- Title : cartservice 입력
+- Title : checkoutservice 입력
 - Manually add service content 선택
 
 </br>

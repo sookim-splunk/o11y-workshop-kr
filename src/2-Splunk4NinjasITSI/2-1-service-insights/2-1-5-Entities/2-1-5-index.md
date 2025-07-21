@@ -16,7 +16,7 @@
 
 - 저장하고 빠져나옵니다
 - **[ITSI] > [Configuration] > [Service Monitoring] > [Service & KPI Management]** 페이지로 이동합니다
-- 서비스 목록에서 _cartservice_ 클릭 후 KPIs 탭을 클릭합니다
+- 서비스 목록에서 _checkoutservice_ 클릭 후 KPIs 탭을 클릭합니다
 - CPU Utilization KPI 항목을 클릭후 Threshold 부분을 확장합니다
 - **Per-Entity Thresholds** 탭을 선택 후 아랫쪽에 표시되는 차트를 확인합니다
 - Threshold 정의 부분에서 톱니바퀴를 클릭 후 뜨는 팝업창에서 **Boundary Mode**를 둘 다 Disabled 해줍니다
