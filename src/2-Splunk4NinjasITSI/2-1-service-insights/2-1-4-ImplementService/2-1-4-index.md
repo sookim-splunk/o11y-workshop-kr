@@ -6,7 +6,9 @@
 
 - **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
 - 아래와 같이 내용을 입력하고 생성합니다
-  ![](../../../images/2-ninja-itsi/2-1-4-config3.jpg)
+
+  <img src="../../../images/2-ninja-itsi/2-1-4-config3.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
 - Title : checkoutservice 입력
 - Manually add service content 선택
 
@@ -15,11 +17,14 @@
 ## 2. KPI 생성하기
 
 - KPI 탭을 눌러 KPI 생성을 시작합니다. **[New] > [Generic KPI]** 선택
-  ![](../../../images/2-ninja-itsi/2-1-4-config4.jpg)
+
+  <img src="../../../images/2-ninja-itsi/2-1-4-config4.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
   - Title : CPU Utilizaion
   - KPI Source : Base Search 선택
   - Base Search : OBQ : Infrastructure 선택
   - Metric : cpu_utilization
+
 - 다른 설정은 진행하지 않고 **[Finish]** 버튼을 눌러 생성을 완료합니다
 - **[Save] > [Save and Enable]** 버튼을 누릅니다
 
@@ -132,7 +137,9 @@ Online Boutique (최상위 서비스)
 - 오른쪽 상위에 Tree View 버튼을 눌러, 타일이 아닌 트리형태의 뷰 타입으로 변경합니다
 - **[Save as...]** 버튼을 눌러 해당 service analyzer 를 저장합니다
 - 아래와 같이 내용 입력 후 생성을 완료합니다
-  ![](../../../images/2-ninja-itsi/2-1-4-config5.jpg)
+
+  <img src="../../../images/2-ninja-itsi/2-1-4-config5.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
 - 생성이 완료되었다면, **[ITSI] > [Service Analyzer] > [Analyzers]** 화면에서 목록에 표시됩니다
 
 </br>
@@ -148,7 +155,9 @@ index=itsi_summary
 ```
 
 - 이벤트 하나를 열어 안에 기록된 각 필드의 내용을 확인합니다
-  ![](../../../images/2-ninja-itsi/2-1-4-config6.jpg)
+
+  <img src="../../../images/2-ninja-itsi/2-1-4-config6.jpg" width="700" style="border: 1px solid #000; display: block; margin-left: 0;">
+
 - kpi 필드의 값을 검토하세요. KPI 이름과 서비스 상태 점수입니다.
 - alert_value 필드의 값을 검토하세요. KPI 검색에서 계산된 실제 값입니다.
 - serviceid 필드의 값을 검토하세요. 서비스 이름은 표시되지 않고, 대신 ID 값으로 서비스가 식별됩니다.

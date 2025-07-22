@@ -92,7 +92,9 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Splunk Cloud 에서 **[ITSI] > [Configurations] > [KPI Base Search]** 메뉴로 이동합니다
 - **[Create KPI Base Search]** 버튼을 클릭하여 생성을 시작합니다
 - Title : **_OBQ : Infrastructure_** 로 지정 후 **[Create]** 버튼을 누릅니다
-  ![](../../../images/2-ninja-itsi/2-1-3-config1.jpg)
+
+  <img src="../../../images/2-ninja-itsi/2-1-3-config1.jpg" width="700" style="border: 1px solid #000; display: block; margin-left: 0;">
+
 - Search Type : Ad hoc Search 선택
 - Search : 아래와 같이 입력
   ```bash
@@ -106,11 +108,14 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   | table _time, k8s.pod.name, host, fs_usage, memory_usage, cpu_utilization
   ```
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
-  ![](../../../images/2-ninja-itsi/2-1-3-config2.jpg)
-  - Title : container_cpu_utilization
+
+  <img src="../../../images/2-ninja-itsi/2-1-3-config2.jpg" width="400" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+  - Title : cpu_utilization
   - Threshold Field : cpu_utilization
   - Unit : %
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
+
 - 나머지 메트릭도 만들어줍니다
 - memory_usage, fs_usage
 
