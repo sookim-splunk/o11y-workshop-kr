@@ -105,7 +105,8 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   WHERE index=sim_metrics
   BY k8s.pod.name, host
   span=1m
-  | table _time, k8s.pod.name, host, fs_usage, memory_usage, cpu_utilization
+  | rename k8s.pod.name as pod_name
+  | table _time, pod_name, host, fs_usage, memory_usage, cpu_utilization
   ```
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
 
@@ -130,21 +131,18 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Search : 아래와 같이 입력
   ```bash
   | mstats
-      sum("service.request.count") as request_count_error,
-      avg("service.request.duration.ns.median") as duration_median_error,
-      avg("service.request.duration.ns.p99") as duration_p99_error
-    WHERE index=sim_metrics
-      AND sf_service=*
-      AND sf_environment=*
-      AND sf_error="true"
-    BY sf_service, sf_environment
-    span=1m
-  | rename sf_service as service, sf_environment as environment
-  | table _time, service, environment, request_count_error, duration_median_error, duration_p99_error
+    sum("traces.count") as traces_count,
+    avg("traces.duration.ns.p99") as duration_p99
+  WHERE index=sim_metrics
+  AND sf_error=true
+  BY sf_service, sf_environment, sf_operation
+  span=1m
+  | rename sf_service as service, sf_environment as env
+  | table _time, service, env, traces_count, sf_operation, duration_p99
   ```
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes
-- Split by Entity : Yes 선택 후 sf_service 입력
+- Split by Entity : No 선택 그대로 둡니다
 - Filter Entities in Service : No 선택 그대로 둡니다
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
   - Title : request_error_count
@@ -165,18 +163,14 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
   ```bash
   | mstats
-    sum("service.request.count") as request_count,
-    avg("service.request.duration.ns.median") as duration_median,
-    avg("service.request.duration.ns.p99") as duration_p99
+    sum("traces.count") as traces_count,
+    avg("traces.duration.ns.p99") as duration_p99
   WHERE index=sim_metrics
-    AND sf_service=*
-    AND sf_environment=*
-    AND sf_error="false"
-  BY sf_service, sf_environment
+  AND sf_error=false
+  BY sf_service, sf_environment, sf_operation
   span=1m
-  | rename sf_service as service, sf_environment as environment
-  | table _time, service, environment, request_count, duration_median, duration_p99
-
+  | rename sf_service as service, sf_environment as env
+  | table _time, service, env, traces_count, sf_operation, duration_p99
   ```
 
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다

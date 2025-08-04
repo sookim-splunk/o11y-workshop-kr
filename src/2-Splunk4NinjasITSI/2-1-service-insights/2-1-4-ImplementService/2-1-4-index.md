@@ -36,21 +36,26 @@
 
 모든 서비스와 KPI 연결을 매뉴얼하게 하지마세요, ITSI에는 Clone 이라는 기능이 있습니다 😜
 
-#### Backend Services
-
 우리는 아래와 같은 9개의 백엔드 서비스를 생성하고, 아래와 같은 KPI를 모두 생성해야합니다
 
-**서비스 목록**
+#### Shopping Services
 
 - [ ] cartservice </br>
 - [ ] checkoutservice </br>
 - [ ] paymentservice </br>
 - [ ] shippingservice </br>
 - [ ] emailservice </br>
+
+#### Product Services
+
 - [ ] productcatalogservice </br>
 - [ ] recommendationservice </br>
 - [ ] adservice </br>
+
+#### Support Services
+
 - [ ] currencyservice </br>
+- [ ] redis-cart </br>
 
 | KPI Name               | KPI Base Search            | Metric                |
 | ---------------------- | -------------------------- | --------------------- |
@@ -66,13 +71,10 @@
 
 #### Frontend Service
 
-- [ ] frontend
+- [ ] RUM Application
 
 | KPI Name              | KPI Base Search               | Metric            |
 | --------------------- | ----------------------------- | ----------------- |
-| CPU Utilization       | OBQ : Infrastructure          | cpu_utilization   |
-| Memory Usage          | OBQ : Infrastructure          | memory_usage      |
-| Filesystem Usage      | OBQ : Infrastructure          | fs_usage          |
 | RUM Client Errors     | OBQ : Frontend UX Performance | client_errors     |
 | RUM Page Views        | OBQ : Frontend UX Performance | page_views        |
 | RUM Resource Requests | OBQ : Frontend UX Performance | resource_requests |
@@ -80,7 +82,7 @@
 | RUM Web Vital FID     | OBQ : Frontend UX Performance | fid_p75           |
 | RUM Web Vital LCP     | OBQ : Frontend UX Performance | lcp_p75           |
 
-#### Synthetics Service
+</br>
 
 - [ ] Synthetics Test
 
@@ -113,9 +115,10 @@ KPI 가 필요한 마이크로 서비스에 대해 모두 정의하였다면, �
 아래 Service Tree 내용을 참고하여 각각 비즈니스 서비스를 만들고 Dependency를 연결 해 줍니다
 
 ```bash
-Online Boutique (최상위 서비스)
-├── UI Layer
-│    └── frontend
+Online Boutique (상위 서비스)
+├── Frontend Services
+│    ├── RUM Application
+│    └── Synthetics Test
 ├── Shopping Services
 │    ├── cartservice
 │    ├── checkoutservice
@@ -126,8 +129,9 @@ Online Boutique (최상위 서비스)
 │    ├── productcatalogservice
 │    ├── recommendationservice
 │    └── adservice
-└── Support Services
-     └── currencyservice
+└──  Support Services
+	   ├── currencyservice
+	   └── redis-cart
 ```
 
 </br>

@@ -12,8 +12,10 @@ data('container.filesystem.usage', filter=filter('k8s.cluster.name', '*') and fi
 
 ```bash
 # APM Traffic & Errors
-data("service.request.duration.ns.p99", filter=filter("sf_service", "*")).publish(); data("service.request.duration.ns.median", filter=filter("sf_service", "*")).publish();
-data("service.request.count", filter=filter("sf_service", "*")).publish();
+data('service.request.duration.ns.p99', filter=filter('sf_service', '*') AND filter=filter('sf_operation', '*')).publish(); data('service.request.duration.ns.median', filter=filter('sf_service', '*') AND filter=filter('sf_operation', '*')).publish();
+data('service.request.count', filter=filter('sf_service', '*')).publish();
+data('traces.count', filter=filter('sf_environment', 'Demo-env')).publish();
+data('traces.duration.ns.p99', filter=filter('sf_environment', 'Demo-env')).publish();
 ```
 
 </br>
@@ -28,3 +30,5 @@ data('rum.page_view.count').publish(label='rum_page_view'); data('rum.client_err
 data('*', filter=filter('sf_product', 'synthetics') and filter('test_type', '*')).publish(); data('synthetics.run.uptime.percent', filter=filter('test_type', 'browser')and filter('test', '*')).mean(over=Args.get('ui.dashboard_window', '15m')).mean(by=['test']).publish(); data('synthetics.duration.time.ms', filter=filter('test', '*') and filter('test_type', 'browser')).mean(by=['location', 'location_id', 'test_id', 'test_type']).publish();
 
 ```
+
+curl -v -k https://10.70.138.78:8088/services/collector/event -H "Authorization: Splunk b8478d25-3297-4a93-b2a2-ad20294bd9d1"

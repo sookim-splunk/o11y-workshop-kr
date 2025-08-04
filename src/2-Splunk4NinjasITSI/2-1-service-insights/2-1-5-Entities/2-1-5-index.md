@@ -36,38 +36,38 @@
 - **[ITSI] > [Configuration] > [Entity Management]** 메뉴로 이동합니다
 - 오른쪽 상단에 **[Create Entity] > [Import from Search]** 버튼을 눌러 생성을 시작합니다
 
-  <img src="../../../images/2-ninja-itsi/2-1-5-config4.jpg" width="600" style="border: 1px solid #000; block; margin-left: 0;">
+  <img src="../../../images/2-ninja-itsi/2-1-5-config4.jpg" width="800" style="border: 1px solid #000; block; margin-left: 0;">
 
   - Ad Hoc Search 선택
   - 아래 다음과 같은 SPL문을 입력합니다
     ```bash
     | mstats
-      avg(container_cpu_utilization) as cpu_utilization,
-      avg(container.memory.usage) as memory_usage,
-      avg(container.filesystem.usage) as filesystem_usage
+    avg("container_cpu_utilization") as cpu_utilization,
+    avg("container.memory.usage") as memory_usage,
+    avg("container.filesystem.usage") as filesystem_usage
     WHERE index=sim_metrics
     BY k8s.pod.name, host, kubernetes_cluster
     span=5m
     | dedup k8s.pod.name
-    | eval _key = 'k8s.pod.name'
-    | rename k8s.pod.name as dim.pod_name, host as dim.host, kubernetes_cluster as dim.kubernetes_cluster
-    | fields dim.*, _key
-    | rename dim.* as *
-    | eval entity_type="K8S_Pods", Vendor="Kubernetes", ITSIUniqueId=_key
+    | eval ITSIUniqueId='k8s.pod.name'
+    | rename k8s.pod.name as dim_pod_name, host as dim_host, kubernetes_cluster as dim_kubernetes_cluster
+    | fields dim_*, ITSIUniqueId
+    | rename dim_* as *
+    | eval entity_type="K8S_Pods", Vendor="Kubernetes"
     ```
   - 돋보기 버튼을 눌러 SPL문이 제대로 작동하고, 아래에 엔티티가 표시되는지 확인합니다
   - **[Next]** 버튼을 누릅니다
 
 - 다음 불러오기 된 키 컬럼들을 각각 알맞는 필드에 매칭시킵니다
-  <img src="../../../images/2-ninja-itsi/2-1-5-config6.jpg" width="600" style="border: 1px solid #000; block; margin-left: 0;">
+  <img src="../../../images/2-ninja-itsi/2-1-5-config11.jpg" width="800" style="border: 1px solid #000; block; margin-left: 0;">
 - 스크린샷 처럼 필드를 매칭 시킨 후 **[Import]** 버튼을 클릭합니다
 - **[Set up Recurring Import]** 버튼을 클릭하여 지속적으로 엔티티를 업데이트 하도록 saved search 를 등록합니다
 
-  <img src="../../../images/2-ninja-itsi/2-1-5-config7.jpg" width="400" style="border: 1px solid #000; display: block; margin-left: 0;">
+  <img src="../../../images/2-ninja-itsi/2-1-5-config7.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
   - **Title :** _OBQ-kube-Infra1_ 입력
   - **Schedule :** Run on Cron schedule 선택
-  - **Cron Schedule :** _/5 _ \* \* \* (5분에 한번 실행)
+  - **Cron Schedule :** \*/5 \* \* \* (5분에 한번 실행)
 
 - 생성을 완료합니다
 
@@ -123,13 +123,63 @@
 
 - K8S_Pods 타일을 눌러 엔티티 내용을 확인 해 봅니다
 
-  <img src="../../../images/2-ninja-itsi/2-1-5-config10.jpg" width="700" style="border: 1px solid #000; display: block; margin-left: 0;">
+  <img src="../../../images/2-ninja-itsi/2-1-5-config10.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
 
   위와 같이 Entity 들이 제대로 보여지면 제대로 적용이 완료 된 것입니다
 
 </br>
 
 ### 4. Application Entity 식별 및 Entity Type 생성하기
+
+```bash
+| mstats count(_value) as count
+  WHERE index=sim_metrics AND metric_name="traces.count"
+  BY sf_service, sf_operation, sf_environment, sf_error
+  span=5m
+| dedup sf_service, sf_operation
+| eval ITSIUniqueId = sf_service + sf_environment . ":" . sf_operation
+| rename sf_service as dim_sf_service,
+         sf_operation as dim_sf_operation,
+         sf_environment as dim_sf_environment,
+         sf_error as dim_sf_error
+| fields dim_*, ITSIUniqueId
+| rename dim_* as *
+| eval entity_type="APM Operations"
+```
+
+```bash
+# Traces Count
+| mstats avg("traces.count") as val
+WHERE index=sim_metrics
+BY sf_service, sf_environment, sf_operation
+span=5m
+| eval name = sf_service + sf_environment . ":" . sf_operation
+| table _time, name, val, sf_service, sf_environment, sf_operation
+
+# Trace Duration P99
+| mstats avg("traces.duration.ns.p99") as val
+WHERE index=sim_metrics
+BY sf_service, sf_environment, sf_operation
+span=5m
+| eval name = sf_service + sf_environment . ":" . sf_operation
+| table _time, name, val, sf_service, sf_environment, sf_operation
+
+# Trace Error Count
+| mstats avg("traces.count") as val
+WHERE index=sim_metrics AND sf_error=true
+BY sf_service, sf_environment, sf_operation
+span=5m
+| eval name = sf_service + sf_environment . ":" . sf_operation
+| table _time, name, val, sf_service, sf_environment, sf_operation
+
+# Trace Error Duration P99
+| mstats avg("traces.duration.ns.p99") as val
+WHERE index=sim_metrics AND sf_error=true
+BY sf_service, sf_environment, sf_operation
+span=5m
+| eval name = sf_service + sf_environment . ":" . sf_operation
+| table _time, name, val, sf_service, sf_environment, sf_operation
+```
 
 </br>
 
