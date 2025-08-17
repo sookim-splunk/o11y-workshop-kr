@@ -228,7 +228,9 @@ var CONTENTS = [
                 href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-2. Event Analytics/2-2-1-Thresholds/2-2-1-index.html', // required. HTML file path
                 prev: '2-2',
                 next: '2-2-2',
-              }
+              },
+            ],
+          },
         ],
       },
       // Ch3 - Advanced Collector Configuraiton
@@ -324,5 +326,5 @@ var CONTENTS = [
         ],
       },
     ],
-  }
+  },
 ];
