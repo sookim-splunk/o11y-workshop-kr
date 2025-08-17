@@ -4,21 +4,49 @@
 
 ## LAB 04. 서비스 및 KPI 생성하기
 
+### 1. 서비스 생성하기
+
 - **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
 - 아래와 같이 내용을 입력하고 생성합니다
 
-  <img src="../../../images/2-ninja-itsi/2-1-4-config3.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+  <img src="../../../images/2-ninja-itsi/2-1-4-config7.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
-- Title : checkoutservice 입력
+- Title : frontend-go 입력
 - Manually add service content 선택
 
 </br>
 
-## 2. KPI 생성하기
+### 2. KPI 지정하기
 
 - KPI 탭을 눌러 KPI 생성을 시작합니다. **[New] > [Generic KPI]** 선택
 
-  <img src="../../../images/2-ninja-itsi/2-1-4-config4.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+  <img src="../../../images/2-ninja-itsi/2-1-4-config11.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+  - Title : Traffic Count
+  - KPI Source : Base Search 선택
+  - Base Search : OBQ : Application Requests 선택
+  - Metric : trace_count
+
+- 다른 설정은 진행하지 않고 **[Finish]** 버튼을 눌러 생성을 완료합니다
+- **[Save] > [Save and Enable]** 버튼을 누릅니다
+- KPI 생성 작업을 반복하여 아래처럼 4개의 KPI 가 frontend-go 서비스에 포함되도록 만들어 줍니다.
+  <img src="../../../images/2-ninja-itsi/2-1-4-config12.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+위 작업을 한 번 더 반복합니다
+
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
+- 아래와 같이 내용을 입력하고 생성합니다
+
+  <img src="../../../images/2-ninja-itsi/2-1-4-config8.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+- Title : frontend-k8s 입력
+- Manually add service content 선택
+
+</br>
+
+- KPI 탭을 눌러 KPI 생성을 시작합니다. **[New] > [Generic KPI]** 선택
+
+  <img src="../../../images/2-ninja-itsi/2-1-4-config9.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
   - Title : CPU Utilizaion
   - KPI Source : Base Search 선택
@@ -27,74 +55,104 @@
 
 - 다른 설정은 진행하지 않고 **[Finish]** 버튼을 눌러 생성을 완료합니다
 - **[Save] > [Save and Enable]** 버튼을 누릅니다
+- KPI 생성 작업을 반복하여 아래처럼 3개의 KPI 가 frontend-k8s 서비스에 포함되도록 만들어 줍니다.
+  <img src="../../../images/2-ninja-itsi/2-1-4-config10.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
-여기까지 Online Boutique 라는 하나의 서비스에 카탈로그 조회수를 측정하는 "Online Catalog Views" 라는 KPI를 하나 만들었습니다. 우리는 앞선 워크샵에서 여러 개의 Base Search 를 만들었으므로, 이에 해당되는 KPI를 모두 만들어보도록 합니다
+  </br>
+
+### 3. Service Dependency 설정하기
+
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 frontend-go 서비스를 찾아 이름을 클릭합니다
+- [Service Dependency] 탭을 클릭하고 아래에 보이는 [Add Dependencies] 버튼을 클릭합니다
+- 표시되는 목록 중 frontend-k8s 서비스를 클릭 후 하위에 있는 모든 KPI를 선택 후 저장합니다
+- 팝업창이 닫친 후 화면 하단에 있는 [Save] 버튼을 꼭 눌러줍니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config13.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+- [Settings] 탭을 클릭하고 아래로 스크롤 해 보면 Dependent KPIs 에 인프라에 관련된 KPI가 포함되어있는지 확인 할 수 있습니다
+- 또한 frontend-k8s의 Service Health Score의 중요도가 11로 설정 된 것을 확인합니다
 
 </br>
 
-### 생성 할 서비스와 KPI는 아래와 같습니다
+### 4. Service Template 만들기
 
-모든 서비스와 KPI 연결을 매뉴얼하게 하지마세요, ITSI에는 Clone 이라는 기능이 있습니다 😜
+앞으로 추가될 가능성이 높은 다른 Application, Infra 리소스가 있을 것이므로, 지금이 온라인 부티크 서비스 템플릿을 만들어두면 반복작업을 덜 수 있습니다
 
-우리는 아래와 같은 9개의 백엔드 서비스를 생성하고, 아래와 같은 KPI를 모두 생성해야합니다
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 frontend-go 서비스의 오른쪽에 있는 [Edit] 버튼을 클릭 후 [Create Service Template] 를 클릭합니다
+- 타이틀 입력 : **_OBQ App template_**
+- 생성 버튼을 클릭 후 넘어 가 보면 여기에 방금 설정한 frontend-go 서비스의 KPI가 모두 포함 된 것을 확인 할 수 있습니다.
+- [Linked Service] 탭을 클릭 해 보면 frontend-go 서비스가 이미 링크되어 있습니다. 향후에 이 템플릿에 변경이 발생한다면 frontend-go 서비스와 기타 연결된 서비스에 영향을 미칩니다.
+- [Save] 버튼을 클릭합니다
+- 위 작업과 동일하게 **_OBQ Infra Template_** 도 생성 해 봅니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config14.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+</br>
+
+### 5. 템플릿을 이용하여 나머지 서비스 생성하기
+
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
+- 아래와 같이 필요한 내용을 선택합니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config15.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+- Title : cartservice-c#
+- Link service to a service tempalte 선택
+- Link to template : OBQ App template 선택
+- [Crate] 버튼을 클릭합니다
+- 생성 된 서비스 하위의 Entities 탭에서 원하는 서비스의 엔티티만 필터 한 후 저장합니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config16.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+- 이제 cartservice 의 인프라와 관련된 서비스를 동일하게 생성하고 서비스 종속성을 연결합니다
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
+- 아래와 같이 필요한 내용을 선택합니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config17.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+- Title : cartservice-c#
+- Link service to a service tempalte 선택
+- Link to template : OBQ App template 선택
+- [Crate] 버튼을 클릭합니다
+- 생성 된 서비스 하위의 Entities 탭에서 원하는 서비스의 엔티티만 필터 한 후 저장합니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config18.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+
+- cartservice-c# 서비스를 다시 클릭하여 [dependency] 탭을 확인합니다
+- [Add Dependencies] 버튼을 클릭합니다
+- 표시되는 목록 중 cartservice-k8s 서비스를 클릭 후 하위에 있는 모든 KPI를 선택 후 저장합니다
+- 팝업창이 닫친 후 화면 하단에 있는 [Save] 버튼을 꼭 눌러줍니다
+
+</br>
+
+### 전체 생성 할 서비스와 종속정보는 아래와 같습니다
+
+우리는 아래와 같은 9개의 백엔드 서비스를 생성하고, 아래와 같은 KPI를 모두 생성해야하므로 위 단계와 동일하게 템플릿을 이용하여 모든 서비스를 생성하고 서비스 종속성을 연결 해 봅니다
+
+#### frontend service
+
+- [ ] RUM Application
+- [ ] frontend-go
+- [ ] frontend-k8s
+- [ ] Synthetics Test
 
 #### Shopping Services
 
-- [ ] cartservice </br>
-- [ ] checkoutservice </br>
-- [ ] paymentservice </br>
-- [ ] shippingservice </br>
-- [ ] emailservice </br>
+- [ ] cartservice-c# </br>
+- [ ] cartservice-k8s </br>
+- [ ] checkoutservice-go </br>
+- [ ] checkoutservice-k8s
+- [ ] paymentservice-nodejs </br>
+- [ ] paymentservice-k8s
+- [ ] shippingservice-go </br>
+- [ ] shippingservice-k8s
+- [ ] emailservice-python </br>
+- [ ] emailservice-k8s
 
 #### Product Services
 
-- [ ] productcatalogservice </br>
-- [ ] recommendationservice </br>
-- [ ] adservice </br>
+- [ ] productcatalogservice-go </br>
+- [ ] productcatalogservice-k8s
+- [ ] recommendationservice-python </br>
+- [ ] recommendationservice-k8s
+- [ ] adservice-java </br>
 
 #### Support Services
 
-- [ ] currencyservice </br>
+- [ ] currencyservice-nodejs </br>
+- [ ] currencyservice-k8s
 - [ ] redis-cart </br>
-
-| KPI Name               | KPI Base Search            | Metric                |
-| ---------------------- | -------------------------- | --------------------- |
-| CPU Utilization        | OBQ : Infrastructure       | cpu_utilization       |
-| Memory Usage           | OBQ : Infrastructure       | memory_usage          |
-| Filesystem Usage       | OBQ : Infrastructure       | fs_usage              |
-| APM Request Count      | OBQ : Application Requests | request_count         |
-| APM Duration Median    | OBQ : Application Requests | duration_median       |
-| APM Duration P99       | OBQ : Application Requests | duration_p99          |
-| APM Error Count        | OBQ : Application Errors   | error_counts          |
-| APM Duration Error Med | OBQ : Application Errors   | duration_median_error |
-| APM Duration Error P99 | OBQ : Application Errors   | duration_p99_error    |
-
-#### Frontend Service
-
-- [ ] RUM Application
-
-| KPI Name              | KPI Base Search               | Metric            |
-| --------------------- | ----------------------------- | ----------------- |
-| RUM Client Errors     | OBQ : Frontend UX Performance | client_errors     |
-| RUM Page Views        | OBQ : Frontend UX Performance | page_views        |
-| RUM Resource Requests | OBQ : Frontend UX Performance | resource_requests |
-| RUM Web Vital CLS     | OBQ : Frontend UX Performance | cls_score_p75     |
-| RUM Web Vital FID     | OBQ : Frontend UX Performance | fid_p75           |
-| RUM Web Vital LCP     | OBQ : Frontend UX Performance | lcp_p75           |
-
-</br>
-
-- [ ] Synthetics Test
-
-| KPI Name             | KPI Base Search              | Metric            |
-| -------------------- | ---------------------------- | ----------------- |
-| Syn Resource Request | OBQ : Synthetics Performance | resource_requests |
-| Syn Reqource Error   | OBQ : Synthetics Performance | resource_errors   |
-| Syn Run Count        | OBQ : Synthetics Performance | run_count         |
-| Syn Run Duration     | OBQ : Synthetics Performance | run_duration      |
-| Syn Connect Time     | OBQ : Synthetics Performance | connect_time      |
-| Syn DNS Time         | OBQ : Synthetics Performance | dns_time          |
-| Syn Dom Time         | OBQ : Synthetics Performance | dom_complete_time |
 
 </br>
 
@@ -117,21 +175,27 @@ KPI 가 필요한 마이크로 서비스에 대해 모두 정의하였다면, �
 ```bash
 Online Boutique (상위 서비스)
 ├── Frontend Services
-│    ├── RUM Application
-│    └── Synthetics Test
-├── Shopping Services
-│    ├── cartservice
-│    ├── checkoutservice
-│    ├── paymentservice
-│    ├── shippingservice
-│    └── emailservice
-├── Product Services
-│    ├── productcatalogservice
-│    ├── recommendationservice
-│    └── adservice
-└──  Support Services
-	   ├── currencyservice
-	   └── redis-cart
+     ├── Synthetics Test
+     ├── RUM Application
+     │    └── frontend-go
+     │         └── frontend-k8s
+     ├── Shopping Services
+     │    ├── cartservice
+     │         └── cartservice-k8s
+     │    ├── checkoutservice
+               └── checkoutservice-k8s
+     │    ├── paymentservice
+     │    ├── shippingservice
+     │    └── emailservice
+     ├── Product Services
+     │    ├── productcatalogservice
+     │    ├── recommendationservice
+     │    └── adservice
+     └──  Support Services
+          ├── currencyservice
+          └── redis-cart
+
+
 ```
 
 </br>

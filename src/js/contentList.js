@@ -229,6 +229,14 @@ var CONTENTS = [
                 prev: '2-2',
                 next: '2-2-2',
               },
+              {
+                id: '2-2-2', // required. page ID
+                title: '2-2-2. Implementing Correlation Searchs', // required. Bread crumbs text
+                menuName: '2-2-2. Implementing Correlation Searchs', // required. Side bar text
+                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-2-Event-Analytics/2-2-2-CorrelationSearch/2-2-2-index.html', // required. HTML file path
+                prev: '2-2-1',
+                next: '2-2-3',
+              },
             ],
           },
         ],
