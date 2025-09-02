@@ -41,6 +41,7 @@
 ---
 
 </br>
+</br>
 
 ## LAB 00. Observability Content Pack 구성하기
 
@@ -67,6 +68,8 @@ Splunk Cloud 로 접속 정보는 제공드린 인스턴스 정보를 참고하�
 
 연동이 끝났으면 페이지 상단에 표시된 Default account 를 기존에 선택된 Boo 에서 _Splunk Korea_ 계정으로 변경 해 줍니다
 
+</br>
+
 ### 2. Observability Content Pack 설정하기
 
 **[Apps] > [IT Service Intelligence] > [Configuration] > [Data Integration]** 메뉴로 이동합니다
@@ -76,6 +79,8 @@ Splunk Cloud 로 접속 정보는 제공드린 인스턴스 정보를 참고하�
 - **3: Import as enabled (Optional)** 파트에서 Import as enabled 토글을 눌러 활성화시킵니다.
 
 - **[Insatll selected]** 버튼을 눌러 설치를 완료합니다
+
+</br>
 
 ### 3. Data Inputs Modular 설정하기
 

@@ -82,16 +82,45 @@
 
 아래와 같은 요구사항이 주어졌습니다
 
-> **커스터머 세일즈팀 요구사항** </br>
-> “우리는 매 분마다 업데이트되는 상태 보드(status board)를 원합니다. </br>
-> 이 보드에는 지난 15분 동안의 온라인 판매 전반의 효율성이 표시되어야 합니다.</br>
-> 효율성은 제품이 조회되거나 구매된 횟수, 그리고 고객이 본 웹 콘텐츠의 전체량으로 나누어 보여야 합니다.</br>
-> 우리는 특히 구매된 상품의 개수에 집중하고 싶습니다 — 이것이 핵심 요소입니다. 온라인 판매에서는 구매가 가장 중요합니다.</br>
-> 구매 KPI는 다른 항목보다 중요도가 두 배로 높아야 합니다.</br>
-> 웹 콘텐츠 조회량도 중요하긴 하지만, 다른 항목보다는 덜 중요합니다.”
+> **요구사항** </br>
+> 우리는 전체 서비스를 분해하여 기술적, 비즈니스적 레이어로 나누어 맵을 만들어야합니다 </br>
+> Online Boutique 서비스는 GO 로 개발 된 HTTP 기반의 frontend 서비스가 있으며, 백단에는 각종 백엔드 언어 (Node.js, Python, .Net 등) 로 개발 된 서비스가 기능 별로 세분화 되어있습니다 </br>
+> 또한 각 서비스는 K8S 환경에 구동되므로 서비스 별로 APM으로 측정되는 애플리케이션 측정정보와 Infra 모니터링 툴로 측정되는 Pod 의 물리적 사용량 정보가 있습니다 </br>
+> 세분화 된 각 서비스는 서비스 기능별로 카테고리를 묶어 관리하고 싶습니다
 
 이번 Lab 에서는 위 요구사항과 시나리오를 읽고 우리가 어떤 것을 만들어야할지 생각 해 봅니다.
 
 다음 KPI 단원에서 KPI 가 무엇인지 배워보고 실제 실습을 시작합니다
+
+```bash
+Online Boutique (최상위 서비스)
+├── Frontend Services
+     ├── Synthetics Test
+     ├── RUM Application
+     │    └── frontend-go
+     │         └── frontend-k8s
+     ├── Shopping Services
+     │    ├── cartservice-c#
+     │    │    └── cartservice-k8s
+     │    ├── checkoutservice-go
+     │    │    └── checkoutservice-k8s
+     │    ├── paymentservice-nodejs
+     │    │    └── paymentservice-k8s
+     │    ├── shippingservice-go
+     │    │    └── shippingervice-k8s
+     │    └── emailservice-python
+     │         └── emailservice-k8s
+     ├── Product Services
+     │    ├── productcatalogservice-go
+     │    │    └── productcatalogservice-k8s
+     │    ├── recommendationservice-python
+     │    │    └── recommendationservice-k8s
+     │    └── adservice-java
+     │         └── adservice-k8s
+     └──  Support Services
+          ├── currencyservice-nodejs
+          │    └── currencyservice-k8s
+          └── redis-cart
+```
 
 **_LAB 01 Done!_**

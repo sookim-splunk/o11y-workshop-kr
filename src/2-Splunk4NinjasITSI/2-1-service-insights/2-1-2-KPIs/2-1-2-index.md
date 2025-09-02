@@ -44,6 +44,7 @@
 ---
 
 </br>
+</br>
 
 ## LAB 02. 서비스와 KPI 를 정의합시다
 
@@ -53,84 +54,95 @@ Lab 01 에서 기술되었던 시나리오와 **_커스터머 세일즈팀_**으
 
 다시 한 번 알려드리겠습니다
 
-> **커스터머 세일즈팀 요구사항** </br>
-> “우리는 매 분마다 업데이트되는 상태 보드(status board)를 원합니다. </br>
-> 이 보드에는 지난 15분 동안의 온라인 판매 전반의 효율성이 표시되어야 합니다.</br>
-> 효율성은 제품이 조회되거나 구매된 횟수, 그리고 고객이 본 웹 콘텐츠의 전체량으로 나누어 보여야 합니다.</br>
-> 우리는 특히 구매된 상품의 개수에 집중하고 싶습니다 — 이것이 핵심 요소입니다. 온라인 판매에서는 구매가 가장 중요합니다.</br>
-> 구매 KPI는 다른 항목보다 중요도가 두 배로 높아야 합니다.</br>
-> 웹 콘텐츠 조회량도 중요하긴 하지만, 다른 항목보다는 덜 중요합니다.”
+> **KPI 측정 요구사항** </br>
+> 우리는 MSA 환경에 구성 된 Online Boutique 서비스를 모니터링 하기 위해 Splunk Obsevability Cloud 를 사용하고 있습니다 </br>
+> 해당 모니터링 솔루션을 통해 frontend 쪽은 Synthetics 를 통한 브라우저 테스트, RUM을 통한 사용자 행동에 대한 모니터링을 하고 있으며 </br>
+> Synthetics 는 주로 Resource request count , request error count, dom complete time, run duration 등을 모니터링합니다 </br>
+> RUM의 경우에는 page view count, client error count, web vital (LCP, CLS, FID)를 모니터링합니다
+> 백엔드 서비스를 모니터링 하기 위해 APM instrument 를 통해 데이터를 수집합니다. 주로 API로 조회 된 리퀘스트의 숫자와 그 중 발생한 에러의 숫자를 모니터링 합니다 </br>
+> 또한 K8S 환경에 배포 된 Agent 를 통해 Pod 단위로 리소스 사용률(CPU, Memory, Disk)을 모니터링 하고 있습니다 </br>
+> 이 모든 것이 서비스 분석 트리에 반영되었으면 좋겠습니다
 
 </br>
 
-### 1. 비즈니스 서비스 및 KPI 정의
+### 1. APM 서비스 및 KPI 정의
 
 아래와 같은 표가 있다고 가정했을 때 빈 칸을 한번 채워넣어봅시다
 
-- Service 이름 : _Online*Boutique_Sales*<이름>_
+- Service 이름 : _cartservice-c#_
 
 | KPI Name             | Requirement        | Freq.    | Time Span | Imp.       | Thresshold |
 | -------------------- | ------------------ | -------- | --------- | ---------- | ---------- |
 | Service Health Score | Overall efficiency | 1 min    | 15 min    | --         | --         |
-| Views                | 제품이 조회된 횟수 | 1 min    | 15 min    | 5          | high       |
+| Request Count        | 제품이 조회된 횟수 | 1 min    | 15 min    | 5          | high       |
+| _<KPI_Name_1>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
+
+<details>
+<summary><b>📌 [정답 보기] 여기를 클릭해서 KPI 표를 확인하세요! </b></summary>
+
+| KPI Name             | Requirement                     | Freq. | Time Span | Imp. | Threshold |
+| -------------------- | ------------------------------- | ----- | --------- | ---- | --------- |
+| Service Health Score | Overall efficiency              | 1 min | 15 min    | --   | --        |
+| Request Count        | 제품이 조회된 횟수              | 1 min | 15 min    | 5    | high      |
+| Request Error Count  | 제품 조회 시 발생된 에러의 횟수 | 1 min | 15 min    | 10   | High      |
+
+</details>
+
+</br>
+
+### 2. 인프라 서비스 및 KPI 정의
+
+위 단원에서 확인한 요구사항을 기준으로 정의내린 Application 관련 서비스를 만들어보았습니다, 이제는 요구사항을 조금 더 분석하여 인프라 관점의 서비스와 KPI를 정의 해 봅시다
+
+아래와 같은 표가 있다고 가정했을 때 빈 칸을 한번 채워넣어봅시다
+
+- Service 이름 : _cartservice-k8s_
+
+| KPI Name             | Requirement        | Freq.    | Time Span | Imp.       | Thresshold |
+| -------------------- | ------------------ | -------- | --------- | ---------- | ---------- |
+| Service Health Score | Overall efficiency | 1 min    | 15 min    | --         | --         |
+| CPU Utilization      | CPU 사용률         | 1 min    | 15 min    | 5          | mid        |
 | _<KPI_Name_1>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
 | _<KPI_Name_2>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
 
 <details>
 <summary><b>📌 [정답 보기] 여기를 클릭해서 KPI 표를 확인하세요! </b></summary>
 
-| KPI Name             | Requirement         | Freq. | Time Span | Imp. | Threshold |
-| -------------------- | ------------------- | ----- | --------- | ---- | --------- |
-| Service Health Score | Overall efficiency  | 1 min | 15 min    | --   | --        |
-| Views                | 제품이 조회된 횟수  | 1 min | 15 min    | 5    | high      |
-| Purchases            | 제품이 판매 된 횟수 | 1 min | 15 min    | 10   | High      |
-| Volume               | 웹 콘텐츠 이용량    | 1 min | 15 min    | 2    | Mid       |
+| KPI Name             | Requirement         | Freq. | Time Span | Imp. | Thresshold |
+| -------------------- | ------------------- | ----- | --------- | ---- | ---------- |
+| Service Health Score | Overall efficiency  | 1 min | 15 min    | --   | --         |
+| CPU Utilization(%)   | CPU 평균 사용률     | 1 min | 15 min    | 5    | mid        |
+| Memory Usage(%)      | Memory 평균 사용률  | 1 min | 15 min    | 5    | mid        |
+| FS Usage(%)          | Storage 평균 사용률 | 1 min | 15 min    | 5    | mid        |
 
 </details>
 
 </br>
 
-### 2. 테크니컬 서비스 및 KPI 정의
+### 3. 프론트 서비스 및 KPI 정의
 
-위 단원에서는 커스터머 세일즈팀의 요구사항을 기준으로 정의내린 비즈니스 서비스와 KPI를 만들어보았습니다. 이제는 **_IT 팀_**에게서 받은 요구사항을 한번 살펴보도록 합니다
+위 요구사항을 살펴보면 Frontend 를 이루고 있는 Infra/APM도 있지만, Synthetics 같은 브라우저 테스트와 RUM 이라는 유저 익스피리언스 모니터링도 함께 사용하는 것을 알 수 있습니다. 해당 모니터링에 대한 KPI도 같이 정의 해 봅시다
 
-> **IT팀 요구사항** </br>
-> “우리에게 가장 중요한 것은 웹사이트의 상태(Health)입니다.</br>
-> 에러가 얼마나 발생하고 있는지 알고 싶습니다.</br>
-> 스토어 프런트엔드 웹 애플리케이션에서 에러가 발생하면 큰 문제가 되기 때문입니다.</br>
-> 또한 웹 팜(Web Farm) 내 각 서버별 CPU, 메모리, 디스크 사용량 평균도 알고 싶습니다.</br>
-> 이 정보는 1분마다 업데이트되어 최근 15분 데이터를 보여주면 좋겠습니다.</br>
-> 그리고 웹 팜의 서버 수가 서비스 수준(Service Level) 이하로 떨어지면 알림을 받고 싶습니다
+- Service 이름 : _Synthetics Test_
 
-아래와 같은 표가 있다고 가정했을 때 빈 칸을 한번 채워넣어봅시다
-
-- Service 이름 : _Online_Boutique_WebFarm_ \_<이름>
-
-| KPI Name             | Requirement                   | Freq.    | Time Span | Imp.       | Thresshold |
-| -------------------- | ----------------------------- | -------- | --------- | ---------- | ---------- |
-| Service Health Score | Overall efficiency            | 1 min    | 15 min    | --         | --         |
-| Errors               | 얼마나 많은 에러가 발생했는지 | 1 min    | 15 min    | 11         | low        |
-| _<KPI_Name_1>_       | _<요구사항 기술>_             | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
-| _<KPI_Name_2>_       | _<요구사항 기술>_             | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
-| _<KPI_Name_3>_       | _<요구사항 기술>_             | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
-
-<details>
-<summary><b>📌 [정답 보기] 여기를 클릭해서 KPI 표를 확인하세요! </b></summary>
-
-| KPI Name               | Requirement                   | Freq. | Time Span | Imp. | Thresshold |
-| ---------------------- | ----------------------------- | ----- | --------- | ---- | ---------- |
-| Service Health Score   | Overall efficiency            | 1 min | 15 min    | --   | --         |
-| Errors                 | 얼마나 많은 에러가 발생했는지 | 1 min | 15 min    | 11   | low        |
-| CPU Utilization(%)     | CPU 평균 사용률               | 1 min | 15 min    | 5    | mid        |
-| Memory Utilization(%)  | Memory 평균 사용률            | 1 min | 15 min    | 5    | mid        |
-| Storage Utilization(%) | Storage 평균 사용률           | 1 min | 15 min    | 5    | mid        |
-
-</details>
+| KPI Name             | Requirement        | Freq.    | Time Span | Imp.       | Thresshold |
+| -------------------- | ------------------ | -------- | --------- | ---------- | ---------- |
+| Service Health Score | Overall efficiency | 1 min    | 15 min    | --         | --         |
+| CPU Utilization      | CPU 사용률         | 1 min    | 15 min    | 5          | mid        |
+| _<KPI_Name_1>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
+| _<KPI_Name_2>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
 
 </br>
 
-> **Question!** </br> </br>
-> IT 팀의 요구사항에 기반해서 KPI에 잡히는 Entity 는 어떤 단위가 되어야 할까요?</br>
-> 한 번 생각 해 봅시다
+- Service 이름 : _RUM Application_
+
+| KPI Name             | Requirement        | Freq.    | Time Span | Imp.       | Thresshold |
+| -------------------- | ------------------ | -------- | --------- | ---------- | ---------- |
+| Service Health Score | Overall efficiency | 1 min    | 15 min    | --         | --         |
+| CPU Utilization      | CPU 사용률         | 1 min    | 15 min    | 5          | mid        |
+| _<KPI_Name_1>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
+| _<KPI_Name_2>_       | _<요구사항 기술>_  | _<빈도>_ | _<스팬>_  | _<가중치>_ | _<중요도>_ |
+
+</br>
 
 **LAB 02 Done!**
