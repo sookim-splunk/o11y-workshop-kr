@@ -90,22 +90,14 @@
 
 - **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
 - 아래와 같이 필요한 내용을 선택합니다
-  <img src="../../../images/2-ninja-itsi/2-1-4-config15.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Title : cartservice-c#
-- Link service to a service tempalte 선택
-- Link to template : OBQ App template 선택
-- [Crate] 버튼을 클릭합니다
-- 생성 된 서비스 하위의 Entities 탭에서 원하는 서비스의 엔티티만 필터 한 후 저장합니다
-  <img src="../../../images/2-ninja-itsi/2-1-4-config16.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-- 이제 cartservice 의 인프라와 관련된 서비스를 동일하게 생성하고 서비스 종속성을 연결합니다
-- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
-- 아래와 같이 필요한 내용을 선택합니다
   <img src="../../../images/2-ninja-itsi/2-1-4-config17.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Title : cartservice-c#
+- Title : cartservice-k8s
 - Link service to a service tempalte 선택
-- Link to template : OBQ App template 선택
+- Link to template : OBQ Infra template 선택
 - [Crate] 버튼을 클릭합니다
+- 서비스를 [Save and Enabled] 합니다
+
+<!--
 - 생성 된 서비스 하위의 Entities 탭에서 원하는 서비스의 엔티티만 필터 한 후 저장합니다
   <img src="../../../images/2-ninja-itsi/2-1-4-config18.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
@@ -113,6 +105,28 @@
 - [Add Dependencies] 버튼을 클릭합니다
 - 표시되는 목록 중 cartservice-k8s 서비스를 클릭 후 하위에 있는 모든 KPI를 선택 후 저장합니다
 - 팝업창이 닫친 후 화면 하단에 있는 [Save] 버튼을 꼭 눌러줍니다
+-->
+
+</br>
+
+이제 cartservice 의 인프라와 관련된 서비스를 동일하게 생성하고 서비스 종속성을 연결합니다
+
+- **[ITSI] > [Configurations] > [Service]** 페이지로 이동하여 **[Create Service] > [Create Service]** 버튼을 클릭합니다
+- 아래와 같이 필요한 내용을 선택합니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config15.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+- Title : cartservice-c#
+- Link service to a service tempalte 선택
+- Link to template : OBQ App template 선택
+- [Crate] 버튼을 클릭합니다
+- [Service Dependencies] 탭을 클릭 후 *cartservice-k8s*를 종속성으로 추가합니다
+- [Save and Enabled] 를 완료합니다
+
+<!---
+- 생성 된 서비스 하위의 Entities 탭에서 원하는 서비스의 엔티티만 필터 한 후 저장합니다
+  <img src="../../../images/2-ninja-itsi/2-1-4-config16.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+-->
+
+</br>
 
 </br>
 
@@ -120,39 +134,48 @@
 
 우리는 아래와 같은 9개의 백엔드 서비스를 생성하고, 아래와 같은 KPI를 모두 생성해야하므로 위 단계와 동일하게 템플릿을 이용하여 모든 서비스를 생성하고 서비스 종속성을 연결 해 봅니다
 
+### 최상위 서비스
+
+- [ ] Online Boutique (템플릿 없는 빈 서비스 생성)
+
 #### frontend service
 
-- [ ] RUM Application
-- [ ] frontend-go
-- [ ] frontend-k8s
-- [ ] Synthetics Test
+- [ ] Frontend (템플릿 없는 빈 서비스 생성)
+  - [ ] RUM Application
+  - [ ] frontend-go
+    - [ ] frontend-k8s
+  - [ ] Synthetics Test
 
 #### Shopping Services
 
-- [ ] cartservice-c# </br>
-- [ ] cartservice-k8s </br>
-- [ ] checkoutservice-go </br>
-- [ ] checkoutservice-k8s
-- [ ] paymentservice-nodejs </br>
-- [ ] paymentservice-k8s
-- [ ] shippingservice-go </br>
-- [ ] shippingservice-k8s
-- [ ] emailservice-python </br>
-- [ ] emailservice-k8s
+- [ ] Shopping Service (템플릿 없는 빈 서비스 생성)
+  - [ ] cartservice-c#
+    - [ ] cartservice-k8s
+  - [ ] checkoutservice-go
+    - [ ] checkoutservice-k8s
+  - [ ] paymentservice-nodejs
+    - [ ] paymentservice-k8s
+  - [ ] shippingservice-go
+    - [ ] shippingservice-k8s
+  - [ ] emailservice-python
+    - [ ] emailservice-k8s
 
 #### Product Services
 
-- [ ] productcatalogservice-go </br>
-- [ ] productcatalogservice-k8s
-- [ ] recommendationservice-python </br>
-- [ ] recommendationservice-k8s
-- [ ] adservice-java </br>
+- [ ] Product Service (템플릿 없는 빈 서비스 생성)
+  - [ ] productcatalogservice-go
+    - [ ] productcatalogservice-k8s
+  - [ ] recommendationservice-python
+    - [ ] recommendationservice-k8s
+  - [ ] adservice-java
+    - [ ] adservice-k8s
 
 #### Support Services
 
-- [ ] currencyservice-nodejs </br>
-- [ ] currencyservice-k8s
-- [ ] redis-cart </br>
+- [ ] Support Service (템플릿 없는 빈 서비스 생성)
+  - [ ] currencyservice-nodejs
+    - [ ] currencyservice-k8s
+  - [ ] redis-cart
 
 </br>
 

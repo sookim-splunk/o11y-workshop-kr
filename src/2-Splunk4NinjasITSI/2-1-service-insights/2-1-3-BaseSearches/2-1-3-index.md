@@ -65,27 +65,26 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 우리가 KPI로 등록할 메트릭 리스트는 아래와 같습니다
 
-| Metric Type | Metric Name                             | KPI Metric                             |
-| ----------- | --------------------------------------- | -------------------------------------- |
-| Infra       | container.filesystem.usage              | fs_usage                               |
-| Infra       | container.memory.usage                  | memory_usage                           |
-| Infra       | container_cpu_utilization               | cpu_utilization                        |
-| APM         | service.request.count                   | request_count, error_counts            |
-| APM         | service.request.duration.ns.median      | duration_median, duration_median_error |
-| APM         | service.request.duration.ns.p99         | duration_p99, duration_p99_error       |
-| RUM         | rum.client_error.count                  | client_errors                          |
-| RUM         | rum.page_view.count                     | page_views                             |
-| RUM         | rum.resource_request.count              | resource_requests                      |
-| RUM         | rum.webvitals_cls.score.p75             | cls_score_p75                          |
-| RUM         | rum.webvitals_fid.time.ns.p75           | fid_p75                                |
-| RUM         | rum.webvitals_lcp.time.ns.p75           | lcp_p75                                |
-| Synthetics  | synthetics.resource_request.count       | resource_requests                      |
-| Synthetics  | synthetics.resource_request.error.count | resource_errors                        |
-| Synthetics  | synthetics.run.count                    | run_count                              |
-| Synthetics  | synthetics.run.duration.time.ms         | run_duration                           |
-| Synthetics  | synthetics.connect.time.ms              | connect_time                           |
-| Synthetics  | synthetics.dns.time.ms                  | dns_time                               |
-| Synthetics  | synthetics.dom_complete.time.ms         | dom_complete_time                      |
+| Metric Type | Metric Name                             | KPI Metric                          |
+| ----------- | --------------------------------------- | ----------------------------------- |
+| Infra       | container.filesystem.usage              | fs_usage                            |
+| Infra       | container.memory.usage                  | memory_usage                        |
+| Infra       | container_cpu_utilization               | cpu_utilization                     |
+| APM         | service.request.count                   | request_count, requests_error_count |
+| APM         | service.request.duration.ns.p99         | duration_p99, error_duration_p99    |
+| RUM         | rum.client_error.count                  | client_errors                       |
+| RUM         | rum.page_view.count                     | page_views                          |
+| RUM         | rum.resource_request.count              | resource_requests                   |
+| RUM         | rum.webvitals_cls.score.p75             | cls_score_p75                       |
+| RUM         | rum.webvitals_fid.time.ns.p75           | fid_p75                             |
+| RUM         | rum.webvitals_lcp.time.ns.p75           | lcp_p75                             |
+| Synthetics  | synthetics.resource_request.count       | resource_requests                   |
+| Synthetics  | synthetics.resource_request.error.count | resource_errors                     |
+| Synthetics  | synthetics.run.count                    | run_count                           |
+| Synthetics  | synthetics.run.duration.time.ms         | run_duration                        |
+| Synthetics  | synthetics.connect.time.ms              | connect_time                        |
+| Synthetics  | synthetics.dns.time.ms                  | dns_time                            |
+| Synthetics  | synthetics.dom_complete.time.ms         | dom_complete_time                   |
 
 ### 1. Infrastructure Base Search 만들기
 
@@ -131,14 +130,14 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Search : 아래와 같이 입력
   ```bash
   | mstats
-    sum("traces.count") as traces_count,
-    avg("traces.duration.ns.p99") as duration_p99
+    sum("traces.count") as traces_error_count,
+    avg("traces.duration.ns.p99") as error_duration_p99
   WHERE index=sim_metrics
   AND sf_error=true
   BY sf_service, sf_environment, sf_operation
   span=1m
   | rename sf_service as service, sf_environment as env
-  | table _time, service, env, traces_count, sf_operation, duration_p99
+  | table _time, service, env, traces_error_count, sf_operation, error_duration_p99
   ```
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes

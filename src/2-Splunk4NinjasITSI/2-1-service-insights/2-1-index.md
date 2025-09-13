@@ -117,8 +117,10 @@ data('container.filesystem.usage', filter=filter('k8s.cluster.name', '*') and fi
 
 ```bash
 # APM Traffic & Errors
-data("service.request.duration.ns.p99", filter=filter("sf_service", "*")).publish(); data("service.request.duration.ns.median", filter=filter("sf_service", "*")).publish();
-data("service.request.count", filter=filter("sf_service", "*")).publish();
+data('service.request.duration.ns.p99', filter=filter('sf_service', '*')).publish(); data('service.request.duration.ns.median', filter=filter('sf_service', '*')).publish();
+data('service.request.count', filter=filter('sf_service', '*')).publish();
+data('traces.count', filter=filter('sf_service', '*')).publish();
+data('traces.duration.ns.p99', filter=filter('sf_service', '*')).publish();
 ```
 
 </br>
