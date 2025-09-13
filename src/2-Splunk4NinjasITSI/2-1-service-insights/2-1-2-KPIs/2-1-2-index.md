@@ -171,8 +171,7 @@ Lab 01 에서 기술되었던 시나리오와 받은 요구사항을 기억하�
 | Resource request count | 리소스 조회 수      | 1 min | 15 min    | 5    | mid        |
 | resource errors        | 리소스 조회 에러 수 | 1 min | 15 min    | 5    | mid        |
 | run duration           | 수행 시간           | 1 min | 15 min    | 5    | mid        |
-| dns time               | dns resolution 시간 | 1 min | 15 min    | 5    | mid        |
-| dom complete time      | dom 완료 시간       | 1 min | 15 min    | 5    | mid        |
+| run count              | 테스트 수행 횟수    | 1 min | 15 min    | 5    | mid        |
 
 </br>
 

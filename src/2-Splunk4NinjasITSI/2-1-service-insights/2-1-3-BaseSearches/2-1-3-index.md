@@ -60,6 +60,11 @@ Base Search는 검색 스케줄러(Search Scheduler) 가 필요할 때마다 한
 Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄일 수 있고, 공통 Base Search를 공유하는 KPI가 많을수록 효율성이 높아집니다.
 
 </br>
+</br>
+
+---
+
+</br>
 
 ## LAB 03. KPI Base Search 만들기
 
@@ -67,9 +72,9 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 | Metric Type | Metric Name                             | KPI Metric                          |
 | ----------- | --------------------------------------- | ----------------------------------- |
-| Infra       | container.filesystem.usage              | fs_usage                            |
-| Infra       | container.memory.usage                  | memory_usage                        |
 | Infra       | container_cpu_utilization               | cpu_utilization                     |
+| Infra       | container.memory.usage                  | memory_usage                        |
+| Infra       | container.filesystem.usage              | fs_usage                            |
 | APM         | service.request.count                   | request_count, requests_error_count |
 | APM         | service.request.duration.ns.p99         | duration_p99, error_duration_p99    |
 | RUM         | rum.client_error.count                  | client_errors                       |
@@ -82,9 +87,8 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 | Synthetics  | synthetics.resource_request.error.count | resource_errors                     |
 | Synthetics  | synthetics.run.count                    | run_count                           |
 | Synthetics  | synthetics.run.duration.time.ms         | run_duration                        |
-| Synthetics  | synthetics.connect.time.ms              | connect_time                        |
-| Synthetics  | synthetics.dns.time.ms                  | dns_time                            |
-| Synthetics  | synthetics.dom_complete.time.ms         | dom_complete_time                   |
+
+</br>
 
 ### 1. Infrastructure Base Search 만들기
 
@@ -149,7 +153,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   - Unit : 개
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
 - 나머지 메트릭도 만들어줍니다
-- duration_median_error, duration_p99_error
+- error_duration_p99
 
 </br>
 
@@ -174,11 +178,11 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
   - Title : request_count
-  - Threshold Field : request_count
+  - Threshold Field : traces_count
   - Unit : 개
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
 - 나머지 메트릭도 만들어줍니다
-- duration_median, duration_p99
+- duration_p99
 
 </br>
 
@@ -224,15 +228,11 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
     sum("synthetics.resource_request.count") as resource_requests,
     sum("synthetics.resource_request.error.count") as resource_errors,
     sum("synthetics.run.count") as run_count,
-    avg("synthetics.run.duration.time.ms") as run_duration,
-    avg("synthetics.connect.time.ms") as connect_time,
-    avg("synthetics.dns.time.ms") as dns_time,
-    avg("synthetics.dom_complete.time.ms") as dom_complete_time
+    avg("synthetics.run.duration.time.ms") as run_duration
   WHERE index=sim_metrics
   BY test
   span=1m
-  | table _time, test, resource_requests, resource_errors, run_count, run_duration, connect_time, dns_time, dom_complete_time
-
+  | table _time, test, resource_requests, resource_errors, run_count, run_duration
   ```
 
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
