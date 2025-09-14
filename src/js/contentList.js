@@ -217,14 +217,14 @@ var CONTENTS = [
             id: '2-2', // required. page ID
             title: '2-2. Event Analytics', // required. Bread crumbs text
             menuName: '2-2. Event Analytics', // required. Side bar text
-            href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-2-Event-Analytics/2-2-index.html', // required. HTML file path
+            href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-2-event-analytics/2-2-index.html', // required. HTML file path
             prev: '2-1-5',
             next: '2-2-1',
             sub: [
               {
                 id: '2-2-1', // required. page ID
-                title: '2-2-1. Thresholds and Time Policies', // required. Bread crumbs text
-                menuName: '2-2-1. Thresholds and Time Policies', // required. Side bar text
+                title: '2-2-1. Thresholds', // required. Bread crumbs text
+                menuName: '2-2-1. Thresholds', // required. Side bar text
                 href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-2-event-analytics/2-2-1-Thresholds/2-2-1-index.html', // required. HTML file path
                 prev: '2-2',
                 next: '2-2-2',
