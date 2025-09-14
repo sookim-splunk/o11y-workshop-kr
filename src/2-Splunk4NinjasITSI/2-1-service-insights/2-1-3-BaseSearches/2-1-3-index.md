@@ -148,8 +148,8 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Split by Entity : No 선택 그대로 둡니다
 - Filter Entities in Service : No 선택 그대로 둡니다
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
-  - Title : request_error_count
-  - Threshold Field : request_count_error
+  - Title : traces error count
+  - Threshold Field : traces_error_count
   - Unit : 개
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
 - 나머지 메트릭도 만들어줍니다

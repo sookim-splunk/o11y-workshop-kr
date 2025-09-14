@@ -2,11 +2,9 @@
 
 ### Thresholds and Time Policies
 
-### Correlation Searchs
+### Multi-KPI Alerts
 
-### Multi-Alerts
-
-### Aggregate Policies
+### Aggregation Policies
 
 > Memo </br>
 > Advanced에 들어갈 것
