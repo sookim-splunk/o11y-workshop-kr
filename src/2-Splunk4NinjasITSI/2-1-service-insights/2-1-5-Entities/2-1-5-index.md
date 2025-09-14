@@ -10,24 +10,24 @@
 
 - **[ITSI] > [Configuration] > [Service Monitoring] > [KPI Base Search]** 페이지로 이동합니다
 - 기존에 생성했던 **_OBQ : Infrastructure_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
-- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _k8s.pod.name_ 을 입력합니다
+- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _k8s_pod_name_ 을 입력합니다
 
   <img src="../../../images/2-ninja-itsi/2-1-5-config2.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
 
 - 저장하고 빠져나옵니다
-- **[ITSI] > [Configuration] > [Service Monitoring] > [Service & KPI Management]** 페이지로 이동합니다
-- 서비스 목록에서 _checkoutservice_ 클릭 후 KPIs 탭을 클릭합니다
+- **[ITSI] > [Configuration] > [Service Templates]** 페이지로 이동합니다
+- 서비스 템플릿 목록에서 _OBQ Infra Template_ 클릭 후 KPIs 탭을 클릭합니다
 - CPU Utilization KPI 항목을 클릭후 Threshold 부분을 확장합니다
 - **Per-Entity Thresholds** 탭을 선택 후 아랫쪽에 표시되는 차트를 확인합니다
 - Threshold 정의 부분에서 톱니바퀴를 클릭 후 뜨는 팝업창에서 **Boundary Mode**를 둘 다 Disabled 해줍니다
 
   <img src="../../../images/2-ninja-itsi/2-1-5-config1.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
 
-- 적용 후에는 아래 스크린샷과 같이 그래프 내에 표시되는 선이 여러개로 표현되어야합니다
-
-  <img src="../../../images/2-ninja-itsi/2-1-5-config3.jpg" width="600" style="border: 1px solid #000; block; margin-left: 0;">
-
+- CPU utilization 외에도 나머지 두 개의 KPI에 동일한 설정값을 적용합니다
+  <img src="../../../images/2-ninja-itsi/2-1-5-config3.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+- 위 스크린샷 처럼 그래프에 표현 된 선이 여러개여야 합니다
 - 변경 사항을 저장합니다
+- 저장을 누르면 뜨는 팝업 창에서 Overwrite KPI thresholds and alerting rules on 의 값을 **All KPIs** 로 선택 후 [Save] 를 클릭합니다
 
 </br>
 
@@ -49,8 +49,8 @@
     BY k8s.pod.name, host, kubernetes_cluster
     span=5m
     | dedup k8s.pod.name
-    | eval ITSIUniqueId='k8s.pod.name'
-    | rename k8s.pod.name as dim_pod_name, host as dim_host, kubernetes_cluster as dim_kubernetes_cluster
+    | rename k8s.pod.name as dim_k8s_pod_name, host as dim_host, kubernetes_cluster as dim_kubernetes_cluster
+    | eval ITSIUniqueId='dim_k8s_pod_name'
     | fields dim_*, ITSIUniqueId
     | rename dim_* as *
     | eval entity_type="K8S_Pods", Vendor="Kubernetes"
@@ -65,9 +65,9 @@
 
   <img src="../../../images/2-ninja-itsi/2-1-5-config7.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
-  - **Title :** _OBQ-kube-Infra1_ 입력
+  - **Title :** _OBQ-kube-Infra_ 입력
   - **Schedule :** Run on Cron schedule 선택
-  - **Cron Schedule :** \*/5 \* \* \* (5분에 한번 실행)
+  - **Cron Schedule :** \*/5 \* \* \* \* (5분에 한번 실행)
 
 - 생성을 완료합니다
 
@@ -130,6 +130,39 @@
 </br>
 
 ### 4. Application Entity 식별 및 Entity Type 생성하기
+
+#### 4-1. Application KPI Base Search 수정하기
+
+인프라와 마찬가지로 Application 레벨에서도 각 엔티티를 식별 할 수 있도록 설정해야합니다. 해당 환경에서는 각 서비스에 하나의 WAS 서비스만 엔티티로 보여질 것이므로, 표현의 다양성을 위해 APM의 operation 값 (api endpoint)을 가지고 엔티티로 정의 해 봅니다
+
+- **[ITSI] > [Configuration] > [Service Monitoring] > [KPI Base Search]** 페이지로 이동합니다
+- 기존에 생성했던 **_OBQ : Application Errors_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
+- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _sf_operation_ 을 입력합니다
+- 마찬가지로 **_OBQ : Application Requests_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
+- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _sf_operation_ 을 입력합니다
+  <img src="../../../images/2-ninja-itsi/2-1-5-config5.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+- 저장하고 빠져나옵니다
+
+#### 4-2. Service Template에서 KPI 수정하기
+
+- **[ITSI] > [Configuration] > [Service Templates]** 페이지로 이동합니다
+- 서비스 템플릿 목록에서 _OBQ App Template_ 클릭 후 KPIs 탭을 클릭합니다
+- Trace Duration KPI 항목을 클릭후 Threshold 부분을 확장합니다
+- **Per-Entity Thresholds** 탭을 선택 후 아랫쪽에 표시되는 차트를 확인합니다
+- Threshold 정의 부분에서 톱니바퀴를 클릭 후 뜨는 팝업창에서 **Boundary Mode**를 둘 다 Disabled 해줍니다
+
+  <img src="../../../images/2-ninja-itsi/2-1-5-config1.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+
+- CPU utilization 외에도 나머지 두 개의 KPI에 동일한 설정값을 적용합니다
+- 변경 사항을 저장합니다
+  <img src="../../../images/2-ninja-itsi/2-1-5-config3.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+- 위 스크린샷 처럼 그래프에 표현 된 선이 여러개여야 합니다
+- 저장을 누르면 뜨는 팝업 창에서 Overwrite KPI thresholds and alerting rules on 의 값을 **All KPIs** 로 선택 후 [Save] 를 클릭합니다
+
+#### 4-3. Entity 생성 및 Entity Type 생성하기
+
+- **[ITSI] > [Configuration] > [Entity Management]** 메뉴로 이동합니다
+- 오른쪽 상단에 **[Create Entity] > [Import from Search]** 버튼을 눌러 생성을 시작합니다
 
 ```bash
 | mstats count(_value) as count

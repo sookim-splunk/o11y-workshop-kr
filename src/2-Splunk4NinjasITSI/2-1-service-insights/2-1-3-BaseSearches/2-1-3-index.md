@@ -102,14 +102,14 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
 - Search : 아래와 같이 입력
   ```bash
   | mstats
-    avg("container.filesystem.usage") as fs_usage,
-    avg("container.memory.usage") as memory_usage,
-    avg("container_cpu_utilization") as cpu_utilization
+  avg("container.filesystem.usage") as fs_usage,
+  avg("container.memory.usage") as memory_usage,
+  avg("container_cpu_utilization") as cpu_utilization
   WHERE index=sim_metrics
   BY k8s.pod.name, host
   span=1m
-  | rename k8s.pod.name as pod_name
-  | table _time, pod_name, host, fs_usage, memory_usage, cpu_utilization
+  | rename k8s.pod.name as k8s_pod_name
+  | table _time, k8s_pod_name, host, fs_usage, memory_usage, cpu_utilization
   ```
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
 
