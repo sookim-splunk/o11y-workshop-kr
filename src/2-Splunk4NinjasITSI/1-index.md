@@ -20,8 +20,8 @@
 | 10:20~10:40 | 01     | [Services](./2-1-service-insights/2-1-1-Services/2-1-1-index.html)                      | 20분      |
 | 10:40~11:00 | 02     | [KPIs](./2-1-service-insights/2-1-2-KPIs/2-1-2-index.html)                              | 20분      |
 |             |        | **10 Min Break Time**                                                                   |
-| 11:10~11:20 | 03     | [KPI Base Searches](./2-1-service-insights/2-1-3-BaseSearches/2-1-3-index.html)         | 10분      |
-| 11:20~11:40 | 04     | [Implementing Services](./2-1-service-insights/2-1-4-ImplementService/2-1-4-index.html) | 20분      |
+| 11:10~11:20 | 03     | [KPI Base Searches](./2-1-service-insights/2-1-3-BaseSearches/2-1-3-index.html)         | 30분      |
+| 11:20~11:40 | 04     | [Implementing Services](./2-1-service-insights/2-1-4-ImplementService/2-1-4-index.html) | 40분      |
 | 11:40~12:00 | 05     | [Entities](./2-1-service-insights/2-1-5-Entities/2-1-5-index.html)                      | 20분      |
 | 12:00~12:10 | 6      | Adoptive Threshold                                                                      | 10분      |
 | 12:10~12:30 | 7      | Anomaly Detection & Predictive Analytics                                                | 20분      |

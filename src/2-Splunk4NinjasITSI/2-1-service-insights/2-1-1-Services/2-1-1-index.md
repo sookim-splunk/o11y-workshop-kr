@@ -126,7 +126,7 @@ Online Boutique (최상위 서비스)
      └──  Support Services
           ├── currencyservice-nodejs
           │    └── currencyservice-k8s
-          └── redis-cart
+          └── redis-cart-service
 ```
 
 **_LAB 01 Done!_**
