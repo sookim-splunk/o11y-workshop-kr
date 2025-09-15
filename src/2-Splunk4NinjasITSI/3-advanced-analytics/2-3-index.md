@@ -7,3 +7,4 @@
 > 4. Adoptive Thresholding
 > 5. Content Pack?
 > 6. 권한관리
+> 7. Entity Filter 적용하기 (Optional)

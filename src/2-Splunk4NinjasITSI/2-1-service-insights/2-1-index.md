@@ -49,7 +49,7 @@
 
 이번 워크샵에서는 데이터 소스를 미리 준비 된 MSA 구조의 Online Boutique 쇼핑몰 환경을 사용합니다.
 
-![](../../images/2-ninja-itsi/2-1-onlineBoutique.png)
+<img src="../../images/2-ninja-itsi/2-1-onlineBoutique.png" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
 
 실습을 위해 해당 환경을 모두 구성해 놓았으므로, 해당 Application 측정 데이터를 Splunk Observability Cloud 에서 Splunk Cloud 가 연동 할 수 있도록 몇 가지 구성작업을 수행합니다
 
@@ -61,7 +61,7 @@ Splunk Cloud 로 접속 정보는 제공드린 인스턴스 정보를 참고하�
 
 위 메뉴 중 **[Configuration]** 탭을 클릭 후 **[Connect an Account]** 를 클릭합니다
 
-![](../../images/2-ninja-itsi/2-1-config1.jpg)
+<img src="../../images/2-ninja-itsi/2-1-config1.jpg" width="400" style="border: 1px solid #000; display: block; margin-left: 0;">
 
 - Realm : 실습에 사용할 O11y 계정의 리전을 선택 (us1)
 - Access Token : 실습에 사용할 API 토큰을 입력합니다 **- 토큰 : PDxGo3dZAbddDG6TsoEAng 활용**
@@ -96,7 +96,7 @@ Splunk Cloud 로 접속 정보는 제공드린 인스턴스 정보를 참고하�
   - **SAMPLE_OS_Hosts**
 - 원하는 샘플 모듈러 가장 오른쪽 칼럼에서 [Clone] 버튼을 누릅니다
 - 아래와 같이 이름과 Org ID를 넣은 후 저장합니다 - **Org ID : FS11QM9AwAE** 활용
-  ![](../../images/2-ninja-itsi/2-1-config2.jpg)
+  <img src="../../images/2-ninja-itsi/2-1-config2.jpg" width="600" style="border: 1px solid #000; display: block; margin-left: 0;">
 
 위 샘플 3개를 활성화 했다면, 이제는 새로운 모듈러를 생성합니다. 현재는 인프라 자원에 대한 데이터만 불러오도록 설정되어있는 상태이며, 추가로 진행 될 작업은 Kubernetes Pods, APM 과 RUM, Synthetics 데이터를 가져오도록 매뉴얼하게 모듈러를 생성합니다.
 
@@ -154,7 +154,7 @@ data('synthetics.duration.time.ms', filter=filter('test', '*') and filter('test_
 
 - **[Apps] > [Splunk Infrastructure Monitoring Add-on]** 앱으로 가서 **[Dashboards] > [Splunk Infrastructure Monitoring Modular Input Health Check]** 대시보드에서 모듈러가 제대로 작동하는지 확인합니다
 
-![](../../images/2-ninja-itsi/2-1-config3.jpg)
+<img src="../../images/2-ninja-itsi/2-1-config3.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
 
 위와 같이 방금 생성한 모듈러가 실행 된 기록 및 에러가 없다면 정상적으로 데이터를 가져오고 있음을 의미합니다
 

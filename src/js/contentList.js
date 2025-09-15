@@ -247,6 +247,15 @@ var CONTENTS = [
               },
             ],
           },
+          {
+            id: '2-3', // required. page ID
+            title: '2-3. Advanced Analytics', // required. Bread crumbs text
+            menuName: '2-3. Advanced Analytics', // required. Side bar text
+            href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-analytics/2-3-index.html', // required. HTML file path
+            prev: '2-2-3',
+            next: '2-3-1',
+            sub: [],
+          },
         ],
       },
       // Ch3 - Advanced Collector Configuraiton

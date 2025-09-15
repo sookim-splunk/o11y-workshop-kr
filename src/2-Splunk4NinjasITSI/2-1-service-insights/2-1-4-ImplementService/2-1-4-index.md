@@ -239,32 +239,32 @@ Splunk IT Service Intelligence(ITSI)에서 **서비스**는 단순한 서버나 
 ```bash
 Online Boutique (최상위 서비스)
 ├── Frontend Services
-     ├── Synthetics Test
-     ├── RUM Application
-     │    └── frontend-go
-     │         └── frontend-k8s
-     ├── Shopping Services
-     │    ├── cartservice-c#
-     │    │    └── cartservice-k8s
-     │    ├── checkoutservice-go
-     │    │    └── checkoutservice-k8s
-     │    ├── paymentservice-nodejs
-     │    │    └── paymentservice-k8s
-     │    ├── shippingservice-go
-     │    │    └── shippingervice-k8s
-     │    └── emailservice-python
-     │         └── emailservice-k8s
-     ├── Product Services
-     │    ├── productcatalogservice-go
-     │    │    └── productcatalogservice-k8s
-     │    ├── recommendationservice-python
-     │    │    └── recommendationservice-k8s
-     │    └── adservice-java
-     │         └── adservice-k8s
-     └──  Support Services
-          ├── currencyservice-nodejs
-          │    └── currencyservice-k8s
-          └── redis-cart-service
+│    ├── Synthetics Test
+│    └── RUM Application
+│        └── frontend-go
+│             └── frontend-k8s
+├── Shopping Services
+│    ├── cartservice-c#
+│    │    └── cartservice-k8s
+│    ├── checkoutservice-go
+│    │    └── checkoutservice-k8s
+│    ├── paymentservice-nodejs
+│    │    └── paymentservice-k8s
+│    ├── shippingservice-go
+│    │    └── shippingervice-k8s
+│    └── emailservice-python
+│         └── emailservice-k8s
+├── Product Services
+│    ├── productcatalogservice-go
+│    │    └── productcatalogservice-k8s
+│    ├── recommendationservice-python
+│    │    └── recommendationservice-k8s
+│    └── adservice-java
+│         └── adservice-k8s
+└── Support Services
+     ├── currencyservice-nodejs
+     │    └── currencyservice-k8s
+     └── redis-cart-service
 ```
 
 </br>
