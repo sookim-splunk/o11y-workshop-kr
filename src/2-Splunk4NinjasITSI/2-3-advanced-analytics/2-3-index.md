@@ -1,10 +1,50 @@
-> Memo </br>
-> Advanced에 들어갈 것
->
-> 1. Dashboarding
-> 2. Anomaly Detection
-> 3. Predictive Analytics
-> 4. Adoptive Thresholding
-> 5. Content Pack?
-> 6. 권한관리
-> 7. Entity Filter 적용하기 (Optional)
+# Advanced Analytics Capabilities of ITSI
+
+마지막 단원에서는 ITSI가 제공하는 **AI 기반 기능과 추가 확장 리소스**들을 다룹니다.  
+단순히 이벤트를 감지하고 집계하는 수준을 넘어서, **머신러닝 기반의 이상 탐지, 미래 예측, 그리고 Content Pack을 통한 손쉬운 활용**까지 포함합니다.  
+이는 운영자가 더 빠르고 정확하게 문제를 파악하고, 선제적으로 대응할 수 있도록 돕는 고급 기능입니다.
+
+</br>
+
+## 🤖 Anomaly Detection (이상 탐지)
+
+- 전통적인 임계값(Threshold) 방식은 사전에 정한 조건을 초과해야만 알람이 발생합니다.
+- 그러나 AI 기반 **Anomaly Detection**은 머신러닝 알고리즘을 활용해 데이터의 정상 패턴을 학습하고,  
+  **평소와 다른 비정상적인 변동**을 자동으로 감지합니다.
+- 예: 평소 트래픽이 밤에는 급감하는데, 특정일에 갑자기 급증하거나 반대로 전혀 요청이 없는 경우 → **자동으로 이상 징후로 탐지**
+- 이를 통해 운영자는 사전에 설정한 임계값에 의존하지 않고, **알려지지 않은 문제(Unknown Unknowns)**까지 감지할 수 있습니다.
+
+</br>
+
+## 📈 Predictive Analytics (예측 분석)
+
+- ITSI는 과거 KPI 트렌드를 바탕으로 **향후 상태를 예측**하는 기능을 제공합니다.
+- 예: 현재 CPU 사용량 추세가 계속 이어질 경우, 30분 후에는 해당 서비스의 SHS가 80으로 하락 할 것이라는 경고
+- 단순 모니터링을 넘어서 **미래를 대비할 수 있는 인사이트**를 제공하기 때문에, 장애가 발생하기 전에 자원 증설, 트래픽 분산 등 **선제적 대응**이 가능합니다.
+- 이를 통해 장애 대응 방식이 **Reactive(사후 대응)**에서 **Proactive(사전 대응)**로 발전하게 됩니다.
+
+</br>
+
+## 📦 Content Packs (콘텐츠 팩)
+
+- ITSI는 다양한 도메인/산업별 **Content Pack**을 제공합니다.
+- Content Pack은 **미리 정의된 KPI, 서비스 템플릿, 대시보드, 알람 규칙** 등을 포함하고 있어,  
+  운영자가 복잡한 설정 없이 바로 모니터링 환경을 구축할 수 있도록 돕습니다.
+- 예:
+  - **Splunk Observability Cloud Content Pack** → 애플리케이션 성능 모니터링에 필요한 KPI와 대시보드 제공
+  - **RUM Content Pack** → 웹/모바일 사용자 경험을 추적할 수 있는 지표 제공
+  - **Cloud Infrastructure Pack** → AWS, GCP, Azure 환경 모니터링을 위한 사전 정의 리소스 포함
+- Content Pack은 **베스트 프랙티스 집약본**이자, **빠른 Time-to-Value**를 실현하는 핵심 도구입니다.
+
+</br>
+
+## 🧭 이 단원의 목표
+
+이 단원은 Event Analytics에서 배운 기초 위에, ITSI가 제공하는 **AI와 자동화의 고급 기능**을 소개합니다.  
+이를 통해 학습자는 ITSI가 단순 모니터링 도구를 넘어, **AIOps 플랫폼으로 발전하는 과정**을 이해하게 됩니다.
+
+- **Anomaly Detection** → 알려지지 않은 이상까지 탐지
+- **Predictive Analytics** → 미래 상태 예측과 사전 대응
+- **Content Packs** → 빠른 구축과 베스트 프랙티스 활용
+
+👉 이 단원을 통해 ITSI가 단순 이벤트 관리에 그치지 않고, **지능형 운영(AIOps)으로 확장되는 모습**을 확인할 수 있습니다.

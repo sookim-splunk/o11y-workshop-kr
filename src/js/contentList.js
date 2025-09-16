@@ -254,7 +254,16 @@ var CONTENTS = [
             href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-analytics/2-3-index.html', // required. HTML file path
             prev: '2-2-3',
             next: '2-3-1',
-            sub: [],
+            sub: [
+              {
+                id: '2-3-1', // required. page ID
+                title: '2-3-1. Advanced Analytics', // required. Bread crumbs text
+                menuName: '2-3-1. Advanced Analytics', // required. Side bar text
+                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-1-advanced-nalytics/2-3-1-AnomalyDetection/2-3-1-index.html', // required. HTML file path
+                prev: '2-3',
+                next: '2-3-2',
+              },
+            ],
           },
         ],
       },
