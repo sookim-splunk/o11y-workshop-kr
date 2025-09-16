@@ -140,8 +140,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   AND sf_error=true
   BY sf_service, sf_environment, sf_operation
   span=1m
-  | rename sf_service as service, sf_environment as env
-  | table _time, service, env, traces_error_count, sf_operation, error_duration_p99
+  | table _time, sf_service, sf_environment, traces_error_count, sf_operation, error_duration_p99
   ```
 - KPI Search Scheduel : Every minute
 - Calculation Window : Last 15 minutes
@@ -172,8 +171,7 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   AND sf_error=false
   BY sf_service, sf_environment, sf_operation
   span=1m
-  | rename sf_service as service, sf_environment as env
-  | table _time, service, env, traces_count, sf_operation, duration_p99
+  | table _time, sf_service, sf_environment, traces_count, sf_operation, duration_p99
   ```
 
 - 아래 부분에 있는 [Add Metric] 버튼을 눌러 아래와 같이 입력합니다
@@ -204,7 +202,8 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   WHERE index=sim_metrics
   BY app
   span=1m
-  | table _time, app, client_errors, page_views, resource_requests, cls_score_p75, fid_p75, lcp_p75
+  | rename app as rum_app
+  | table _time, rum_app, client_errors, page_views, resource_requests, cls_score_p75, fid_p75, lcp_p75
 
   ```
 

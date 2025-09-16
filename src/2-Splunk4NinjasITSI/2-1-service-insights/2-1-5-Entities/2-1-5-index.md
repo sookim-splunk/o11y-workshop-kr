@@ -550,3 +550,169 @@ RUM 과 Synthetics 는 서비스 템플릿을 따로 생성하지 않았으므�
 </br>
 
 **Lab 05 Done!**
+
+</br>
+</br>
+
+## LAB 06. 엔티티 필터 적용하여 서비스에 원하는 엔티티만 적용시키기
+
+현재는 엔티티 별로 그래프를 볼 수 있도록 split 만 한 상태이지만, 이제 각 서비스에 원하는 엔티티만 보이도록, 그리고 서비스별 threshold를 걸려면 필터 작업이 필요합니다.
+
+아래 실습 가이드를 따라 작업 해 봅니다
+
+### 6-1. Service Template 수정하기
+
+- **[ITSI] > [Configuration] > [Service Templates]** 페이지로 이동합니다
+- 서비스 템플릿 목록에서 _OBQ Infra Template_ 클릭 후 KPIs 탭을 클릭합니다
+- Entities 탭에서 필터를 아래와 같이 수정합니다
+
+  <img src="../../../images/2-ninja-itsi/2-1-5-config23.jpg" width="700" style="border: 1px solid #000; block; margin-left: 0;">
+
+  - `Entity Type` : `matches` `K8S_Pods`
+  - `Alias` : `k8s_pod_name` `matches` `*`
+
+- 변경 사항을 저장합니다
+- 저장을 누르면 뜨는 팝업 창에서 Overwrite entity rules 의 값을 토글하여 덮어쓰기 하게 설정 후 [Save] 를 클릭합니다
+  <img src="../../../images/2-ninja-itsi/2-1-5-config24.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+
+</br>
+
+### 6-2. Infrastructure KPI Base Search 수정하기
+
+- **[ITSI] > [Configuration] > [Service Monitoring] > [KPI Base Search]** 페이지로 이동합니다
+- 기존에 생성했던 **_OBQ : Infrastructure_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
+- 옵션 하단에 **Filter to Entities in Service** 부분을 **Yes** 로 변경 후 아래와 같이 _k8s_pod_name_ 을 입력합니다
+
+  <img src="../../../images/2-ninja-itsi/2-1-5-config22.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+
+- 저장하고 빠져나옵니다
+
+</br>
+
+### 6-3. 각 인프라(k8s) 서비스에 필터 적용하기
+
+- **[ITSI] > [Configuration] > [Services]** 페이지로 이동합니다
+- 기존에 생성했던 **_frontend-k8s_** 서비스를 클릭하여 상세 페이지로 들어갑니다
+- Entities 탭을 클릭하면 템플릿으로 수정한 내용이 덮어쓰기 된 것을 확인 할 수 있습니다.
+- **k8s_pod_name** 의 값을 아래와같이 **frontend\*** 로 변경하여 Matches Entities 에 제대로 파드가 필터되어 나오는지 확인합니다
+  <img src="../../../images/2-ninja-itsi/2-1-5-config25.jpg" width="800" style="border: 1px solid #000; block; margin-left: 0;">
+
+- 저장 후 Service Analyzer 에 제대로 반영되었는지 확인합니다
+- **[ITSI] > [Analyzers] > [Online boutique]** 에서 _frontend-k8s_ 서비스를 클릭 후 _CPU Utilization_ KPI를 클릭하면 오른쪽에 frontend 엔티티만 보여지나요?
+  <img src="../../../images/2-ninja-itsi/2-1-5-config26.jpg" width="800" style="border: 1px solid #000; block; margin-left: 0;">
+
+그럼 성공 😀
+
+<div style="border:1px solid #ddd; padding:12px; border-radius:8px; background-color:#e6f7ff;">
+<strong>⚠️ 참고사항</strong> </br>
+오늘 실습에 사용하는 Splunk Cloud 및 ITSI 는 최신버전이 아니므로 Service Analyzer가 바로바로 업데이트 되지 않을 수 있습니다. 우선 다른작업 먼저 수행 후 시간이 흐른 뒤에 확인하시는 것이 좋습니다
+</div>
+
+</br>
+
+### 6-4. 나머지 인프라 서비스에 모두 적용하기
+
+인프라 레벨에서는 현재 frontend-k8s 서비스 하나만 필터 적용이 되었으므로 나머지 인프라 서비스에 대해서도 필터를 적용합니다
+
+작업을 해야 할 서비스 목록은 아래와 같습니다
+
+#### Shopping Services
+
+- [ ] cartservice-k8s
+- [ ] checkoutservice-k8s
+- [ ] paymentservice-k8s
+- [ ] shippingservice-k8s
+- [ ] emailservice-k8s
+
+#### Product Services
+
+- [ ] productcatalogservice-k8s
+- [ ] recommendationservice-k8s
+- [ ] adservice-k8s
+
+#### Support Services
+
+- [ ] currencyservice-k8s
+
+</br>
+
+### 6-5. Application 서비스에 대해 필터 적용하기
+
+- **[ITSI] > [Configuration] > [Service Templates]** 페이지로 이동합니다
+- 서비스 템플릿 목록에서 _OBQ App Template_ 클릭 후 KPIs 탭을 클릭합니다
+- Entities 탭에서 필터를 아래와 같이 수정합니다
+
+  - `Entity Type` : `matches` `APM Operations`
+  - `Alias` : `sf_service` `matches` `*`
+
+- 변경 사항을 저장합니다
+- 저장을 누르면 뜨는 팝업 창에서 Overwrite entity rules 의 값을 토글하여 덮어쓰기 하게 설정 후 [Save] 를 클릭합니다
+
+이제  KPI Base Search를 수정 해 봅시다
+
+- **[ITSI] > [Configuration] > [Service Monitoring] > [KPI Base Search]** 페이지로 이동합니다
+- 기존에 생성했던 **_OBQ : Application Errors_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
+- 옵션 하단에 **Filter to Entities in Service** 부분을 **Yes** 로 변경 후 아래와 같이 _sf_service_ 을 입력합니다
+- 저장하고 빠져나옵니다
+- 동일하게 **_OBQ : Application Requests_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
+- 옵션 하단에 **Filter to Entities in Service** 부분을 **Yes** 로 변경 후 아래와 같이 _sf_service_ 을 입력합니다
+- 저장하고 빠져나옵니다
+
+이제 단일 서비스마다 필터를 적용 해 봅시다
+
+- **[ITSI] > [Configuration] > [Services]** 페이지로 이동합니다
+- 기존에 생성했던 **_frontend-go_** 서비스를 클릭하여 상세 페이지로 들어갑니다
+- Entities 탭을 클릭하면 템플릿으로 수정한 내용이 덮어쓰기 된 것을 확인 할 수 있습니다.
+- **k8s_pod_name** 의 값을 아래와같이 **frontend** 로 변경하여 Matches Entities 에 제대로 파드가 필터되어 나오는지 확인합니다
+
+작업을 해야 할 나머지 서비스 목록은 아래와 같습니다
+
+#### frontend service
+
+- [ ] frontend-go
+
+#### Shopping Services
+
+- [ ] cartservice-c#
+- [ ] checkoutservice-go
+- [ ] paymentservice-nodejs
+- [ ] shippingservice-go
+- [ ] emailservice-python
+
+#### Product Services
+
+- [ ] productcatalogservice-go
+- [ ] recommendationservice-python
+- [ ] adservice-java
+
+#### Support Services
+
+- [ ] currencyservice-nodejs
+
+</br>
+
+### 6-6. RUM / Synthetics 서비스에 대해 필터 적용하기
+
+이 두 서비스는 템플릿이 따로 없으므로 서비스에서 바로 수정을 진행합니다
+
+- **[ITSI] > [Configuration] > [Services]** 페이지로 이동합니다
+- 기존에 생성했던 **_RUM Application_** 서비스를 클릭하여 상세 페이지로 들어갑니다
+- Entities 탭을 클릭하고 **[+ Add Set to Rules]** 를 클릭합니다
+  - `Entity Type` : `matches` `RUM Browser Application`
+  - `Alias` : `rum_app` `matches` `shw-a766-store`
+- Matches Entities 에 제대로 파드가 필터되어 나오는지 확인합니다
+- 저장 후 **_Synthetics Test_** 서비스를 클릭하여 상세 페이지로 들어갑니다
+- Entities 탭을 클릭하고 **[+ Add Set to Rules]** 를 클릭합니다
+  - `Entity Type` : `matches` `Synthetics Monitor`
+  - `Alias` : `test` `matches` `Workshop Browser Test for shw-a766`
+- Matches Entities 에 제대로 파드가 필터되어 나오는지 확인합니다
+- 변경사항을 저장합니다
+
+이제 KPI BaseSearch 에서 필터 조건을 각각 아래와 같이 설정합니다
+
+- OBQ : Frontend UX Performance : rum_app
+- OBQ : Synthetics Performance : test
+
+저장하고 변경사항이 제대로 반영되었는지 시간이 지난 후 Service Analyzer에서 확인합니다
+
+**Lab 06 Done!**
