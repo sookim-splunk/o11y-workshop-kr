@@ -1,101 +1,51 @@
-# 2-2-1. 임계값 설정하기
+# 2-3-1. Anomaly Detection 설정 하기
 
-</br>
+**ITSI Anomaly Detection**은 고정 임계값(Threshold)에 의존하지 않고, **과거 패턴을 학습해 “평소와 다른” 이상 징후**를 자동으로 감지하는 기능입니다.  
+트래픽의 시계열 특성(시간대/요일/계절성)을 고려한 **동적 기준선(Baseline)**을 만들고, 실측 KPI가 기대 범위를 벗어날 때 이상으로 표시합니다.  
+이를 통해 알려지지 않은 유형(Unknown Unknowns)의 문제를 조기에 발견할 수 있습니다.
 
-이 모듈에서는 온라인 부티크 서비스 하위의 각 서비스의 KPI에 대한 임계값을 구성합니다.
+## 언제 쓰나?
 
-IT 팀은 프론트엔드에서 발생하는 오류에 대한 심각도 임계값을 커스텀하게 설정하고 싶어합니다. 오류가 많을수록 심각도가 높아지기를 바랍니다.
-또한, 판매량에 따른 임계값 등급을 조정하고 싶어합니다. 판매량이 적을수록 심각도가 높아지기를 바랍니다. 또한, 심각도가 시간별로 다르게 적용되어 시간대별로 다른 임계값을 적용하기를 원합니다.
+- 업무 시간/야간 등 **시간대별 정상 범위가 크게 변하는 KPI**(응답시간, 트랜잭션 수, 에러율 등)
+- 고정 Threshold로는 놓치기 쉬운 **비선형 변화·드리프트** 감지
 
-## LAB 07. Threshold 정의하기
+## ITSI Anomaly Detection 알고리즘 비교
 
-### 1. 서비스 템플릿에 정적 임계치 생성하기
+| 구분            | 트렌딩 알고리즘 (Trending)                                       | 엔티티 응집도 알고리즘 (Entity Cohesion)                       |
+| --------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| **분석 관점**   | 한 엔티티의 **시간적 변화(과거 대비 현재)** 감지                 | 여러 엔티티 간의 **상대적 차이(피어 비교)** 감지               |
+| **기준**        | 과거 데이터로 만든 **동적 기준선(Baseline)**                     | 동시간대 엔티티 집합의 **중앙값/분포(코호트 기준)**            |
+| **강점**        | - 계절성·추세 반영 가능<br>- 드리프트/비정상 패턴 감지           | - Outlier(특이 엔티티) 식별<br>- 다수 엔티티 동시 이상 탐지    |
+| **적합한 지표** | 응답시간, 에러율, 트래픽 등 **시계열 변동성 큰 KPI**             | 다수 인스턴스/호스트 기반 서비스의 **상대 비교 KPI**           |
+| **적합한 상황** | - 서비스 전체 패턴 변화 조기 탐지<br>- 임계값 세팅이 어려운 지표 | - 특정 엔티티만 튀는 경우<br>- 다수 엔티티 동시 장애 범위 확인 |
+| **한계**        | 초기 학습 필요, 데이터 부족 시 정확도 저하                       | 엔티티 수가 적거나 동질적이지 않으면 효과 낮음                 |
+| **비유**        | "이 엔티티가 평소보다 이상해졌나?"                               | "여러 엔티티 중 누가 다르게 움직이나?"                         |
 
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Service Templates]** 메뉴로 이동하여 **_OBQ app template_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_Trace Error_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config1.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- Preview service : frontend-go 서비스 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다 (데이터를 확인 한 후 실 데이터의 수치가 너무 낮다면 High 이상이 그래프에 걸릴 수 있도록 임계치를 조절합니다)
-- 저장버튼을 누른 후 뜨는 팝업창에서 overwrite 정책을 다음과 같이 설정합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config2.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+## Threshold와의 차이 / 함께 쓰는 방법
 
-임계치를 하나만 더 생성 해 봅시다
+- **Threshold**: 단순·명확(규정 위반 즉시 알람), 계절성/드리프트에 취약
+- **Anomaly Detection**: **동적 기준선**으로 변화에 탄력적, 미지 패턴 탐지에 강함
+- 베스트 프랙티스:
+  - 안정된 SLO/SLA는 **Threshold**로,
+  - 변동성이 큰 지표·초기 탐색은 **Anomaly Detection**으로,
+  - 필요 시 **Multi-KPI Alert**로 맥락 결합
 
-- KPI 목록 중 **_Trace Duration_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config4.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- Preview service : adservice-java 서비스 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 그래프의 스크롤바를 조절하여 각각 레벨을 정해 줍니다
-- 저장버튼을 누른 후 뜨는 팝업창에서 overwrite 정책을 설정합니다
+## 결과 활용 시나리오(Incident Flow)
 
-</br>
+1. **Anomaly Notable 생성**
+2. **Aggregation Policy**로 관련 이벤트 Episode 집계(서비스/엔티티/ID 기준)
+3. Episode 룰로 **Severity/Status** 자동 전환(또는 `state=clear` 신호로 종료)
+4. 대시보드/Glass Table에서 **헬스 점수 & MTL 컨텍스트**로 트리아지
 
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Services]** 메뉴로 이동하여 **_checkoutservice-go_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_trace count_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config3.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다
+## 장애물·문제 해결
 
-  </br>
+- **결과가 너무 많다**: 민감도 낮춤, Multi-KPI와 결합
+- **초기 품질 낮음**: Cold start 기간 확보(며칠~수주), 기준선 안정 후 재튜닝
 
-### 2. 인프라 템플릿에 정적 임계치 생성하기
+## 요약
 
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Service Templates]** 메뉴로 이동하여 **_OBQ Infra template_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_CPU Utilization_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config5.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- Preview service : cartservice-k8s 서비스 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다 (데이터를 확인 한 후 실 데이터의 수치가 너무 낮다면 High 이상이 그래프에 걸릴 수 있도록 임계치를 조절합니다)
-- 저장버튼을 누른 후 뜨는 팝업창에서 overwrite 정책을 설정합니다
+Anomaly Detection은 **동적 기준선 + 지속성 + 방향성**으로 이상 징후를 자동 탐지하여,  
+고정 임계값의 한계를 보완합니다. Event Analytics의 Thresholds/Alerts/Policies와 결합하면  
+**노이즈는 낮추고, 발견 속도와 정확도는 높이는** 운영 체계를 만들 수 있습니다.
 
-</br>
-
-### 3. 단일 서비스에 정적 임계치 생성하기
-
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Services]** 메뉴로 이동하여 **_RUM Application_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_Client Errors_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config6.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- view data from : last 24 hours 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다
-- [Save]를 눌러 저장합니다
-
-</br>
-
-### 이벤트 발생 현황 확인하기
-
-정적 임계값을 설정 할 때 일부러 낮게 설정하여 알람이 울리게 만들었으므로 시간이 조금 지난다면 이벤트가 다소 발생 할 것입니다.
-
-- **[ITSI] > [Alerts and Episodes]** 메뉴로 이동합니다
-- 현재 발생되는 이벤트 목록 중 "Traces Error" 로 시작하는 이벤트를 한번 찾아서 눌러봅니다
-- Impact 탭에서는 이벤트가 발생한 주체 서비스와 영향을 받는 다른 서비스가 같이 표시됩니다
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config7.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-- Events Timeline 탭을 클릭하고 Sort for 값을 Root cause analysis 를 선택하면 발생 된 이벤트 중 근본원인으로 추정되는 이벤트를 말 해 줍니다
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config8.jpg" width="600" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-또 다른 방법으로 이벤트를 확인하는 방법이 있습니다. 시간이 좀 지났다면 이미 서비스에서 여러 알림이 발생하고 있을텐데요, 혹시 서비스 트리에서 서비스의 색깔이 변했거나 느낌표가 표시된 서비스가 보이나요?
-
-- **[ITSI] > [Analyzer]** 메뉴로 이동하여 Online Boutique 서비스 분석기를 선택합니다
-- 아래와 같이 서비스의 모습이 변화한 것을 확인 할 수 있습니다
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config9.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-- 이 중 paymentservice-nodejs 를 선택 해 봅니다. KPI 목록 아래에 Critical Episode가 생성되었다는 표시가 보입니다.
-- View All 버튼을 눌러 에피소드 화면으로 넘어가면, 방금 화면과 같이 에피소드 리뷰 화면이 보입니다.
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config10.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-**LAB 07 Done!**
+## Lab 10. Anomaly Detection 설정하기

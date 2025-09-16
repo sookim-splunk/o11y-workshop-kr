@@ -1,101 +1,36 @@
-# 2-2-1. 임계값 설정하기
+# 2-3-2. Predictive Analytics
 
-</br>
+**Predictive Analytics(예측 분석)**은 ITSI의 KPI 데이터를 기반으로 **향후 상태를 예측**하는 기능입니다.  
+과거 시계열 데이터를 학습해 **트렌드(Trend)와 계절성(Seasonality)**을 반영한 모델을 만들고,  
+다가올 일정 시간 구간의 Service/KPI 레벨로 SHS를 **미리 추정**합니다.  
+이를 통해 운영자는 문제가 발생하기 전에 사전 조치를 취할 수 있습니다.
 
-이 모듈에서는 온라인 부티크 서비스 하위의 각 서비스의 KPI에 대한 임계값을 구성합니다.
+## 언제 쓰나
 
-IT 팀은 프론트엔드에서 발생하는 오류에 대한 심각도 임계값을 커스텀하게 설정하고 싶어합니다. 오류가 많을수록 심각도가 높아지기를 바랍니다.
-또한, 판매량에 따른 임계값 등급을 조정하고 싶어합니다. 판매량이 적을수록 심각도가 높아지기를 바랍니다. 또한, 심각도가 시간별로 다르게 적용되어 시간대별로 다른 임계값을 적용하기를 원합니다.
+- CPU 사용률, 디스크 용량 등 **자원 고갈**을 예측하고 미리 증설
+- 트랜잭션 지연, 에러율 등 **서비스 품질 저하**를 장애 전 단계에서 탐지
+- 이벤트 폭증(예: 세일, 시즌 트래픽)을 앞두고 **용량 대비/운영 준비**
 
-## LAB 07. Threshold 정의하기
+## 운영 팁
 
-### 1. 서비스 템플릿에 정적 임계치 생성하기
+- **Cold Start**: 최소 며칠~수주의 과거 데이터 확보 필요
+- **Horizon 설정**: 너무 길면 신뢰도 저하, 너무 짧으면 실용성 부족 → KPI 특성 따라 조정
+- **SLO 연계**: SLA 위반 예상 지표를 예측 알람으로 만들어 경영/운영 레벨 보고 가능
+- **MTL 연계**: 예측 알람 발생 시 Metrics→Traces→Logs로 드릴다운 → 사전 RCA 지원
 
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Service Templates]** 메뉴로 이동하여 **_OBQ app template_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_Trace Error_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config1.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- Preview service : frontend-go 서비스 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다 (데이터를 확인 한 후 실 데이터의 수치가 너무 낮다면 High 이상이 그래프에 걸릴 수 있도록 임계치를 조절합니다)
-- 저장버튼을 누른 후 뜨는 팝업창에서 overwrite 정책을 다음과 같이 설정합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config2.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
+---
 
-임계치를 하나만 더 생성 해 봅시다
+## 예시 시나리오
 
-- KPI 목록 중 **_Trace Duration_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config4.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- Preview service : adservice-java 서비스 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 그래프의 스크롤바를 조절하여 각각 레벨을 정해 줍니다
-- 저장버튼을 누른 후 뜨는 팝업창에서 overwrite 정책을 설정합니다
+- CPU 사용률이 현재 70%인데, 추세상 2시간 후 90% 예상 → **증설/스케일링 선제 대응**
+- 결제 서비스 에러율이 점차 상승 중, 30분 내 SLA 5% 초과 예상 → **운영팀 사전 경보**
+- 블랙프라이데이 트래픽 패턴을 반영해 트랜잭션 수요를 예측, DB 풀 용량 사전 확장
 
-</br>
+---
 
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Services]** 메뉴로 이동하여 **_checkoutservice-go_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_trace count_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config3.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다
+## 요약
 
-  </br>
-
-### 2. 인프라 템플릿에 정적 임계치 생성하기
-
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Service Templates]** 메뉴로 이동하여 **_OBQ Infra template_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_CPU Utilization_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config5.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- Preview service : cartservice-k8s 서비스 선택
-- view data from : last 7 days 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다 (데이터를 확인 한 후 실 데이터의 수치가 너무 낮다면 High 이상이 그래프에 걸릴 수 있도록 임계치를 조절합니다)
-- 저장버튼을 누른 후 뜨는 팝업창에서 overwrite 정책을 설정합니다
-
-</br>
-
-### 3. 단일 서비스에 정적 임계치 생성하기
-
-- **[ITSI] > [Configurations] > [Service Monitoring] > [Services]** 메뉴로 이동하여 **_RUM Application_** 을 클릭하여 설정화면으로 들어갑니다
-- KPI 목록 중 **_Client Errors_** KPI를 클릭 후 thresholding 메뉴를 클릭합니다
-- 아래와 같이 설정을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-2-1-config6.jpg" width="800" style="border: 1px solid #000; display: block; margin-left: 0;">
-- Set Custom Thresholds 선택
-- view data from : last 24 hours 선택
-- threshold 심각도와 수치를 위 스크린샷과 동일하게 입력합니다
-- [Save]를 눌러 저장합니다
-
-</br>
-
-### 이벤트 발생 현황 확인하기
-
-정적 임계값을 설정 할 때 일부러 낮게 설정하여 알람이 울리게 만들었으므로 시간이 조금 지난다면 이벤트가 다소 발생 할 것입니다.
-
-- **[ITSI] > [Alerts and Episodes]** 메뉴로 이동합니다
-- 현재 발생되는 이벤트 목록 중 "Traces Error" 로 시작하는 이벤트를 한번 찾아서 눌러봅니다
-- Impact 탭에서는 이벤트가 발생한 주체 서비스와 영향을 받는 다른 서비스가 같이 표시됩니다
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config7.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-- Events Timeline 탭을 클릭하고 Sort for 값을 Root cause analysis 를 선택하면 발생 된 이벤트 중 근본원인으로 추정되는 이벤트를 말 해 줍니다
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config8.jpg" width="600" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-또 다른 방법으로 이벤트를 확인하는 방법이 있습니다. 시간이 좀 지났다면 이미 서비스에서 여러 알림이 발생하고 있을텐데요, 혹시 서비스 트리에서 서비스의 색깔이 변했거나 느낌표가 표시된 서비스가 보이나요?
-
-- **[ITSI] > [Analyzer]** 메뉴로 이동하여 Online Boutique 서비스 분석기를 선택합니다
-- 아래와 같이 서비스의 모습이 변화한 것을 확인 할 수 있습니다
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config9.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-- 이 중 paymentservice-nodejs 를 선택 해 봅니다. KPI 목록 아래에 Critical Episode가 생성되었다는 표시가 보입니다.
-- View All 버튼을 눌러 에피소드 화면으로 넘어가면, 방금 화면과 같이 에피소드 리뷰 화면이 보입니다.
-
-  <img src="../../../images/2-ninja-itsi/2-2-1-config10.jpg" width="900" style="border: 1px solid #000; display: block; margin-left: 0;">
-
-**LAB 07 Done!**
+Predictive Analytics는 ITSI KPI 데이터를 이용해 **미래 상태를 미리 알려주는 조기 경보 시스템**입니다.  
+Thresholds(즉시)와 Anomaly Detection(현재 맥락)을 보완해,  
+**“앞으로 무슨 일이 일어날지”**를 알려주며, 운영자가 **Reactive → Proactive → Predictive** 단계로  
+성숙할 수 있도록 지원합니다.
