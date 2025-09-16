@@ -313,8 +313,7 @@
 
 - **[ITSI] > [Configuration] > [Service Monitoring] > [KPI Base Search]** 페이지로 이동합니다
 - 기존에 생성했던 **_OBQ : Frontend UX Performance_** KPI Base Search 를 클릭하여 설정 화면으로 들어갑니다
-- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _app_ 을 입력합니다
-  <img src="../../../images/2-ninja-itsi/2-1-5-config14.jpg" width="400" style="border: 1px solid #000; block; margin-left: 0;">
+- 옵션 하단에 **Split by Entity** 부분을 **Yes** 로 변경 후 아래와 같이 _rum_app_ 을 입력합니다
 - 저장하고 빠져나옵니다
 
 #### 5-2. Service KPI 수정하기
