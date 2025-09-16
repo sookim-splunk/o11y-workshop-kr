@@ -259,7 +259,7 @@ var CONTENTS = [
                 id: '2-3-1', // required. page ID
                 title: '2-3-1. Anomaly Detection', // required. Bread crumbs text
                 menuName: '2-3-1. Anomaly Detection', // required. Side bar text
-                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-nalytics/2-3-1-AnomalyDetection/2-3-1-index.html', // required. HTML file path
+                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-analytics/2-3-1-AnomalyDetection/2-3-1-index.html', // required. HTML file path
                 prev: '2-3',
                 next: '2-3-2',
               },
@@ -267,7 +267,7 @@ var CONTENTS = [
                 id: '2-3-2', // required. page ID
                 title: '2-3-2. Predictive Analytics', // required. Bread crumbs text
                 menuName: '2-3-2. Predictive Analytics', // required. Side bar text
-                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-nalytics/2-3-2-PredictiveAnalytics/2-3-2-index.html', // required. HTML file path
+                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-analytics/2-3-2-PredictiveAnalytics/2-3-2-index.html', // required. HTML file path
                 prev: '2-3-1',
                 next: '2-3-3',
               },
@@ -275,7 +275,7 @@ var CONTENTS = [
                 id: '2-3-3', // required. page ID
                 title: '2-3-3. And Others...', // required. Bread crumbs text
                 menuName: '2-3-3. And Others...', // required. Side bar text
-                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-nalytics/2-3-3-AndOthers/2-3-3-index.html', // required. HTML file path
+                href: '/o11y-workshop-kr/src/2-Splunk4NinjasITSI/2-3-advanced-analytics/2-3-3-AndOthers/2-3-3-index.html', // required. HTML file path
                 prev: '2-3',
                 next: '3',
               },
