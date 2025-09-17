@@ -6,7 +6,7 @@ Splunk IT Service Intelligence(ITSI)에서 **서비스**는 단순한 서버나 
 
 - 예: 온라인 쇼핑몰 → **결제 서비스**, **장바구니 서비스**, **상품 검색 서비스**
 - 여러 구성요소(웹 서버, DB, API, 네트워크)를 하나의 “서비스”로 묶어 관리
-- 운영자는 “CPU 90%” 같은 개별 지표 대신, **“결제 서비스의 상태가 위험”**처럼  
+- 운영자는 “CPU 90%” 같은 개별 지표 대신, **결제 서비스의 상태가 위험**처럼  
   비즈니스 관점에서 문제를 이해할 수 있습니다.
 
 </br>
@@ -197,8 +197,8 @@ Splunk IT Service Intelligence(ITSI)에서 **서비스**는 단순한 서버나 
 
 - [ ] Frontend (템플릿 없는 빈 서비스 생성)
   - [ ] RUM Application (템플릿 없음. 서비스 생성 후 KPI base search 지정)
-  - [ ] frontend-go
-    - [ ] frontend-k8s
+    - [ ] frontend-go
+      - [ ] frontend-k8s
   - [ ] Synthetics Test (템플릿 없음. 서비스 생성 후 KPI base search 지정)
 
 #### Shopping Services
