@@ -136,7 +136,7 @@ Splunk IT Service Intelligence(ITSI)에서 **서비스**는 단순한 서버나 
 - 생성 버튼을 클릭 후 넘어 가 보면 여기에 방금 설정한 frontend-go 서비스의 KPI가 모두 포함 된 것을 확인 할 수 있습니다.
 - [Linked Service] 탭을 클릭 해 보면 frontend-go 서비스가 이미 링크되어 있습니다. 향후에 이 템플릿에 변경이 발생한다면 frontend-go 서비스와 기타 연결된 서비스에 영향을 미칩니다.
 - [Save] 버튼을 클릭합니다
-- 위 작업과 동일하게 **_OBQ Infra Template_** 도 생성 해 봅니다
+- 위 작업과 동일하게 _frontend-k8s_ 서비스를 가지고 **_OBQ Infra Template_** 도 생성 해 봅니다
   <img src="../../../images/2-ninja-itsi/2-1-4-config14.jpg" width="500" style="border: 1px solid #000; display: block; margin-left: 0;">
 
 </br>
