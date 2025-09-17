@@ -47,5 +47,3 @@
 Anomaly Detection은 **동적 기준선 + 지속성 + 방향성**으로 이상 징후를 자동 탐지하여,  
 고정 임계값의 한계를 보완합니다. Event Analytics의 Thresholds/Alerts/Policies와 결합하면  
 **노이즈는 낮추고, 발견 속도와 정확도는 높이는** 운영 체계를 만들 수 있습니다.
-
-## Lab 10. Anomaly Detection 설정하기
