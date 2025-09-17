@@ -31,8 +31,3 @@
 | 15:20~15:40 | 10     | [Anomaly Detection](./2-2-event-analytics/2-2-3-AggregationPolicies/2-2-3-index.html)     | 20분      |
 | 15:40~16:00 | 11     | [Predictive Anlytics](./2-2-event-analytics/2-2-3-AggregationPolicies/2-2-3-index.html)   | 20분      |
 | 16:00~16:30 | 12     | [Content Pack & Others](./2-2-event-analytics/2-2-3-AggregationPolicies/2-2-3-index.html) | 30분      |
-
-| | | **20 Min Break Time** |
-
-| 15:00~15:20 | 09 | Working with Episodes / Deep Dives | 20분 |
-| 15:35~16:00 | 12 | Glass Tables | 30분 |
