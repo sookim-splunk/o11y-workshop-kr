@@ -240,6 +240,6 @@ Base Search를 공유하면 동시 검색 부하(Search Concurrency Load)를 줄
   - Unit : 개
   - **[Done]** 을 눌러 생성을 완료하고 빠져나옵니다
 - 나머지 메트릭도 만들어줍니다
-- resource_errors, run_count, run_duration, connect_time, dns_time, dom_complete_time
+- resource_errors, run_count, run_duration, connect_time
 
 **LAB 03 Done!**
